@@ -2,15 +2,15 @@
 {
 	nix-plist-manager = {
 		enable = lib.mkOption {
+			description = "Enable the plist manager configuration.";
 			type = lib.types.bool;
 			default = false;
-			description = "Enable the plist manager configuration.";
 		};
 
 		users = lib.mkOption {
+			description = "The users for whom the plist manager is configured.";
 			type = lib.types.listOf lib.types.str;
 			default = null;
-			description = "The users for whom the plist manager is configured.";
 		};
 
 		systemSettings = {
@@ -26,6 +26,8 @@
 			trackpad = import ./systemSettings/trackpad.nix lib customLib;
 		};
 
-		finder = import ./applications/finder.nix lib customLib;
+		applications = {
+			finder = import ./applications/finder.nix lib customLib;
+		};
 	};
 }

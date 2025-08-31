@@ -5,17 +5,20 @@ let
 	wallpaperCommands = import ../lib/config/wallpaper-commands.nix { inherit lib customLib config; };
 in
 {
+	# TODO pipe outputs to log file
+	# TODO Figure out idiomatic log file for nix
+
+	# Logging
+	# echo ${lib.escapeShellArg (lib.concatStringsSep "\n" commands)} > /Users/sushy/plist-manager-out.sh
+	# echo ${lib.escapeShellArg (lib.concatStringsSep "\n" spotlightCommands)} >> /Users/sushy/plist-manager-out.sh
+	# echo ${lib.escapeShellArg (lib.concatStringsSep "\n" wallpaperCommands)} >> /Users/sushy/plist-manager-out.sh
+
+	# TODO wallpaper code is disabled for now, only works for current user
+	# ${lib.concatStringsSep "\n" wallpaperCommands}
+
 	system.activationScripts.defaults.text = ''
-		# TODO pipe outputs to log file
-		# TODO Figure out idiomatic log file for nix
-
-		echo ${lib.escapeShellArg (lib.concatStringsSep "\n" commands)} > /Users/sushy/plist-manager-out.sh
-		echo ${lib.escapeShellArg (lib.concatStringsSep "\n" spotlightCommands)} >> /Users/sushy/plist-manager-out.sh
-		# echo ${lib.escapeShellArg (lib.concatStringsSep "\n" wallpaperCommands)} >> /Users/sushy/plist-manager-out.sh
-
 		${lib.concatStringsSep "\n" commands}
 		${lib.concatStringsSep "\n" spotlightCommands}
-		# ${lib.concatStringsSep "\n" wallpaperCommands}
 
 		killall Finder || true
 		killall Dock || true

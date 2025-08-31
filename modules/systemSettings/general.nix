@@ -28,8 +28,8 @@ lib: customLib:
 			type = lib.types.nullOr lib.types.bool;
 			default = null;
 		};
-		# source =
-		# dateAndTime =
+		# TODO source =
+		# TODO dateAndTime =
 		"24HourTime" = lib.mkOption {
 			description = "System > Date & Time > 24-hour time";
 			type = lib.types.nullOr lib.types.bool;
@@ -45,7 +45,7 @@ lib: customLib:
 			type = lib.types.nullOr lib.types.bool;
 			default = null;
 		};
-		# timeZone =
-		# closestCity =
+		# TODO timeZone =
+		# TODO closestCity =
 	};
 }

@@ -169,7 +169,7 @@ let
 				"Search Queries Data Sharing Status" = nix-plist-manager.systemSettings.spotlight.helpAppleImproveSearch;
 			};
 			"com.apple.finder" = {
-				"FXRemoveOldTrashItems" = nix-plist-manager.finder.removeItemsFromTheTrashAfter30Days;
+				"FXRemoveOldTrashItems" = nix-plist-manager.applications.finder.removeItemsFromTheTrashAfter30Days;
 			};
 		};
 	};
