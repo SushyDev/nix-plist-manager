@@ -2,7 +2,7 @@
 
 A Nix module for managing macOS system settings through plist files. This module provides a declarative way to configure various macOS system preferences using nix-darwin.
 
-![System Settings compared to nix-plist-manager](assets/nix-plist-manager.webp)
+![System Settings compared to nix-plist-manager](docs/nix-plist-manager.webp)
 
 ## Dependencies
 
@@ -74,12 +74,12 @@ Enable the module and configure your desired settings:
 
 ## Supported Settings
 
-See [SUPPORTED_SETTINGS.md](SUPPORTED_SETTINGS.md) for a complete list of all supported system settings and their configuration options.
+See [SUPPORTED_SETTINGS.md](docs/SUPPORTED_SETTINGS.md) for a complete list of all supported system settings and their configuration options.
 
 ## Contributing
 
-Contributions are welcome! Please see the [SUPPORTED_SETTINGS.md](SUPPORTED_SETTINGS.md) file to check which settings are not yet implemented and help expand the module's capabilities.
+Contributions are welcome! Please see the [SUPPORTED_SETTINGS.md](docs/SUPPORTED_SETTINGS.md) file to check which settings are not yet implemented and help expand the module's capabilities.
 
 ## License
 
-This project is licensed under the [GNU General Public License](LICENSE.md) License.
+This project is licensed under the [GNU General Public License](docs/LICENSE.md) License.
