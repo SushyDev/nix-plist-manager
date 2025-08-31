@@ -1,7 +1,3 @@
-# Nix Plist Manager Options Reference
-
-This document describes all available configuration options for the Nix Plist Manager. These options allow you to configure macOS system settings and application preferences through Nix.
-
 ## Table of Contents
 
 - [System Settings](#system-settings)
