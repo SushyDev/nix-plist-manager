@@ -2,7 +2,7 @@
 
 A Nix module for managing macOS system settings through plist files. This module provides a declarative way to configure various macOS system preferences using nix-darwin.
 
-![System Settings compared to nix-plist-manager](assets/nix-plist-manager.webp)
+![System Settings compared to nix-plist-manager](nix-plist-manager.webp)
 
 ## Dependencies
 
@@ -34,7 +34,8 @@ Add this flake to your nix-darwin configuration:
 
 ## Usage
 
-Enable the module and configure your desired settings:
+Enable the module:
+
 
 ```nix
 { config, ... }:
@@ -71,6 +72,8 @@ Enable the module and configure your desired settings:
   };
 }
 ```
+
+You can find configurable options in [OPTIONS.md](OPTIONS.md)
 
 ## Supported Settings
 
