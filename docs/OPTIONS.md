@@ -24,7 +24,7 @@ This document describes all available configuration options for the Nix Plist Ma
 
 #### `systemSettings.appearance`
 
-**Type:** `nullOr (enum ["Light", "Dark", "Auto"])`
+**Type:** `nullOr (enum ["Light" "Dark" "Auto"])`
 
 **Default:** `null`
 
@@ -37,7 +37,7 @@ systemSettings.appearance = "Dark";
 
 #### `systemSettings.accentColor`
 
-**Type:** `nullOr (enum ["Graphite", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Multicolor"])`
+**Type:** `nullOr (enum ["Graphite" "Red" "Orange" "Yellow" "Green" "Blue" "Purple" "Pink" "Multicolor"])`
 
 **Default:** `null`
 
@@ -50,7 +50,7 @@ systemSettings.accentColor = "Blue";
 
 #### `systemSettings.sidebarIconSize`
 
-**Type:** `nullOr (enum ["Small", "Medium", "Large"])`
+**Type:** `nullOr (enum ["Small" "Medium" "Large"])`
 
 **Default:** `null`
 
@@ -76,7 +76,7 @@ systemSettings.allowWallpaperTintingInWindows = true;
 
 #### `systemSettings.showScrollBars`
 
-**Type:** `nullOr (enum ["Automatically based on mouse or trackpad", "When scrolling", "Always"])`
+**Type:** `nullOr (enum ["Automatically based on mouse or trackpad" "When scrolling" "Always"])`
 
 **Default:** `null`
 
@@ -89,7 +89,7 @@ systemSettings.showScrollBars = "Always";
 
 #### `systemSettings.clickInTheScrollBarTo`
 
-**Type:** `nullOr (enum ["Jump to the next page", "Jump to the spot that's clicked"])`
+**Type:** `nullOr (enum ["Jump to the next page" "Jump to the spot that's clicked"])`
 
 **Default:** `null`
 
@@ -156,7 +156,7 @@ systemSettings.controlCenter.stageManager = true;
 
 #### `systemSettings.controlCenter.focusModes`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
 
@@ -169,7 +169,7 @@ systemSettings.controlCenter.focusModes = "always";
 
 #### `systemSettings.controlCenter.screenMirroring`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
 
@@ -182,7 +182,7 @@ systemSettings.controlCenter.screenMirroring = "active";
 
 #### `systemSettings.controlCenter.display`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
 
@@ -195,7 +195,7 @@ systemSettings.controlCenter.display = "always";
 
 #### `systemSettings.controlCenter.sound`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
 
@@ -208,7 +208,7 @@ systemSettings.controlCenter.sound = "always";
 
 #### `systemSettings.controlCenter.nowPlaying`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
 
@@ -356,7 +356,7 @@ systemSettings.controlCenter.menuBarOnly.siri = true;
 
 #### `systemSettings.controlCenter.automaticallyHideAndShowTheMenuBar`
 
-**Type:** `nullOr (enum ["Always", "On Desktop Only", "In Full Screen Only", "Never"])`
+**Type:** `nullOr (enum ["Always" "On Desktop Only" "In Full Screen Only" "Never"])`
 
 **Default:** `null`
 
@@ -402,7 +402,7 @@ systemSettings.desktopAndDock.dock.magnification = {
 
 ##### `systemSettings.desktopAndDock.dock.positionOnScreen`
 
-**Type:** `nullOr (enum ["left", "bottom", "right"])`
+**Type:** `nullOr (enum ["Left" "Bottom" "Right"])`
 
 **Default:** `null`
 
@@ -410,12 +410,12 @@ systemSettings.desktopAndDock.dock.magnification = {
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.dock.positionOnScreen = "bottom";
+systemSettings.desktopAndDock.dock.positionOnScreen = "Bottom";
 ```
 
 ##### `systemSettings.desktopAndDock.dock.minimizeWindowsUsing`
 
-**Type:** `nullOr (enum ["genie", "scale"])`
+**Type:** `nullOr (enum ["Genie Effect" "Scale Effect"])`
 
 **Default:** `null`
 
@@ -423,12 +423,12 @@ systemSettings.desktopAndDock.dock.positionOnScreen = "bottom";
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.dock.minimizeWindowsUsing = "genie";
+systemSettings.desktopAndDock.dock.minimizeWindowsUsing = "Genie Effect";
 ```
 
 ##### `systemSettings.desktopAndDock.dock.doubleClickAWindowsTitleBarTo`
 
-**Type:** `nullOr (enum ["fill", "zoom", "minimize", "doNothing"])`
+**Type:** `nullOr (enum ["Fill" "Zoom" "Minimize" "Do nothing"])`
 
 **Default:** `null`
 
@@ -436,7 +436,7 @@ systemSettings.desktopAndDock.dock.minimizeWindowsUsing = "genie";
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.dock.doubleClickAWindowsTitleBarTo = "zoom";
+systemSettings.desktopAndDock.dock.doubleClickAWindowsTitleBarTo = "Zoom";
 ```
 
 ##### `systemSettings.desktopAndDock.dock.minimizeWindowsIntoApplicationIcon`
@@ -560,7 +560,7 @@ systemSettings.desktopAndDock.desktopAndStageManager.showItems = {
 
 ##### `systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop`
 
-**Type:** `nullOr (enum ["always", "onlyInStageManager"])`
+**Type:** `nullOr (enum ["Always" "Only in Stage Manager"])`
 
 **Default:** `null`
 
@@ -568,7 +568,7 @@ systemSettings.desktopAndDock.desktopAndStageManager.showItems = {
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop = "always";
+systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop = "Always";
 ```
 
 ##### `systemSettings.desktopAndDock.desktopAndStageManager.stageManager`
@@ -599,7 +599,7 @@ systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManage
 
 ##### `systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication`
 
-**Type:** `nullOr (enum ["allAtOnce", "oneAtATime"])`
+**Type:** `nullOr (enum ["allAtOnce" "oneAtATime"])`
 
 **Default:** `null`
 
@@ -630,7 +630,7 @@ systemSettings.desktopAndDock.widgets.showWidgets = {
 
 ##### `systemSettings.desktopAndDock.widgets.widgetStyle`
 
-**Type:** `nullOr (enum ["automatic", "monochrome", "full-color"])`
+**Type:** `nullOr (enum ["automatic" "monochrome" "full-color"])`
 
 **Default:** `null`
 
@@ -658,7 +658,7 @@ systemSettings.desktopAndDock.widgets.useIphoneWidgets = true;
 
 ##### `systemSettings.desktopAndDock.windows.preferTabsWhenOpeningDocuments`
 
-**Type:** `nullOr (enum ["never", "always", "inFullScreen"])`
+**Type:** `nullOr (enum ["never" "always" "inFullScreen"])`
 
 **Default:** `null`
 
@@ -818,7 +818,7 @@ systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMiss
 
 ##### `systemSettings.desktopAndDock.hotCorners.topLeft`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
 
 **Default:** `null`
 
@@ -831,7 +831,7 @@ systemSettings.desktopAndDock.hotCorners.topLeft = "missionControl";
 
 ##### `systemSettings.desktopAndDock.hotCorners.topRight`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
 
 **Default:** `null`
 
@@ -844,7 +844,7 @@ systemSettings.desktopAndDock.hotCorners.topRight = "desktop";
 
 ##### `systemSettings.desktopAndDock.hotCorners.bottomLeft`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
 
 **Default:** `null`
 
@@ -857,7 +857,7 @@ systemSettings.desktopAndDock.hotCorners.bottomLeft = "launchpad";
 
 ##### `systemSettings.desktopAndDock.hotCorners.bottomRight`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
 
 **Default:** `null`
 
@@ -868,130 +868,7 @@ systemSettings.desktopAndDock.hotCorners.bottomLeft = "launchpad";
 systemSettings.desktopAndDock.hotCorners.bottomRight = "notificationCenter";
 ```
 
-#### Desktop & Stage Manager
-- **desktopAndStageManager.showItems**
-  - Type: `nullOr (submodule { onDesktop = nullOr bool; inStageManager = nullOr bool; })`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.showItems = { onDesktop = true; inStageManager = false; };`
 
-- **desktopAndStageManager.clickWallpaperToRevealDesktop**
-  - Type: `nullOr (enum ["always", "onlyInStageManager"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop = "always";`
-
-- **desktopAndStageManager.stageManager**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.stageManager = true;`
-
-- **desktopAndStageManager.showRecentAppsInStageManager**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManager = true;`
-
-- **desktopAndStageManager.showWindowsFromAnApplication**
-  - Type: `nullOr (enum ["allAtOnce", "oneAtATime"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication = "allAtOnce";`
-
-#### Widgets
-- **widgets.showWidgets**
-  - Type: `nullOr (submodule { onDesktop = nullOr bool; inStageManager = nullOr bool; })`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.widgets.showWidgets = { onDesktop = true; inStageManager = false; };`
-
-- **widgets.widgetStyle**
-  - Type: `nullOr (enum ["automatic", "monochrome", "full-color"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.widgets.widgetStyle = "automatic";`
-
-- **widgets.useIphoneWidgets**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.widgets.useIphoneWidgets = true;`
-
-#### Windows
-- **windows.preferTabsWhenOpeningDocuments**
-  - Type: `nullOr (enum ["never", "always", "inFullScreen"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.preferTabsWhenOpeningDocuments = "always";`
-
-- **windows.askToKeepChangesWhenClosingDocuments**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.askToKeepChangesWhenClosingDocuments = true;`
-
-- **windows.closeWindowsWhenQuittingAnApplication**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.closeWindowsWhenQuittingAnApplication = false;`
-
-- **windows.dragWindowsToScreenEdgesToTile**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.dragWindowsToScreenEdgesToTile = true;`
-
-- **windows.dragWindowsToMenuBarToFillScreen**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.dragWindowsToMenuBarToFillScreen = true;`
-
-- **windows.holdOptionKeyWhileDraggingWindowsToTile**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.holdOptionKeyWhileDraggingWindowsToTile = false;`
-
-- **windows.tiledWindowsHaveMargin**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.tiledWindowsHaveMargin = true;`
-
-#### Mission Control
-- **missionControl.automaticallyRearrangeSpacesBasedOnMostRecentUse**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.automaticallyRearrangeSpacesBasedOnMostRecentUse = true;`
-
-- **missionControl.whenSwitchingToAnApplicationSwitchToAspaceWithOpenWindowsForTheApplication**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.whenSwitchingToAnApplicationSwitchToAspaceWithOpenWindowsForTheApplication = true;`
-
-- **missionControl.groupWindowsByApplication**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.groupWindowsByApplication = true;`
-
-- **missionControl.displaysHaveSeparateSpaces**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.displaysHaveSeparateSpaces = true;`
-
-- **missionControl.dragWindowsToTopOfScreenToEnterMissionControl**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMissionControl = true;`
-
-#### Hot Corners
-- **hotCorners.topLeft**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.topLeft = "missionControl";`
-
-- **hotCorners.topRight**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.topRight = "desktop";`
-
-- **hotCorners.bottomLeft**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.bottomLeft = "launchpad";`
-
-- **hotCorners.bottomRight**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.bottomRight = "notificationCenter";`
 
 ### Focus
 
@@ -1174,7 +1051,7 @@ systemSettings.keyboard.keyboardBrightness = 0.5;
 
 #### `systemSettings.keyboard.turnKeyboardBacklightOffAfterInactivity`
 
-**Type:** `nullOr (enum ["After 5 Seconds", "After 10 Seconds", "After 30 Seconds", "After 1 Minute", "After 5 Minutes", "Never"])`
+**Type:** `nullOr (enum ["After 5 Seconds" "After 10 Seconds" "After 30 Seconds" "After 1 Minute" "After 5 Minutes" "Never"])`
 
 **Default:** `null`
 
@@ -1187,7 +1064,7 @@ systemSettings.keyboard.turnKeyboardBacklightOffAfterInactivity = "After 1 Minut
 
 #### `systemSettings.keyboard.pressGlobeKeyTo`
 
-**Type:** `nullOr (enum ["Change Input Source", "Show Emoji & Symbols", "Start Dictation (Press Globe Key Twice)", "Do Nothing"])`
+**Type:** `nullOr (enum ["Change Input Source" "Show Emoji & Symbols" "Start Dictation (Press Globe Key Twice)" "Do Nothing"])`
 
 **Default:** `null`
 
@@ -1247,7 +1124,7 @@ systemSettings.keyboard.dictation.enabled = true;
 
 ##### `systemSettings.notifications.notificationCenter.showPreviews`
 
-**Type:** `nullOr (enum ["always", "whenUnlocked", "never"])`
+**Type:** `nullOr (enum ["always" "whenUnlocked" "never"])`
 
 **Default:** `null`
 
@@ -1277,7 +1154,7 @@ systemSettings.notifications.notificationCenter.summarizeNotifications = true;
 
 ##### `systemSettings.sound.soundEffects.alertSound`
 
-**Type:** `nullOr (enum ["Boop", "Breeze", "Bubble", "Crystal", "Funky", "Heroine", "Jump", "Mezzo", "Pebble", "Pluck", "Pong", "Sonar", "Sonumi", "Submerge"])`
+**Type:** `nullOr (enum ["Boop" "Breeze" "Bubble" "Crystal" "Funky" "Heroine" "Jump" "Mezzo" "Pebble" "Pluck" "Pong" "Sonar" "Sonumi" "Submerge"])`
 
 **Default:** `null`
 
@@ -1634,7 +1511,7 @@ systemSettings.trackpad.trackingSpeed = 5;
 
 #### `systemSettings.trackpad.click`
 
-**Type:** `nullOr (enum ["Light", "Medium", "Firm"])`
+**Type:** `nullOr (enum ["Light" "Medium" "Firm"])`
 
 **Default:** `null`
 

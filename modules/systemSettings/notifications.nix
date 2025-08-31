@@ -4,9 +4,9 @@ lib: customLib:
 		showPreviews = 
 			let
 				mapping = {
-					"always" = 3;
-					"whenUnlocked" = 2;
-					"never" = 1;
+					"Always" = 3;
+					"When Unlocked" = 2;
+					"Never" = 1;
 				};
 			in
 			lib.mkOption {
