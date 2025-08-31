@@ -26,31 +26,33 @@ let
 		if builtins.isNull value then null
 		else (if value.showInMenuBar then 0 else 8) + (if value.showInControlCenter then 1 else 0);
 
-	boolShowInMenuBarTrue = 18;
-	boolShowInMenuBarFalse = 24;
-
-	boolModules = {
-		wifi = {
-			name = "Wi-Fi";
-			onValue = boolShowInMenuBarTrue;
-			offValue = boolShowInMenuBarFalse;
+	boolModules = 
+		let
+			ShowInMenuBarTrue = 18;
+			ShowInMenuBarFalse = 24;
+		in
+		{
+			wifi = {
+				name = "Wi-Fi";
+				onValue = ShowInMenuBarTrue;
+				offValue = ShowInMenuBarFalse;
+			};
+			bluetooth = {
+				name = "Bluetooth";
+				onValue = ShowInMenuBarTrue;
+				offValue = ShowInMenuBarFalse;
+			};
+			airdrop = {
+				name = "AirDrop";
+				onValue = ShowInMenuBarTrue;
+				offValue = ShowInMenuBarFalse;
+			};
+			stageManager = {
+				name = "Stage Manager";
+				onValue = ShowInMenuBarTrue;
+				offValue = ShowInMenuBarFalse;
+			};
 		};
-		bluetooth = {
-			name = "Bluetooth";
-			onValue = boolShowInMenuBarTrue;
-			offValue = boolShowInMenuBarFalse;
-		};
-		airdrop = {
-			name = "AirDrop";
-			onValue = boolShowInMenuBarTrue;
-			offValue = boolShowInMenuBarFalse;
-		};
-		stageManager = {
-			name = "Stage Manager";
-			onValue = boolShowInMenuBarTrue;
-			offValue = boolShowInMenuBarFalse;
-		};
-	};
 
 	enumModules = {
 		focusModes = "Focus";
@@ -137,13 +139,13 @@ in
 	batteryShowPercentage = optionBatteryShowPercentage;
 	menuBarOnly = {
 		spotlight = lib.mkOption {
-			description = "Menu Bar Only > Spotlight";
+			description = "Control Center > Menu Bar Only > Spotlight";
 			apply = (value: if builtins.isNull value then null else if value then false else true);
 			type = lib.types.nullOr lib.types.bool;
 			default = null;
 		};
 		siri = lib.mkOption {
-			description = "Menu Bar Only > Siri";
+			description = "Control Center > Menu Bar Only > Siri";
 			type = lib.types.nullOr lib.types.bool;
 			default = null;
 		};
@@ -158,7 +160,7 @@ in
 			};
 		in
 		lib.mkOption {
-			description = "Menu Bar Only > Automatically hide and show the menu bar";
+			description = "Control Center > Automatically hide and show the menu bar";
 			type = lib.types.nullOr (lib.types.enum (lib.attrNames mapping));
 			apply = (value: if builtins.isNull value then null else mapping.${value});
 			default = null;
