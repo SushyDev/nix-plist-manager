@@ -517,13 +517,13 @@ systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManage
 
 ##### `systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication`
 
-**Type:** `nullOr (enum ["allAtOnce" "oneAtATime"])`
+**Type:** `nullOr (enum ["All at Once" "One at a Time"])`
 
 **Default:** `null`
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication = "allAtOnce";
+systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication = "All at Once";
 ```
 
 #### Widgets
@@ -544,13 +544,13 @@ systemSettings.desktopAndDock.widgets.showWidgets = {
 
 ##### `systemSettings.desktopAndDock.widgets.widgetStyle`
 
-**Type:** `nullOr (enum ["automatic" "monochrome" "full-color"])`
+**Type:** `nullOr (enum ["Automatic" "Monochrome" "Full-color"])`
 
 **Default:** `null`
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.widgets.widgetStyle = "automatic";
+systemSettings.desktopAndDock.widgets.widgetStyle = "Automatic";
 ```
 
 ##### `systemSettings.desktopAndDock.widgets.useIphoneWidgets`
@@ -704,46 +704,46 @@ systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMiss
 
 ##### `systemSettings.desktopAndDock.hotCorners.topLeft`
 
-**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.topLeft = "missionControl";
+systemSettings.desktopAndDock.hotCorners.topLeft = "Mission Control";
 ```
 
 ##### `systemSettings.desktopAndDock.hotCorners.topRight`
 
-**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.topRight = "desktop";
+systemSettings.desktopAndDock.hotCorners.topRight = "Desktop";
 ```
 
 ##### `systemSettings.desktopAndDock.hotCorners.bottomLeft`
 
-**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.bottomLeft = "launchpad";
+systemSettings.desktopAndDock.hotCorners.bottomLeft = "Launchpad";
 ```
 
 ##### `systemSettings.desktopAndDock.hotCorners.bottomRight`
 
-**Type:** `nullOr (enum ["disabled" "missionControl" "applicationWindows" "desktop" "startScreenSaver" "disableScreenSaver" "dashboard" "putDisplayToSleep" "launchpad" "notificationCenter" "lockScreen" "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.bottomRight = "notificationCenter";
+systemSettings.desktopAndDock.hotCorners.bottomRight = "Notification Center";
 ```
 
 ### Focus
@@ -964,13 +964,13 @@ systemSettings.keyboard.dictation.enabled = true;
 
 ##### `systemSettings.notifications.notificationCenter.showPreviews`
 
-**Type:** `nullOr (enum ["always" "whenUnlocked" "never"])`
+**Type:** `nullOr (enum ["Always" "When Unlocked" "Never"])`
 
 **Default:** `null`
 
 **Example:**
 ```nix
-systemSettings.notifications.notificationCenter.showPreviews = "whenUnlocked";
+systemSettings.notifications.notificationCenter.showPreviews = "When Unlocked";
 ```
 
 ##### `systemSettings.notifications.notificationCenter.summarizeNotifications`
