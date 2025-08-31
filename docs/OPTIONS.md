@@ -24,11 +24,9 @@ This document describes all available configuration options for the Nix Plist Ma
 
 #### `systemSettings.appearance`
 
-**Type:** `nullOr (enum ["Light", "Dark", "Auto"])`
+**Type:** `nullOr (enum ["Light" "Dark" "Auto"])`
 
 **Default:** `null`
-
-**Description:** Controls the appearance theme for macOS.
 
 **Example:**
 ```nix
@@ -37,11 +35,9 @@ systemSettings.appearance = "Dark";
 
 #### `systemSettings.accentColor`
 
-**Type:** `nullOr (enum ["Graphite", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Multicolor"])`
+**Type:** `nullOr (enum ["Graphite" "Red" "Orange" "Yellow" "Green" "Blue" "Purple" "Pink" "Multicolor"])`
 
 **Default:** `null`
-
-**Description:** Sets the accent color used throughout the system interface.
 
 **Example:**
 ```nix
@@ -50,11 +46,9 @@ systemSettings.accentColor = "Blue";
 
 #### `systemSettings.sidebarIconSize`
 
-**Type:** `nullOr (enum ["Small", "Medium", "Large"])`
+**Type:** `nullOr (enum ["Small" "Medium" "Large"])`
 
 **Default:** `null`
-
-**Description:** Controls the size of icons in Finder sidebars and other system interfaces.
 
 **Example:**
 ```nix
@@ -67,8 +61,6 @@ systemSettings.sidebarIconSize = "Medium";
 
 **Default:** `null`
 
-**Description:** Whether to allow wallpaper tinting effects in application windows.
-
 **Example:**
 ```nix
 systemSettings.allowWallpaperTintingInWindows = true;
@@ -76,11 +68,9 @@ systemSettings.allowWallpaperTintingInWindows = true;
 
 #### `systemSettings.showScrollBars`
 
-**Type:** `nullOr (enum ["Automatically based on mouse or trackpad", "When scrolling", "Always"])`
+**Type:** `nullOr (enum ["Automatically based on mouse or trackpad" "When scrolling" "Always"])`
 
 **Default:** `null`
-
-**Description:** Controls when scroll bars are displayed in windows.
 
 **Example:**
 ```nix
@@ -89,11 +79,9 @@ systemSettings.showScrollBars = "Always";
 
 #### `systemSettings.clickInTheScrollBarTo`
 
-**Type:** `nullOr (enum ["Jump to the next page", "Jump to the spot that's clicked"])`
+**Type:** `nullOr (enum ["Jump to the next page" "Jump to the spot that's clicked"])`
 
 **Default:** `null`
-
-**Description:** Controls the behavior when clicking in the scroll bar track.
 
 **Example:**
 ```nix
@@ -108,8 +96,6 @@ systemSettings.clickInTheScrollBarTo = "Jump to the spot that's clicked";
 
 **Default:** `null`
 
-**Description:** Whether to show Wi-Fi controls in the menu bar.
-
 **Example:**
 ```nix
 systemSettings.controlCenter.wifi = true;
@@ -120,8 +106,6 @@ systemSettings.controlCenter.wifi = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to show Bluetooth controls in the menu bar.
 
 **Example:**
 ```nix
@@ -134,8 +118,6 @@ systemSettings.controlCenter.bluetooth = true;
 
 **Default:** `null`
 
-**Description:** Whether to show AirDrop controls in the menu bar.
-
 **Example:**
 ```nix
 systemSettings.controlCenter.airdrop = true;
@@ -147,8 +129,6 @@ systemSettings.controlCenter.airdrop = true;
 
 **Default:** `null`
 
-**Description:** Whether to show Stage Manager controls in the menu bar.
-
 **Example:**
 ```nix
 systemSettings.controlCenter.stageManager = true;
@@ -156,11 +136,9 @@ systemSettings.controlCenter.stageManager = true;
 
 #### `systemSettings.controlCenter.focusModes`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of Focus modes in the Control Center.
 
 **Example:**
 ```nix
@@ -169,11 +147,9 @@ systemSettings.controlCenter.focusModes = "always";
 
 #### `systemSettings.controlCenter.screenMirroring`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of screen mirroring controls in the Control Center.
 
 **Example:**
 ```nix
@@ -182,11 +158,9 @@ systemSettings.controlCenter.screenMirroring = "active";
 
 #### `systemSettings.controlCenter.display`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of display controls in the Control Center.
 
 **Example:**
 ```nix
@@ -195,11 +169,9 @@ systemSettings.controlCenter.display = "always";
 
 #### `systemSettings.controlCenter.sound`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of sound controls in the Control Center.
 
 **Example:**
 ```nix
@@ -208,11 +180,9 @@ systemSettings.controlCenter.sound = "always";
 
 #### `systemSettings.controlCenter.nowPlaying`
 
-**Type:** `nullOr (enum ["always", "active", "never"])`
+**Type:** `nullOr (enum ["always" "active" "never"])`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of Now Playing controls in the Control Center.
 
 **Example:**
 ```nix
@@ -224,8 +194,6 @@ systemSettings.controlCenter.nowPlaying = "active";
 **Type:** `nullOr (submodule { showInMenuBar = nullOr bool; showInControlCenter = nullOr bool; })`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of accessibility shortcuts in the menu bar and Control Center.
 
 **Example:**
 ```nix
@@ -241,8 +209,6 @@ systemSettings.controlCenter.accessibilityShortcuts = {
 
 **Default:** `null`
 
-**Description:** Controls the visibility of music recognition controls in the menu bar and Control Center.
-
 **Example:**
 ```nix
 systemSettings.controlCenter.musicRecognition = {
@@ -256,8 +222,6 @@ systemSettings.controlCenter.musicRecognition = {
 **Type:** `nullOr (submodule { showInMenuBar = nullOr bool; showInControlCenter = nullOr bool; })`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of hearing controls in the menu bar and Control Center.
 
 **Example:**
 ```nix
@@ -273,8 +237,6 @@ systemSettings.controlCenter.hearing = {
 
 **Default:** `null`
 
-**Description:** Controls the visibility of fast user switching controls in the menu bar and Control Center.
-
 **Example:**
 ```nix
 systemSettings.controlCenter.fastUserSwitching = {
@@ -288,8 +250,6 @@ systemSettings.controlCenter.fastUserSwitching = {
 **Type:** `nullOr (submodule { showInMenuBar = nullOr bool; showInControlCenter = nullOr bool; })`
 
 **Default:** `null`
-
-**Description:** Controls the visibility of keyboard brightness controls in the menu bar and Control Center.
 
 **Example:**
 ```nix
@@ -305,8 +265,6 @@ systemSettings.controlCenter.keyboardBrightness = {
 
 **Default:** `null`
 
-**Description:** Controls the visibility of battery information in the menu bar and Control Center.
-
 **Example:**
 ```nix
 systemSettings.controlCenter.battery = {
@@ -321,8 +279,6 @@ systemSettings.controlCenter.battery = {
 
 **Default:** `null`
 
-**Description:** Whether to show battery percentage in the battery indicator.
-
 **Example:**
 ```nix
 systemSettings.controlCenter.batteryShowPercentage = true;
@@ -333,8 +289,6 @@ systemSettings.controlCenter.batteryShowPercentage = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to show Spotlight in the menu bar only (not in Control Center).
 
 **Example:**
 ```nix
@@ -347,8 +301,6 @@ systemSettings.controlCenter.menuBarOnly.spotlight = false;
 
 **Default:** `null`
 
-**Description:** Whether to show Siri in the menu bar only (not in Control Center).
-
 **Example:**
 ```nix
 systemSettings.controlCenter.menuBarOnly.siri = true;
@@ -356,11 +308,9 @@ systemSettings.controlCenter.menuBarOnly.siri = true;
 
 #### `systemSettings.controlCenter.automaticallyHideAndShowTheMenuBar`
 
-**Type:** `nullOr (enum ["Always", "On Desktop Only", "In Full Screen Only", "Never"])`
+**Type:** `nullOr (enum ["Always" "On Desktop Only" "In Full Screen Only" "Never"])`
 
 **Default:** `null`
-
-**Description:** Controls when the menu bar automatically hides and shows.
 
 **Example:**
 ```nix
@@ -377,8 +327,6 @@ systemSettings.controlCenter.automaticallyHideAndShowTheMenuBar = "Always";
 
 **Default:** `null`
 
-**Description:** Sets the size of the Dock icons.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.dock.size = 64;
@@ -390,8 +338,6 @@ systemSettings.desktopAndDock.dock.size = 64;
 
 **Default:** `null`
 
-**Description:** Controls Dock magnification settings.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.dock.magnification = {
@@ -402,41 +348,35 @@ systemSettings.desktopAndDock.dock.magnification = {
 
 ##### `systemSettings.desktopAndDock.dock.positionOnScreen`
 
-**Type:** `nullOr (enum ["left", "bottom", "right"])`
+**Type:** `nullOr (enum ["Left" "Bottom" "Right"])`
 
 **Default:** `null`
 
-**Description:** Sets the position of the Dock on screen.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.dock.positionOnScreen = "bottom";
+systemSettings.desktopAndDock.dock.positionOnScreen = "Bottom";
 ```
 
 ##### `systemSettings.desktopAndDock.dock.minimizeWindowsUsing`
 
-**Type:** `nullOr (enum ["genie", "scale"])`
+**Type:** `nullOr (enum ["Genie Effect" "Scale Effect"])`
 
 **Default:** `null`
 
-**Description:** Sets the animation effect used when minimizing windows.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.dock.minimizeWindowsUsing = "genie";
+systemSettings.desktopAndDock.dock.minimizeWindowsUsing = "Genie Effect";
 ```
 
 ##### `systemSettings.desktopAndDock.dock.doubleClickAWindowsTitleBarTo`
 
-**Type:** `nullOr (enum ["fill", "zoom", "minimize", "doNothing"])`
+**Type:** `nullOr (enum ["Fill" "Zoom" "Minimize" "Do nothing"])`
 
 **Default:** `null`
 
-**Description:** Sets the action performed when double-clicking a window's title bar.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.dock.doubleClickAWindowsTitleBarTo = "zoom";
+systemSettings.desktopAndDock.dock.doubleClickAWindowsTitleBarTo = "Zoom";
 ```
 
 ##### `systemSettings.desktopAndDock.dock.minimizeWindowsIntoApplicationIcon`
@@ -444,8 +384,6 @@ systemSettings.desktopAndDock.dock.doubleClickAWindowsTitleBarTo = "zoom";
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether minimized windows should be represented by their application icon in the Dock.
 
 **Example:**
 ```nix
@@ -457,8 +395,6 @@ systemSettings.desktopAndDock.dock.minimizeWindowsIntoApplicationIcon = true;
 **Type:** `nullOr (submodule { enabled = nullOr bool; delay = nullOr float; duration = nullOr float; })`
 
 **Default:** `null`
-
-**Description:** Controls automatic hiding and showing of the Dock.
 
 **Example:**
 ```nix
@@ -475,8 +411,6 @@ systemSettings.desktopAndDock.dock.automaticallyHideAndShowTheDock = {
 
 **Default:** `null`
 
-**Description:** Whether to animate opening applications from the Dock.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.dock.animateOpeningApplications = true;
@@ -487,8 +421,6 @@ systemSettings.desktopAndDock.dock.animateOpeningApplications = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to show indicators for open applications in the Dock.
 
 **Example:**
 ```nix
@@ -501,8 +433,6 @@ systemSettings.desktopAndDock.dock.showIndicatorsForOpenApplications = true;
 
 **Default:** `null`
 
-**Description:** Whether to show suggested and recent apps in the Dock.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.dock.showSuggestedAndRecentAppsInDock = false;
@@ -513,8 +443,6 @@ systemSettings.desktopAndDock.dock.showSuggestedAndRecentAppsInDock = false;
 **Type:** `nullOr (listOf taggedType)`
 
 **Default:** `null`
-
-**Description:** List of applications to keep persistently in the Dock.
 
 **Example:**
 ```nix
@@ -529,8 +457,6 @@ systemSettings.desktopAndDock.dock.persistentApps = [
 **Type:** `nullOr (listOf (either path str))`
 
 **Default:** `null`
-
-**Description:** List of folders and files to keep persistently in the Dock.
 
 **Example:**
 ```nix
@@ -548,8 +474,6 @@ systemSettings.desktopAndDock.dock.persistentOthers = [
 
 **Default:** `null`
 
-**Description:** Controls whether to show items on the desktop and in Stage Manager.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.desktopAndStageManager.showItems = {
@@ -560,15 +484,13 @@ systemSettings.desktopAndDock.desktopAndStageManager.showItems = {
 
 ##### `systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop`
 
-**Type:** `nullOr (enum ["always", "onlyInStageManager"])`
+**Type:** `nullOr (enum ["Always" "Only in Stage Manager"])`
 
 **Default:** `null`
 
-**Description:** Controls when clicking the wallpaper reveals the desktop.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop = "always";
+systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop = "Always";
 ```
 
 ##### `systemSettings.desktopAndDock.desktopAndStageManager.stageManager`
@@ -576,8 +498,6 @@ systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDeskt
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to enable Stage Manager.
 
 **Example:**
 ```nix
@@ -590,8 +510,6 @@ systemSettings.desktopAndDock.desktopAndStageManager.stageManager = true;
 
 **Default:** `null`
 
-**Description:** Whether to show recent apps in Stage Manager.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManager = true;
@@ -599,15 +517,13 @@ systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManage
 
 ##### `systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication`
 
-**Type:** `nullOr (enum ["allAtOnce", "oneAtATime"])`
+**Type:** `nullOr (enum ["All at Once" "One at a Time"])`
 
 **Default:** `null`
 
-**Description:** Controls how windows from an application are shown.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication = "allAtOnce";
+systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication = "All at Once";
 ```
 
 #### Widgets
@@ -617,8 +533,6 @@ systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplicatio
 **Type:** `nullOr (submodule { onDesktop = nullOr bool; inStageManager = nullOr bool; })`
 
 **Default:** `null`
-
-**Description:** Controls whether to show widgets on the desktop and in Stage Manager.
 
 **Example:**
 ```nix
@@ -630,15 +544,13 @@ systemSettings.desktopAndDock.widgets.showWidgets = {
 
 ##### `systemSettings.desktopAndDock.widgets.widgetStyle`
 
-**Type:** `nullOr (enum ["automatic", "monochrome", "full-color"])`
+**Type:** `nullOr (enum ["Automatic" "Monochrome" "Full-color"])`
 
 **Default:** `null`
 
-**Description:** Sets the style for widgets.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.widgets.widgetStyle = "automatic";
+systemSettings.desktopAndDock.widgets.widgetStyle = "Automatic";
 ```
 
 ##### `systemSettings.desktopAndDock.widgets.useIphoneWidgets`
@@ -646,8 +558,6 @@ systemSettings.desktopAndDock.widgets.widgetStyle = "automatic";
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to use iPhone widgets.
 
 **Example:**
 ```nix
@@ -658,11 +568,9 @@ systemSettings.desktopAndDock.widgets.useIphoneWidgets = true;
 
 ##### `systemSettings.desktopAndDock.windows.preferTabsWhenOpeningDocuments`
 
-**Type:** `nullOr (enum ["never", "always", "inFullScreen"])`
+**Type:** `nullOr (enum ["never" "always" "inFullScreen"])`
 
 **Default:** `null`
-
-**Description:** Controls when to prefer tabs when opening documents.
 
 **Example:**
 ```nix
@@ -675,8 +583,6 @@ systemSettings.desktopAndDock.windows.preferTabsWhenOpeningDocuments = "always";
 
 **Default:** `null`
 
-**Description:** Whether to ask to keep changes when closing documents.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.windows.askToKeepChangesWhenClosingDocuments = true;
@@ -687,8 +593,6 @@ systemSettings.desktopAndDock.windows.askToKeepChangesWhenClosingDocuments = tru
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to close windows when quitting an application.
 
 **Example:**
 ```nix
@@ -701,8 +605,6 @@ systemSettings.desktopAndDock.windows.closeWindowsWhenQuittingAnApplication = fa
 
 **Default:** `null`
 
-**Description:** Whether to tile windows when dragging to screen edges.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.windows.dragWindowsToScreenEdgesToTile = true;
@@ -713,8 +615,6 @@ systemSettings.desktopAndDock.windows.dragWindowsToScreenEdgesToTile = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to fill screen when dragging windows to menu bar.
 
 **Example:**
 ```nix
@@ -727,8 +627,6 @@ systemSettings.desktopAndDock.windows.dragWindowsToMenuBarToFillScreen = true;
 
 **Default:** `null`
 
-**Description:** Whether to require holding Option key while dragging windows to tile.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.windows.holdOptionKeyWhileDraggingWindowsToTile = false;
@@ -739,8 +637,6 @@ systemSettings.desktopAndDock.windows.holdOptionKeyWhileDraggingWindowsToTile = 
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether tiled windows have margins.
 
 **Example:**
 ```nix
@@ -755,8 +651,6 @@ systemSettings.desktopAndDock.windows.tiledWindowsHaveMargin = true;
 
 **Default:** `null`
 
-**Description:** Whether to automatically rearrange Spaces based on most recent use.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.missionControl.automaticallyRearrangeSpacesBasedOnMostRecentUse = true;
@@ -767,8 +661,6 @@ systemSettings.desktopAndDock.missionControl.automaticallyRearrangeSpacesBasedOn
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to switch to a Space with open windows for the application when switching to an application.
 
 **Example:**
 ```nix
@@ -781,8 +673,6 @@ systemSettings.desktopAndDock.missionControl.whenSwitchingToAnApplicationSwitchT
 
 **Default:** `null`
 
-**Description:** Whether to group windows by application in Mission Control.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.missionControl.groupWindowsByApplication = true;
@@ -793,8 +683,6 @@ systemSettings.desktopAndDock.missionControl.groupWindowsByApplication = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether displays have separate Spaces.
 
 **Example:**
 ```nix
@@ -807,8 +695,6 @@ systemSettings.desktopAndDock.missionControl.displaysHaveSeparateSpaces = true;
 
 **Default:** `null`
 
-**Description:** Whether dragging windows to the top of screen enters Mission Control.
-
 **Example:**
 ```nix
 systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMissionControl = true;
@@ -818,180 +704,47 @@ systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMiss
 
 ##### `systemSettings.desktopAndDock.hotCorners.topLeft`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
-**Description:** Sets the action for the top-left hot corner.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.topLeft = "missionControl";
+systemSettings.desktopAndDock.hotCorners.topLeft = "Mission Control";
 ```
 
 ##### `systemSettings.desktopAndDock.hotCorners.topRight`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
-**Description:** Sets the action for the top-right hot corner.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.topRight = "desktop";
+systemSettings.desktopAndDock.hotCorners.topRight = "Desktop";
 ```
 
 ##### `systemSettings.desktopAndDock.hotCorners.bottomLeft`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
-**Description:** Sets the action for the bottom-left hot corner.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.bottomLeft = "launchpad";
+systemSettings.desktopAndDock.hotCorners.bottomLeft = "Launchpad";
 ```
 
 ##### `systemSettings.desktopAndDock.hotCorners.bottomRight`
 
-**Type:** `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
+**Type:** `nullOr (enum ["-" "Mission Control" "Application Windows" "Desktop" "Start Screen Saver" "Disable Screen Saver" "Dashboard" "Put Display to Sleep" "Launchpad" "Notification Center" "Lock Screen" "Quick Note"])`
 
 **Default:** `null`
 
-**Description:** Sets the action for the bottom-right hot corner.
-
 **Example:**
 ```nix
-systemSettings.desktopAndDock.hotCorners.bottomRight = "notificationCenter";
+systemSettings.desktopAndDock.hotCorners.bottomRight = "Notification Center";
 ```
-
-#### Desktop & Stage Manager
-- **desktopAndStageManager.showItems**
-  - Type: `nullOr (submodule { onDesktop = nullOr bool; inStageManager = nullOr bool; })`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.showItems = { onDesktop = true; inStageManager = false; };`
-
-- **desktopAndStageManager.clickWallpaperToRevealDesktop**
-  - Type: `nullOr (enum ["always", "onlyInStageManager"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop = "always";`
-
-- **desktopAndStageManager.stageManager**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.stageManager = true;`
-
-- **desktopAndStageManager.showRecentAppsInStageManager**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManager = true;`
-
-- **desktopAndStageManager.showWindowsFromAnApplication**
-  - Type: `nullOr (enum ["allAtOnce", "oneAtATime"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication = "allAtOnce";`
-
-#### Widgets
-- **widgets.showWidgets**
-  - Type: `nullOr (submodule { onDesktop = nullOr bool; inStageManager = nullOr bool; })`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.widgets.showWidgets = { onDesktop = true; inStageManager = false; };`
-
-- **widgets.widgetStyle**
-  - Type: `nullOr (enum ["automatic", "monochrome", "full-color"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.widgets.widgetStyle = "automatic";`
-
-- **widgets.useIphoneWidgets**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.widgets.useIphoneWidgets = true;`
-
-#### Windows
-- **windows.preferTabsWhenOpeningDocuments**
-  - Type: `nullOr (enum ["never", "always", "inFullScreen"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.preferTabsWhenOpeningDocuments = "always";`
-
-- **windows.askToKeepChangesWhenClosingDocuments**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.askToKeepChangesWhenClosingDocuments = true;`
-
-- **windows.closeWindowsWhenQuittingAnApplication**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.closeWindowsWhenQuittingAnApplication = false;`
-
-- **windows.dragWindowsToScreenEdgesToTile**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.dragWindowsToScreenEdgesToTile = true;`
-
-- **windows.dragWindowsToMenuBarToFillScreen**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.dragWindowsToMenuBarToFillScreen = true;`
-
-- **windows.holdOptionKeyWhileDraggingWindowsToTile**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.holdOptionKeyWhileDraggingWindowsToTile = false;`
-
-- **windows.tiledWindowsHaveMargin**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.windows.tiledWindowsHaveMargin = true;`
-
-#### Mission Control
-- **missionControl.automaticallyRearrangeSpacesBasedOnMostRecentUse**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.automaticallyRearrangeSpacesBasedOnMostRecentUse = true;`
-
-- **missionControl.whenSwitchingToAnApplicationSwitchToAspaceWithOpenWindowsForTheApplication**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.whenSwitchingToAnApplicationSwitchToAspaceWithOpenWindowsForTheApplication = true;`
-
-- **missionControl.groupWindowsByApplication**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.groupWindowsByApplication = true;`
-
-- **missionControl.displaysHaveSeparateSpaces**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.displaysHaveSeparateSpaces = true;`
-
-- **missionControl.dragWindowsToTopOfScreenToEnterMissionControl**
-  - Type: `nullOr bool`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMissionControl = true;`
-
-#### Hot Corners
-- **hotCorners.topLeft**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.topLeft = "missionControl";`
-
-- **hotCorners.topRight**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.topRight = "desktop";`
-
-- **hotCorners.bottomLeft**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.bottomLeft = "launchpad";`
-
-- **hotCorners.bottomRight**
-  - Type: `nullOr (enum ["disabled", "missionControl", "applicationWindows", "desktop", "startScreenSaver", "disableScreenSaver", "dashboard", "putDisplayToSleep", "launchpad", "notificationCenter", "lockScreen", "quickNote"])`
-  - Default: `null`
-  - Example: `systemSettings.desktopAndDock.hotCorners.bottomRight = "notificationCenter";`
 
 ### Focus
 
@@ -1000,8 +753,6 @@ systemSettings.desktopAndDock.hotCorners.bottomRight = "notificationCenter";
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to share Focus settings across devices.
 
 **Example:**
 ```nix
@@ -1018,8 +769,6 @@ systemSettings.focus.shareAcrossDevices = false;
 
 **Default:** `null`
 
-**Description:** Whether to automatically download new updates when available.
-
 **Example:**
 ```nix
 systemSettings.general.softwareUpdate.automaticallyDownloadNewUpdatesWhenAvailable = true;
@@ -1030,8 +779,6 @@ systemSettings.general.softwareUpdate.automaticallyDownloadNewUpdatesWhenAvailab
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to automatically install macOS updates.
 
 **Example:**
 ```nix
@@ -1044,8 +791,6 @@ systemSettings.general.softwareUpdate.automaticallyInstallMacOSUpdates = false;
 
 **Default:** `null`
 
-**Description:** Whether to automatically install application updates from the App Store.
-
 **Example:**
 ```nix
 systemSettings.general.softwareUpdate.automaticallyInstallApplicationUpdatesFromTheAppStore = true;
@@ -1056,8 +801,6 @@ systemSettings.general.softwareUpdate.automaticallyInstallApplicationUpdatesFrom
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to automatically install security responses and system files.
 
 **Example:**
 ```nix
@@ -1072,8 +815,6 @@ systemSettings.general.softwareUpdate.automaticallyInstallSecurityResponseAndSys
 
 **Default:** `null`
 
-**Description:** Whether to set time and date automatically.
-
 **Example:**
 ```nix
 systemSettings.general.dateAndTime.setTimeAndDateAutomatically = true;
@@ -1084,8 +825,6 @@ systemSettings.general.dateAndTime.setTimeAndDateAutomatically = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to use 24-hour time format.
 
 **Example:**
 ```nix
@@ -1098,8 +837,6 @@ systemSettings.general.dateAndTime."24HourTime" = true;
 
 **Default:** `null`
 
-**Description:** Whether to show 24-hour time on the lock screen.
-
 **Example:**
 ```nix
 systemSettings.general.dateAndTime.show24HourTimeOnLockScreen = true;
@@ -1110,8 +847,6 @@ systemSettings.general.dateAndTime.show24HourTimeOnLockScreen = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to set time zone automatically using current location.
 
 **Example:**
 ```nix
@@ -1126,8 +861,6 @@ systemSettings.general.dateAndTime.setTimeZoneAutomaticallyUsingCurrentLocation 
 
 **Default:** `null`
 
-**Description:** Sets the key repeat rate (higher numbers = faster repeat).
-
 **Example:**
 ```nix
 systemSettings.keyboard.keyRepeatRate = 3;
@@ -1138,8 +871,6 @@ systemSettings.keyboard.keyRepeatRate = 3;
 **Type:** `nullOr (ints.between 1 6)`
 
 **Default:** `null`
-
-**Description:** Sets the delay before key repeat starts (higher numbers = longer delay).
 
 **Example:**
 ```nix
@@ -1152,8 +883,6 @@ systemSettings.keyboard.keyRepeatDelay = 2;
 
 **Default:** `null`
 
-**Description:** Whether to automatically adjust keyboard brightness in low light.
-
 **Example:**
 ```nix
 systemSettings.keyboard.adjustKeyboardBrightnessInLowLight = true;
@@ -1165,8 +894,6 @@ systemSettings.keyboard.adjustKeyboardBrightnessInLowLight = true;
 
 **Default:** `null`
 
-**Description:** Sets the keyboard brightness level.
-
 **Example:**
 ```nix
 systemSettings.keyboard.keyboardBrightness = 0.5;
@@ -1174,11 +901,9 @@ systemSettings.keyboard.keyboardBrightness = 0.5;
 
 #### `systemSettings.keyboard.turnKeyboardBacklightOffAfterInactivity`
 
-**Type:** `nullOr (enum ["After 5 Seconds", "After 10 Seconds", "After 30 Seconds", "After 1 Minute", "After 5 Minutes", "Never"])`
+**Type:** `nullOr (enum ["After 5 Seconds" "After 10 Seconds" "After 30 Seconds" "After 1 Minute" "After 5 Minutes" "Never"])`
 
 **Default:** `null`
-
-**Description:** Sets when to turn off keyboard backlight after inactivity.
 
 **Example:**
 ```nix
@@ -1187,11 +912,9 @@ systemSettings.keyboard.turnKeyboardBacklightOffAfterInactivity = "After 1 Minut
 
 #### `systemSettings.keyboard.pressGlobeKeyTo`
 
-**Type:** `nullOr (enum ["Change Input Source", "Show Emoji & Symbols", "Start Dictation (Press Globe Key Twice)", "Do Nothing"])`
+**Type:** `nullOr (enum ["Change Input Source" "Show Emoji & Symbols" "Start Dictation (Press Globe Key Twice)" "Do Nothing"])`
 
 **Default:** `null`
-
-**Description:** Sets the action performed when pressing the Globe key.
 
 **Example:**
 ```nix
@@ -1203,8 +926,6 @@ systemSettings.keyboard.pressGlobeKeyTo = "Show Emoji & Symbols";
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to enable keyboard navigation for interface controls.
 
 **Example:**
 ```nix
@@ -1219,8 +940,6 @@ systemSettings.keyboard.keyboardNavigation = true;
 
 **Default:** `null`
 
-**Description:** Whether to use F1, F2, etc. keys as standard function keys.
-
 **Example:**
 ```nix
 systemSettings.keyboard.keyboardShortcuts.functionKeys.useF1F2EtcAsStandardFunctionKeys = true;
@@ -1234,8 +953,6 @@ systemSettings.keyboard.keyboardShortcuts.functionKeys.useF1F2EtcAsStandardFunct
 
 **Default:** `null`
 
-**Description:** Whether to enable dictation.
-
 **Example:**
 ```nix
 systemSettings.keyboard.dictation.enabled = true;
@@ -1247,15 +964,13 @@ systemSettings.keyboard.dictation.enabled = true;
 
 ##### `systemSettings.notifications.notificationCenter.showPreviews`
 
-**Type:** `nullOr (enum ["always", "whenUnlocked", "never"])`
+**Type:** `nullOr (enum ["Always" "When Unlocked" "Never"])`
 
 **Default:** `null`
 
-**Description:** Controls when to show notification previews.
-
 **Example:**
 ```nix
-systemSettings.notifications.notificationCenter.showPreviews = "whenUnlocked";
+systemSettings.notifications.notificationCenter.showPreviews = "When Unlocked";
 ```
 
 ##### `systemSettings.notifications.notificationCenter.summarizeNotifications`
@@ -1263,8 +978,6 @@ systemSettings.notifications.notificationCenter.showPreviews = "whenUnlocked";
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to summarize notifications in Notification Center.
 
 **Example:**
 ```nix
@@ -1277,11 +990,9 @@ systemSettings.notifications.notificationCenter.summarizeNotifications = true;
 
 ##### `systemSettings.sound.soundEffects.alertSound`
 
-**Type:** `nullOr (enum ["Boop", "Breeze", "Bubble", "Crystal", "Funky", "Heroine", "Jump", "Mezzo", "Pebble", "Pluck", "Pong", "Sonar", "Sonumi", "Submerge"])`
+**Type:** `nullOr (enum ["Boop" "Breeze" "Bubble" "Crystal" "Funky" "Heroine" "Jump" "Mezzo" "Pebble" "Pluck" "Pong" "Sonar" "Sonumi" "Submerge"])`
 
 **Default:** `null`
-
-**Description:** Sets the alert sound for system notifications.
 
 **Example:**
 ```nix
@@ -1294,8 +1005,6 @@ systemSettings.sound.soundEffects.alertSound = "Crystal";
 
 **Default:** `null`
 
-**Description:** Sets the volume level for alert sounds.
-
 **Example:**
 ```nix
 systemSettings.sound.soundEffects.alertVolume = 0.7;
@@ -1307,8 +1016,6 @@ systemSettings.sound.soundEffects.alertVolume = 0.7;
 
 **Default:** `null`
 
-**Description:** Whether to play user interface sound effects.
-
 **Example:**
 ```nix
 systemSettings.sound.soundEffects.playUserInterfaceSoundEffects = true;
@@ -1319,8 +1026,6 @@ systemSettings.sound.soundEffects.playUserInterfaceSoundEffects = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to play feedback sounds when volume is changed.
 
 **Example:**
 ```nix
@@ -1337,8 +1042,6 @@ systemSettings.sound.soundEffects.playFeedbackWhenVolumeIsChanged = true;
 
 **Default:** `true`
 
-**Description:** Whether to include applications in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.applications = false;
@@ -1349,8 +1052,6 @@ systemSettings.spotlight.searchResults.applications = false;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include calculator in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1363,8 +1064,6 @@ systemSettings.spotlight.searchResults.calculator = true;
 
 **Default:** `true`
 
-**Description:** Whether to include contacts in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.contacts = true;
@@ -1375,8 +1074,6 @@ systemSettings.spotlight.searchResults.contacts = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include unit conversions in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1389,8 +1086,6 @@ systemSettings.spotlight.searchResults.conversion = true;
 
 **Default:** `true`
 
-**Description:** Whether to include dictionary definitions in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.definition = true;
@@ -1401,8 +1096,6 @@ systemSettings.spotlight.searchResults.definition = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include developer resources in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1415,8 +1108,6 @@ systemSettings.spotlight.searchResults.developer = false;
 
 **Default:** `true`
 
-**Description:** Whether to include documents in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.documents = true;
@@ -1427,8 +1118,6 @@ systemSettings.spotlight.searchResults.documents = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include events and reminders in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1441,8 +1130,6 @@ systemSettings.spotlight.searchResults.eventsAndReminders = true;
 
 **Default:** `true`
 
-**Description:** Whether to include folders in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.folders = true;
@@ -1453,8 +1140,6 @@ systemSettings.spotlight.searchResults.folders = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include fonts in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1467,8 +1152,6 @@ systemSettings.spotlight.searchResults.fonts = false;
 
 **Default:** `true`
 
-**Description:** Whether to include images in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.images = true;
@@ -1479,8 +1162,6 @@ systemSettings.spotlight.searchResults.images = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include mail and messages in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1493,8 +1174,6 @@ systemSettings.spotlight.searchResults.mailAndMessages = true;
 
 **Default:** `true`
 
-**Description:** Whether to include movies in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.movies = true;
@@ -1505,8 +1184,6 @@ systemSettings.spotlight.searchResults.movies = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include music in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1519,8 +1196,6 @@ systemSettings.spotlight.searchResults.music = true;
 
 **Default:** `true`
 
-**Description:** Whether to include other items in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.other = false;
@@ -1531,8 +1206,6 @@ systemSettings.spotlight.searchResults.other = false;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include PDF documents in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1545,8 +1218,6 @@ systemSettings.spotlight.searchResults.pdfDocuments = true;
 
 **Default:** `true`
 
-**Description:** Whether to include presentations in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.presentations = true;
@@ -1557,8 +1228,6 @@ systemSettings.spotlight.searchResults.presentations = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include Siri suggestions in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1571,8 +1240,6 @@ systemSettings.spotlight.searchResults.siriSuggestions = false;
 
 **Default:** `true`
 
-**Description:** Whether to include system settings in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.systemSettings = true;
@@ -1583,8 +1250,6 @@ systemSettings.spotlight.searchResults.systemSettings = true;
 **Type:** `nullOr bool`
 
 **Default:** `true`
-
-**Description:** Whether to include tips in Spotlight search results.
 
 **Example:**
 ```nix
@@ -1597,8 +1262,6 @@ systemSettings.spotlight.searchResults.tips = false;
 
 **Default:** `true`
 
-**Description:** Whether to include websites in Spotlight search results.
-
 **Example:**
 ```nix
 systemSettings.spotlight.searchResults.websites = true;
@@ -1609,8 +1272,6 @@ systemSettings.spotlight.searchResults.websites = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to help Apple improve search by sending usage data.
 
 **Example:**
 ```nix
@@ -1625,8 +1286,6 @@ systemSettings.spotlight.helpAppleImproveSearch = false;
 
 **Default:** `null`
 
-**Description:** Sets the tracking speed of the trackpad (higher numbers = faster).
-
 **Example:**
 ```nix
 systemSettings.trackpad.trackingSpeed = 5;
@@ -1634,11 +1293,9 @@ systemSettings.trackpad.trackingSpeed = 5;
 
 #### `systemSettings.trackpad.click`
 
-**Type:** `nullOr (enum ["Light", "Medium", "Firm"])`
+**Type:** `nullOr (enum ["Light" "Medium" "Firm"])`
 
 **Default:** `null`
-
-**Description:** Sets the click pressure for the trackpad.
 
 **Example:**
 ```nix
@@ -1651,8 +1308,6 @@ systemSettings.trackpad.click = "Medium";
 
 **Default:** `null`
 
-**Description:** Whether to enable force click and haptic feedback.
-
 **Example:**
 ```nix
 systemSettings.trackpad.forceClickAndHapticFeedback = true;
@@ -1663,8 +1318,6 @@ systemSettings.trackpad.forceClickAndHapticFeedback = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to enable tap to click.
 
 **Example:**
 ```nix
@@ -1680,8 +1333,6 @@ systemSettings.trackpad.tapToClick = true;
 **Type:** `nullOr bool`
 
 **Default:** `null`
-
-**Description:** Whether to automatically remove items from the Trash after 30 days.
 
 **Example:**
 ```nix

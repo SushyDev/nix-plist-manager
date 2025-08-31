@@ -38,31 +38,40 @@ lib: customLib:
 
 		positionOnScreen = 
 			let
-				mapping = [ "left" "bottom" "right" ];
+				mapping = {
+					"Left" = "left";
+					"Bottom" = "bottom";
+					"Right" = "right";
+				};
 			in
 			lib.mkOption {
 				description = "Desktop & Dock > Dock > Position on screen";
-				type = lib.types.nullOr (lib.types.enum mapping);
+				type = lib.types.nullOr (lib.types.enum (lib.attrNames mapping));
+				apply = value: if builtins.isNull value then null else mapping.${value};
 				default = null;
 			};
 
 		minimizeWindowsUsing = 
 			let
-				mapping = [ "genie" "scale" ];
+				mapping = {
+					"Genie Effect" = "genie";
+					"Scale Effect" = "scale";
+				};
 			in
 			lib.mkOption {
 				description = "Desktop & Dock > Dock > Minimize windows using";
-				type = lib.types.nullOr (lib.types.enum mapping);
+				type = lib.types.nullOr (lib.types.enum (lib.attrNames mapping));
+				apply = value: if builtins.isNull value then null else mapping.${value};
 				default = null;
 			};
 
 		doubleClickAWindowsTitleBarTo = 
 			let
 				mapping = {
-					fill = "fill";
-					zoom = "Maximize";
-					minimize = "minimize";
-					doNothing = "None";
+					"Fill" = "fill";
+					"Zoom" = "Maximize";
+					"Minimize" = "minimize";
+					"Do nothing" = "None";
 				};
 			in
 			lib.mkOption {
@@ -240,8 +249,8 @@ lib: customLib:
 		clickWallpaperToRevealDesktop = 
 			let
 				mapping = {
-					always = true;
-					onlyInStageManager = false;
+					"Always" = true;
+					"Only in Stage Manager" = false;
 				};
 			in	
 			lib.mkOption {
@@ -267,8 +276,8 @@ lib: customLib:
 		showWindowsFromAnApplication = 
 			let
 				mapping = {
-					allAtOnce = true;
-					oneAtATime = false;
+					"All at Once" = true;
+					"One at a Time" = false;
 				};
 			in
 			lib.mkOption {
@@ -310,9 +319,9 @@ lib: customLib:
 		widgetStyle = 
 			let
 				mapping = {
-					automatic = 2;
-					monochrome = 0;
-					full-color = 1;
+					"Automatic" = 2;
+					"Monochrome" = 0;
+					"Full-color" = 1;
 				};
 			in
 			lib.mkOption {
@@ -334,9 +343,9 @@ lib: customLib:
 		preferTabsWhenOpeningDocuments = 
 			let
 				mapping = {
-					never = "manual";
-					always = "always";
-					inFullScreen = "fullscreen";
+					"Never" = "manual";
+					"Always" = "always";
+					"In Full Screen" = "fullscreen";
 				};
 			in
 			lib.mkOption {
@@ -409,18 +418,18 @@ lib: customLib:
 	hotCorners = 
 		let
 			mapping = {
-				disabled = 1;
-				missionControl = 2;
-				applicationWindows = 3;
-				desktop = 4;
-				startScreenSaver = 5;
-				disableScreenSaver = 6;
-				dashboard = 7;
-				putDisplayToSleep = 10;
-				launchpad = 11;
-				notificationCenter = 12;
-				lockScreen = 13;
-				quickNote = 14;
+				"Mission Control" = 2;
+				"Application Windows" = 3;
+				"Desktop" = 4;
+				"Notification Center" = 12;
+				"Launchpad" = 11;
+				"Quick Note" = 14;
+				"Start Screen Saver" = 5;
+				"Disable Screen Saver" = 6;
+				"Put Display To Sleep" = 10;
+				"Lock Screen" = 13;
+				"Dashboard" = 7;
+				"-" = 1;
 			};
 		in
 		{
