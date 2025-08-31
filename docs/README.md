@@ -34,6 +34,45 @@ Add this flake to your nix-darwin configuration:
 
 ## Usage
 
+Enable the module:
+
+
+```nix
+{ config, ... }:
+
+{
+  nix-plist-manager = {
+    enable = true;
+    users = [ "your-username" ];
+
+    systemSettings = {
+      general = {
+        softwareUpdate = {
+          automaticallyDownloadNewUpdatesWhenAvailable = true;
+          automaticallyInstallMacOSUpdates = false;
+        };
+      };
+
+      appearance = {
+        appearance = "Dark";
+        accentColor = "Blue";
+      };
+
+      desktopAndDock = {
+        dock = {
+          size = 64;
+          positionOnScreen = "bottom";
+        };
+      };
+    };
+
+    finder = {
+      removeItemsFromTheTrashAfter30Days = true;
+    };
+  };
+}
+```
+
 You can find configurable options in [OPTIONS.md](OPTIONS.md)
 
 ## Supported Settings
