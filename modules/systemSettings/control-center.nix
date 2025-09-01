@@ -140,8 +140,8 @@ in
 	menuBarOnly = {
 		spotlight = lib.mkOption {
 			description = "Control Center > Menu Bar Only > Spotlight";
-			apply = (value: if builtins.isNull value then null else if value then false else true);
 			type = lib.types.nullOr lib.types.bool;
+			apply = (value: if builtins.isNull value then null else if value then false else true);
 			default = null;
 		};
 		siri = lib.mkOption {

@@ -177,5 +177,53 @@ Legend:
 ## Applications
 
 ### Finder
-- [x] Advanced
-  - [x] Remove items from the Trash after 30 days
+- [-] Settings
+  - [-] General
+    - [x] Show these items on the desktop:
+      - [x] Hard disks
+      - [x] External disks
+      - [x] CDs, DVDs, and iPods
+      - [x] Connected servers
+    - [ ] New Finder windows show:
+    - [ ] Sync Desktop & Documents folders
+    - [x] Open folders in tabs instead of new windows
+  - [ ] Tags
+  - [-] Sidebar
+    - [ ] Recents
+    - [ ] AirDrop
+    - [ ] Applications
+    - [ ] Desktop
+    - [ ] Documents
+    - [ ] Downloads
+    - [ ] Movies
+    - [ ] Music
+    - [ ] Pictures
+    - [ ] {user}
+    - [ ] iCloud Drive
+    - [ ] Shared
+    - [ ] {host}
+    - [ ] Hard disks
+    - [ ] External disks
+    - [ ] CDs, DVDs, and iOS Devices
+    - [ ] Cloud Storage
+    - [ ] Bonjour computers
+    - [ ] Connected servers
+    - [x] Recent Tags
+  - [x] Advanced
+    - [x] Show all filename extensions
+    - [x] Show warning before changing an extension
+    - [x] Show warning before removing from iCloud Drive
+    - [x] Show warning before emptying the Trash
+    - [x] Remove items from the Trash after 30 days
+    - [x] Keep folders on top
+      - [x] In windows when sorting by name
+      - [x] On Desktop
+    - [x] When performing a search
+- [-] Menu Bar
+    - [-] View
+      - [ ] ???
+      - [x] Show Tab Bar
+      - [x] Show Sidebar
+      - [ ] Show Preview - Not sure if this is even possible to toggle beforehand
+      - [x] Show Path Bar
+      - [x] Show Status Bar

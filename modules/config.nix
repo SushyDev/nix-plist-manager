@@ -16,12 +16,13 @@ in
 	# TODO wallpaper code is disabled for now, only works for current user
 	# ${lib.concatStringsSep "\n" wallpaperCommands}
 
-	system.activationScripts.defaults.text = ''
+	system.activationScripts.defaults.text = lib.mkAfter ''
+		echo >&2 "nix-plist-manager..."
 		${lib.concatStringsSep "\n" commands}
 		${lib.concatStringsSep "\n" spotlightCommands}
 
-		killall Finder || true
-		killall Dock || true
-		killall SystemUIServer || true
+		killall Finder >/dev/null 2>&1 || true
+		killall Dock >/dev/null 2>&1 || true
+		killall SystemUIServer >/dev/null 2>&1 || true
 	'';
 }
