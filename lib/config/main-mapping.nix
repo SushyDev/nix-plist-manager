@@ -3,7 +3,6 @@ let
 	nix-plist-manager = config.nix-plist-manager;
 	users = nix-plist-manager.users;
 
-	# From nix config to plist path mapping
 	mappings = user: {
 		"/Library/Preferences" = {
 			"com.apple.SoftwareUpdate" = {
@@ -52,6 +51,7 @@ let
 							else null;
 					in
 					isEnabled nix-plist-manager.systemSettings.controlCenter.automaticallyHideAndShowTheMenuBar;
+				"AppleShowAllExtensions" = nix-plist-manager.applications.finder.settings.advanced.showAllFileExtensions;
 			};
 			"com.apple.dock" = {
 				"enterMissionControlByTopWindowDrag" = nix-plist-manager.systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMissionControl;
@@ -169,7 +169,29 @@ let
 				"Search Queries Data Sharing Status" = nix-plist-manager.systemSettings.spotlight.helpAppleImproveSearch;
 			};
 			"com.apple.finder" = {
-				"FXRemoveOldTrashItems" = nix-plist-manager.applications.finder.removeItemsFromTheTrashAfter30Days;
+				"ShowHardDrivesOnDesktop" = nix-plist-manager.applications.finder.settings.general.showTheseItemsOnTheDesktop.hardDisks;
+				"ShowExternalHardDrivesOnDesktop" = nix-plist-manager.applications.finder.settings.general.showTheseItemsOnTheDesktop.externalDisks;
+				"ShowRemovableMediaOnDesktop" = nix-plist-manager.applications.finder.settings.general.showTheseItemsOnTheDesktop.cdsDvdsAndiPods;
+				"ShowMountedServersOnDesktop" = nix-plist-manager.applications.finder.settings.general.showTheseItemsOnTheDesktop.connectedServers;
+				"FinderSpawnTab" = nix-plist-manager.applications.finder.settings.general.openFoldersInNewTabsInsteadOfNewWindows;
+
+				"ShowRecentTags" = nix-plist-manager.applications.finder.settings.sidebar.recentTags;
+
+				"FXEnableExtensionChangeWarning" = nix-plist-manager.applications.finder.settings.advanced.showWarningBeforeChangingAnExtension;
+				"WarnOnEmptyTrash" = nix-plist-manager.applications.finder.settings.advanced.showWarningBeforeEmptyingTheTrash;
+				"FXRemoveOldTrashItems" = nix-plist-manager.applications.finder.settings.advanced.removeItemsFromTheTrashAfter30Days;
+				"_FXSortFoldersFirst" = nix-plist-manager.applications.finder.settings.advanced.keepFoldersOnTop.inWindowsWhenShortingByName;
+				"_FXSortFoldersFirstOnDesktop" = nix-plist-manager.applications.finder.settings.advanced.keepFoldersOnTop.onDesktop;
+				"FXDefaultSearchScope" = nix-plist-manager.applications.finder.settings.advanced.whenPerformingASearch;
+
+				"NSWindowTabbingShoudShowTabBarKey-com.apple.finder.TBrowserWindow" = nix-plist-manager.applications.finder.menuBar.view.showTabBar;
+				"ShowSidebar" = nix-plist-manager.applications.finder.menuBar.view.showSidebar;
+				"ShowPreviewPane" = nix-plist-manager.applications.finder.menuBar.view.showPreview;
+				"ShowPathBar" = nix-plist-manager.applications.finder.menuBar.view.showPathBar;
+				"ShowStatusBar" = nix-plist-manager.applications.finder.menuBar.view.showStatusBar;
+			};
+			"com.apple.bird.plist" = {
+				"com.apple.clouddocs.unshared.moveOut.suppress" = !nix-plist-manager.applications.finder.settings.advanced.showWarningBeforeRemovingFromiCloudDrive;
 			};
 		};
 	};

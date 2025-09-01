@@ -66,8 +66,9 @@ Enable the module:
       };
     };
 
-    finder = {
+    applications.finder.settings.advanced = {
       removeItemsFromTheTrashAfter30Days = true;
+      showAllFileExtensions = true;
     };
   };
 }

@@ -1324,7 +1324,7 @@ systemSettings.trackpad.tapToClick = true;
 
 ### Finder
 
-#### `applications.finder.removeItemsFromTheTrashAfter30Days`
+#### `applications.finder.settings.advanced.removeItemsFromTheTrashAfter30Days`
 
 **Type:** `nullOr bool`
 
@@ -1332,5 +1332,167 @@ systemSettings.trackpad.tapToClick = true;
 
 **Example:**
 ```nix
-applications.finder.removeItemsFromTheTrashAfter30Days = true;
+applications.finder.settings.advanced.removeItemsFromTheTrashAfter30Days = true;
+```
+
+#### `applications.finder.settings.general.showTheseItemsOnTheDesktop`
+
+**Type:** `nullOr (submodule { hardDisks = nullOr bool; externalDisks = nullOr bool; cdsDvdsAndiPods = nullOr bool; connectedServers = nullOr bool; })`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.general.showTheseItemsOnTheDesktop = {
+  hardDisks = true;
+  externalDisks = true;
+  cdsDvdsAndiPods = false;
+  connectedServers = false;
+};
+```
+
+#### `applications.finder.settings.general.openFoldersInNewTabsInsteadOfNewWindows`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.general.openFoldersInNewTabsInsteadOfNewWindows = true;
+```
+
+#### `applications.finder.settings.sidebar.recentTags`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.sidebar.recentTags = true;
+```
+
+#### `applications.finder.settings.advanced.showAllFileExtensions`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.advanced.showAllFileExtensions = true;
+```
+
+#### `applications.finder.settings.advanced.showWarningBeforeChangingAnExtension`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.advanced.showWarningBeforeChangingAnExtension = true;
+```
+
+#### `applications.finder.settings.advanced.showWarningBeforeRemovingFromiCloudDrive`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.advanced.showWarningBeforeRemovingFromiCloudDrive = true;
+```
+
+#### `applications.finder.settings.advanced.showWarningBeforeEmptyingTheTrash`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.advanced.showWarningBeforeEmptyingTheTrash = true;
+```
+
+#### `applications.finder.settings.advanced.keepFoldersOnTop`
+
+**Type:** `nullOr (submodule { inWindowsWhenShortingByName = nullOr bool; onDesktop = nullOr bool; })`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.advanced.keepFoldersOnTop = {
+  inWindowsWhenShortingByName = true;
+  onDesktop = true;
+};
+```
+
+#### `applications.finder.settings.advanced.whenPerformingASearch`
+
+**Type:** `nullOr (enum ["Search This Mac" "Search the Current Folder" "Use the Previous Search Scope"])`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.settings.advanced.whenPerformingASearch = "Search This Mac";
+```
+
+#### `applications.finder.menuBar.view.showTabBar`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.menuBar.view.showTabBar = true;
+```
+
+#### `applications.finder.menuBar.view.showSidebar`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.menuBar.view.showSidebar = true;
+```
+
+#### `applications.finder.menuBar.view.showPreview`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.menuBar.view.showPreview = true;
+```
+
+#### `applications.finder.menuBar.view.showPathBar`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.menuBar.view.showPathBar = true;
+```
+
+#### `applications.finder.menuBar.view.showStatusBar`
+
+**Type:** `nullOr bool`
+
+**Default:** `null`
+
+**Example:**
+```nix
+applications.finder.menuBar.view.showStatusBar = true;
 ```
