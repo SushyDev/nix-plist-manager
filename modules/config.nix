@@ -22,7 +22,7 @@ in
 		${lib.concatStringsSep "\n" spotlightCommands}
 
 		killall Finder >/dev/null 2>&1 || true
-		killall Dock 2>&1 >/dev/null 2>&1 || true
+		killall Dock >/dev/null 2>&1 || true
 		killall SystemUIServer >/dev/null 2>&1 || true
 	'';
 }
