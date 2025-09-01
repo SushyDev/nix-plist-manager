@@ -21,8 +21,8 @@ in
 		${lib.concatStringsSep "\n" commands}
 		${lib.concatStringsSep "\n" spotlightCommands}
 
-		killall Finder || true
-		killall Dock || true
-		killall SystemUIServer || true
+		killall Finder >/dev/null 2>&1 || true
+		killall Dock 2>&1 >/dev/null 2>&1 || true
+		killall SystemUIServer >/dev/null 2>&1 || true
 	'';
 }

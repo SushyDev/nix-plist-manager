@@ -32,7 +32,7 @@ lib: customLib:
 			};
 			# newFinderWindowsShow
 			# syncDesktopAndDocumentsFolders
-			openFoldersInNewTabsInsteadOfNewWindows = lib.mkOption {
+			openFoldersInTabsInsteadOfNewWindows = lib.mkOption {
 				description = "Finder > Settings > General > Open folders in tabs instead of new windows";
 				type = lib.types.nullOr lib.types.bool;
 				default = null;
@@ -47,7 +47,7 @@ lib: customLib:
 		};
 
 		advanced = {
-			showAllFileExtensions = lib.mkOption {
+			showAllFilenameExtensions = lib.mkOption {
 				description = "Finder > Advanced > Show all filename extensions";
 				type = lib.types.nullOr lib.types.bool;
 				default = null;
@@ -62,6 +62,7 @@ lib: customLib:
 			showWarningBeforeRemovingFromiCloudDrive = lib.mkOption {
 				description = "Finder > Advanced > Show warning before removing from iCloud Drive";
 				type = lib.types.nullOr lib.types.bool;
+				apply = value: if builtins.isNull value then null else !value;
 				default = null;
 			};
 
@@ -126,17 +127,13 @@ lib: customLib:
 				type = lib.types.nullOr lib.types.bool;
 				default = null;
 			};
-			showPreview = lib.mkOption {
-				description = "Finder > View > Show Preview";
-				type = lib.types.nullOr lib.types.bool;
-				default = null;
-			};
 
 			showPathBar = lib.mkOption {
 				description = "Finder > View > Show Path Bar";
 				type = lib.types.nullOr lib.types.bool;
 				default = null;
 			};
+
 			showStatusBar = lib.mkOption {
 				description = "Finder > View > Show Status Bar";
 				type = lib.types.nullOr lib.types.bool;

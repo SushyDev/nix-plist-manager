@@ -51,7 +51,7 @@ let
 							else null;
 					in
 					isEnabled nix-plist-manager.systemSettings.controlCenter.automaticallyHideAndShowTheMenuBar;
-				"AppleShowAllExtensions" = nix-plist-manager.applications.finder.settings.advanced.showAllFileExtensions;
+				"AppleShowAllExtensions" = nix-plist-manager.applications.finder.settings.advanced.showAllFilenameExtensions;
 			};
 			"com.apple.dock" = {
 				"enterMissionControlByTopWindowDrag" = nix-plist-manager.systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMissionControl;
@@ -72,7 +72,9 @@ let
 				"Dictation Enabled" = nix-plist-manager.systemSettings.keyboard.dictation.enabled;
 			};
 			"com.apple.AppleMultitouchTrackpad" = {
-				"ForceClickSuppressed" = !nix-plist-manager.systemSettings.trackpad.forceClickAndHapticFeedback;
+				"ForceClickSuppressed" = 
+					if builtins.isNull nix-plist-manager.systemSettings.trackpad.forceClickAndHapticFeedback then null 
+					else !nix-plist-manager.systemSettings.trackpad.forceClickAndHapticFeedback;
 				"FirstClickThreshold" = nix-plist-manager.systemSettings.trackpad.click;
 				"SecondClickThreshold" = nix-plist-manager.systemSettings.trackpad.click;
 				"Clicking" = nix-plist-manager.systemSettings.trackpad.tapToClick;
@@ -173,7 +175,7 @@ let
 				"ShowExternalHardDrivesOnDesktop" = nix-plist-manager.applications.finder.settings.general.showTheseItemsOnTheDesktop.externalDisks;
 				"ShowRemovableMediaOnDesktop" = nix-plist-manager.applications.finder.settings.general.showTheseItemsOnTheDesktop.cdsDvdsAndiPods;
 				"ShowMountedServersOnDesktop" = nix-plist-manager.applications.finder.settings.general.showTheseItemsOnTheDesktop.connectedServers;
-				"FinderSpawnTab" = nix-plist-manager.applications.finder.settings.general.openFoldersInNewTabsInsteadOfNewWindows;
+				"FinderSpawnTab" = nix-plist-manager.applications.finder.settings.general.openFoldersInTabsInsteadOfNewWindows;
 
 				"ShowRecentTags" = nix-plist-manager.applications.finder.settings.sidebar.recentTags;
 
@@ -186,12 +188,11 @@ let
 
 				"NSWindowTabbingShoudShowTabBarKey-com.apple.finder.TBrowserWindow" = nix-plist-manager.applications.finder.menuBar.view.showTabBar;
 				"ShowSidebar" = nix-plist-manager.applications.finder.menuBar.view.showSidebar;
-				"ShowPreviewPane" = nix-plist-manager.applications.finder.menuBar.view.showPreview;
 				"ShowPathBar" = nix-plist-manager.applications.finder.menuBar.view.showPathBar;
 				"ShowStatusBar" = nix-plist-manager.applications.finder.menuBar.view.showStatusBar;
 			};
 			"com.apple.bird.plist" = {
-				"com.apple.clouddocs.unshared.moveOut.suppress" = !nix-plist-manager.applications.finder.settings.advanced.showWarningBeforeRemovingFromiCloudDrive;
+				"com.apple.clouddocs.unshared.moveOut.suppress" = nix-plist-manager.applications.finder.settings.advanced.showWarningBeforeRemovingFromiCloudDrive;
 			};
 		};
 	};

@@ -1351,7 +1351,7 @@ applications.finder.settings.general.showTheseItemsOnTheDesktop = {
 };
 ```
 
-#### `applications.finder.settings.general.openFoldersInNewTabsInsteadOfNewWindows`
+#### `applications.finder.settings.general.openFoldersInTabsInsteadOfNewWindows`
 
 **Type:** `nullOr bool`
 
@@ -1359,7 +1359,7 @@ applications.finder.settings.general.showTheseItemsOnTheDesktop = {
 
 **Example:**
 ```nix
-applications.finder.settings.general.openFoldersInNewTabsInsteadOfNewWindows = true;
+applications.finder.settings.general.openFoldersInTabsInsteadOfNewWindows = true;
 ```
 
 #### `applications.finder.settings.sidebar.recentTags`
@@ -1373,7 +1373,7 @@ applications.finder.settings.general.openFoldersInNewTabsInsteadOfNewWindows = t
 applications.finder.settings.sidebar.recentTags = true;
 ```
 
-#### `applications.finder.settings.advanced.showAllFileExtensions`
+#### `applications.finder.settings.advanced.showAllFilenameExtensions`
 
 **Type:** `nullOr bool`
 
@@ -1381,7 +1381,7 @@ applications.finder.settings.sidebar.recentTags = true;
 
 **Example:**
 ```nix
-applications.finder.settings.advanced.showAllFileExtensions = true;
+applications.finder.settings.advanced.showAllFilenameExtensions = true;
 ```
 
 #### `applications.finder.settings.advanced.showWarningBeforeChangingAnExtension`
@@ -1462,17 +1462,6 @@ applications.finder.menuBar.view.showTabBar = true;
 **Example:**
 ```nix
 applications.finder.menuBar.view.showSidebar = true;
-```
-
-#### `applications.finder.menuBar.view.showPreview`
-
-**Type:** `nullOr bool`
-
-**Default:** `null`
-
-**Example:**
-```nix
-applications.finder.menuBar.view.showPreview = true;
 ```
 
 #### `applications.finder.menuBar.view.showPathBar`

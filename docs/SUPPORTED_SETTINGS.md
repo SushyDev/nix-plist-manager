@@ -224,6 +224,6 @@ Legend:
       - [ ] ???
       - [x] Show Tab Bar
       - [x] Show Sidebar
-      - [x] Show Preview
+      - [ ] Show Preview - Not sure if this is even possible to toggle beforehand
       - [x] Show Path Bar
       - [x] Show Status Bar

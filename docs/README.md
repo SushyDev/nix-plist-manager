@@ -68,7 +68,7 @@ Enable the module:
 
     applications.finder.settings.advanced = {
       removeItemsFromTheTrashAfter30Days = true;
-      showAllFileExtensions = true;
+      showAllFilenameExtensions = true;
     };
   };
 }
