@@ -1419,14 +1419,14 @@ applications.finder.settings.advanced.showWarningBeforeEmptyingTheTrash = true;
 
 #### `applications.finder.settings.advanced.keepFoldersOnTop`
 
-**Type:** `nullOr (submodule { inWindowsWhenShortingByName = nullOr bool; onDesktop = nullOr bool; })`
+**Type:** `nullOr (submodule { inWindowsWhenSortingByName = nullOr bool; onDesktop = nullOr bool; })`
 
 **Default:** `null`
 
 **Example:**
 ```nix
 applications.finder.settings.advanced.keepFoldersOnTop = {
-  inWindowsWhenShortingByName = true;
+  inWindowsWhenSortingByName = true;
   onDesktop = true;
 };
 ```

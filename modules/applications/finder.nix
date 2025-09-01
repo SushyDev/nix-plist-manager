@@ -5,25 +5,27 @@ lib: customLib:
 			showTheseItemsOnTheDesktop = lib.mkOption {
 				description = "Finder > Settings > General > Show these items on the desktop";
 				type = lib.types.nullOr (lib.types.submodule {
-					hardDisks = lib.mkOption {
-						description = "Hard disks";
-						type = lib.types.bool;
-						default = true;
-					};
-					externalDisks = lib.mkOption {
-						description = "External disks";
-						type = lib.types.bool;
-						default = true;
-					};
-					cdsDvdsAndiPods = lib.mkOption {
-						description = "CDs, DVDs, and iPods";
-						type = lib.types.bool;
-						default = false;
-					};
-					connectedServers = lib.mkOption {
-						description = "Connected servers";
-						type = lib.types.bool;
-						default = false;
+					options = {
+						hardDisks = lib.mkOption {
+							description = "Hard disks";
+							type = lib.types.bool;
+							default = true;
+						};
+						externalDisks = lib.mkOption {
+							description = "External disks";
+							type = lib.types.bool;
+							default = true;
+						};
+						cdsDvdsAndiPods = lib.mkOption {
+							description = "CDs, DVDs, and iPods";
+							type = lib.types.bool;
+							default = false;
+						};
+						connectedServers = lib.mkOption {
+							description = "Connected servers";
+							type = lib.types.bool;
+							default = false;
+						};
 					};
 				});
 				default = {};
@@ -78,15 +80,17 @@ lib: customLib:
 			keepFoldersOnTop = lib.mkOption {
 				description = "Finder > Advanced > Keep folders on top when sorting by name";
 				type = lib.types.nullOr (lib.types.submodule {
-					inWindowsWhenShortingByName = lib.mkOption {
-						description = "In windows when sorting by name";
-						type = lib.types.bool;
-						default = true;
-					};
-					onDesktop = lib.mkOption {
-						description = "On Desktop";
-						type = lib.types.bool;
-						default = true;
+					options = {
+						inWindowsWhenSortingByName = lib.mkOption {
+							description = "In windows when sorting by name";
+							type = lib.types.bool;
+							default = true;
+						};
+						onDesktop = lib.mkOption {
+							description = "On Desktop";
+							type = lib.types.bool;
+							default = true;
+						};
 					};
 				});
 				default = {};
@@ -102,7 +106,7 @@ lib: customLib:
 				in
 				lib.mkOption {
 					description = "Finder > Advanced > When performing a search";
-					type = lib.types.nullOr (lib.types.enum lib.attrNames mapping);
+					type = lib.types.nullOr (lib.types.enum (lib.attrNames mapping));
 					apply = value: if builtins.isNull value then null else mapping.${value};
 					default = null;
 				};

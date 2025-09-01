@@ -180,7 +180,7 @@ let
 				"FXEnableExtensionChangeWarning" = nix-plist-manager.applications.finder.settings.advanced.showWarningBeforeChangingAnExtension;
 				"WarnOnEmptyTrash" = nix-plist-manager.applications.finder.settings.advanced.showWarningBeforeEmptyingTheTrash;
 				"FXRemoveOldTrashItems" = nix-plist-manager.applications.finder.settings.advanced.removeItemsFromTheTrashAfter30Days;
-				"_FXSortFoldersFirst" = nix-plist-manager.applications.finder.settings.advanced.keepFoldersOnTop.inWindowsWhenShortingByName;
+				"_FXSortFoldersFirst" = nix-plist-manager.applications.finder.settings.advanced.keepFoldersOnTop.inWindowsWhenSortingByName;
 				"_FXSortFoldersFirstOnDesktop" = nix-plist-manager.applications.finder.settings.advanced.keepFoldersOnTop.onDesktop;
 				"FXDefaultSearchScope" = nix-plist-manager.applications.finder.settings.advanced.whenPerformingASearch;
 
