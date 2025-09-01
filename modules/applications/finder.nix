@@ -8,22 +8,22 @@ lib: customLib:
 					options = {
 						hardDisks = lib.mkOption {
 							description = "Hard disks";
-							type = lib.types.bool;
+							type = lib.types.nullOr lib.types.bool;
 							default = true;
 						};
 						externalDisks = lib.mkOption {
 							description = "External disks";
-							type = lib.types.bool;
+							type = lib.types.nullOr lib.types.bool;
 							default = true;
 						};
 						cdsDvdsAndiPods = lib.mkOption {
 							description = "CDs, DVDs, and iPods";
-							type = lib.types.bool;
+							type = lib.types.nullOr lib.types.bool;
 							default = false;
 						};
 						connectedServers = lib.mkOption {
 							description = "Connected servers";
-							type = lib.types.bool;
+							type = lib.types.nullOr lib.types.bool;
 							default = false;
 						};
 					};
@@ -83,12 +83,12 @@ lib: customLib:
 					options = {
 						inWindowsWhenSortingByName = lib.mkOption {
 							description = "In windows when sorting by name";
-							type = lib.types.bool;
+							type = lib.types.nullOr lib.types.bool;
 							default = true;
 						};
 						onDesktop = lib.mkOption {
 							description = "On Desktop";
-							type = lib.types.bool;
+							type = lib.types.nullOr lib.types.bool;
 							default = true;
 						};
 					};
@@ -142,7 +142,6 @@ lib: customLib:
 				type = lib.types.nullOr lib.types.bool;
 				default = null;
 			};
-			
 		};
 	};
 }
