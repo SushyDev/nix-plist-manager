@@ -33,5 +33,8 @@ let
 		enabled = enabled;
 	}) orderedItemsMapping;
 
+	spotlightFileCreate = user: "mkdir -p ~${user}/Library/Preferences && touch ~${user}/Library/Preferences/com.apple.Spotlight.plist";
 	spotlightCommand = user: "plutil -replace orderedItems -json '${builtins.toJSON orderedItems}' ~${user}/Library/Preferences/com.apple.Spotlight.plist";
-in lib.map (user: customLib.runAsUser user (spotlightCommand user)) users
+in 
+lib.map (user: spotlightFileCreate user) users ++
+lib.map (user: customLib.runAsUser user (spotlightCommand user)) users
