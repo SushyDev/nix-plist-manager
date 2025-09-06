@@ -36,5 +36,5 @@ let
 	spotlightFileCreate = user: "mkdir -p ~${user}/Library/Preferences && plutil -create xml1 ~${user}/Library/Preferences/com.apple.Spotlight.plist";
 	spotlightCommand = user: "plutil -replace orderedItems -json '${builtins.toJSON orderedItems}' ~${user}/Library/Preferences/com.apple.Spotlight.plist";
 in 
-lib.map (user: spotlightFileCreate user) users ++
+lib.map (user: customLib.runAsUser user (spotlightFileCreate user)) users ++
 lib.map (user: customLib.runAsUser user (spotlightCommand user)) users
