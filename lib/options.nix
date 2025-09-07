@@ -1,25 +1,28 @@
 { lib }:
 let
-	osaScript = script: "/usr/bin/osascript -e ${lib.escapeShellArg script}";
+	commandsLib = import ./commands.nix { inherit lib; };
 in
 {
 	systemSettings = {
+		general =  import ./options/general.nix { inherit lib commandsLib; };
+		controlCenter =  import ./options/control-center.nix { inherit lib commandsLib; };
+
 		appearance = {
 			appearance = rec {
 					description = "Appearance > Appearance";
 
 					mapping = {
 						"unset" = {
-							command = "defaults delete NSGlobalDomain AppleInterfaceStyle";
+							command = commandsLib.defaults.delete "NSGlobalDomain" "AppleInterfaceStyleSwitchesAutomatically";
 						};
 						"Light" = {
-							command = osaScript "tell application \"System Events\" to tell appearance preferences to set dark mode to false";
+							command = commandsLib.osaScript "tell application \"System Events\" to tell appearance preferences to set dark mode to false";
 						};
 						"Dark" = {
-							command = osaScript "tell application \"System Events\" to tell appearance preferences to set dark mode to true";
+							command = commandsLib.osaScript "tell application \"System Events\" to tell appearance preferences to set dark mode to true";
 						};
 						"Auto" = {
-							command = "defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true";
+							command = commandsLib.defaults.write "NSGlobalDomain" "AppleInterfaceStyleSwitchesAutomatically" "bool" "true";
 						};
 					};
 

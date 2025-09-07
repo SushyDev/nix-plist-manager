@@ -16,11 +16,11 @@ let
 						let
 							actualValue = lib.getAttrFromPath currentPath config;
 						in
-						if builtins.isNull actualValue then []
+						if builtins.isNull actualValue || value.config.perUser == false then []
 						else [{
 							name = lib.concatStringsSep "." currentPath;
 							command = value.config.command actualValue;
-							perUser = value.config.perUser or false;
+							perUser = value.config.perUser;
 							value = actualValue;
 						}]
 				else
@@ -36,8 +36,10 @@ let
 in
 {
 	home.activation."nix-plist-manager" = (lib.hm.dag.entryAfter ["writeBoundary"] ''
-			echo "" > /Users/sushy/plist-manager-user-out.sh
-			${lib.optionalString (commandScript != "") ''cat >> /Users/sushy/plist-manager-user-out.sh << 'PLIST_EOF' 
+			echo >&2 "User plist configuration... $USER"
+
+			echo "" > ${config.home.homeDirectory}/plist-manager-user-out.sh
+			${lib.optionalString (commandScript != "") ''cat >> ${config.home.homeDirectory}/plist-manager-user-out.sh << 'PLIST_EOF' 
 ${commandScript} 
 PLIST_EOF''}
 

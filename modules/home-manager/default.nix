@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-	options = import ../../lib/user-options.nix { inherit lib; };
+	options = import ../../lib/options.nix { inherit lib; };
 in
 {
 	options = import ./options.nix { inherit lib config options; };

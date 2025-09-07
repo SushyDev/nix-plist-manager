@@ -16,7 +16,7 @@ let
 						let
 							actualValue = lib.getAttrFromPath currentPath config;
 						in
-						if builtins.isNull actualValue then []
+						if builtins.isNull actualValue || value.config.perUser == true then []
 						else [{
 							name = lib.concatStringsSep "." currentPath;
 							command = value.config.command actualValue;
@@ -35,7 +35,7 @@ let
 	commandScript = lib.concatStringsSep "\n" commandStrings;
 in
 {
-	system.activationScripts."nix-plist-manager".text = lib.mkAfter ''
+	system.activationScripts.defaults.text = lib.mkAfter ''
 		echo >&2 "System plist configuration... $USER"
 		echo "" > /Users/sushy/plist-manager-out.sh
 
