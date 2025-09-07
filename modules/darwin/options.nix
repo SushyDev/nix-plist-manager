@@ -3,15 +3,14 @@ let
 	buildOptionPath = optionsSet:
 		lib.mapAttrs (name: value:
 			if lib.isAttrs value then
-				if value ? option then value.option
+				if value ? option && value ? config && value.config ? perUser && value.config.perUser == false then value.option
 				else buildOptionPath value
 			else value
 		) optionsSet;
 in
 {
-	nix-plist-manager = {
+	services.nix-plist-manager = {
 		enable = lib.mkOption {
-			description = "Enable the plist manager program.";
 			type = lib.types.bool;
 			default = false;
 		};
@@ -19,4 +18,3 @@ in
 		options = buildOptionPath options;
 	};
 }
-

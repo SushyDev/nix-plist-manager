@@ -6,12 +6,12 @@
 
 	outputs = { self, nixpkgs }:
 		{
-			darwinModules.default = import ./modules/system/default.nix;
-			homeMangerModules.default = import ./modules/user/default.nix;
+			darwinModules.default = import ./modules/darwin/default.nix;
+			homeManagerModules.default = import ./modules/home-manager/default.nix;
 
 			modules = {
 				darwin = self.darwinModules.default;
-				home-manager = self.homeMangerModules.default;
+				home-manager = self.homeManagerModules.default;
 			};
 		};
 }

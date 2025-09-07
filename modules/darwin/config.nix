@@ -1,14 +1,5 @@
 { lib, config, options }:
 let
-	/**
-	 * Executes a command as a specified user using `launchctl` and `sudo`.
-	 *
-	 * @param user The username to run the command as.
-	 * @param cmd The command to execute as the specified user.
-	 * @return A string representing the command to be executed.
-	 */
-	# runAsUser = user: cmd: "launchctl asuser \"$(id -u -- ${user})\" sudo --user=${user} -- bash -c ${lib.escapeShellArg cmd}";
-
 	buildConfigCommands = optionsSet: configPath:
 		let
 			commands = lib.mapAttrsToList (name: value:
@@ -39,20 +30,20 @@ let
 		lib.flatten commands;
 
 	# Generate commands and extract just the command strings
-	allCommands = buildConfigCommands options ["nix-plist-manager" "options"];
+	allCommands = buildConfigCommands options ["services" "nix-plist-manager" "options"];
 	commandStrings = map (cmd: cmd.command) allCommands;
 	commandScript = lib.concatStringsSep "\n" commandStrings;
 in
 {
-	home.activation.myFlakeModule = (
-		lib.hm.dag.entryAfter ["writeBoundary"] ''
-			echo >&2 "nix-plist-manager..."
-			echo "" > /Users/sushy/plist-manager-out.sh
-			${lib.optionalString (commandScript != "") ''cat >> /Users/sushy/plist-manager-out.sh << 'PLIST_EOF' 
+	system.activationScripts."nix-plist-manager".text = lib.mkAfter ''
+		echo >&2 "System plist configuration... $USER"
+		echo "" > /Users/sushy/plist-manager-out.sh
+
+		PATH="$PATH:/usr/bin/osascript"
+
+		${lib.optionalString (commandScript != "") ''cat >> /Users/sushy/plist-manager-out.sh << 'PLIST_EOF' 
 ${commandScript} 
 PLIST_EOF''}
-			${lib.optionalString (commandScript != "") commandScript}
-		'';
-	);
+		${lib.optionalString (commandScript != "") commandScript}
+	'';
 }
-

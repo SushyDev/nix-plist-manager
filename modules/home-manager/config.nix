@@ -30,18 +30,17 @@ let
 		lib.flatten commands;
 
 	# Generate commands and extract just the command strings
-	allCommands = buildConfigCommands options ["nix-plist-manager" "options"];
+	allCommands = buildConfigCommands options ["programs" "nix-plist-manager" "options"];
 	commandStrings = map (cmd: cmd.command) allCommands;
 	commandScript = lib.concatStringsSep "\n" commandStrings;
 in
 {
-	system.activationScripts.nixPlistManager.text = lib.mkAfter ''
-		echo >&2 "nix-plist-manager..."
-		echo "" > /Users/sushy/plist-manager-out.sh
-		${lib.optionalString (commandScript != "") ''cat >> /Users/sushy/plist-manager-out.sh << 'PLIST_EOF' 
+	home.activation."nix-plist-manager" = (lib.hm.dag.entryAfter ["writeBoundary"] ''
+			echo "" > /Users/sushy/plist-manager-user-out.sh
+			${lib.optionalString (commandScript != "") ''cat >> /Users/sushy/plist-manager-user-out.sh << 'PLIST_EOF' 
 ${commandScript} 
 PLIST_EOF''}
-		${lib.optionalString (commandScript != "") commandScript}
-	'';
-}
 
+			${lib.optionalString (commandScript != "") commandScript}
+	'');
+}

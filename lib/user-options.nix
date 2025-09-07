@@ -1,6 +1,6 @@
-{ lib, config }:
+{ lib }:
 let
-	osaScript = script: "osascript -e ${lib.escapeShellArg script}";
+	osaScript = script: "/usr/bin/osascript -e ${lib.escapeShellArg script}";
 in
 {
 	systemSettings = {

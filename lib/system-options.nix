@@ -1,6 +1,6 @@
-{ lib, config }:
+{ lib }:
 let
-	osaScript = script: "osascript -e ${lib.escapeShellArg script}";
+	osaScript = script: "/usr/bin/osascript -e ${lib.escapeShellArg script}";
 in
 {
 	systemSettings = {
@@ -14,10 +14,10 @@ in
 							command = "defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload";
 						};
 						"true" = {
-							command = "sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true";
+							command = "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true";
 						};
 						"false" = {
-							command = "sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool false";
+							command = "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool false";
 						};
 					};
 
@@ -29,7 +29,7 @@ in
 					};
 
 					config = {
-						perUser = true;
+						perUser = false;
 						command = value:
 							if builtins.isNull value then mapping."null".command
 							else if value == true then mapping."true".command
