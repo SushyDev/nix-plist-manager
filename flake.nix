@@ -65,6 +65,44 @@
 					};
 				}
 			);
+
+			packages = forAllSystems (system:
+				let
+					pkgs = import nixpkgs { inherit system; };
+					lib = nixpkgs.lib;
+					options = import ./lib/options.nix { inherit lib; };
+					generateMarkdown = import ./lib/generateMarkdown.nix { inherit lib; };
+				in
+				{
+					websited = pkgs.stdenv.mkDerivation {
+						name = "nix-plist-manager-website";
+						src = ./.;
+						buildInputs = [ pkgs.nodejs pkgs.cacert ];
+						buildPhase = ''
+							export HOME=$(mktemp -d)
+
+							npm --yes create astro@latest -- --template starlight $HOME/project --yes --no-git --skip-houston
+							cd $HOME/project
+
+							mkdir -p $HOME/project/src/content/docs
+							cat > $HOME/project/src/content/docs/index.md <<- 'EOF'
+								---
+								title: nix-plist-manager Documentation
+								description: Documentation for nix-plist-manager
+								---
+								${lib.removeSuffix "\n\n" (generateMarkdown options)}
+							EOF
+
+							npm run build
+
+							find "$HOME/project/dist" -type f -exec sed -i 's#/_astro#/nix-plist-manager/_astro#g' {} +
+
+							mkdir -p $out
+							cp -r $HOME/project/dist/. $out
+						'';
+					};
+				}
+			);
 		};
 }
 
