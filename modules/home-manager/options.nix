@@ -2,10 +2,14 @@
 let
 	buildOptionPath = optionsSet:
 		lib.mapAttrs (name: value:
-			if lib.isAttrs value  then
-				if value ? option && value ? config && value.config ? perUser && value.config.perUser == true then value.option
+			if lib.isAttrs value then
+				if value ? option 
+					&& value ? config 
+					&& value.config ? perUser 
+					&& value.config.perUser == true 
+				then value.option
 				else buildOptionPath value
-			else value
+			else null
 		) optionsSet;
 in
 {

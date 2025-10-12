@@ -234,4 +234,10 @@ in
 				else mapping."false".command;
 		};
 	};
+
+	# menuBarOnly = {
+	# 	spotlight = false;
+	# 	siri = false;
+	# };
+	# automaticallyHideAndShowTheMenuBar = "In Full Screen Only";
 }

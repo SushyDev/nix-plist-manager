@@ -23,8 +23,7 @@ let
 							perUser = value.config.perUser;
 							value = actualValue;
 						}]
-				else
-					buildConfigCommands value currentPath
+				else buildConfigCommands value currentPath
 			) optionsSet;
 		in
 		lib.flatten commands;
@@ -33,15 +32,21 @@ let
 	allCommands = buildConfigCommands options ["programs" "nix-plist-manager" "options"];
 	commandStrings = map (cmd: cmd.command) allCommands;
 	commandScript = lib.concatStringsSep "\n" commandStrings;
+
+	logFilePath = "${config.home.homeDirectory}/.nix-plist-manager.log";
+
+	makeActivationScript = script: (lib.hm.dag.entryAfter ["writeBoundary"] script);
 in
 {
-	home.activation."nix-plist-manager" = (lib.hm.dag.entryAfter ["writeBoundary"] ''
+	home.activation."nix-plist-manager" = (makeActivationScript ''
 			echo >&2 "User plist configuration... $USER"
 
-			echo "" > ${config.home.homeDirectory}/plist-manager-user-out.sh
-			${lib.optionalString (commandScript != "") ''cat >> ${config.home.homeDirectory}/plist-manager-user-out.sh << 'PLIST_EOF' 
-${commandScript} 
-PLIST_EOF''}
+			echo "" > ${logFilePath}
+			${lib.optionalString (commandScript != "") ''
+				cat <<- "EOF" > ${logFilePath}
+				${commandScript}
+				EOF
+			''}
 
 			${lib.optionalString (commandScript != "") commandScript}
 	'');

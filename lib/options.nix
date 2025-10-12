@@ -1,139 +1,20 @@
 { lib }:
 let
 	commandsLib = import ./commands.nix { inherit lib; };
+	typesLib = import ./types.nix { inherit lib; };
+	configLib = import ./config.nix { inherit lib; };
+	pathLib = import ./paths.nix { inherit lib; };
+	abstractionsLib = import ../lib/abstractions.nix { inherit lib commandsLib pathLib typesLib configLib; };
 in
 {
 	systemSettings = {
-		general =  import ./options/general.nix { inherit lib commandsLib; };
-		controlCenter =  import ./options/control-center.nix { inherit lib commandsLib; };
+		general =  import ./options/systemSettings/general.nix { inherit lib commandsLib; };
+		controlCenter =  import ./options/systemSettings/control-center.nix { inherit lib commandsLib; };
+		appearance = import ./options/systemSettings/appearance.nix { inherit lib commandsLib typesLib configLib pathLib; };
+		desktopAndDock = import ./options/systemSettings/desktop-and-dock.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
 
-		appearance = {
-			appearance = rec {
-					description = "Appearance > Appearance";
-
-					mapping = {
-						"unset" = {
-							command = commandsLib.defaults.delete "NSGlobalDomain" "AppleInterfaceStyleSwitchesAutomatically";
-						};
-						"Light" = {
-							command = commandsLib.osaScript "tell application \"System Events\" to tell appearance preferences to set dark mode to false";
-						};
-						"Dark" = {
-							command = commandsLib.osaScript "tell application \"System Events\" to tell appearance preferences to set dark mode to true";
-						};
-						"Auto" = {
-							command = commandsLib.defaults.write "NSGlobalDomain" "AppleInterfaceStyleSwitchesAutomatically" "bool" "true";
-						};
-					};
-
-					default = null;
-
-					option = lib.mkOption {
-						inherit description default;
-						type = lib.types.nullOr (lib.types.enum (lib.attrNames mapping));
-					};
-
-					config = {
-						perUser = true;
-						command = value:
-							let
-								cmd = if value == null then mapping."null".command
-									else mapping.${lib.escapeShellArg value}.command;
-							in
-							cmd;
-					};
-				};
-
-			accentColor = rec {
-					description = "Appearance > Accent Color";
-
-					mapping = {
-						"unset" = {
-							command = "defaults delete NSGlobalDomain AppleAccentColor";
-						};
-						"Graphite" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int -1 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Red" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 0 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Orange" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 1 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Yellow" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 2 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Green" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 3 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Blue" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 4 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Purple" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 5 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Pink" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 6 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-						"Multicolor" = {
-							command = ''
-								defaults write ~sushy/Library/Preferences/ByHost/.GlobalPreferences AppleAccentColor -int 7 && \
-								notifyutil -p AppleColorPreferencesChangedNotification && \
-								notifyutil -p AppleAquaColorVariantChanged
-							'';
-						};
-					};
-
-					default = null;
-
-					option = lib.mkOption {
-						inherit description default;
-						type = lib.types.nullOr (lib.types.enum (lib.attrNames mapping));
-					};
-
-					config = {
-						perUser = true;
-						command = value:
-							let
-								cmd = if value == null then mapping."null".command
-									else mapping.${lib.escapeShellArg value}.command;
-							in
-							cmd;
-					};
-				};
-		};
+	};
+	applications = {
+		finder = import ./options/applications/finder.nix { inherit lib commandsLib configLib pathLib typesLib; };
 	};
 }
-
