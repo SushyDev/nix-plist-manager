@@ -27,28 +27,29 @@ jobs:
       - name: Build Documentation
         run: nix build .#documentation.x86_64-linux
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - name: Create Astro project and prepare Markdown
-        run: |
-          npm init -y
-          npm install astro@latest
-          mkdir -p src/pages
-          cp result/documentation.md src/pages/index.md
-
-      - name: Build with Astro
-        run: npx astro build
+          node-version: 22
+          cache: npm
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Create project and prepare Markdown
+        run: |
+          export HOME=$(mktemp -d)
+          cp result/documentation.md $HOME/index.md
+          cd $HOME
+
+          npm init -y
+          npm install -D vitepress@latest
+          npx vitepress build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: .vitepress/dist
 
   deploy:
     environment:
