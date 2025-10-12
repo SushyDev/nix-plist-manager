@@ -25,7 +25,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Build Documentation
-        run: nix build .#documentation.aarch64-darwin
+        run: nix build .#documentation.x86_64-linux
 
       - name: Setup Node
         uses: actions/setup-node@v4
