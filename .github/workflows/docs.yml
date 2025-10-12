@@ -25,12 +25,22 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Build Documentation
-        run: nix build .#documentation.aarch64-darwin
+        run: nix build .#documentation.x86_64-linux
 
-      - name: Prepare Pages
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create Astro project and prepare Markdown
         run: |
-          mkdir -p docs
-          cp result/documentation.md docs/index.md
+          npm init -y
+          npm install astro@latest
+          mkdir -p src/pages
+          cp result/documentation.md src/pages/index.md
+
+      - name: Build with Astro
+        run: npx astro build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
