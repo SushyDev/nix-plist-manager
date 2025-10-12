@@ -1,4 +1,4 @@
-{ lib, commandsLib, pathLib, typesLib, configLib }:
+{ lib, commandsLib, pathLib, typesLib, configLib, }:
 let
 	byHostGlobalPreferences = pathLib.generatePath true true ".GlobalPreferences";
 in
