@@ -25,7 +25,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Build Documentation
-        run: nix build .#documentation.darwin
+        run: nix build .#documentation.aarch64-darwin
 
       - name: Prepare Pages
         run: |
