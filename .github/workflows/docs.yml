@@ -25,20 +25,31 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Build Documentation
-        run: nix build .#documentation.aarch64-darwin
+        run: nix build .#documentation.x86_64-linux
 
-      - name: Prepare Pages
-        run: |
-          mkdir -p docs
-          cp result/documentation.md docs/index.md
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Create project and prepare Markdown
+        run: |
+          export HOME=$(mktemp -d)
+          cp result/documentation.md $HOME/index.md
+          cd $HOME
+
+          npm init -y
+          npm install -D vitepress@latest
+          npx vitepress build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: .vitepress/dist
 
   deploy:
     environment:
