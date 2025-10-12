@@ -30,7 +30,7 @@ jobs:
       - name: Prepare Pages
         run: |
           mkdir -p docs
-          cp result/darwin.md docs/index.md
+          cp result/documentation.md docs/index.md
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
