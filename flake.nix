@@ -62,6 +62,8 @@
 
 							npm run build
 
+							find "$HOME/project/dist" -type f -exec sed -i 's#/_astro#/nix-plist-manager/_astro#g' {} +
+
 							mkdir -p $out
 							cp -r $HOME/project/dist/. $out
 						'';
