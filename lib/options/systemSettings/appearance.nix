@@ -4,7 +4,7 @@ let
 in
 {
 	appearance = rec {
-		description = "Appearance > Appearance";
+		description = "System Settings > Appearance > Appearance";
 
 		mapping = {
 			"unset" = {
@@ -43,7 +43,7 @@ in
 	};
 
 	accentColor = rec {
-		description = "Appearance > Accent Color";
+		description = "System Settings > Appearance > Accent Color";
 
 		mapping = {
 			"unset" = {
@@ -134,7 +134,7 @@ in
 	# highlightColor
 
 	sidebarIconSize = rec {
-		description = "Appearance > Sidebar Icon Size";
+		description = "System Settings > Appearance > Sidebar Icon Size";
 
 		mapping = 
 			let
@@ -169,7 +169,7 @@ in
 	};
 
 	allowWallpaperTintingInWindows = rec {
-		description = "Appearance > Allow wallpaper tinting in windows";
+		description = "System Settings > Appearance > Allow wallpaper tinting in windows";
 
 		mapping = 
 			let
@@ -201,7 +201,7 @@ in
 	};
 
 	showScrollBars = rec {
-		description = "Appearance > Show scroll bars";
+		description = "System Settings > Appearance > Show scroll bars";
 
 		mapping = 
 			let
@@ -236,7 +236,7 @@ in
 	};
 
 	clickInTheScrollBarTo = rec {
-		description = "Appearance > Click in the scroll bar to";
+		description = "System Settings > Appearance > Click in the scroll bar to";
 
 		mapping = 
 			let

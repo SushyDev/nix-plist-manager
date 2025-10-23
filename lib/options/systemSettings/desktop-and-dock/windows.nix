@@ -5,7 +5,7 @@ let
 in
 {
 	preferTabsWhenOpeningDocuments = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Windows > Prefer tabs when opening documents";
+		description = "System Settings > Desktop & Dock > Windows > Prefer tabs when opening documents";
 		default = null;
 		perUser = true;
 		mapping = 
@@ -32,7 +32,7 @@ in
 			optionName = "NSCloseAlwaysConfirmsChanges";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Windows > Ask to keep changes when closing documents";
+			description = "System Settings > Desktop & Dock > Windows > Ask to keep changes when closing documents";
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostGlobalPreferences optionName;
@@ -44,7 +44,7 @@ in
 			optionName = "NSQuitAlwaysKeepsWindows";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Windows > Close windows when quitting an application";
+			description = "System Settings > Desktop & Dock > Windows > Close windows when quitting an application";
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostGlobalPreferences optionName;
@@ -56,7 +56,7 @@ in
 			optionName = "EnableTilingByEdgeDrag";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Windows > Drag windows to screen edges to tile";
+			description = "System Settings > Desktop & Dock > Windows > Drag windows to screen edges to tile";
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
@@ -68,7 +68,7 @@ in
 			optionName = "EnableTopTilingByEdgeDrag";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Windows > Drag windows to menu bar to fill screen";
+			description = "System Settings > Desktop & Dock > Windows > Drag windows to menu bar to fill screen";
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
@@ -80,7 +80,7 @@ in
 			optionName = "EnableTilingOptionAccelerator";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Windows > Hold Option key while dragging windows to tile";
+			description = "System Settings > Desktop & Dock > Windows > Hold Option key while dragging windows to tile";
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
@@ -92,7 +92,7 @@ in
 			optionName = "EnableTiledWindowMargins";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Windows > Tiled windows have margin";
+			description = "System Settings > Desktop & Dock > Windows > Tiled windows have margin";
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;

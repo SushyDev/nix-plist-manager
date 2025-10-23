@@ -9,8 +9,8 @@ let
 			mkCommandRow = val: cmd: 
 				let
 					cmdStr = 
-						if lib.isFunction cmd.command then "Dynamic command (depends on value. Please check source code)" 
-						else cmd.command;
+						if lib.isFunction cmd.command then cmd.command "value"
+						else builtins.toString cmd.command;
 				in
 				"`${val}`:\n```bash\n${cmdStr}\n```\n";
 
@@ -19,7 +19,7 @@ let
 			description = "**Path:** `${path}`\n\n";
 			valueDescription = "**Value Description:** `${option.option.type.description}`\n\n";
 			values = "**Possible Values:**\n" + lib.concatStringsSep "\n" (lib.mapAttrsToList (val: cmd: "- `${val}`") option.mapping) + "\n\n";
-			commands = "**Commands:**\n" + lib.concatStringsSep "\n" (lib.mapAttrsToList (val: cmd: mkCommandRow val cmd) option.mapping);
+			commands = "**Commands:**\n\n" + lib.concatStringsSep "\n" (lib.mapAttrsToList (val: cmd: mkCommandRow val cmd) option.mapping);
 			separator = "\n---\n\n";
 		in
 		name + module + description + valueDescription + values + commands + separator;

@@ -5,7 +5,7 @@ in
 {
 	soundEffects = {
 		alertSound = abstractionsLib.mkBasicMappingOption {
-			description = "Sound > Sound Effects > Alert sound";
+			description = "System Settings > Sound > Sound Effects > Alert sound";
 			default = null;
 			perUser = true;
 			mapping = 
@@ -98,7 +98,7 @@ in
 				optionName = "com.apple.sound.uiaudio.enabled";
 			in
 			abstractionsLib.mkBasicBoolOption {
-				description = "Sound > Sound Effects > Play user interface sound effects";
+				description = "System Settings > Sound > Sound Effects > Play user interface sound effects";
 				default = null;
 				perUser = true;
 				unsetCommand = commandsLib.defaults.delete globalPreferences optionName;
@@ -110,7 +110,7 @@ in
 				optionName = "com.apple.sound.beep.feedback";
 			in
 			abstractionsLib.mkBasicBoolOption {
-				description = "Sound > Sound Effects > Play feedback when volume is changed";
+				description = "System Settings > Sound > Sound Effects > Play feedback when volume is changed";
 				default = null;
 				perUser = true;
 				unsetCommand = commandsLib.defaults.delete globalPreferences optionName;

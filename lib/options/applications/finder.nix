@@ -9,7 +9,7 @@ in
 		general = {
 			showTheseItemsOnTheDesktop = {
 				hardDisks = rec {
-					description = "Finder > General > Show these items on the desktop > Hard disks";
+					description = "Finder > Settings > General > Show these items on the desktop > Hard disks";
 
 					mapping = {
 						"unset" = {
@@ -37,7 +37,7 @@ in
 				};
 
 				externalDisks = rec {
-					description = "Finder > General > Show these items on the desktop > External disks";
+					description = "Finder > Settings > General > Show these items on the desktop > External disks";
 
 					mapping = {
 						"unset" = {
@@ -65,7 +65,7 @@ in
 				};
 
 				cdsDvdsAndiPods = rec {
-					description = "Finder > General > Show these items on the desktop > CDs, DVDs, and iPods";
+					description = "Finder > Settings > General > Show these items on the desktop > CDs, DVDs, and iPods";
 
 					mapping = {
 						"unset" = {
@@ -93,7 +93,7 @@ in
 				};
 
 				connectedServers = rec {
-					description = "Finder > General > Show these items on the desktop > Connected servers";
+					description = "Finder > Settings > General > Show these items on the desktop > Connected servers";
 
 					mapping = {
 						"unset" = {
@@ -152,7 +152,7 @@ in
 		};
 		sidebar = {
 			recentTags = rec {
-				description = "Finder > Sidebar > Show Recent Tags";
+				description = "Finder > Settings > Sidebar > Show Recent Tags";
 
 				mapping = {
 					"unset" = {
@@ -181,7 +181,7 @@ in
 		};
 		advanced = {
 			showAllFilenameExtensions = rec {
-				description = "Finder > Advanced > Show all filename extensions";
+				description = "Finder > Settings > Advanced > Show all filename extensions";
 
 				mapping = {
 					"unset" = {
@@ -209,7 +209,7 @@ in
 			};
 
 			showWarningBeforeChangingAnExtension = rec {
-				description = "Finder > Advanced > Show warning before changing an extension";
+				description = "Finder > Settings > Advanced > Show warning before changing an extension";
 
 				mapping = {
 					"unset" = {
@@ -237,7 +237,7 @@ in
 			};
 
 			showWarningBeforeRemovingFromiCloudDrive = rec {
-				description = "Finder > Advanced > Show warning before removing from iCloud Drive";
+				description = "Finder > Settings > Advanced > Show warning before removing from iCloud Drive";
 
 				mapping = {
 					"unset" = {
@@ -265,7 +265,7 @@ in
 			};
 
 			showWarningBeforeEmptyingTheTrash = rec {
-				description = "Finder > Advanced > Show warning before emptying the Trash";
+				description = "Finder > Settings > Advanced > Show warning before emptying the Trash";
 
 				mapping = 
 					let
@@ -297,7 +297,7 @@ in
 			};
 
 			removeItemsFromTheTrashAfter30Days = rec {
-				description = "Finder > Advanced > Remove items from the Trash after 30 days";
+				description = "Finder > Settings > Advanced > Remove items from the Trash after 30 days";
 
 				mapping = 
 					let
@@ -330,7 +330,7 @@ in
 
 			keepFoldersOnTop = {
 				inWindowsWhenSortingByName = rec {
-					description = "In windows when sorting by name";
+					description = "Finder > Settings > Advanced > Keep folders on top > In windows when sorting by name";
 
 					mapping = 
 						let
@@ -361,7 +361,7 @@ in
 					};
 				};
 				onDesktop = rec {
-					description = "On Desktop";
+					description = "Finder > Settings > Advanced > Keep folders on top > On Desktop";
 
 					mapping = 
 						let
@@ -394,7 +394,7 @@ in
 			};
 
 			whenPerformingASearch = rec {
-				description = "Finder > Advanced > When performing a search";
+				description = "Finder > Settings > Advanced > When performing a search";
 
 				mapping = 
 					let
@@ -432,7 +432,7 @@ in
 	menuBar = {
 		view = {
 			showTabBar = rec {
-				description = "Finder > View > Show Tab Bar";
+				description = "Finder > Menu Bar > View > Show Tab Bar";
 
 				mapping = 
 					let
@@ -464,7 +464,7 @@ in
 			};
 
 			showSidebar = rec {
-				description = "Finder > View > Show Sidebar";
+				description = "Finder > Menu Bar > View > Show Sidebar";
 
 				mapping = 
 					let
@@ -496,7 +496,7 @@ in
 			};
 
 			showPathBar = rec {
-				description = "Finder > View > Show Path Bar";
+				description = "Finder > Menu Bar > View > Show Path Bar";
 
 				mapping = 
 					let
@@ -528,7 +528,7 @@ in
 			};
 
 			showStatusBar = rec {
-				description = "Finder > View > Show Status Bar";
+				description = "Finder > Menu Bar > View > Show Status Bar";
 
 				mapping = 
 					let
