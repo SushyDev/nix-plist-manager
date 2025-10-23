@@ -205,7 +205,7 @@ in
 		};
 	};
 	batteryShowPercentage = rec {
-		description = "System Settings > Control Center > Other Modules > Batter > Show Percentage";
+		description = "System Settings > Control Center > Other Modules > Battery > Show Percentage";
 
 		mapping = {
 			"unset" = {
