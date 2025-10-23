@@ -5,7 +5,7 @@ in
 {
 	notificationCenter = {
 		showPreviews = abstractionsLib.mkBasicMappingOption {
-			description = "Notifications > Show Previews";
+			description = "System Settings > Show Previews";
 			default = null;
 			perUser = true;
 			mapping = 
@@ -32,7 +32,7 @@ in
 				optionName = "summarize_previews";
 			in
 			abstractionsLib.mkBasicBoolOption {
-				description = "Notifications > Summarize Notifications";
+				description = "System Settings > Summarize Notifications";
 				default = null;
 				perUser = true;
 				unsetCommand = commandsLib.defaults.delete appleNCPrefs optionName;

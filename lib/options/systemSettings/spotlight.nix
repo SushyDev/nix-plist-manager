@@ -8,7 +8,7 @@ in
 			optionName = "Search Queries Data Sharing Status";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Spotlight > Help Apple improve Spotlight and Suggestions";
+			description = "System Settings > Spotlight > Help Apple improve Spotlight and Suggestions";
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleAssistantSupport optionName;

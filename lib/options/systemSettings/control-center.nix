@@ -18,7 +18,7 @@ let
 		else (if value.showInMenuBar then 0 else 8) + (if value.showInControlCenter then 1 else 0);
 
 	mkShowActiveHideMenuBarOption = optionName: rec {
-		description = "Control Center > ${optionName}";
+		description = "System Settings > Control Center > ${optionName}";
 
 		mapping = {
 			"unset" = {
@@ -51,7 +51,7 @@ let
 	};
 
 	mkShowHideMenuBarOption = optionName: rec {
-		description = "Control Center > ${optionName}";
+		description = "System Settings > Control Center > ${optionName}";
 
 		mapping = {
 			"unset" = {
@@ -82,7 +82,7 @@ let
 	};
 
 	mkBitmapOption = options: rec {
-		description = "Control Center > ${options.name}";
+		description = "System Settings > Control Center > ${options.name}";
 
 		default = null;
 
@@ -90,7 +90,7 @@ let
 			inherit description default;
 			type = lib.types.nullOr (lib.types.either (lib.types.enum ["unset"]) (lib.types.submodule {
 				options = lib.mapAttrs (name: options: lib.mkOption {
-					description = "Control Center > ${options.name} > ${name}";
+					description = "System Settings > Control Center > ${options.name} > ${name}";
 					type = lib.types.nullOr lib.types.bool;
 					default = null;
 				}) options.mapping;
@@ -173,7 +173,7 @@ in
 (lib.mapAttrs (name: options: mkBitmapOption options) bitmapOptions) //
 {
 	battery = rec {
-		description = "Control Center > Other Modules > Battery";
+		description = "System Settings > Control Center > Other Modules > Battery";
 
 		default = null;
 
@@ -182,12 +182,12 @@ in
 			type = lib.types.nullOr (lib.types.either (lib.types.enum [ "unset" ]) (lib.types.submodule {
 				options = {
 					showInMenuBar = lib.mkOption {
-						description = "Control Center > Other Modules > Battery";
+						description = "System Settings > Control Center > Other Modules > Battery";
 						type = lib.types.nullOr lib.types.bool;
 						default = null;
 					};
 					showInControlCenter = lib.mkOption {
-						description = "Control Center > Other Modules > Battery";
+						description = "System Settings > Control Center > Other Modules > Battery";
 						type = lib.types.nullOr lib.types.bool;
 						default = null;
 					};
@@ -205,7 +205,7 @@ in
 		};
 	};
 	batteryShowPercentage = rec {
-		description = "Control Center > Other Modules > Batter > Show Percentage";
+		description = "System Settings > Control Center > Other Modules > Batter > Show Percentage";
 
 		mapping = {
 			"unset" = {

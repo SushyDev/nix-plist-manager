@@ -2,7 +2,7 @@
 {
 	softwareUpdate = {
 		automaticallyDownloadNewUpdatesWhenAvailable = rec {
-			description = "System > Software Update > Download new updates when available";
+			description = "System Settings > General > Software Update > Download new updates when available";
 
 			mapping = {
 				"unset" = {
@@ -33,7 +33,7 @@
 		};
 
 		automaticallyInstallMacOSUpdates = rec {
-			description = "System > Software Update > Install macOS updates";
+			description = "System Settings > General > Software Update > Install macOS updates";
 
 			mapping = {
 				"unset" = {
@@ -64,7 +64,7 @@
 		};
 
 		automaticallyInstallApplicationUpdatesFromTheAppStore = rec {
-			description = "System > Software Update > Install application updates from the App Store";
+			description = "System Settings > General > Software Update > Install application updates from the App Store";
 
 			mapping = {
 				"unset" = {
@@ -95,7 +95,7 @@
 		};
 
 		automaticallyInstallSecurityResponseAndSystemFiles = rec {
-			description = "System > Software Update > Install Security Response and system files";
+			description = "System Settings > General > Software Update > Install Security Response and system files";
 
 			mapping = {
 				"unset" = {
