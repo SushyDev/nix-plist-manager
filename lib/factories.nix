@@ -54,20 +54,20 @@ let
 in
 {
 	mkBoolOption = { description, commands, default ? null, perUser ? true }:
-		mkPlistOption { inherit key description commands default perUser; } {
+		mkPlistOption { inherit description commands default perUser; } {
 			option.type = types.boolOrUnset;
 			command = commands: key: commandGenerators.boolCommand (commands key);
 		};
 
 	mkEnumOption = { description, commands, valueMap, default ? null, perUser ? true }:
-		mkPlistOption { inherit key description commands default perUser; } {
+		mkPlistOption { inherit description commands default perUser; } {
 			option.type = types.enumOrUnset (lib.attrNames valueMap);
 			command = commands: key: commandGenerators.enumToIntCommand (commands key) valueMap;
 		};
 
 	# Bitmask option factory
 	mkBitmaskOption = { description, commands, mapping, default ? null, perUser ? true }:
-		mkPlistOption { inherit key description commands default perUser; } {
+		mkPlistOption { inherit description commands default perUser; } {
 			option = {
 				type = types.unsetOrBitmask mapping;
 				apply = value:
@@ -80,7 +80,7 @@ in
 
 	# Custom option factory for special cases
 	mkCustomOption = { description, commands, optionConfig, commandFn, default ? null, perUser ? true }:
-		mkPlistOption { inherit key description commands default perUser; } {
+		mkPlistOption { inherit description commands default perUser; } {
 			option = optionConfig;
 			command = commands: key: commandFn (commands key);
 		};
