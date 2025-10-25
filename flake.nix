@@ -82,8 +82,8 @@
 						npmDepsHash = "sha256-w91qtncYEcZR80lzOpTo7QOsY3sUNzaP2vHM2O1n4Sg=";
 						nativeBuildInputs = [ pkgs.coreutils pkgs.cacert ];
 						preBuild = ''
-							mkdir -p src/content/docs/result
-							cp -R ${files}/. src/content/docs/result
+							mkdir -p src/content/docs/reference
+							cp -R ${files}/. src/content/docs/reference
 						'';
 						installPhase = ''
 							runHook preInstall
