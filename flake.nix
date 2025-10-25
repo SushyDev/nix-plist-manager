@@ -9,7 +9,7 @@
 			supportedSystems = [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" ];
 			forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 		in
-		{
+		rec {
 			darwinModules.default = import ./modules/darwin/default.nix;
 			homeManagerModules.default = import ./modules/home-manager/default.nix;
 
@@ -17,21 +17,6 @@
 				darwin = self.darwinModules.default;
 				home-manager = self.homeManagerModules.default;
 			};
-
-			# documentation = forAllSystems (system:
-			# 	let
-			# 		pkgs = import nixpkgs { inherit system; };
-			# 		lib = nixpkgs.lib;
-			# 		options = import ./lib/options.nix { inherit lib; };
-			# 		generateMarkdown = import ./lib/generateMarkdown.nix { inherit lib; };
-			# 	in
-			# 	pkgs.runCommand "home-manager-docs" {} ''
-			# 		mkdir -p $out
-			# 		cat > $out/documentation.md <<- 'EOF'
-			# 			${lib.removeSuffix "\n\n" (generateMarkdown options)}
-			# 		EOF
-			# 	''
-			# );
 
 			documentation = forAllSystems (system:
 				let
@@ -57,22 +42,7 @@
 			packages = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
-					lib = nixpkgs.lib;
-					options = import ./lib/options.nix { inherit lib; };
-					generateMarkdown = import ./lib/generateMarkdown.nix { inherit lib; };
-
-					data = lib.mapAttrs  (name: value:
-						pkgs.writeTextFile {
-							name = "";
-							text = value;
-							destination = name;
-						}
-					) (lib.listToAttrs (generateMarkdown options));
-
-					files = pkgs.symlinkJoin {
-						name = "documentation";
-						paths = lib.attrValues data;
-					};
+					files = documentation.${system};
 				in
 				{
 					website = pkgs.buildNpmPackage rec {
@@ -80,9 +50,8 @@
 						version = "1.0.0";
 						src = ./docs;
 						npmDepsHash = "sha256-w91qtncYEcZR80lzOpTo7QOsY3sUNzaP2vHM2O1n4Sg=";
-						nativeBuildInputs = [ pkgs.coreutils pkgs.cacert ];
+						nativeBuildInputs = [ pkgs.cacert ];
 						preBuild = ''
-							mkdir -p src/content/docs/reference
 							cp -R ${files}/. src/content/docs/reference
 						'';
 						installPhase = ''

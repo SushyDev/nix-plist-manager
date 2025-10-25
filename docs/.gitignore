@@ -19,3 +19,7 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# docs
+src/content/docs/reference
+!src/content/docs/reference/index.md
