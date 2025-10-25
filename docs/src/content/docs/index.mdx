@@ -1,6 +1,92 @@
 ---
 title: nix-plist-manager
+description: A Nix module for managing macOS system settings through plist files
+template: splash
 pagefind: false
-props:
-  leftSidebar: false
+hero:
+  title: nix-plist-manager
+  tagline: Declarative management of macOS system settings via plist files using nix-darwin
+  actions:
+    - text: Reference
+      link: reference
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/sushydev/nix-plist-manager
+      icon: external
+      variant: secondary
 ---
+
+## Overview
+
+nix-plist-manager is a Nix module that provides a declarative interface for configuring macOS system settings stored in plist files. It integrates with nix-darwin to allow users to define system preferences in Nix expressions, ensuring reproducible and version-controlled configurations.
+
+## Usage
+
+### nix-darwin (Global Settings)
+
+Integrate the module into your nix-darwin configuration:
+
+```nix
+{
+  inputs = {
+    nix-plist-manager.url = "github:sushydev/nix-plist-manager";
+  };
+
+  outputs = { self, nix-darwin, nix-plist-manager, ... }: {
+    darwinConfigurations."hostname" = nix-darwin.lib.darwinSystem {
+      modules = [
+        nix-plist-manager.darwinModules.default
+        # Configuration options here
+      ];
+    };
+  };
+}
+```
+
+### home-manager (User Settings)
+
+For user-specific settings with home-manager:
+
+```nix
+{
+  inputs = {
+    nix-plist-manager.url = "github:sushydev/nix-plist-manager";
+  };
+
+  outputs = { self, home-manager, nix-plist-manager, ... }: {
+    homeConfigurations."username" = home-manager.lib.homeManagerConfiguration {
+      modules = [
+        nix-plist-manager.homeManagerModules.default
+        # Configuration options here
+      ];
+    };
+  };
+}
+```
+
+### Example
+
+Configure Dock size for user settings:
+
+```nix
+{
+  programs.nix-plist-manager = {
+    enable = true;
+    options.applications.systemSettings.desktopAndDock.dock.size = 64;
+  };
+}
+```
+
+For system settings with nix-darwin:
+
+```nix
+{
+  services.nix-plist-manager = {
+    enable = true;
+    options.applications.systemSettings.general.softwareUpdate.automaticallyDownloadNewUpdatesWhenAvailable = true;
+  };
+}
+```
+
+Refer to the [reference documentation](/nix-plist-manager/reference) for available configuration attributes.
