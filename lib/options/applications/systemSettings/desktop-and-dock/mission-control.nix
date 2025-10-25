@@ -10,7 +10,7 @@ in
 			optionName = "mru-spaces";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Mission Control > Automatically rearrange Spaces based on most recent use";
+			path = [ "Desktop & Dock" "Mission Control" "Automatically rearrange Spaces based on most recent use" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete appleDock optionName;
@@ -22,7 +22,7 @@ in
 			optionName = "AppleSpacesSwitchOnActivate";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Mission Control > When switching to an application, switch to a Space with open windows for the application";
+			path = [ "Desktop & Dock" "Mission Control" "When switching to an application, switch to a Space with open windows for the application" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostGlobalPreferences optionName;
@@ -34,7 +34,7 @@ in
 			optionName = "expose-group-apps";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Mission Control > Group windows by application";
+			path = [ "Desktop & Dock" "Mission Control" "Group windows by application" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete appleDock optionName;
@@ -46,7 +46,7 @@ in
 			optionName = "spans-displays";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Mission Control > Displays have separate Spaces";
+			path = [ "Desktop & Dock" "Mission Control" "Displays have separate Spaces" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleSpaces optionName;
@@ -58,7 +58,7 @@ in
 			optionName = "enterMissionControlByTopWindowDrag";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Mission Control > Drag windows to top of screen to enter Mission Control";
+			path = [ "Desktop & Dock" "Mission Control" "Drag windows to top of screen to enter Mission Control" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete appleDock optionName;

@@ -5,7 +5,7 @@ in
 {
 	showItems = {
 		onDesktop = abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Desktop & Stage Manager > Show Items > On Desktop";
+			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show Items" "On Desktop" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager "StandardHideDesktopIcons";
@@ -13,7 +13,7 @@ in
 			falseCommand = commandsLib.defaults.write byHostAppleWindowManager "StandardHideDesktopIcons" "bool" "true";
 		};
 		inStageManager = abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Desktop & Stage Manager > Show Items > In Stage Manager";
+			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show Items" "In Stage Manager" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager "HideDesktop";
@@ -22,7 +22,7 @@ in
 		};
 	};
 	clickWallpaperToRevealDesktop = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Desktop & Stage Manager > Click wallpaper to reveal desktop";
+		path = [ "Desktop & Dock" "Desktop & Stage Manager" "Click wallpaper to reveal desktop" ];
 		default = null;
 		perUser = true;
 		mapping = 
@@ -46,7 +46,7 @@ in
 			optionName = "GloballyEnabled";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Desktop & Stage Manager > Stage Manager";
+			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Stage Manager" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
@@ -58,7 +58,7 @@ in
 			optionName = "AutoHide";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Desktop & Stage Manager > Show recent apps in Stage Manager";
+			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show recent apps in Stage Manager" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
@@ -66,7 +66,7 @@ in
 			falseCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
 		};
 	showWindowsFromAnApplication = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Desktop & Stage Manager > Show windows from an application";
+		path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show windows from an application" ];
 		default = null;
 		perUser = true;
 		mapping = 

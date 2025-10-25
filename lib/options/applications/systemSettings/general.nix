@@ -2,7 +2,8 @@
 {
 	softwareUpdate = {
 		automaticallyDownloadNewUpdatesWhenAvailable = rec {
-			description = "System Settings > General > Software Update > Download new updates when available";
+			path = [ "System Settings" "General" "Software Update" "Download new updates when available" ];
+			description = "";
 
 			mapping = {
 				"unset" = {
@@ -33,7 +34,8 @@
 		};
 
 		automaticallyInstallMacOSUpdates = rec {
-			description = "System Settings > General > Software Update > Install macOS updates";
+			path = [ "System Settings" "General" "Software Update" "Install macOS updates" ];
+			description = "";
 
 			mapping = {
 				"unset" = {
@@ -64,7 +66,8 @@
 		};
 
 		automaticallyInstallApplicationUpdatesFromTheAppStore = rec {
-			description = "System Settings > General > Software Update > Install application updates from the App Store";
+			path = [ "System Settings" "General" "Software Update" "Install application updates from the App Store" ];
+			description = "";
 
 			mapping = {
 				"unset" = {
@@ -95,7 +98,8 @@
 		};
 
 		automaticallyInstallSecurityResponseAndSystemFiles = rec {
-			description = "System Settings > General > Software Update > Install Security Response and system files";
+			path = [ "System Settings" "General" "Software Update" "Install Security Response and system files" ];
+			description = "";
 
 			mapping = {
 				"unset" = {
@@ -131,7 +135,8 @@
 		# TODO source
 		# TODO dateAndTime
 		"24HourTime" = rec {
-			description = "System > Date & Time > 24-hour time";
+			path = [ "System" "Date & Time" "24-hour time" ];
+			description = "";
 
 			mapping = {
 				"unset" = {

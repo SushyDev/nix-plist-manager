@@ -18,7 +18,8 @@ let
 		else (if value.showInMenuBar then 0 else 8) + (if value.showInControlCenter then 1 else 0);
 
 	mkShowActiveHideMenuBarOption = optionName: rec {
-		description = "System Settings > Control Center > ${optionName}";
+		path = [ "System Settings" "Control Center" optionName ];
+		description = "";
 
 		mapping = {
 			"unset" = {
@@ -51,7 +52,8 @@ let
 	};
 
 	mkShowHideMenuBarOption = optionName: rec {
-		description = "System Settings > Control Center > ${optionName}";
+		path = [ "System Settings" "Control Center" optionName ];
+		description = "";
 
 		mapping = {
 			"unset" = {
@@ -82,7 +84,19 @@ let
 	};
 
 	mkBitmapOption = options: rec {
-		description = "System Settings > Control Center > ${options.name}";
+		path = [ "System Settings" "Control Center" options.name ];
+		description = "";
+
+		mapping = lib.mapAttrs (name: bitValue:
+			{
+				description = "System Settings > Control Center > ${options.name} > ${name}";
+				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" options.key "int" (toString bitValue);
+			}
+		) options.mapping // {
+			"unset" = {
+				command = commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" options.key;
+			};
+		};
 
 		default = null;
 
@@ -111,18 +125,18 @@ let
 	};
 
 	showActiveHideMenuBarOptions = {
-		"focusModes" = "FocusModes";
-		"screenMirroring" = "ScreenMirroring";
+		"focusModes" = "Focus";
+		"screenMirroring" = "Screen Mirroring";
 		"display" = "Display";
 		"sound" = "Sound";
-		"nowPlaying" = "NowPlaying";
+		"nowPlaying" = "Now Playing";
 	};
 
 	showHideMenuBarOptions = {
 		"wifi" = "WiFi";
 		"bluetooth" = "Bluetooth";
 		"airdrop" = "AirDrop";
-		"stageManager" = "StageManager";
+		"stageManager" = "Stage Manager";
 	};
 
 	bitmapOptions = {
@@ -173,7 +187,26 @@ in
 (lib.mapAttrs (name: options: mkBitmapOption options) bitmapOptions) //
 {
 	battery = rec {
-		description = "System Settings > Control Center > Other Modules > Battery";
+		path = [ "System Settings" "Control Center" "Other Modules" "Battery" ];
+		description = "";
+
+		mapping = {
+			"unset" = {
+				command = commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery";
+			};
+			"{ showInMenuBar = true; showInControlCenter = false }" = {
+				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = true; showInControlCenter = false; });
+			};
+			"{ showInMenuBar = false; showInControlCenter = true }" = {
+				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = false; showInControlCenter = true; });
+			};
+			"{ showInMenuBar = true; showInControlCenter = true }" = {
+				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = true; showInControlCenter = true; });
+			};
+			"{ showInMenuBar = false; showInControlCenter = false }" = {
+				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = false; showInControlCenter = false; });
+			};
+		};
 
 		default = null;
 
@@ -205,7 +238,8 @@ in
 		};
 	};
 	batteryShowPercentage = rec {
-		description = "System Settings > Control Center > Other Modules > Battery > Show Percentage";
+		path = [ "System Settings" "Control Center" "Other Modules" "Battery" "Show Percentage" ];
+		description = "";
 
 		mapping = {
 			"unset" = {

@@ -1,8 +1,8 @@
 { lib }:
 let
-	isOption = value: lib.isAttrs value && value ? description && value ? mapping && value ? option && value ? config;
+	isOption = value: lib.isAttrs value && value ? path && value ? mapping;
 
-	generateOptionMarkdown = option: path:
+	generateOptionMarkdown = option: path: name:
 		let
 			moduleType = if option.config.perUser then "home-manager" else "darwin";
 
@@ -14,15 +14,15 @@ let
 				in
 				"`${val}`:\n```bash\n${cmdStr}\n```\n";
 
-			name = "## ${option.description}\n\n";
-			module = "**Module:** `${moduleType}`\n\n";
-			description = "**Path:** `${path}`\n\n";
-			valueDescription = "**Value Description:** `${option.option.type.description}`\n\n";
-			values = "**Possible Values:**\n" + lib.concatStringsSep "\n" (lib.mapAttrsToList (val: cmd: "- `${val}`") option.mapping) + "\n\n";
-			commands = "**Commands:**\n\n" + lib.concatStringsSep "\n" (lib.mapAttrsToList (val: cmd: mkCommandRow val cmd) option.mapping);
+			header = "## ${lib.lists.last option.path}\n\n";
+			thing = "${lib.concatStringsSep " > " option.path}\n\n";
+			module = "**Option Module:** `${moduleType}`\n\n";
+			optionPath = "**Option Path:** `${lib.concatStringsSep "." path}.${name}`\n\n";
+			valueDescription = "**Option Value Description:** `${option.option.type.description}`\n\n";
+			commands = lib.concatStringsSep "\n" (lib.mapAttrsToList (val: cmd: mkCommandRow val cmd) option.mapping);
 			separator = "\n---\n\n";
 		in
-		name + module + description + valueDescription + values + commands + separator;
+		header + thing + module + optionPath + valueDescription + commands + separator;
 
 	traverseOptions = options: currentPath:
 		if isOption options then generateOptionMarkdown options currentPath
@@ -34,5 +34,36 @@ let
 			lib.concatStrings subPaths
 		else "";
 
+	markdownFiles = options:
+		let
+			isEmptySet = set: (builtins.attrNames set) == [];
+
+			collect = (path: entries:
+				let
+					currentOptions = lib.filterAttrs (name: value: isOption value) entries;
+					nestedEntries = lib.filterAttrs (name: value: lib.isAttrs value && !isOption value) entries;
+
+					currentPath = lib.concatStringsSep "/" path;
+
+					currentOptionsList = if !(isEmptySet currentOptions) then [{
+						name = "/${currentPath}.md";
+						value = 
+							let
+								starlight = "---\ntitle: ${lib.lists.last path}\n---\n\n";
+								optionMarkdown = lib.concatStringsSep "\n" (lib.mapAttrsToList (optionName: optionValue:
+									generateOptionMarkdown optionValue path optionName
+								) currentOptions);
+							in
+							starlight + optionMarkdown;
+					}] else [];
+
+					nestedEntriesOptionsLists = if !(isEmptySet nestedEntries) then lib.flatten (lib.mapAttrsToList (name: value:
+						collect (path ++ [ name ]) value
+					) nestedEntries) else [];
+				in
+				currentOptionsList ++ nestedEntriesOptionsLists
+			);
+		in
+		collect [] options;
 in
-options: traverseOptions options ""
+markdownFiles

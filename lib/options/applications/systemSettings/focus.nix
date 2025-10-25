@@ -8,7 +8,7 @@ in
 			optionName = "disableCloudSync";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "System Settings > Focus > Share across devices";
+			path = [ "System Settings" "Focus" "Share across devices" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete appleDoNotDisturbd optionName;
