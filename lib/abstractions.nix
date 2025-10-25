@@ -1,14 +1,16 @@
 { lib, commandsLib, pathLib, typesLib, configLib }:
 {
 	mkBasicBoolOption = {
-		description,
+		path,
 		default,
 		perUser,
 		unsetCommand,
 		trueCommand,
 		falseCommand,
 	}: rec {
-		inherit description default;
+		inherit path;
+
+		description = "";
 
 		mapping = {
 			"unset" = {
@@ -28,18 +30,20 @@
 		};
 
 		config = {
-			perUser = perUser;
+			inherit perUser;
 			command = configLib.commandNullOrBoolOrUnset mapping;
 		};
 	};
 
 	mkBasicMappingOption = {
-		description,
+		path,
 		default,
 		perUser,
 		mapping,
 	}: rec {
-		inherit description default;
+		inherit path mapping;
+
+		description = "";
 
 		option = lib.mkOption {
 			inherit description default;
@@ -47,7 +51,7 @@
 		};
 
 		config = {
-			perUser = perUser;
+			inherit perUser;
 			command = configLib.commandMapping mapping;
 		};
 	};

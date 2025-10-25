@@ -43,25 +43,25 @@ let
 in
 {
 	topLeft = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Hot Corners > Top Left Corner";
+		path = [ "Desktop & Dock" "Hot Corners" "Top Left Corner" ];
 		default = null;
 		perUser = true;
 		mapping = mkMapping "wvous-tl-corner";
 	};
 	topRight = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Hot Corners > Top Right Corner";
+		path = [ "Desktop & Dock" "Hot Corners" "Top Right Corner" ];
 		default = null;
 		perUser = true;
 		mapping = mkMapping "wvous-tr-corner";
 	};
 	bottomLeft = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Hot Corners > Bottom Left Corner";
+		path = [ "Desktop & Dock" "Hot Corners" "Bottom Left Corner" ];
 		default = null;
 		perUser = true;
 		mapping = mkMapping "wvous-bl-corner";
 	};
 	bottomRight = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Hot Corners > Bottom Right Corner";
+		path = [ "Desktop & Dock" "Hot Corners" "Bottom Right Corner" ];
 		default = null;
 		perUser = true;
 		mapping = mkMapping "wvous-br-corner";

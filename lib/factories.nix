@@ -5,13 +5,14 @@ let
 
 	# Base option factory that handles common structure
 	mkPlistOption = {
-		findPath,
+		path,
 		description,
+		mapping,
 		commands,
 		default ? null,
 		perUser ? true
 	}: config: {
-		inherit findPath description default;
+		inherit path description mapping default;
 
 		option = lib.mkOption (config.option // { 
 			inherit description default; 
@@ -54,20 +55,28 @@ let
 in
 {
 	mkBoolOption = { description, commands, default ? null, perUser ? true }:
-		mkPlistOption { inherit description commands default perUser; } {
+		mkPlistOption { 
+			inherit description commands default perUser;
+			mapping = {};
+		} {
 			option.type = types.boolOrUnset;
 			command = commands: key: commandGenerators.boolCommand (commands key);
 		};
 
 	mkEnumOption = { description, commands, valueMap, default ? null, perUser ? true }:
-		mkPlistOption { inherit description commands default perUser; } {
+		mkPlistOption { 
+			inherit description commands default perUser;
+			mapping = {};
+		} {
 			option.type = types.enumOrUnset (lib.attrNames valueMap);
 			command = commands: key: commandGenerators.enumToIntCommand (commands key) valueMap;
 		};
 
 	# Bitmask option factory
 	mkBitmaskOption = { description, commands, mapping, default ? null, perUser ? true }:
-		mkPlistOption { inherit description commands default perUser; } {
+		mkPlistOption { 
+			inherit description mapping commands default perUser;
+		} {
 			option = {
 				type = types.unsetOrBitmask mapping;
 				apply = value:
@@ -80,7 +89,10 @@ in
 
 	# Custom option factory for special cases
 	mkCustomOption = { description, commands, optionConfig, commandFn, default ? null, perUser ? true }:
-		mkPlistOption { inherit description commands default perUser; } {
+		mkPlistOption { 
+			inherit description commands default perUser;
+			mapping = {};
+		} {
 			option = optionConfig;
 			command = commands: key: commandFn (commands key);
 		};

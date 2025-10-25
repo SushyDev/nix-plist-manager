@@ -11,7 +11,7 @@ in
 				optionName = "StandardHideWidgets";
 			in
 			abstractionsLib.mkBasicBoolOption {
-				description = "Desktop & Dock > Widgets > Show widgets > On Desktop";
+				path = [ "Desktop & Dock" "Widgets" "Show widgets" "On Desktop" ];
 				default = null;
 				perUser = true;
 				unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager "StandardShowWidgets";
@@ -23,7 +23,7 @@ in
 				optionName = "StageManagerHideWidgets";
 			in
 			abstractionsLib.mkBasicBoolOption {
-				description = "Desktop & Dock > Widgets > Show widgets > In Stage Manager";
+				path = [ "Desktop & Dock" "Widgets" "Show widgets" "In Stage Manager" ];
 				default = null;
 				perUser = true;
 				unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
@@ -32,7 +32,7 @@ in
 			};
 	};
 	widgetStyle = abstractionsLib.mkBasicMappingOption {
-		description = "Desktop & Dock > Widgets > Widget Style";
+		path = [ "Desktop & Dock" "Widgets" "Widget Style" ];
 		default = null;
 		perUser = true;
 		mapping = 
@@ -59,7 +59,7 @@ in
 			optionName = "remoteWidgetsEnabled";
 		in
 		abstractionsLib.mkBasicBoolOption {
-			description = "Desktop & Dock > Widgets > Use iPhone Widgets";
+			path = [ "Desktop & Dock" "Widgets" "Use iPhone Widgets" ];
 			default = null;
 			perUser = true;
 			unsetCommand = commandsLib.defaults.delete byHostAppleChronod optionName;
