@@ -85,9 +85,6 @@
 							mkdir -p src/content/docs/result
 							cp -R ${files}/. src/content/docs/result
 						'';
-						preInstall = ''
-							find ./dist -type f -exec sed -i 's#/_astro#/nix-plist-manager/_astro#g' {} +
-						'';
 						installPhase = ''
 							runHook preInstall
 
