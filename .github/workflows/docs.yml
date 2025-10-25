@@ -25,7 +25,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Build Documentation
-        run: nix build .#packages.aarch64-darwin.websited
+        run: nix build .#packages.aarch64-darwin.website
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
