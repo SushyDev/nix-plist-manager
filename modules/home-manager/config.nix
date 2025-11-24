@@ -39,15 +39,7 @@ let
 in
 {
 	home.activation."nix-plist-manager" = (makeActivationScript ''
-			echo >&2 "User plist configuration... $USER"
-
-			echo "" > ${logFilePath}
-			${lib.optionalString (commandScript != "") ''
-				cat <<- "EOF" > ${logFilePath}
-				${commandScript}
-				EOF
-			''}
-
-			${lib.optionalString (commandScript != "") commandScript}
+		echo >&2 "User plist configuration... $USER"
+		${lib.optionalString (commandScript != "") commandScript}
 	'');
 }

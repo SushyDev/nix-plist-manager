@@ -30,20 +30,13 @@ let
 		lib.flatten commands;
 
 	# Generate commands and extract just the command strings
-	allCommands = buildConfigCommands options ["services" "nix-plist-manager" "options"];
+	allCommands = buildConfigCommands options ["programs" "nix-plist-manager" "options"];
 	commandStrings = map (cmd: cmd.command) allCommands;
 	commandScript = lib.concatStringsSep "\n" commandStrings;
 in
 {
 	system.activationScripts.defaults.text = lib.mkAfter ''
 		echo >&2 "System plist configuration... $USER"
-		echo "" > /Users/sushy/plist-manager-out.sh
-
-		PATH="$PATH:/usr/bin/osascript"
-
-		${lib.optionalString (commandScript != "") ''cat >> /Users/sushy/plist-manager-out.sh << 'PLIST_EOF' 
-${commandScript} 
-PLIST_EOF''}
 		${lib.optionalString (commandScript != "") commandScript}
 	'';
 }

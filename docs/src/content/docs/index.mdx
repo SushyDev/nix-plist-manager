@@ -82,7 +82,7 @@ For system settings with nix-darwin:
 
 ```nix
 {
-  services.nix-plist-manager = {
+  programs.nix-plist-manager = {
     enable = true;
     options.applications.systemSettings.general.softwareUpdate.automaticallyDownloadNewUpdatesWhenAvailable = true;
   };

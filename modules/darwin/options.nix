@@ -9,7 +9,7 @@ let
 		) optionsSet;
 in
 {
-	services.nix-plist-manager = {
+	programs.nix-plist-manager = {
 		enable = lib.mkOption {
 			type = lib.types.bool;
 			default = false;
