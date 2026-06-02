@@ -14,9 +14,9 @@ in
 				path = [ "Desktop & Dock" "Widgets" "Show widgets" "On Desktop" ];
 				default = null;
 				perUser = true;
-				unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager "StandardShowWidgets";
-				trueCommand = commandsLib.defaults.write byHostAppleWindowManager "StandardShowWidgets" "bool" "false";
-				falseCommand = commandsLib.defaults.write byHostAppleWindowManager "StandardShowWidgets" "bool" "true";
+				unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
+				trueCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "false";
+				falseCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
 			};
 		inStageManager =
 			let
@@ -31,8 +31,9 @@ in
 				falseCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
 			};
 	};
-	widgetStyle = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Widgets" "Widget Style" ];
+
+	dimWidgetsOnDesktop = abstractionsLib.mkBasicMappingOption {
+		path = [ "Desktop & Dock" "Widgets" "Dim widgets on desktop" ];
 		default = null;
 		perUser = true;
 		mapping = 
@@ -43,17 +44,18 @@ in
 				"unset" = {
 					command = commandsLib.defaults.delete byHostAppleWidgets optionName;
 				};
-				"Automatic" = {
+				"Automatically" = {
 					command = commandsLib.defaults.write byHostAppleWidgets optionName "int" "2";
 				};
-				"Monochrome" = {
+				"Always" = {
 					command = commandsLib.defaults.write byHostAppleWidgets optionName "int" "0";
 				};
-				"Full-color" = {
+				"Never" = {
 					command = commandsLib.defaults.write byHostAppleWidgets optionName "int" "1";
 				};
 			};
 	};
+
 	useIphoneWidgets = 
 		let
 			optionName = "remoteWidgetsEnabled";

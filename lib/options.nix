@@ -9,6 +9,7 @@ in
 {
 	applications = {
 		systemSettings = {
+			appleIntelligenceAndSiri = import ./options/applications/systemSettings/apple-intelligence-and-siri.nix { inherit lib commandsLib; };
 			general =  import ./options/applications/systemSettings/general.nix { inherit lib commandsLib; };
 			appearance = import ./options/applications/systemSettings/appearance.nix { inherit lib commandsLib typesLib configLib pathLib; };
 			controlCenter =  import ./options/applications/systemSettings/control-center.nix { inherit lib commandsLib; };

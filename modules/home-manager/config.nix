@@ -1,4 +1,4 @@
-{ lib, config, options }:
+{ lib, config, options, pkgs }:
 let
 	buildConfigCommands = optionsSet: configPath:
 		let
@@ -39,7 +39,10 @@ let
 in
 {
 	home.activation."nix-plist-manager" = (makeActivationScript ''
-		echo >&2 "User plist configuration... $USER"
-		${lib.optionalString (commandScript != "") commandScript}
+		${lib.optionalString (commandScript != "") ''
+			export PATH="${lib.makeBinPath [ pkgs.jq ]}:$PATH"
+			echo >&2 "User plist configuration... $USER"
+			${commandScript}
+		''}
 	'');
 }

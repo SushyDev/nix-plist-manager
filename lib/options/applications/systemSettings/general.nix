@@ -140,13 +140,13 @@
 
 			mapping = {
 				"unset" = {
-					command = "defaults delete ~/Library/Preferences/ByHost/.GlobalPreferences AppleICUForce24HourTime";
+					command = "defaults delete $HOME/Library/Preferences/ByHost/.GlobalPreferences AppleICUForce24HourTime";
 				};
 				"true" = {
-					command = "defaults write ~/Library/Preferences/ByHost/.GlobalPreferences AppleICUForce24HourTime -bool true";
+					command = "defaults write $HOME/Library/Preferences/ByHost/.GlobalPreferences AppleICUForce24HourTime -bool true";
 				};
 				"false" = {
-					command = "defaults write ~/Library/Preferences/ByHost/.GlobalPreferences AppleICUForce24HourTime -bool false";
+					command = "defaults write $HOME/Library/Preferences/ByHost/.GlobalPreferences AppleICUForce24HourTime -bool false";
 				};
 			};
 

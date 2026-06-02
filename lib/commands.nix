@@ -2,9 +2,9 @@
 {
 	defaults = {
 		delete = path: optionName:
-			''/usr/bin/defaults delete ${path} ${optionName} 2>/dev/null || true'';
+			''/usr/bin/defaults delete ${path} "${optionName}" 2>/dev/null || true'';
 		write = path: optionName: type: value:
-			''/usr/bin/defaults write ${path} ${optionName} -${type} "${lib.escapeShellArg value}" 2>/dev/null || true'';
+			''/usr/bin/defaults write ${path} "${optionName}" -${type} "${lib.escapeShellArg value}" 2>/dev/null || true'';
 	};
 
 	chainOnSuccess = " && \\\n";

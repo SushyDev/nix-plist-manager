@@ -21,6 +21,7 @@ in
 			falseCommand = commandsLib.defaults.write byHostAppleWindowManager "HideDesktop" "bool" "true";
 		};
 	};
+
 	clickWallpaperToRevealDesktop = abstractionsLib.mkBasicMappingOption {
 		path = [ "Desktop & Dock" "Desktop & Stage Manager" "Click wallpaper to reveal desktop" ];
 		default = null;
@@ -41,6 +42,7 @@ in
 				};
 			};
 	};
+
 	stageManager = 
 		let
 			optionName = "GloballyEnabled";
@@ -53,6 +55,7 @@ in
 			trueCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
 			falseCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "false";
 		};
+
 	showRecentAppsInStageManager = 
 		let
 			optionName = "AutoHide";
@@ -65,6 +68,7 @@ in
 			trueCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "false";
 			falseCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
 		};
+
 	showWindowsFromAnApplication = abstractionsLib.mkBasicMappingOption {
 		path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show windows from an application" ];
 		default = null;
