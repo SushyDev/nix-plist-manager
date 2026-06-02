@@ -1,8 +1,8 @@
 { lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib }:
 let
-	appleDock = pathLib.generatePath true true "com.apple.dock";
-	byHostAppleSpaces = pathLib.generatePath true false "com.apple.spaces";
-	byHostGlobalPreferences = pathLib.generatePath true false "com.apple.preference.global";
+	appleDock = pathLib.generatePath true false "com.apple.dock";
+	appleSpaces = pathLib.generatePath true false "com.apple.spaces";
+	GlobalPreferences = pathLib.generatePath true false ".GlobalPreferences";
 in
 {
 	automaticallyRearrangeSpacesBasedOnMostRecentUse =
@@ -25,9 +25,9 @@ in
 			path = [ "Desktop & Dock" "Mission Control" "When switching to an application, switch to a Space with open windows for the application" ];
 			default = null;
 			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostGlobalPreferences optionName;
-			trueCommand = commandsLib.defaults.write byHostGlobalPreferences optionName "bool" "true";
-			falseCommand = commandsLib.defaults.write byHostGlobalPreferences optionName "bool" "false";
+			unsetCommand = commandsLib.defaults.delete GlobalPreferences optionName;
+			trueCommand = commandsLib.defaults.write GlobalPreferences optionName "bool" "true";
+			falseCommand = commandsLib.defaults.write GlobalPreferences optionName "bool" "false";
 		};
 	groupWindowsByApplication = 
 		let
@@ -49,9 +49,9 @@ in
 			path = [ "Desktop & Dock" "Mission Control" "Displays have separate Spaces" ];
 			default = null;
 			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleSpaces optionName;
-			trueCommand = commandsLib.defaults.write byHostAppleSpaces optionName "bool" "false";
-			falseCommand = commandsLib.defaults.write byHostAppleSpaces optionName "bool" "true";
+			unsetCommand = commandsLib.defaults.delete appleSpaces optionName;
+			trueCommand = commandsLib.defaults.write appleSpaces optionName "bool" "false";
+			falseCommand = commandsLib.defaults.write appleSpaces optionName "bool" "true";
 		};
 	dragWindowsToTopOfScreenToEnterMissionControl =
 		let

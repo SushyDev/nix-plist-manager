@@ -45,6 +45,7 @@ in
 			command = configLib.commandNullOrValueOrUnset mapping;
 		};
 	};
+
 	magnification = {
 		enabled = 
 			let
@@ -67,6 +68,7 @@ in
 					commandsLib.chainOnSuccess (commandsLib.killall "Dock")
 				];
 			};
+
 		size = rec {
 			path = [ "Desktop & Dock" "Dock" "Magnification Size" ];
 			description = "";
@@ -108,8 +110,9 @@ in
 			};
 		};
 	};
-	positionOnScreen = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Dock" "Position on screen" ];
+
+	dockPositionOnScreen = abstractionsLib.mkBasicMappingOption {
+		path = [ "Desktop & Dock" "Dock" "Dock position on screen" ];
 		default = null;
 		perUser = true;
 		mapping = 
@@ -143,8 +146,9 @@ in
 				};
 			};
 	};
-	minimizeWindowsUsing = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Dock" "Minimize windows using" ];
+
+	minimizedWindowAnimation = abstractionsLib.mkBasicMappingOption {
+		path = [ "Desktop & Dock" "Dock" "Minimized window animation" ];
 		default = null;
 		perUser = true;
 		mapping = 
@@ -163,8 +167,9 @@ in
 				};
 			};
 	};
-	doubleClickAWindowsTitleBarTo = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Dock" "Double-click a window's title bar to" ];
+
+	windowTitleBarDoubleClickAction = abstractionsLib.mkBasicMappingOption {
+		path = [ "Desktop & Dock" "Dock" "Window title bar double-click action" ];
 		default = null;
 		perUser = true;
 		mapping = 
@@ -189,6 +194,7 @@ in
 				};
 			};
 	};
+
 	minimizeWindowsIntoApplicationIcon = abstractionsLib.mkBasicBoolOption {
 		path = [ "Desktop & Dock" "Dock" "Minimize windows into application icon" ];
 		default = null;
@@ -197,6 +203,7 @@ in
 		trueCommand = commandsLib.defaults.write byHostAppleDock "minimize-to-application" "bool" "true";
 		falseCommand = commandsLib.defaults.write byHostAppleDock "minimize-to-application" "bool" "false";
 	};
+
 	automaticallyHideAndShowTheDock = {
 		enabled = abstractionsLib.mkBasicBoolOption {
 			path = [ "Desktop & Dock" "Dock" "Automatically hide and show the Dock" ];
@@ -218,6 +225,7 @@ in
 				(commandsLib.killall "Dock")
 			];
 		};
+
 		delay = rec {
 			path = [ "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Delay" ];
 			description = "";
@@ -260,6 +268,7 @@ in
 				command = configLib.commandNullOrValueOrUnset mapping;
 			};
 		};
+
 		duration = rec {
 			path = [ "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Animation duration" ];
 			description = "";
@@ -303,6 +312,7 @@ in
 			};
 		};
 	};
+
 	animateOpeningApplications = 
 		let
 			optionName = "launchanim";
@@ -315,6 +325,7 @@ in
 			trueCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "true";
 			falseCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "false";
 		};
+
 	showIndicatorsForOpenApplications = 
 		let
 			optionName = "show-process-indicators";
@@ -327,6 +338,7 @@ in
 			trueCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "true";
 			falseCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "false";
 		};
+
 	showSuggestedAndRecentAppsInDock = 
 		let
 			optionName = "show-recents";
