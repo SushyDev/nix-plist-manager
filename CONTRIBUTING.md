@@ -32,7 +32,7 @@ Panes whose `coverage` is `none` have neither source, so their settings have to 
 		{ "domain": "com.apple.dock", "key": "tilesize", "type": "int", "byHost": true, "scope": "user" }
 	],
 	"option": "applications.systemSettings.desktopAndDock.dock.size",
-	"verified": { "build": "26A428", "date": "2026-09-22" },
+	"verified": { "build": "26A428", "date": "2026-09-22", "commands": "3f1c…" },
 	"skip": "reason",                    // set instead of an option when it can't or shouldn't be one
 	"notes": ""
 }
@@ -42,7 +42,7 @@ The status is derived from these fields, not stored:
 
 | Status | Meaning |
 | --- | --- |
-| **verified** | `option` and `verified` are set: someone applied the option on the given build and confirmed that System Settings reflects it. |
+| **verified** | `option` and `verified` are set: the option was applied on the given build and System Settings showed the expected values. `commands` is a digest of the option's generated commands; `sync` drops the verification when they change. |
 | **implemented** | `option` is set. |
 | **mapped** | `storage` is known but there's no option yet. This is a good first contribution. |
 | **todo** | Nothing is known yet. |
@@ -59,10 +59,31 @@ The status is derived from these fields, not stored:
    ```sh
    nix run .#inventory -- link inventory/system-settings/keyboard.json#<setting-id> <option.path>
    ```
-5. Apply the option on your Mac. Once System Settings shows the value you set, add `"verified": { "build": "<sw_vers -buildVersion>", "date": "<today>" }`.
+5. Add a `ui` spec and run `nix run .#verify -- check --setting <setting-id>` (see below), which marks the setting verified when System Settings shows every value the option sets.
 6. Run `nix run .#inventory -- report` and commit the option, the inventory JSON and `COVERAGE.md` together.
 
 New files have to be `git add`ed before `nix` can see them.
+
+### Verify against the real UI
+
+`tools/verify` drives System Settings through the Accessibility API, so the terminal running it needs Accessibility permission (Privacy & Security → Accessibility). It moves the mouse and quits and reopens System Settings while it runs.
+
+```sh
+nix run .#verify -- controls com.apple.settings.appearance         # labelled controls and their values
+nix run .#verify -- discover com.apple.settings.appearance inventory/system-settings/appearance.json
+                                                                    # add what the pane shows to the inventory
+nix run .#verify -- observe com.apple.settings.appearance click "TintWindowBackgroundToggle"
+                                                                    # which preference keys a control writes
+nix run .#verify -- check --pane Appearance                        # round-trip every option with a `ui` spec
+```
+
+Panes are addressed by their sidebar identifier; `ax dump` lists them. Operate a control with `press` (buttons, radio buttons), `click` (SwiftUI switches ignore `press`), `pick` (pop-up menus) or `set` (sliders). Labels that appear more than once can be narrowed down: `AXRadioButton:Dark` matches only radio buttons, and `Dark + Icon & widget style` matches only an element that carries both labels.
+
+`discover` is how panes whose `coverage` is `none` get their settings, and how the others get the ones Apple's metadata leaves out. Use `--open "Hot Corners…"` to reach sheets and sub-pages.
+
+`check` needs a `ui` spec on the setting that says what System Settings should show for each value. Its format is described at the top of `tools/verify/verify.py`. `check` backs up the setting's preference keys, applies each value with the option's own generated command, reopens the pane and compares, then restores the backup. Settings that pass get `verified`.
+
+Write the storage you record in `storage` from what `observe` reports. Don't take it from an existing option: an option that writes the wrong domain (for example `ByHost` when System Settings writes the global domain) still "works" in one direction, but it silently overrides whatever the user picks in the UI.
 
 ### A new macOS release
 

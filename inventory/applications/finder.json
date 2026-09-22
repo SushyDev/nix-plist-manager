@@ -157,7 +157,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": ".GlobalPreferences",
+					"domain": "NSGlobalDomain",
 					"key": "AppleShowAllExtensions",
 					"scope": "user",
 					"type": "bool"

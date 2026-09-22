@@ -37,7 +37,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": ".GlobalPreferences",
+					"domain": "NSGlobalDomain",
 					"key": "com.apple.sound.beep.feedback",
 					"scope": "user",
 					"type": "bool"
@@ -97,7 +97,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": ".GlobalPreferences",
+					"domain": "NSGlobalDomain",
 					"key": "com.apple.sound.beep.sound",
 					"scope": "user",
 					"type": "string"
@@ -117,7 +117,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": ".GlobalPreferences",
+					"domain": "NSGlobalDomain",
 					"key": "com.apple.sound.beep.volume",
 					"scope": "user",
 					"type": "float"
@@ -146,7 +146,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": ".GlobalPreferences",
+					"domain": "NSGlobalDomain",
 					"key": "com.apple.sound.uiaudio.enabled",
 					"scope": "user",
 					"type": "bool"
