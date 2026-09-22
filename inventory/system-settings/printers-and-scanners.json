@@ -1,0 +1,58 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Printers & Scanners"
+	],
+	"settings": {
+		"fax-fax-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Fax",
+			"sources": [
+				"search:PrinterScannerSettings.appex/fax/Fax settings"
+			],
+			"title": "Fax settings"
+		},
+		"print-setting-up-printers": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Print",
+			"sources": [
+				"search:PrinterScannerSettings.appex/print/Setting up printers"
+			],
+			"title": "Setting up printers"
+		},
+		"printer-paper-size": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:PrinterScannerIntentsExtension.appex/PaperSizeEntity.value"
+			],
+			"title": "Printer Paper Size"
+		},
+		"scan-setting-up-scanners": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Scan",
+			"sources": [
+				"search:PrinterScannerSettings.appex/scan/Setting up scanners"
+			],
+			"title": "Setting up scanners"
+		},
+		"share-sharing-a-printer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Share",
+			"sources": [
+				"search:PrinterScannerSettings.appex/share/Sharing a printer"
+			],
+			"title": "Sharing a printer"
+		}
+	}
+}

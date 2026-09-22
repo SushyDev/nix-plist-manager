@@ -1,0 +1,202 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Notifications"
+	],
+	"settings": {
+		"application-notifications-alert-style": {
+			"choices": [
+				"None",
+				"Banner",
+				"Alerts"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.alertStyle"
+			],
+			"title": "Alert style"
+		},
+		"application-notifications-allow-notifications": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.allowNotifications"
+			],
+			"title": "Allow notifications"
+		},
+		"application-notifications-badge-application-icon": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.badgeAppIcon"
+			],
+			"title": "Badge application icon"
+		},
+		"application-notifications-critical-alerts": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.allowCriticalAlerts"
+			],
+			"title": "Critical alerts"
+		},
+		"application-notifications-notification-grouping": {
+			"choices": [
+				"Automatic",
+				"By Application",
+				"Off"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.notificationGrouping"
+			],
+			"title": "Notification grouping"
+		},
+		"application-notifications-play-sound-for-notification": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.playSounds"
+			],
+			"title": "Play sound for notification"
+		},
+		"application-notifications-show-in-notification-center": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.showInNotificationCenter"
+			],
+			"title": "Show in Notification Center"
+		},
+		"application-notifications-show-notifications-on-lock-screen": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.showOnLockScreen"
+			],
+			"title": "Show notifications on lock screen"
+		},
+		"application-notifications-show-previews": {
+			"choices": [
+				"Default",
+				"Never",
+				"When Unlocked",
+				"Always"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.showPreviews"
+			],
+			"title": "Show previews"
+		},
+		"application-notifications-time-sensitive-notifications": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Application Notifications",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/ApplicationNotificationsSettings.allowTimeSensitive"
+			],
+			"title": "Time sensitive notifications"
+		},
+		"notification-center-allow-notifications-when-mirroring-or-sharing-the-display": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Notification Center",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/NotificationCenterEntity.allowWhenSharing"
+			],
+			"title": "Allow notifications when mirroring or sharing the display"
+		},
+		"notification-center-allow-notifications-when-the-display-is-sleeping": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Notification Center",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/NotificationCenterEntity.allowWhenSleeping"
+			],
+			"title": "Allow notifications when the display is sleeping"
+		},
+		"notification-center-allow-notifications-when-the-screen-is-locked": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Notification Center",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/NotificationCenterEntity.allowWhenLocked"
+			],
+			"title": "Allow notifications when the screen is locked"
+		},
+		"notification-center-show-previews": {
+			"choices": [
+				"Always",
+				"When Unlocked",
+				"Never"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.notifications.notificationCenter.showPreviews",
+			"section": "Notification Center",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/NotificationCenterEntity.showPreviews",
+				"option:applications.systemSettings.notifications.notificationCenter.showPreviews"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.ncprefs",
+					"key": "content_visibility",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Show previews"
+		},
+		"notification-center-summarize-notifications": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.notifications.notificationCenter.summarizeNotifications",
+			"section": "Notification Center",
+			"sources": [
+				"intent:NotificationsSettingsIntents.appex/NotificationCenterEntity.summarizePreviews",
+				"option:applications.systemSettings.notifications.notificationCenter.summarizeNotifications"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.ncprefs",
+					"key": "summarize_previews",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Summarize notifications"
+		}
+	}
+}

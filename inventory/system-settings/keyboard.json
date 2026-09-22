@@ -1,0 +1,254 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Keyboard"
+	],
+	"settings": {
+		"accessibility-accessibility-keyboard-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Accessibility",
+			"sources": [
+				"search:KeyboardSettings.appex/Accessibility/Accessibility keyboard shortcuts"
+			],
+			"title": "Accessibility keyboard shortcuts"
+		},
+		"caps-lock-input-sources-use-caps-lock-to-switch-input-sources": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Caps Lock Input Sources",
+			"sources": [
+				"search:KeyboardSettings.appex/CapsLockInputSources/Use Caps Lock to switch input sources"
+			],
+			"title": "Use Caps Lock to switch input sources"
+		},
+		"customize-modifier-keys-customize-modifier-keys": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Customize Modifier Keys",
+			"sources": [
+				"search:KeyboardSettings.appex/CustomizeModifierKeys/Customize modifier keys"
+			],
+			"title": "Customize modifier keys"
+		},
+		"dictation-dictation": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Dictation",
+			"sources": [
+				"search:KeyboardSettings.appex/Dictation/Dictation"
+			],
+			"title": "Dictation"
+		},
+		"function-keys-function-keys": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Function Keys",
+			"sources": [
+				"search:KeyboardSettings.appex/FunctionKeys/Function Keys"
+			],
+			"title": "Function Keys"
+		},
+		"illuminate-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"sources": [
+				"search:KeyboardSettings.appex/Keyboard/Illuminate keyboard"
+			],
+			"title": "Illuminate keyboard"
+		},
+		"input-sources-allow-a-different-input-source-for-each-document": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Input Sources",
+			"sources": [
+				"search:KeyboardSettings.appex/InputSources/Allow a different input source for each document"
+			],
+			"title": "Allow a different input source for each document"
+		},
+		"input-sources-keyboard-layouts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Input Sources",
+			"sources": [
+				"search:KeyboardSettings.appex/InputSources/Keyboard layouts"
+			],
+			"title": "Keyboard layouts"
+		},
+		"input-sources-show-input-menu-in-menu-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Input Sources",
+			"sources": [
+				"search:KeyboardSettings.appex/InputSources/Show input menu in menu bar"
+			],
+			"title": "Show input menu in menu bar"
+		},
+		"input-sources-show-keyboard-and-emoji-viewers-in-menu-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Input Sources",
+			"sources": [
+				"search:KeyboardSettings.appex/InputSources/Show keyboard and emoji viewers in menu bar"
+			],
+			"title": "Show keyboard and emoji viewers in menu bar"
+		},
+		"input-sources-use-one-input-source-in-all-documents": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Input Sources",
+			"sources": [
+				"search:KeyboardSettings.appex/InputSources/Use one input source in all documents"
+			],
+			"title": "Use one input source in all documents"
+		},
+		"keyboard-navigation": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"sources": [
+				"search:KeyboardSettings.appex/Keyboard/Keyboard Navigation"
+			],
+			"title": "Keyboard Navigation"
+		},
+		"keyboard-sensitivity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"sources": [
+				"search:KeyboardSettings.appex/Keyboard/Keyboard sensitivity"
+			],
+			"title": "Keyboard sensitivity"
+		},
+		"language-input-methods-language-input-methods": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Language Input Methods",
+			"sources": [
+				"search:KeyboardSettings.appex/LanguageInputMethods/Language input methods"
+			],
+			"title": "Language input methods"
+		},
+		"modifier-keys-reset-modifier-keys": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Modifier Keys",
+			"sources": [
+				"search:KeyboardSettings.appex/ModifierKeys/Reset modifier keys"
+			],
+			"title": "Reset modifier keys"
+		},
+		"press-key-to": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"sources": [
+				"search:KeyboardSettings.appex/Keyboard/Press 🌐︎ key to"
+			],
+			"title": "Press 🌐︎ key to"
+		},
+		"services-services-keyboard-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services",
+			"sources": [
+				"search:KeyboardSettings.appex/Services/Services keyboard shortcuts"
+			],
+			"title": "Services keyboard shortcuts"
+		},
+		"set-up-bluetooth-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"sources": [
+				"search:KeyboardSettings.appex/Keyboard/Set up Bluetooth keyboard"
+			],
+			"title": "Set up Bluetooth keyboard"
+		},
+		"shortcuts-app-and-system-keyboard-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Shortcuts",
+			"sources": [
+				"search:KeyboardSettings.appex/Shortcuts/App and system keyboard shortcuts"
+			],
+			"title": "App and system keyboard shortcuts"
+		},
+		"spelling-spelling-and-prediction": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Spelling",
+			"sources": [
+				"search:KeyboardSettings.appex/Spelling/Spelling and prediction"
+			],
+			"title": "Spelling and prediction"
+		},
+		"spotlight-spotlight-keyboard-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Spotlight",
+			"sources": [
+				"search:KeyboardSettings.appex/Spotlight/Spotlight keyboard shortcuts"
+			],
+			"title": "Spotlight keyboard shortcuts"
+		},
+		"text-replacements-text-replacements": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Text Replacements",
+			"sources": [
+				"search:KeyboardSettings.appex/TextReplacements/Text replacements"
+			],
+			"title": "Text replacements"
+		},
+		"touch-bar-settings-customize-touch-bar-or-control-strip": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Touch Bar Settings",
+			"sources": [
+				"search:KeyboardSettings.appex/TouchBarSettings/Customize Touch Bar or Control Strip"
+			],
+			"title": "Customize Touch Bar or Control Strip"
+		},
+		"touch-bar-settings-touch-bar-typing-suggestions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Touch Bar Settings",
+			"sources": [
+				"search:KeyboardSettings.appex/TouchBarSettings/Touch Bar typing suggestions"
+			],
+			"title": "Touch Bar typing suggestions"
+		},
+		"use-smart-quotes-use-smart-quotes-and-dashes": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Use Smart Quotes",
+			"sources": [
+				"search:KeyboardSettings.appex/UseSmartQuotes/Use smart quotes and dashes"
+			],
+			"title": "Use smart quotes and dashes"
+		}
+	}
+}

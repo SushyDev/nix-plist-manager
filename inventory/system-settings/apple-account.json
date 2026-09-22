@@ -1,0 +1,39 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Apple Account"
+	],
+	"settings": {
+		"apple-account-apple-id": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Apple Account",
+			"sources": [
+				"search:AppleIDSettings.appex/AppleAccount/Apple ID"
+			],
+			"title": "Apple ID"
+		},
+		"com-apple-apple-media-services-ui-spyglass-purchases-media-and-purchases": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Com.apple.Apple Media Services UI.Spyglass Purchases",
+			"sources": [
+				"search:AppleIDSettings.appex/com.apple.AppleMediaServicesUI.SpyglassPurchases/Media and Purchases"
+			],
+			"title": "Media and Purchases"
+		},
+		"icloud-icloud": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "ICloud",
+			"sources": [
+				"search:AppleIDSettings.appex/iCloud/iCloud"
+			],
+			"title": "iCloud"
+		}
+	}
+}

@@ -1,0 +1,369 @@
+{
+	"coverage": "",
+	"group": "applications",
+	"pane": [
+		"Finder"
+	],
+	"settings": {
+		"menu-bar-view-show-path-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.menuBar.view.showPathBar",
+			"section": "Menu Bar > View",
+			"sources": [
+				"option:applications.finder.menuBar.view.showPathBar"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowPathBar",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show Path Bar"
+		},
+		"menu-bar-view-show-sidebar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.menuBar.view.showSidebar",
+			"section": "Menu Bar > View",
+			"sources": [
+				"option:applications.finder.menuBar.view.showSidebar"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowSidebar",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show Sidebar"
+		},
+		"menu-bar-view-show-status-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.menuBar.view.showStatusBar",
+			"section": "Menu Bar > View",
+			"sources": [
+				"option:applications.finder.menuBar.view.showStatusBar"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowStatusBar",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show Status Bar"
+		},
+		"menu-bar-view-show-tab-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.menuBar.view.showTabBar",
+			"section": "Menu Bar > View",
+			"sources": [
+				"option:applications.finder.menuBar.view.showTabBar"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "NSWindowTabbingShoudShowTabBarKey-com.apple.finder.TBrowserWindow",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show Tab Bar"
+		},
+		"settings-advanced-keep-folders-on-top-in-windows-when-sorting-by-name": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.keepFoldersOnTop.inWindowsWhenSortingByName",
+			"section": "Settings > Advanced > Keep folders on top",
+			"sources": [
+				"option:applications.finder.settings.advanced.keepFoldersOnTop.inWindowsWhenSortingByName"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "_FXSortFoldersFirst",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "In windows when sorting by name"
+		},
+		"settings-advanced-keep-folders-on-top-on-desktop": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.keepFoldersOnTop.onDesktop",
+			"section": "Settings > Advanced > Keep folders on top",
+			"sources": [
+				"option:applications.finder.settings.advanced.keepFoldersOnTop.onDesktop"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "_FXSortFoldersFirstOnDesktop",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "On Desktop"
+		},
+		"settings-advanced-remove-items-from-the-trash-after-30-days": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.removeItemsFromTheTrashAfter30Days",
+			"section": "Settings > Advanced",
+			"sources": [
+				"option:applications.finder.settings.advanced.removeItemsFromTheTrashAfter30Days"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "FXRemoveOldTrashItems",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Remove items from the Trash after 30 days"
+		},
+		"settings-advanced-show-all-filename-extensions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.showAllFilenameExtensions",
+			"section": "Settings > Advanced",
+			"sources": [
+				"option:applications.finder.settings.advanced.showAllFilenameExtensions"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": ".GlobalPreferences",
+					"key": "AppleShowAllExtensions",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show all filename extensions"
+		},
+		"settings-advanced-show-warning-before-changing-an-extension": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.showWarningBeforeChangingAnExtension",
+			"section": "Settings > Advanced",
+			"sources": [
+				"option:applications.finder.settings.advanced.showWarningBeforeChangingAnExtension"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "FXEnableExtensionChangeWarning",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show warning before changing an extension"
+		},
+		"settings-advanced-show-warning-before-emptying-the-trash": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.showWarningBeforeEmptyingTheTrash",
+			"section": "Settings > Advanced",
+			"sources": [
+				"option:applications.finder.settings.advanced.showWarningBeforeEmptyingTheTrash"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "WarnOnEmptyTrash",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show warning before emptying the Trash"
+		},
+		"settings-advanced-show-warning-before-removing-from-icloud-drive": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.showWarningBeforeRemovingFromiCloudDrive",
+			"section": "Settings > Advanced",
+			"sources": [
+				"option:applications.finder.settings.advanced.showWarningBeforeRemovingFromiCloudDrive"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.bird",
+					"key": "FXEnableExtensionChangeWarning",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show warning before removing from iCloud Drive"
+		},
+		"settings-advanced-when-performing-a-search": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.advanced.whenPerformingASearch",
+			"section": "Settings > Advanced",
+			"sources": [
+				"option:applications.finder.settings.advanced.whenPerformingASearch"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "FXDefaultSearchScope",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "When performing a search"
+		},
+		"settings-general-open-folders-in-tabs-instead-of-new-windows": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.general.openFoldersInTabsInsteadOfNewWindows",
+			"section": "Settings > General",
+			"sources": [
+				"option:applications.finder.settings.general.openFoldersInTabsInsteadOfNewWindows"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "FinderSpawnTab",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Open folders in tabs instead of new windows"
+		},
+		"settings-general-show-these-items-on-the-desktop-cds-dvds-and-ipods": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.general.showTheseItemsOnTheDesktop.cdsDvdsAndiPods",
+			"section": "Settings > General > Show these items on the desktop",
+			"sources": [
+				"option:applications.finder.settings.general.showTheseItemsOnTheDesktop.cdsDvdsAndiPods"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowRemovableMediaOnDesktop",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "CDs, DVDs, and iPods"
+		},
+		"settings-general-show-these-items-on-the-desktop-connected-servers": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.general.showTheseItemsOnTheDesktop.connectedServers",
+			"section": "Settings > General > Show these items on the desktop",
+			"sources": [
+				"option:applications.finder.settings.general.showTheseItemsOnTheDesktop.connectedServers"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowMountedServersOnDesktop",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Connected servers"
+		},
+		"settings-general-show-these-items-on-the-desktop-external-disks": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.general.showTheseItemsOnTheDesktop.externalDisks",
+			"section": "Settings > General > Show these items on the desktop",
+			"sources": [
+				"option:applications.finder.settings.general.showTheseItemsOnTheDesktop.externalDisks"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowExternalHardDrivesOnDesktop",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "External disks"
+		},
+		"settings-general-show-these-items-on-the-desktop-hard-disks": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.general.showTheseItemsOnTheDesktop.hardDisks",
+			"section": "Settings > General > Show these items on the desktop",
+			"sources": [
+				"option:applications.finder.settings.general.showTheseItemsOnTheDesktop.hardDisks"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowHardDrivesOnDesktop",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Hard disks"
+		},
+		"settings-sidebar-show-recent-tags": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.finder.settings.sidebar.recentTags",
+			"section": "Settings > Sidebar",
+			"sources": [
+				"option:applications.finder.settings.sidebar.recentTags"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.finder",
+					"key": "ShowRecentTags",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show Recent Tags"
+		}
+	}
+}

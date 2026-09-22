@@ -1,0 +1,29 @@
+{
+	"coverage": "none",
+	"group": "system-settings",
+	"pane": [
+		"Focus"
+	],
+	"settings": {
+		"share-across-devices": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.focus.shareAcrossDevices",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.focus.shareAcrossDevices"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.donotdisturbd",
+					"key": "disableCloudSync",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Share across devices"
+		}
+	}
+}

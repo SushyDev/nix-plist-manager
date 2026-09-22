@@ -1,0 +1,87 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Apple Intelligence & Siri"
+	],
+	"settings": {
+		"apple-intelligence": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appleIntelligenceAndSiri.appleIntelligence",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.appleIntelligenceAndSiri.appleIntelligence"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.CloudSubscriptionFeatures.optIn",
+					"key": "10334750688",
+					"scope": "user"
+				}
+			],
+			"title": "Apple Intelligence"
+		},
+		"generative-assistant-settings-view-extended-apple-intelligence-and-siri": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Generative Assistant Settings View",
+			"sources": [
+				"search:SiriPreferenceExtension.appex/GenerativeAssistantSettingsView/Extended Apple Intelligence & Siri"
+			],
+			"title": "Extended Apple Intelligence & Siri"
+		},
+		"siri-requests-siri-responses": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appleIntelligenceAndSiri.siriResponses",
+			"section": "Siri Requests",
+			"sources": [
+				"option:applications.systemSettings.appleIntelligenceAndSiri.siriResponses"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.assistant.backedup",
+					"key": "Use device speaker for TTS",
+					"scope": "user"
+				}
+			],
+			"title": "Siri Responses"
+		},
+		"siri-siri": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appleIntelligenceAndSiri.siri.enable",
+			"section": "Siri",
+			"sources": [
+				"option:applications.systemSettings.appleIntelligenceAndSiri.siri.enable",
+				"search:SiriPreferenceExtension.appex/Siri/Siri"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.assistant.support",
+					"key": "Assistant Enabled",
+					"scope": "user"
+				}
+			],
+			"title": "Siri"
+		},
+		"siri-turn-siri-on-and-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Siri",
+			"sources": [
+				"search:SiriPreferenceExtension.appex/Siri/Turn Siri on and off"
+			],
+			"title": "Turn Siri on and off"
+		}
+	}
+}

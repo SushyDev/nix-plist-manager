@@ -1,0 +1,129 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Screen Time"
+	],
+	"settings": {
+		"path-always-allowed-choose-always-allowed-apps-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=always-allowed",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=always-allowed/Choose always allowed apps in Screen Time"
+			],
+			"title": "Choose always allowed apps in Screen Time"
+		},
+		"path-app-limits-choose-app-limits-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=app-limits",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=app-limits/Choose app limits in Screen Time"
+			],
+			"title": "Choose app limits in Screen Time"
+		},
+		"path-app-usage-show-app-usage-report-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=app-usage",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=app-usage/Show app usage report in Screen Time"
+			],
+			"title": "Show app usage report in Screen Time"
+		},
+		"path-communication-limits-change-communication-limits-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=communication-limits",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=communication-limits/Change communication limits in Screen Time"
+			],
+			"title": "Change communication limits in Screen Time"
+		},
+		"path-communication-limits-set-communication-limits-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=communication-limits",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=communication-limits/Set communication limits in Screen Time"
+			],
+			"title": "Set communication limits in Screen Time"
+		},
+		"path-content-and-privacy-choose-screen-time-content-and-privacy-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=content-and-privacy",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=content-and-privacy/Choose Screen Time content and privacy settings"
+			],
+			"title": "Choose Screen Time content and privacy settings"
+		},
+		"path-content-and-privacy-restrict-explicit-content": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=content-and-privacy",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=content-and-privacy/Restrict explicit content"
+			],
+			"title": "Restrict explicit content"
+		},
+		"path-downtime-schedule-downtime-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=downtime",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=downtime/Schedule downtime in Screen Time"
+			],
+			"title": "Schedule downtime in Screen Time"
+		},
+		"path-notifications-show-notifications-report-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=notifications",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=notifications/Show notifications report in Screen Time"
+			],
+			"title": "Show notifications report in Screen Time"
+		},
+		"path-pickups-show-device-pickups-report-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=pickups",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=pickups/Show device pickups report in Screen Time"
+			],
+			"title": "Show device pickups report in Screen Time"
+		},
+		"path-requests-show-screen-time-requests": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=requests",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=requests/Show Screen Time requests"
+			],
+			"title": "Show Screen Time requests"
+		},
+		"path-screen-distance-configure-screen-distance-in-screen-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Path=screen-distance",
+			"sources": [
+				"search:ScreenTimePreferencesExtension.appex/path=screen-distance/Configure Screen Distance in Screen Time"
+			],
+			"title": "Configure Screen Distance in Screen Time"
+		}
+	}
+}

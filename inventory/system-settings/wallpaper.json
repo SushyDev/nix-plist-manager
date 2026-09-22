@@ -1,0 +1,45 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Wallpaper"
+	],
+	"settings": {
+		"show-screen-saver-as-wallpaper-on-main-display": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:WallpaperSettingsIntents.appex/ShowAsWallpaperEntity.value"
+			],
+			"title": "Show screen saver as wallpaper on main display"
+		},
+		"show-screen-saver-on-all-spaces": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:WallpaperSettingsIntents.appex/ShowScreenSaverOnAllSpacesEntity.value"
+			],
+			"title": "Show screen saver on all Spaces"
+		},
+		"show-wallpaper-as-screen-saver-on-main-display": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:WallpaperSettingsIntents.appex/ShowAsScreenSaverEntity.value"
+			],
+			"title": "Show wallpaper as screen saver on main display"
+		},
+		"show-wallpaper-on-all-spaces": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:WallpaperSettingsIntents.appex/ShowWallpaperOnAllSpacesEntity.value"
+			],
+			"title": "Show wallpaper on all Spaces"
+		}
+	}
+}

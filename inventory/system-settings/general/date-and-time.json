@@ -1,0 +1,52 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"General",
+		"Date & Time"
+	],
+	"settings": {
+		"24-hour-time": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.dateAndTime.24HourTime",
+			"sources": [
+				"intent:DateTimeIntentsExtension.appex/HourFormatEntity.value",
+				"option:applications.systemSettings.general.dateAndTime.24HourTime"
+			],
+			"storage": [],
+			"title": "24-Hour Time"
+		},
+		"24hour-time-use-a-24-hour-clock-in-the-menu-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "24Hour Time",
+			"sources": [
+				"search:DateAndTime Extension.appex/24HourTime/Use a 24-hour clock in the menu bar"
+			],
+			"title": "Use a 24-hour clock in the menu bar"
+		},
+		"date-time-pref-set-date-and-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Date Time Pref",
+			"sources": [
+				"search:DateAndTime Extension.appex/DateTimePref/Set date and time"
+			],
+			"title": "Set date and time"
+		},
+		"time-zone-pref-set-time-zone": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Time Zone Pref",
+			"sources": [
+				"search:DateAndTime Extension.appex/TimeZonePref/Set time zone"
+			],
+			"title": "Set time zone"
+		}
+	}
+}

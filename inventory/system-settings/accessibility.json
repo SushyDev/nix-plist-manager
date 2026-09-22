@@ -1,0 +1,4464 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Accessibility"
+	],
+	"settings": {
+		"alternate-control-methods-alternate-control-methods": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Alternate Control Methods",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/alternateControlMethods/Alternate Control Methods"
+			],
+			"title": "Alternate Control Methods"
+		},
+		"audio-descriptions-play-audio-descriptions-when-available": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Audio Descriptions",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxVideoDescriptionEntity.value"
+			],
+			"title": "Play audio descriptions when available"
+		},
+		"audio-enable-background-sounds": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Audio",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxBackgroundSoundsEntity.value"
+			],
+			"title": "Enable Background Sounds"
+		},
+		"ax-adaptive-voice-shortcuts-onboarding-set-up-vocal-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ADAPTIVE_VOICE_SHORTCUTS_ONBOARDING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ADAPTIVE_VOICE_SHORTCUTS_ONBOARDING/Set Up (Vocal Shortcuts)"
+			],
+			"title": "Set Up (Vocal Shortcuts)"
+		},
+		"ax-alt-mouse-buttons-alternate-pointer-actions": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxAltMouseButtonsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ALT_MOUSE_BUTTONS/Alternate pointer actions"
+			],
+			"title": "Alternate Pointer Actions"
+		},
+		"ax-alt-mouse-enable-sounds-play-sounds": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ALT_MOUSE_ENABLE_SOUNDS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ALT_MOUSE_ENABLE_SOUNDS/Play sounds"
+			],
+			"title": "Play sounds"
+		},
+		"ax-alt-mouse-enable-visuals-show-actions-visually": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ALT_MOUSE_ENABLE_VISUALS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ALT_MOUSE_ENABLE_VISUALS/Show actions visually"
+			],
+			"title": "Show actions visually"
+		},
+		"ax-animated-images-auto-play-animated-images": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Motion",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxAnimatedImagesEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ANIMATED_IMAGES/Auto-play animated images"
+			],
+			"title": "Auto-play animated images"
+		},
+		"ax-background-sound-filter-choose-background-sounds-equalizer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_BACKGROUND_SOUND_FILTER_CHOOSE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_BACKGROUND_SOUND_FILTER_CHOOSE/Background Sounds Equalizer"
+			],
+			"title": "Background Sounds Equalizer"
+		},
+		"ax-background-sound-timer-choose-background-sounds-timer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_BACKGROUND_SOUND_TIMER_CHOOSE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_BACKGROUND_SOUND_TIMER_CHOOSE/Background Sounds Timer"
+			],
+			"title": "Background Sounds Timer"
+		},
+		"ax-background-sounds-background-sounds": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_BACKGROUND_SOUNDS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_BACKGROUND_SOUNDS/Background sounds"
+			],
+			"title": "Background sounds"
+		},
+		"ax-background-sounds-lock-screen-turn-off-background-sounds-when-your-mac-is-not-in-use": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Audio",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxBackgroundSoundsLockScreenEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_BACKGROUND_SOUNDS_LOCK_SCREEN/Turn off background sounds when your Mac is not in use"
+			],
+			"title": "Turn off background sounds when your Mac is not in use"
+		},
+		"ax-background-sounds-timer-options-background-sounds-timer-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_BACKGROUND_SOUNDS_TIMER_OPTIONS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_BACKGROUND_SOUNDS_TIMER_OPTIONS/Background sounds timer options"
+			],
+			"title": "Background sounds timer options"
+		},
+		"ax-background-sounds-timer-toggle-toggle-background-sounds-timer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_BACKGROUND_SOUNDS_TIMER_TOGGLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_BACKGROUND_SOUNDS_TIMER_TOGGLE/Toggle background sounds timer"
+			],
+			"title": "Toggle background sounds timer"
+		},
+		"ax-background-sounds-volume-background-sounds-volume": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_BACKGROUND_SOUNDS_VOLUME",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_BACKGROUND_SOUNDS_VOLUME/Background sounds volume"
+			],
+			"title": "Background sounds volume"
+		},
+		"ax-bg-sound-select-header-select-background-sound": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_BG_SOUND_SELECT_HEADER",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_BG_SOUND_SELECT_HEADER/Select Background Sound"
+			],
+			"title": "Select Background Sound"
+		},
+		"ax-captioning-generated-show-generated-subtitles": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_CAPTIONING_GENERATED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_CAPTIONING_GENERATED/Show generated subtitles"
+			],
+			"title": "Show generated subtitles"
+		},
+		"ax-captioning-language-mismatch-show-automatically-when-languages-do-not-match": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_CAPTIONING_LANGUAGE_MISMATCH",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_CAPTIONING_LANGUAGE_MISMATCH/Show automatically when languages do not match"
+			],
+			"title": "Show automatically when languages do not match"
+		},
+		"ax-captioning-prefer-sdh-prefer-closed-captions-and-sdh": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Subtitles & Captioning",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxCaptioningPreferSdhEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_CAPTIONING_PREFER_SDH/Prefer closed captions and SDH"
+			],
+			"title": "Prefer closed captions and SDH"
+		},
+		"ax-configure-camera-camera-options-alternate-pointer-actions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_CONFIGURE_CAMERA",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_CONFIGURE_CAMERA/Camera Options (Alternate pointer actions)"
+			],
+			"title": "Camera Options (Alternate pointer actions)"
+		},
+		"ax-cursor-size-pointer-size": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_CURSOR_SIZE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_CURSOR_SIZE/Pointer size"
+			],
+			"title": "Pointer size"
+		},
+		"ax-differentiate-without-color-differentiate-without-color": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDifferentiateWithoutColorEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DIFFERENTIATE_WITHOUT_COLOR/Differentiate without color"
+			],
+			"title": "Differentiate without color"
+		},
+		"ax-dim-flashing-dim-flashing-lights": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Motion",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDimFlashingEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DIM_FLASHING/Dim flashing lights"
+			],
+			"title": "Dim Flashing Lights"
+		},
+		"ax-display-filter-enabled-color-filters": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DISPLAY_FILTER_ENABLED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DISPLAY_FILTER_ENABLED/Color filters"
+			],
+			"title": "Color filters"
+		},
+		"ax-display-filter-intensity-intensity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DISPLAY_FILTER_INTENSITY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DISPLAY_FILTER_INTENSITY/Intensity"
+			],
+			"title": "Intensity"
+		},
+		"ax-display-filter-tint-color-tint": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DISPLAY_FILTER_TINT_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DISPLAY_FILTER_TINT_COLOR/Tint"
+			],
+			"title": "Tint"
+		},
+		"ax-display-filter-type-filter-type": {
+			"choices": [
+				"Grayscale",
+				"Red/Green filter (Protanopia)",
+				"Green/Red filter (Deuteranopia)",
+				"Blue/Yellow filter (Tritanopia)",
+				"Color Tint"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDisplayFilterTypeEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DISPLAY_FILTER_TYPE/Filter type"
+			],
+			"title": "Filter type"
+		},
+		"ax-dwell-action-default-dwell-action": {
+			"choices": [
+				"Pause Dwell",
+				"Left Click",
+				"Right Click",
+				"Double Click",
+				"Drag and Drop",
+				"Scroll Menu",
+				"Options Menu"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDwellActionEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_ACTION/Default dwell action"
+			],
+			"title": "Default dwell action"
+		},
+		"ax-dwell-auto-revert-auto-revert-to-left-click": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DWELL_AUTO_REVERT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_AUTO_REVERT/Auto revert to left click"
+			],
+			"title": "Auto revert to left click"
+		},
+		"ax-dwell-cursor-color-dwell-color": {
+			"choices": [
+				"Default",
+				"White",
+				"Blue",
+				"Red",
+				"Green",
+				"Yellow",
+				"Orange"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDwellCursorColorEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_CURSOR_COLOR/Dwell color"
+			],
+			"title": "Dwell color"
+		},
+		"ax-dwell-in-menu-extra-always-dwell-in-menu-extras": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDwellInMenuExtraEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_IN_MENU_EXTRA/Always Dwell in menu extras"
+			],
+			"title": "Always dwell in menu extras"
+		},
+		"ax-dwell-in-panels-always-dwell-in-panels": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDwellInPanelsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_IN_PANELS/Always dwell in panels"
+			],
+			"title": "Always dwell in panels"
+		},
+		"ax-dwell-progress-indicator-hide-dwell-time-indicators": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDwellProgressIndicatorEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_PROGRESS_INDICATOR/Hide dwell time indicators"
+			],
+			"title": "Hide dwell time indicators"
+		},
+		"ax-dwell-retrigger-tolerance-post-action-movement-tolerance": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DWELL_RETRIGGER_TOLERANCE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_RETRIGGER_TOLERANCE/Post-action movement tolerance"
+			],
+			"title": "Post-action movement tolerance"
+		},
+		"ax-dwell-tolerance-dwell-movement-tolerance": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DWELL_TOLERANCE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_TOLERANCE/Dwell movement tolerance"
+			],
+			"title": "Dwell movement tolerance"
+		},
+		"ax-dwell-wait-time-default-dwell-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DWELL_WAIT_TIME",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_WAIT_TIME/Default dwell time"
+			],
+			"title": "Default dwell time"
+		},
+		"ax-dwell-wait-time-home-panel-dwell-time": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DWELL_WAIT_TIME_HOME",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_WAIT_TIME_HOME/Panel dwell time"
+			],
+			"title": "Panel dwell time"
+		},
+		"ax-dwell-zoom-enable-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DWELL_ZOOM",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_ZOOM/Enable zoom"
+			],
+			"title": "Enable zoom"
+		},
+		"ax-dwell-zoom-wait-zoom-after": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_DWELL_ZOOM_WAIT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_DWELL_ZOOM_WAIT/Zoom after"
+			],
+			"title": "Zoom after"
+		},
+		"ax-enhance-contrast-display-contrast": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ENHANCE_CONTRAST",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ENHANCE_CONTRAST/Display contrast"
+			],
+			"title": "Display contrast"
+		},
+		"ax-facetime-transcriptions-live-captions-in-facetime": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Live Captions",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFacetimeTranscriptionsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_FACETIME_TRANSCRIPTIONS/Live Captions in FaceTime"
+			],
+			"title": "Live Captions in FaceTime"
+		},
+		"ax-feature-accessibility-reader-accessibility-reader-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.accessibility Reader",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.accessibilityReader/Accessibility Reader (Shortcut)"
+			],
+			"title": "Accessibility Reader (Shortcut)"
+		},
+		"ax-feature-alternate-mouse-buttons-alternate-pointer-actions-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.alternate Mouse Buttons",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.alternateMouseButtons/Alternate Pointer Actions (Shortcut)"
+			],
+			"title": "Alternate Pointer Actions (Shortcut)"
+		},
+		"ax-feature-audio-audio": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_AUDIO",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_AUDIO/Audio"
+			],
+			"title": "Audio"
+		},
+		"ax-feature-avs-vocal-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_AVS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_AVS/Vocal Shortcuts"
+			],
+			"title": "Vocal Shortcuts"
+		},
+		"ax-feature-background-sounds-background-sounds-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.background Sounds",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.backgroundSounds/Background Sounds (Shortcut)"
+			],
+			"title": "Background Sounds (Shortcut)"
+		},
+		"ax-feature-captions-subtitles-and-captioning": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_CAPTIONS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_CAPTIONS/Subtitles and Captioning"
+			],
+			"title": "Subtitles and Captioning"
+		},
+		"ax-feature-descriptions-audio-descriptions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_DESCRIPTIONS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_DESCRIPTIONS/Audio Descriptions"
+			],
+			"title": "Audio Descriptions"
+		},
+		"ax-feature-display-filters-color-filters-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.display Filters",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.displayFilters/Color Filters (Shortcut)"
+			],
+			"title": "Color Filters (Shortcut)"
+		},
+		"ax-feature-full-keyboard-access-full-keyboard-access-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.full Keyboard Access",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.fullKeyboardAccess/Full Keyboard Access (Shortcut)"
+			],
+			"title": "Full Keyboard Access (Shortcut)"
+		},
+		"ax-feature-head-mouse-head-pointer-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.head Mouse",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.headMouse/Head Pointer (Shortcut)"
+			],
+			"title": "Head Pointer (Shortcut)"
+		},
+		"ax-feature-hearingaids-hearing-devices": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_HEARINGAIDS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_HEARINGAIDS/Hearing Devices"
+			],
+			"title": "Hearing Devices"
+		},
+		"ax-feature-hover-text-hover-text-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.hover Text",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.hoverText/Hover Text (Shortcut)"
+			],
+			"title": "Hover Text (Shortcut)"
+		},
+		"ax-feature-hover-typing-hover-typing-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.hover Typing",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.hoverTyping/Hover Typing (Shortcut)"
+			],
+			"title": "Hover Typing (Shortcut)"
+		},
+		"ax-feature-increase-contrast-increase-contrast-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.increase Contrast",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.increaseContrast/Increase Contrast (Shortcut)"
+			],
+			"title": "Increase Contrast (Shortcut)"
+		},
+		"ax-feature-invert-display-color-invert-display-color-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.invert Display Color",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.invertDisplayColor/Invert Display Color (Shortcut)"
+			],
+			"title": "Invert Display Color (Shortcut)"
+		},
+		"ax-feature-keyboard-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_KEYBOARD",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_KEYBOARD/Keyboard"
+			],
+			"title": "Keyboard"
+		},
+		"ax-feature-live-speech-live-speech-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.live Speech",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.liveSpeech/Live Speech (Shortcut)"
+			],
+			"title": "Live Speech (Shortcut)"
+		},
+		"ax-feature-motion-cues-vehicle-motion-cues-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.motion Cues",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.motionCues/Vehicle Motion Cues (Shortcut)"
+			],
+			"title": "Vehicle Motion Cues (Shortcut)"
+		},
+		"ax-feature-mouse-keys-mouse-keys-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.mouse Keys",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.mouseKeys/Mouse Keys (Shortcut)"
+			],
+			"title": "Mouse Keys (Shortcut)"
+		},
+		"ax-feature-personalvoice-allow-applications-to-use-your-personal-voice": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_PERSONALVOICE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_PERSONALVOICE/Allow applications to use your Personal Voice"
+			],
+			"title": "Allow applications to use your Personal Voice"
+		},
+		"ax-feature-personalvoice-personal-voice": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_PERSONALVOICE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_PERSONALVOICE/Personal Voice"
+			],
+			"title": "Personal Voice"
+		},
+		"ax-feature-personalvoice-share-across-devices": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_PERSONALVOICE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_PERSONALVOICE/Share across devices"
+			],
+			"title": "Share across devices"
+		},
+		"ax-feature-pointercontrol-pointer-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_POINTERCONTROL",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_POINTERCONTROL/Pointer Control"
+			],
+			"title": "Pointer Control"
+		},
+		"ax-feature-reader-accessibility-reader": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_READER",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_READER/Accessibility Reader"
+			],
+			"title": "Accessibility Reader"
+		},
+		"ax-feature-reduce-transparency-reduce-transparency-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.reduce Transparency",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.reduceTransparency/Reduce Transparency (Shortcut)"
+			],
+			"title": "Reduce Transparency (Shortcut)"
+		},
+		"ax-feature-shortcut-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_SHORTCUT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_SHORTCUT/Shortcut"
+			],
+			"title": "Shortcut"
+		},
+		"ax-feature-siri-siri": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_SIRI",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_SIRI/Siri"
+			],
+			"title": "Siri"
+		},
+		"ax-feature-slow-keys-slow-keys-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.slow Keys",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.slowKeys/Slow Keys (Shortcut)"
+			],
+			"title": "Slow Keys (Shortcut)"
+		},
+		"ax-feature-spokencontent-read-and-speak": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_SPOKENCONTENT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_SPOKENCONTENT/Read & Speak"
+			],
+			"title": "Read & Speak"
+		},
+		"ax-feature-sticky-keys-sticky-keys-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.sticky Keys",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.stickyKeys/Sticky Keys (Shortcut)"
+			],
+			"title": "Sticky Keys (Shortcut)"
+		},
+		"ax-feature-switch-control-switch-control-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.switch Control",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.switchControl/Switch Control (Shortcut)"
+			],
+			"title": "Switch Control (Shortcut)"
+		},
+		"ax-feature-system-transcriptions-live-captions-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.system Transcriptions",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.systemTranscriptions/Live Captions (Shortcut)"
+			],
+			"title": "Live Captions (Shortcut)"
+		},
+		"ax-feature-touchaccommodations-touch-accommodations": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FEATURE_TOUCHACCOMMODATIONS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_TOUCHACCOMMODATIONS/Touch Accommodations"
+			],
+			"title": "Touch Accommodations"
+		},
+		"ax-feature-virtual-keyboard-accessibility-keyboard-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.virtual Keyboard",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.virtualKeyboard/Accessibility Keyboard (Shortcut)"
+			],
+			"title": "Accessibility Keyboard (Shortcut)"
+		},
+		"ax-feature-voice-control-voice-control-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.voice Control",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.voiceControl/Voice Control (Shortcut)"
+			],
+			"title": "Voice Control (Shortcut)"
+		},
+		"ax-feature-voice-over-voiceover-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.voice Over",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.voiceOver/VoiceOver (Shortcut)"
+			],
+			"title": "VoiceOver (Shortcut)"
+		},
+		"ax-feature-zoom-zoom": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFeatureZoomEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_FEATURE_ZOOM/Zoom"
+			],
+			"title": "Zoom"
+		},
+		"ax-feature-zoom-zoom-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_feature.zoom",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_feature.zoom/Zoom (Shortcut)"
+			],
+			"title": "Zoom (Shortcut)"
+		},
+		"ax-find-cursor-shake-mouse-pointer-to-locate": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFindCursorEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_FIND_CURSOR/Shake mouse pointer to locate"
+			],
+			"title": "Shake mouse pointer to locate"
+		},
+		"ax-fka-auto-hide-checkbox-auto-hide": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FKA_AUTO_HIDE_CHECKBOX",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FKA_AUTO_HIDE_CHECKBOX/Auto-Hide"
+			],
+			"title": "Auto-Hide"
+		},
+		"ax-fka-color-pop-up-color-full-keyboard-access": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FKA_COLOR_POP_UP",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FKA_COLOR_POP_UP/Color (Full Keyboard Access)"
+			],
+			"title": "Color (Full Keyboard Access)"
+		},
+		"ax-fka-commands-restore-defaults-restore-defaults": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FKA_COMMANDS_RESTORE_DEFAULTS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FKA_COMMANDS_RESTORE_DEFAULTS/Restore Defaults"
+			],
+			"title": "Restore Defaults"
+		},
+		"ax-fka-enable-checkbox-full-keyboard-access": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFkaEnableCheckboxEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_FKA_ENABLE_CHECKBOX/Full Keyboard Access"
+			],
+			"title": "Full Keyboard Access"
+		},
+		"ax-fka-high-contrast-checkbox-high-contrast": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FKA_HIGH_CONTRAST_CHECKBOX",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FKA_HIGH_CONTRAST_CHECKBOX/High contrast"
+			],
+			"title": "High contrast"
+		},
+		"ax-fka-increase-size-checkbox-increase-size": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FKA_INCREASE_SIZE_CHECKBOX",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FKA_INCREASE_SIZE_CHECKBOX/Increase size"
+			],
+			"title": "Increase size"
+		},
+		"ax-flash-screen-flash-the-screen-when-an-alert-sound-occurs": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Audio",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFlashScreenEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_FLASH_SCREEN/Flash the screen when an alert sound occurs"
+			],
+			"title": "Flash the screen when an alert sound occurs"
+		},
+		"ax-font-size-text-size-display": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_FONT_SIZE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_FONT_SIZE/Text size (Display)"
+			],
+			"title": "Text size (Display)"
+		},
+		"ax-head-mouse-button-camera-options-head-pointer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEAD_MOUSE_BUTTON",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEAD_MOUSE_BUTTON/Camera Options (Head pointer)"
+			],
+			"title": "Camera Options (Head pointer)"
+		},
+		"ax-head-mouse-head-pointer": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHeadMouseEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_HEAD_MOUSE/Head pointer"
+			],
+			"title": "Head Pointer"
+		},
+		"ax-head-mouse-mode-pointer-moves": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEAD_MOUSE_MODE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEAD_MOUSE_MODE/Pointer moves"
+			],
+			"title": "Pointer moves"
+		},
+		"ax-head-mouse-pause-resume-switch-or-facial-expression-to-pause-or-resume": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEAD_MOUSE_PAUSE_RESUME",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEAD_MOUSE_PAUSE_RESUME/Switch or facial expression to pause or resume"
+			],
+			"title": "Switch or facial expression to pause or resume"
+		},
+		"ax-head-mouse-recalibrate-switch-or-facial-expression-to-recalibrate": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEAD_MOUSE_RECALIBRATE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEAD_MOUSE_RECALIBRATE/Switch or facial expression to recalibrate"
+			],
+			"title": "Switch or facial expression to recalibrate"
+		},
+		"ax-head-mouse-sensitivity-pointer-speed": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEAD_MOUSE_SENSITIVITY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEAD_MOUSE_SENSITIVITY/Pointer speed"
+			],
+			"title": "Pointer speed"
+		},
+		"ax-head-mouse-tolerance-distance-to-edge": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEAD_MOUSE_TOLERANCE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEAD_MOUSE_TOLERANCE/Distance to edge"
+			],
+			"title": "Distance to edge"
+		},
+		"ax-headphone-hold-duration-press-and-hold-duration": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEADPHONE_HOLD_DURATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEADPHONE_HOLD_DURATION/Press and hold duration"
+			],
+			"title": "Press and hold duration"
+		},
+		"ax-headphone-noise-cancel-noise-cancellation": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEADPHONE_NOISE_CANCEL",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEADPHONE_NOISE_CANCEL/Noise Cancellation"
+			],
+			"title": "Noise Cancellation"
+		},
+		"ax-headphone-press-speed-press-speed": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEADPHONE_PRESS_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEADPHONE_PRESS_SPEED/Press speed"
+			],
+			"title": "Press speed"
+		},
+		"ax-headphone-tone-volume-tone-volume": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HEADPHONE_TONE_VOLUME",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HEADPHONE_TONE_VOLUME/Tone volume"
+			],
+			"title": "Tone volume"
+		},
+		"ax-home-panel-dwell-actions-allow-dwell-actions-toolbar-in-panels": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHomePanelDwellActionsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_HOME_PANEL_DWELL_ACTIONS/Allow dwell actions toolbar in panels"
+			],
+			"title": "Allow dwell actions toolbar in panels"
+		},
+		"ax-hover-text-activation-lock-mode-triple-press-modifier-to-set-activation-lock": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_ACTIVATION_LOCK_MODE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_ACTIVATION_LOCK_MODE/Triple-press modifier to set activation lock"
+			],
+			"title": "Triple-press modifier to set activation lock"
+		},
+		"ax-hover-text-bg-color-background-color-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_BG_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_BG_COLOR/Background color (Hover Text)"
+			],
+			"title": "Background color (Hover Text)"
+		},
+		"ax-hover-text-border-color-border-color-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_BORDER_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_BORDER_COLOR/Border color (Hover Text)"
+			],
+			"title": "Border color (Hover Text)"
+		},
+		"ax-hover-text-element-color-element-highlight-color-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_ELEMENT_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_ELEMENT_COLOR/Element-highlight color (Hover Text)"
+			],
+			"title": "Element-highlight color (Hover Text)"
+		},
+		"ax-hover-text-enable-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_ENABLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_ENABLE/Hover Text"
+			],
+			"title": "Hover Text"
+		},
+		"ax-hover-text-fg-color-text-color-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_FG_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_FG_COLOR/Text color (Hover Text)"
+			],
+			"title": "Text color (Hover Text)"
+		},
+		"ax-hover-text-font-family-text-font-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_FONT_FAMILY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_FONT_FAMILY/Text font (Hover Text)"
+			],
+			"title": "Text font (Hover Text)"
+		},
+		"ax-hover-text-font-size-text-size-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_FONT_SIZE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_FONT_SIZE/Text size (Hover Text)"
+			],
+			"title": "Text size (Hover Text)"
+		},
+		"ax-hover-text-modifier-activation-modifier": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TEXT_MODIFIER",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TEXT_MODIFIER/Activation modifier"
+			],
+			"title": "Activation modifier"
+		},
+		"ax-hover-typing-bg-color-background-color-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_BG_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_BG_COLOR/Background color (Hover Typing)"
+			],
+			"title": "Background color (Hover Typing)"
+		},
+		"ax-hover-typing-border-color-border-color-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_BORDER_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_BORDER_COLOR/Border color (Hover Typing)"
+			],
+			"title": "Border color (Hover Typing)"
+		},
+		"ax-hover-typing-element-color-element-highlight-color-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_ELEMENT_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_ELEMENT_COLOR/Element-highlight color (Hover Typing)"
+			],
+			"title": "Element-highlight color (Hover Typing)"
+		},
+		"ax-hover-typing-enable-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Hover Text",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHoverTypingEnableEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_ENABLE/Hover Typing"
+			],
+			"title": "Hover Typing"
+		},
+		"ax-hover-typing-entry-location-text-entry-location": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_ENTRY_LOCATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_ENTRY_LOCATION/Text-entry location"
+			],
+			"title": "Text-entry location"
+		},
+		"ax-hover-typing-fg-color-text-color-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_FG_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_FG_COLOR/Text color (Hover Typing)"
+			],
+			"title": "Text color (Hover Typing)"
+		},
+		"ax-hover-typing-font-family-text-font-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_FONT_FAMILY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_FONT_FAMILY/Text font (Hover Typing)"
+			],
+			"title": "Text font (Hover Typing)"
+		},
+		"ax-hover-typing-font-size-text-size-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_FONT_SIZE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_FONT_SIZE/Text size (Hover Typing)"
+			],
+			"title": "Text size (Hover Typing)"
+		},
+		"ax-hover-typing-insertion-color-insertion-point-color": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_HOVER_TYPING_INSERTION_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_HOVER_TYPING_INSERTION_COLOR/Insertion-point color"
+			],
+			"title": "Insertion-point color"
+		},
+		"ax-ignore-trackpad-ignore-built-in-trackpad-when-mouse-or-wireless-trackpad-is-present": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxIgnoreTrackpadEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_IGNORE_TRACKPAD/Ignore built-in trackpad when mouse or wireless trackpad is present"
+			],
+			"title": "Ignore built-in trackpad when mouse or wireless trackpad is present"
+		},
+		"ax-in-app-in-app-live-captions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_IN_APP",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_IN_APP/In-App Live Captions"
+			],
+			"title": "In-App Live Captions"
+		},
+		"ax-increase-contrast-increase-contrast": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxIncreaseContrastEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_INCREASE_CONTRAST/Increase contrast"
+			],
+			"title": "Increase Contrast"
+		},
+		"ax-invert-color-invert-colors-display": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_INVERT_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_INVERT_COLOR/Invert colors (Display)"
+			],
+			"title": "Invert colors (Display)"
+		},
+		"ax-invert-color-mode-invert-colors-mode": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_INVERT_COLOR_MODE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_INVERT_COLOR_MODE/Invert colors mode"
+			],
+			"title": "Invert colors mode"
+		},
+		"ax-kb-appearance-type-appearance-keyboard": {
+			"choices": [
+				"Dark",
+				"Light"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxKbAppearanceTypeEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_KB_APPEARANCE_TYPE/Appearance (Keyboard)"
+			],
+			"title": "Appearance (Keyboard)"
+		},
+		"ax-kb-auto-capitalization-capitalize-sentences-automatically-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_KB_AUTO_CAPITALIZATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_KB_AUTO_CAPITALIZATION/Capitalize sentences automatically (Keyboard)"
+			],
+			"title": "Capitalize sentences automatically (Keyboard)"
+		},
+		"ax-kb-auto-spacing-insert-and-remove-spaces-automatically-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_KB_AUTO_SPACING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_KB_AUTO_SPACING/Insert and remove spaces automatically (Keyboard)"
+			],
+			"title": "Insert and remove spaces automatically (Keyboard)"
+		},
+		"ax-kb-hide-fade-panel-after-inactivity-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_KB_HIDE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_KB_HIDE/Fade panel after inactivity (Keyboard)"
+			],
+			"title": "Fade panel after inactivity (Keyboard)"
+		},
+		"ax-kb-hide-stepper-fade-after": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_KB_HIDE_STEPPER",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_KB_HIDE_STEPPER/Fade after"
+			],
+			"title": "Fade after"
+		},
+		"ax-kb-hide-transparency-fade-by": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_KB_HIDE_TRANSPARENCY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_KB_HIDE_TRANSPARENCY/Fade by"
+			],
+			"title": "Fade by"
+		},
+		"ax-kb-key-accepted-mouse-keys-should-be-entered-on": {
+			"choices": [
+				"Mouse down",
+				"Mouse up"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxKbKeyAcceptedMouseEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_KB_KEY_ACCEPTED_MOUSE/Keys should be entered on"
+			],
+			"title": "Keys should be entered on"
+		},
+		"ax-kb-right-click-keys-can-be-selected-using-right-click": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_KB_RIGHT_CLICK",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_KB_RIGHT_CLICK/Keys can be selected using right-click"
+			],
+			"title": "Keys can be selected using right-click"
+		},
+		"ax-kb-use-click-sounds-play-sounds-for-keys-and-dwell-actions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_KB_USE_CLICK_SOUNDS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_KB_USE_CLICK_SOUNDS/Play sounds for keys and dwell actions"
+			],
+			"title": "Play sounds for keys and dwell actions"
+		},
+		"ax-live-speech-add-category-add-category": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_ADD_CATEGORY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_ADD_CATEGORY/Add Category"
+			],
+			"title": "Add Category"
+		},
+		"ax-live-speech-categories-categories": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_CATEGORIES",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_CATEGORIES/Categories"
+			],
+			"title": "Categories"
+		},
+		"ax-live-speech-category-detail-recent-recent": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_CATEGORY_DETAIL.Recent",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_CATEGORY_DETAIL.Recent/Recent"
+			],
+			"title": "Recent"
+		},
+		"ax-live-speech-category-detail-saved-saved": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_CATEGORY_DETAIL.Saved",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_CATEGORY_DETAIL.Saved/Saved"
+			],
+			"title": "Saved"
+		},
+		"ax-live-speech-enabled-live-speech": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Live Speech",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFeatureLivespeechEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_ENABLED/Live Speech"
+			],
+			"title": "Live Speech"
+		},
+		"ax-live-speech-font-size-font-size-live-speech": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_FONT_SIZE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_FONT_SIZE/Font size (Live Speech)"
+			],
+			"title": "Font size (Live Speech)"
+		},
+		"ax-live-speech-preferred-language-system-speech-language-live-speech": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_PREFERRED_LANGUAGE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_PREFERRED_LANGUAGE/System speech language (Live Speech)"
+			],
+			"title": "System speech language (Live Speech)"
+		},
+		"ax-live-speech-saved-phrases-saved-phrases": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_SAVED_PHRASES",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_SAVED_PHRASES/Saved Phrases"
+			],
+			"title": "Saved Phrases"
+		},
+		"ax-live-speech-voice-selection-voice-live-speech": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_LIVE_SPEECH_VOICE_SELECTION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_LIVE_SPEECH_VOICE_SELECTION/Voice (Live Speech)"
+			],
+			"title": "Voice (Live Speech)"
+		},
+		"ax-menu-font-size-menu-bar-size": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MENU_FONT_SIZE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MENU_FONT_SIZE/Menu bar size"
+			],
+			"title": "Menu bar size"
+		},
+		"ax-menubar-dwell-actions-show-dwell-actions-in-menu-bar": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMenubarDwellActionsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_MENUBAR_DWELL_ACTIONS/Show dwell actions in menu bar"
+			],
+			"title": "Show dwell actions in menu bar"
+		},
+		"ax-mono-audio-play-stereo-audio-as-mono": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Audio",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMonoAudioEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_MONO_AUDIO/Play stereo audio as mono"
+			],
+			"title": "Play stereo audio as mono"
+		},
+		"ax-motion-cues-vehicle-motion-cues": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Motion",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMotionCuesEnabledEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_MOTION_CUES/Vehicle Motion Cues"
+			],
+			"title": "Vehicle Motion Cues"
+		},
+		"ax-mouse-double-click-speed-double-click-speed": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MOUSE_DOUBLE_CLICK_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_DOUBLE_CLICK_SPEED/Double-click speed"
+			],
+			"title": "Double-click speed"
+		},
+		"ax-mouse-keys-delay-initial-delay": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MOUSE_KEYS_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_KEYS_DELAY/Initial delay"
+			],
+			"title": "Initial delay"
+		},
+		"ax-mouse-keys-ignore-trackpad-ignore-built-in-trackpad-when-mouse-keys-is-on": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MOUSE_KEYS_IGNORE_TRACKPAD",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_KEYS_IGNORE_TRACKPAD/Ignore built-in trackpad when Mouse Keys is on"
+			],
+			"title": "Ignore built-in trackpad when Mouse Keys is on"
+		},
+		"ax-mouse-keys-mouse-keys": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMouseKeysEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_KEYS/Mouse Keys"
+			],
+			"title": "Mouse Keys"
+		},
+		"ax-mouse-keys-shortcut-press-the-option-key-five-times-to-toggle-mouse-keys": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMouseKeysShortcutEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_KEYS_SHORTCUT/Press the Option key five times to toggle Mouse Keys"
+			],
+			"title": "Press the Option key five times to toggle Mouse Keys"
+		},
+		"ax-mouse-keys-speed-maximum-speed": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MOUSE_KEYS_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_KEYS_SPEED/Maximum speed"
+			],
+			"title": "Maximum speed"
+		},
+		"ax-mouse-options-mouse-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MOUSE_OPTIONS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_OPTIONS/Mouse Options"
+			],
+			"title": "Mouse Options"
+		},
+		"ax-mouse-scroll-behavior-use-inertia-when-scrolling-mouse": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MOUSE_SCROLL_BEHAVIOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_SCROLL_BEHAVIOR/Use inertia when scrolling (Mouse)"
+			],
+			"title": "Use inertia when scrolling (Mouse)"
+		},
+		"ax-mouse-scroll-speed-scroll-speed-mouse": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_MOUSE_SCROLL_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_SCROLL_SPEED/Scroll speed (Mouse)"
+			],
+			"title": "Scroll speed (Mouse)"
+		},
+		"ax-mouse-scroll-use-mouse-for-scrolling": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMouseScrollEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_MOUSE_SCROLL/Use mouse for scrolling"
+			],
+			"title": "Use mouse for scrolling"
+		},
+		"ax-name-recognition-name-recognition": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_NAME_RECOGNITION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_NAME_RECOGNITION/Name Recognition"
+			],
+			"title": "Name Recognition"
+		},
+		"ax-name-recognition-onboarding-set-up-name-recognition": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_NAME_RECOGNITION_ONBOARDING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_NAME_RECOGNITION_ONBOARDING/Set Up (Name Recognition)"
+			],
+			"title": "Set Up (Name Recognition)"
+		},
+		"ax-navigation-timing-navigation-timing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_NAVIGATION_TIMING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_NAVIGATION_TIMING/Navigation Timing"
+			],
+			"title": "Navigation Timing"
+		},
+		"ax-play-system-sounds-play-system-sounds": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PLAY_SYSTEM_SOUNDS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PLAY_SYSTEM_SOUNDS/Play system sounds"
+			],
+			"title": "Play system sounds"
+		},
+		"ax-pme-amplification-amplification": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_AMPLIFICATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_AMPLIFICATION/Amplification"
+			],
+			"title": "Amplification"
+		},
+		"ax-pme-balance-balance": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_BALANCE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_BALANCE/Balance"
+			],
+			"title": "Balance"
+		},
+		"ax-pme-beam-forming-conversation-boost": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_BEAM_FORMING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_BEAM_FORMING/Conversation Boost"
+			],
+			"title": "Conversation Boost"
+		},
+		"ax-pme-level-optimization": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_LEVEL",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_LEVEL/Optimization"
+			],
+			"title": "Optimization"
+		},
+		"ax-pme-media-media": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_MEDIA",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_MEDIA/Media"
+			],
+			"title": "Media"
+		},
+		"ax-pme-noise-suppressor-ambient-noise-reduction": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_NOISE_SUPPRESSOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_NOISE_SUPPRESSOR/Ambient Noise Reduction"
+			],
+			"title": "Ambient Noise Reduction"
+		},
+		"ax-pme-own-voice-amplification-own-voice-amplification": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_OWN_VOICE_AMPLIFICATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_OWN_VOICE_AMPLIFICATION/Own Voice Amplification"
+			],
+			"title": "Own Voice Amplification"
+		},
+		"ax-pme-phone-phone": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_PHONE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_PHONE/Phone"
+			],
+			"title": "Phone"
+		},
+		"ax-pme-sample-play-sample": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_SAMPLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_SAMPLE/Play Sample"
+			],
+			"title": "Play Sample"
+		},
+		"ax-pme-setup-customize-audio": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_SETUP",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_SETUP/Customize Audio"
+			],
+			"title": "Customize Audio"
+		},
+		"ax-pme-shape-tune-audio-for": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_SHAPE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_SHAPE/Tune audio for"
+			],
+			"title": "Tune audio for"
+		},
+		"ax-pme-toggle-headphone-accommodations": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_TOGGLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_TOGGLE/Headphone Accommodations"
+			],
+			"title": "Headphone Accommodations"
+		},
+		"ax-pme-tone-tone": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_TONE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_TONE/Tone"
+			],
+			"title": "Tone"
+		},
+		"ax-pme-transparency-transparency-mode": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_PME_TRANSPARENCY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_PME_TRANSPARENCY/Transparency Mode"
+			],
+			"title": "Transparency Mode"
+		},
+		"ax-pointer-fill-color-pointer-fill-color": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_POINTER_FILL_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_POINTER_FILL_COLOR/Pointer fill color"
+			],
+			"title": "Pointer fill color"
+		},
+		"ax-pointer-outline-color-pointer-outline-color": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_POINTER_OUTLINE_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_POINTER_OUTLINE_COLOR/Pointer outline color"
+			],
+			"title": "Pointer outline color"
+		},
+		"ax-pointer-reset-color-reset-colors": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_POINTER_RESET_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_POINTER_RESET_COLOR/Reset Colors"
+			],
+			"title": "Reset Colors"
+		},
+		"ax-prefers-horiz-text-layout-prefer-horizontal-text": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxPrefersHorizTextLayoutEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_PREFERS_HORIZ_TEXT_LAYOUT/Prefer horizontal text"
+			],
+			"title": "Prefer horizontal text"
+		},
+		"ax-reader-auto-speak-automatically-start-speaking": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_READER_AUTO_SPEAK",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_READER_AUTO_SPEAK/Automatically start speaking"
+			],
+			"title": "Automatically start speaking"
+		},
+		"ax-reader-hotkey-enabled-enable-accessibility-reader": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_READER_HOTKEY_ENABLED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_READER_HOTKEY_ENABLED/Enable Accessibility Reader"
+			],
+			"title": "Enable Accessibility Reader"
+		},
+		"ax-reader-hotkey-view-in-reader-accessibility-reader-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_READER_HOTKEY_VIEW_IN_READER",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_READER_HOTKEY_VIEW_IN_READER/Accessibility Reader shortcuts"
+			],
+			"title": "Accessibility Reader shortcuts"
+		},
+		"ax-reduce-cursor-modulation-prefer-non-blinking-cursor": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Motion",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxReduceCursorModulationEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_REDUCE_CURSOR_MODULATION/Prefer non-blinking cursor"
+			],
+			"title": "Prefer non-blinking cursor"
+		},
+		"ax-reduce-motion-reduce-motion": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Motion",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxReduceMotionEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_REDUCE_MOTION/Reduce motion"
+			],
+			"title": "Reduce Motion"
+		},
+		"ax-reduce-transparency-reduce-transparency": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxReduceTransparencyEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_REDUCE_TRANSPARENCY/Reduce transparency"
+			],
+			"title": "Reduce Transparency"
+		},
+		"ax-rtt-enable-rtt": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_RTT_ENABLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_RTT_ENABLE/RTT"
+			],
+			"title": "RTT"
+		},
+		"ax-rtt-relay-number-rtt-relay-number": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_RTT_RELAY_NUMBER",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_RTT_RELAY_NUMBER/RTT Relay number"
+			],
+			"title": "RTT Relay number"
+		},
+		"ax-rtt-send-immediately-send-immediately": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_RTT_SEND_IMMEDIATELY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_RTT_SEND_IMMEDIATELY/Send Immediately"
+			],
+			"title": "Send Immediately"
+		},
+		"ax-show-toolbar-button-shapes-show-toolbar-button-shapes": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxShowToolbarButtonShapesEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SHOW_TOOLBAR_BUTTON_SHAPES/Show toolbar button shapes"
+			],
+			"title": "Show toolbar button shapes"
+		},
+		"ax-show-window-titlebar-icons-show-window-title-icons": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxShowWindowTitlebarIconsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SHOW_WINDOW_TITLEBAR_ICONS/Show window title icons"
+			],
+			"title": "Show window title icons"
+		},
+		"ax-siri-atypical-speech-listen-for-atypical-speech": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Siri",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSiriAtypicalSpeechEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SIRI_ATYPICAL_SPEECH/Listen for atypical speech"
+			],
+			"title": "Listen for atypical speech"
+		},
+		"ax-slow-keys-delay-acceptance-delay": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SLOW_KEYS_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SLOW_KEYS_DELAY/Acceptance delay"
+			],
+			"title": "Acceptance delay"
+		},
+		"ax-slow-keys-slow-keys": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSlowKeysEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SLOW_KEYS/Slow Keys"
+			],
+			"title": "Slow Keys"
+		},
+		"ax-slow-keys-sound-use-click-key-sounds": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SLOW_KEYS_SOUND",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SLOW_KEYS_SOUND/Use click key sounds"
+			],
+			"title": "Use click key sounds"
+		},
+		"ax-sound-brown-noise-dark-noise": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.Brown Noise",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.BrownNoise/Dark Noise"
+			],
+			"title": "Dark Noise"
+		},
+		"ax-sound-fire-fire": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.Fire",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.Fire/Fire"
+			],
+			"title": "Fire"
+		},
+		"ax-sound-night-night": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.Night",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.Night/Night"
+			],
+			"title": "Night"
+		},
+		"ax-sound-ocean-ocean": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.Ocean",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.Ocean/Ocean"
+			],
+			"title": "Ocean"
+		},
+		"ax-sound-pink-noise-balanced-noise": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.Pink Noise",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.PinkNoise/Balanced Noise"
+			],
+			"title": "Balanced Noise"
+		},
+		"ax-sound-rain-rain": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.Rain",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.Rain/Rain"
+			],
+			"title": "Rain"
+		},
+		"ax-sound-stream-stream": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.Stream",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.Stream/Stream"
+			],
+			"title": "Stream"
+		},
+		"ax-sound-white-noise-bright-noise": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SOUND.White Noise",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SOUND.WhiteNoise/Bright Noise"
+			],
+			"title": "Bright Noise"
+		},
+		"ax-spatial-audio-follows-head-spatial-audio-follows-head-movements": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Audio",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpatialAudioFollowsHeadEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SPATIAL_AUDIO_FOLLOWS_HEAD/Spatial audio follows head movements"
+			],
+			"title": "Spatial audio follows head movements"
+		},
+		"ax-speech-delay-delay": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPEECH_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPEECH_DELAY/Delay"
+			],
+			"title": "Delay"
+		},
+		"ax-speech-phrase-phrase": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPEECH_PHRASE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPEECH_PHRASE/Phrase"
+			],
+			"title": "Phrase"
+		},
+		"ax-speech-test-play-sample-announcements": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPEECH_TEST",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPEECH_TEST/Play Sample (Announcements)"
+			],
+			"title": "Play Sample (Announcements)"
+		},
+		"ax-speech-voices-voice-read-and-speak": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPEECH_VOICES",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPEECH_VOICES/Voice (Read & Speak)"
+			],
+			"title": "Voice (Read & Speak)"
+		},
+		"ax-spoken-alerts-speak-announcements": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenAlertsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_ALERTS/Speak announcements"
+			],
+			"title": "Speak announcements"
+		},
+		"ax-spoken-detect-languages-detect-languages": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_DETECT_LANGUAGES",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_DETECT_LANGUAGES/Detect languages"
+			],
+			"title": "Detect languages"
+		},
+		"ax-spoken-hotkey-speak-selection": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenHotkeyEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_HOTKEY/Speak selection"
+			],
+			"title": "Speak selection"
+		},
+		"ax-spoken-language-system-speech-language-read-and-speak": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_LANGUAGE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_LANGUAGE/System speech language (Read & Speak)"
+			],
+			"title": "System speech language (Read & Speak)"
+		},
+		"ax-spoken-pointer-element-delay-after-delay": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_POINTER_ELEMENT_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_POINTER_ELEMENT_DELAY/After delay"
+			],
+			"title": "After delay"
+		},
+		"ax-spoken-pointer-element-mode-speak-item-under-the-pointer-mode": {
+			"choices": [
+				"Only when zoomed",
+				"Always"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenPointerElementModeEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_POINTER_ELEMENT_MODE/Speak item under the pointer (mode)"
+			],
+			"title": "Speak item under the pointer (mode)"
+		},
+		"ax-spoken-pointer-element-speak-item-under-the-pointer": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenPointerElementEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_POINTER_ELEMENT/Speak item under the pointer"
+			],
+			"title": "Speak item under the pointer"
+		},
+		"ax-spoken-pointer-element-verbosity-speech-verbosity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_POINTER_ELEMENT_VERBOSITY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_POINTER_ELEMENT_VERBOSITY/Speech verbosity"
+			],
+			"title": "Speech verbosity"
+		},
+		"ax-spoken-pronunciations-edit-edit-pronunciations": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_PRONUNCIATIONS_EDIT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_PRONUNCIATIONS_EDIT/Edit pronunciations"
+			],
+			"title": "Edit pronunciations"
+		},
+		"ax-spoken-pronunciations-pronunciations": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_PRONUNCIATIONS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_PRONUNCIATIONS/Pronunciations"
+			],
+			"title": "Pronunciations"
+		},
+		"ax-spoken-selection-highlight-content-highlight-content": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_SELECTION_HIGHLIGHT_CONTENT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_SELECTION_HIGHLIGHT_CONTENT/Highlight content"
+			],
+			"title": "Highlight content"
+		},
+		"ax-spoken-selection-highlight-sentence-color-sentence-color": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_SELECTION_HIGHLIGHT_SENTENCE_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_SELECTION_HIGHLIGHT_SENTENCE_COLOR/Sentence color"
+			],
+			"title": "Sentence color"
+		},
+		"ax-spoken-selection-highlight-sentence-style-sentence-style": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_SELECTION_HIGHLIGHT_SENTENCE_STYLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_SELECTION_HIGHLIGHT_SENTENCE_STYLE/Sentence style"
+			],
+			"title": "Sentence style"
+		},
+		"ax-spoken-selection-highlight-word-color-word-color": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_SELECTION_HIGHLIGHT_WORD_COLOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_SELECTION_HIGHLIGHT_WORD_COLOR/Word color"
+			],
+			"title": "Word color"
+		},
+		"ax-spoken-selection-hotkey-keyboard-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_SELECTION_HOTKEY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_SELECTION_HOTKEY/Keyboard shortcut"
+			],
+			"title": "Keyboard shortcut"
+		},
+		"ax-spoken-selection-show-controller-show-controller": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_SELECTION_SHOW_CONTROLLER",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_SELECTION_SHOW_CONTROLLER/Show controller"
+			],
+			"title": "Show controller"
+		},
+		"ax-spoken-typing-echo-chars-echo-characters": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_TYPING_ECHO_CHARS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_TYPING_ECHO_CHARS/Echo characters"
+			],
+			"title": "Echo characters"
+		},
+		"ax-spoken-typing-echo-modifier-keys-echo-modifier-keys": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_TYPING_ECHO_MODIFIER_KEYS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_TYPING_ECHO_MODIFIER_KEYS/Echo modifier keys"
+			],
+			"title": "Echo modifier keys"
+		},
+		"ax-spoken-typing-echo-selection-echo-selection-changes": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_TYPING_ECHO_SELECTION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_TYPING_ECHO_SELECTION/Echo selection changes"
+			],
+			"title": "Echo selection changes"
+		},
+		"ax-spoken-typing-echo-speak-typing-feedback": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenTypingEchoEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_TYPING_ECHO/Speak typing feedback"
+			],
+			"title": "Speak typing feedback"
+		},
+		"ax-spoken-typing-echo-words-echo-words": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_TYPING_ECHO_WORDS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_TYPING_ECHO_WORDS/Echo words"
+			],
+			"title": "Echo words"
+		},
+		"ax-spoken-voice-system-voice": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPOKEN_VOICE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPOKEN_VOICE/System voice"
+			],
+			"title": "System voice"
+		},
+		"ax-spring-loading-delay-spring-loading-speed": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SPRING_LOADING_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SPRING_LOADING_DELAY/Spring-loading speed"
+			],
+			"title": "Spring-loading speed"
+		},
+		"ax-spring-loading-spring-loading": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpringLoadingEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SPRING_LOADING/Spring-loading"
+			],
+			"title": "Spring-loading"
+		},
+		"ax-sticky-keys-beep-beep-when-a-modifier-key-is-set": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_STICKY_KEYS_BEEP",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_STICKY_KEYS_BEEP/Beep when a modifier key is set"
+			],
+			"title": "Beep when a modifier key is set"
+		},
+		"ax-sticky-keys-display-display-pressed-keys-on-screen": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_STICKY_KEYS_DISPLAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_STICKY_KEYS_DISPLAY/Display pressed keys on screen"
+			],
+			"title": "Display pressed keys on screen"
+		},
+		"ax-sticky-keys-display-location-screen-area-for-display": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_STICKY_KEYS_DISPLAY_LOCATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_STICKY_KEYS_DISPLAY_LOCATION/Screen area for display"
+			],
+			"title": "Screen area for display"
+		},
+		"ax-sticky-keys-shortcut-press-the-shift-key-five-times-to-toggle-sticky-keys": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxStickyKeysShortcutEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_STICKY_KEYS_SHORTCUT/Press the Shift key five times to toggle Sticky Keys"
+			],
+			"title": "Press the Shift key five times to toggle Sticky Keys"
+		},
+		"ax-sticky-keys-sticky-keys": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxStickyKeysEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_STICKY_KEYS/Sticky Keys"
+			],
+			"title": "Sticky Keys"
+		},
+		"ax-switch-auto-capitalization-capitalize-sentences-automatically-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_AUTO_CAPITALIZATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_AUTO_CAPITALIZATION/Capitalize sentences automatically (Switch Control)"
+			],
+			"title": "Capitalize sentences automatically (Switch Control)"
+		},
+		"ax-switch-auto-spacing-insert-and-remove-spaces-automatically-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_AUTO_SPACING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_AUTO_SPACING/Insert and remove spaces automatically (Switch Control)"
+			],
+			"title": "Insert and remove spaces automatically (Switch Control)"
+		},
+		"ax-switch-autoscan-auto-scanning": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_AUTOSCAN",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_AUTOSCAN/Auto scanning"
+			],
+			"title": "Auto scanning"
+		},
+		"ax-switch-coalesce-ignore-switch-repeats": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_COALESCE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_COALESCE/Ignore switch repeats"
+			],
+			"title": "Ignore switch repeats"
+		},
+		"ax-switch-control-appearance-type-appearance-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_CONTROL_APPEARANCE_TYPE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_CONTROL_APPEARANCE_TYPE/Appearance (Switch Control)"
+			],
+			"title": "Appearance (Switch Control)"
+		},
+		"ax-switch-control-enable-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFeatureSwitchcontrolEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_CONTROL_ENABLE/Switch Control"
+			],
+			"title": "Switch Control"
+		},
+		"ax-switch-control-platform-switching-allow-platform-switching-to-control-your-computer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_CONTROL_PLATFORM_SWITCHING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_CONTROL_PLATFORM_SWITCHING/Allow platform switching to control your computer"
+			],
+			"title": "Allow platform switching to control your computer"
+		},
+		"ax-switch-cursor-size-switch-control-cursor-size": {
+			"choices": [
+				"Small",
+				"Medium",
+				"Large"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchCursorSizeEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_CURSOR_SIZE/Switch Control cursor size"
+			],
+			"title": "Switch Control cursor size"
+		},
+		"ax-switch-cursor-speed-gliding-and-rotating-cursor-speed": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_CURSOR_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_CURSOR_SPEED/Gliding & rotating cursor speed"
+			],
+			"title": "Gliding & rotating cursor speed"
+		},
+		"ax-switch-element-speed-auto-scanning-interval-in-interface": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_ELEMENT_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_ELEMENT_SPEED/Auto scanning interval in interface"
+			],
+			"title": "Auto scanning interval in interface"
+		},
+		"ax-switch-first-item-delay-pause-on-first-item": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_FIRST_ITEM_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_FIRST_ITEM_DELAY/Pause on first item"
+			],
+			"title": "Pause on first item"
+		},
+		"ax-switch-hide-after-delay-amount-duration-of-inactivity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_HIDE_AFTER_DELAY_AMOUNT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_HIDE_AFTER_DELAY_AMOUNT/Duration of inactivity"
+			],
+			"title": "Duration of inactivity"
+		},
+		"ax-switch-hide-after-delay-fade-panel-after-inactivity-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_HIDE_AFTER_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_HIDE_AFTER_DELAY/Fade panel after inactivity (Switch Control)"
+			],
+			"title": "Fade panel after inactivity (Switch Control)"
+		},
+		"ax-switch-hover-text-toolbar-show-current-text-in-keyboard-panel": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_HOVER_TEXT_TOOLBAR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_HOVER_TEXT_TOOLBAR/Show current text in keyboard panel"
+			],
+			"title": "Show current text in keyboard panel"
+		},
+		"ax-switch-min-duration-hold-before-perform-duration": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_MIN_DURATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_MIN_DURATION/Hold before perform duration"
+			],
+			"title": "Hold before perform duration"
+		},
+		"ax-switch-mouse-cursor-edge-reverse-cursor-direction-after-hitting-edge": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_MOUSE_CURSOR_EDGE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_MOUSE_CURSOR_EDGE/Reverse cursor direction after hitting edge"
+			],
+			"title": "Reverse cursor direction after hitting edge"
+		},
+		"ax-switch-mouse-move-style-pointer-precision": {
+			"choices": [
+				"Low",
+				"High"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchMouseMoveStyleEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_MOUSE_MOVE_STYLE/Pointer precision"
+			],
+			"title": "Pointer precision"
+		},
+		"ax-switch-nav-feedback-while-navigating": {
+			"choices": [
+				"Do nothing",
+				"Speak selection",
+				"Play sounds",
+				"Speak & Play sounds"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchNavFeedbackEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_NAV_FEEDBACK/While navigating"
+			],
+			"title": "While navigating"
+		},
+		"ax-switch-panel-editor-panel-editor-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_PANEL_EDITOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_PANEL_EDITOR/Panel Editor (Switch Control)"
+			],
+			"title": "Panel Editor (Switch Control)"
+		},
+		"ax-switch-repeat-hold-hold-before-repeat-duration": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_REPEAT_HOLD",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_REPEAT_HOLD/Hold before repeat duration"
+			],
+			"title": "Hold before repeat duration"
+		},
+		"ax-switch-resume-auto-scanning-resume-auto-scanning-after-selection": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_RESUME_AUTO_SCANNING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_RESUME_AUTO_SCANNING/Resume auto scanning after selection"
+			],
+			"title": "Resume auto scanning after selection"
+		},
+		"ax-switch-scan-cycle-loops": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_SCAN_CYCLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_SCAN_CYCLE/Loops"
+			],
+			"title": "Loops"
+		},
+		"ax-switch-scan-restart-restart-action-position": {
+			"choices": [
+				"After cursor",
+				"From start of group",
+				"From the top"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchScanRestartEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_SCAN_RESTART/Restart action position"
+			],
+			"title": "Restart action position"
+		},
+		"ax-switch-scan-speed-auto-scanning-interval-in-panels": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_SCAN_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_SCAN_SPEED/Auto scanning interval in panels"
+			],
+			"title": "Auto scanning interval in panels"
+		},
+		"ax-switch-timing-switch-timing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SWITCH_TIMING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SWITCH_TIMING/Switch Timing"
+			],
+			"title": "Switch Timing"
+		},
+		"ax-system-transcription-background-color-main-background-color-live-captions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SYSTEM_TRANSCRIPTION_BACKGROUND_COLOR_MAIN",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SYSTEM_TRANSCRIPTION_BACKGROUND_COLOR_MAIN/Background color (Live Captions)"
+			],
+			"title": "Background color (Live Captions)"
+		},
+		"ax-system-transcription-enabled-live-captions": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Live Captions",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSystemTranscriptionEnabledEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_SYSTEM_TRANSCRIPTION_ENABLED/Live Captions"
+			],
+			"title": "Live Captions"
+		},
+		"ax-system-transcription-language-language-live-captions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SYSTEM_TRANSCRIPTION_LANGUAGE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SYSTEM_TRANSCRIPTION_LANGUAGE/Language (Live Captions)"
+			],
+			"title": "Language (Live Captions)"
+		},
+		"ax-system-transcription-text-color-main-font-color": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SYSTEM_TRANSCRIPTION_TEXT_COLOR_MAIN",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SYSTEM_TRANSCRIPTION_TEXT_COLOR_MAIN/Font color"
+			],
+			"title": "Font color"
+		},
+		"ax-system-transcription-text-font-family-main-font-family": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SYSTEM_TRANSCRIPTION_TEXT_FONT_FAMILY_MAIN",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SYSTEM_TRANSCRIPTION_TEXT_FONT_FAMILY_MAIN/Font family"
+			],
+			"title": "Font family"
+		},
+		"ax-system-transcription-text-font-size-main-font-size-live-captions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_SYSTEM_TRANSCRIPTION_TEXT_FONT_SIZE_MAIN",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_SYSTEM_TRANSCRIPTION_TEXT_FONT_SIZE_MAIN/Font size (Live Captions)"
+			],
+			"title": "Font size (Live Captions)"
+		},
+		"ax-touch-bar-zoom-enable-touch-bar-zoom": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxTouchBarZoomEnableEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_TOUCH_BAR_ZOOM_ENABLE/Touch Bar zoom"
+			],
+			"title": "Touch Bar zoom"
+		},
+		"ax-trackpad-dragging-behavior-dragging-style": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_TRACKPAD_DRAGGING_BEHAVIOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_DRAGGING_BEHAVIOR/Dragging style"
+			],
+			"title": "Dragging style"
+		},
+		"ax-trackpad-dragging-use-trackpad-for-dragging": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_TRACKPAD_DRAGGING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_DRAGGING/Use trackpad for dragging"
+			],
+			"title": "Use trackpad for dragging"
+		},
+		"ax-trackpad-options-trackpad-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_TRACKPAD_OPTIONS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_OPTIONS/Trackpad Options"
+			],
+			"title": "Trackpad Options"
+		},
+		"ax-trackpad-scroll-behavior-use-inertia-when-scrolling-trackpad": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_TRACKPAD_SCROLL_BEHAVIOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_SCROLL_BEHAVIOR/Use inertia when scrolling (Trackpad)"
+			],
+			"title": "Use inertia when scrolling (Trackpad)"
+		},
+		"ax-trackpad-scroll-speed-scroll-speed-trackpad": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_TRACKPAD_SCROLL_SPEED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_SCROLL_SPEED/Scroll speed (Trackpad)"
+			],
+			"title": "Scroll speed (Trackpad)"
+		},
+		"ax-trackpad-scroll-use-trackpad-for-scrolling": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxTrackpadScrollEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_SCROLL/Use trackpad for scrolling"
+			],
+			"title": "Use trackpad for scrolling"
+		},
+		"ax-type-to-siri-enabled-type-to-siri": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Siri",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxTypeToSiriEnabledEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_TYPE_TO_SIRI_ENABLED/Type to Siri"
+			],
+			"title": "Type to Siri"
+		},
+		"ax-virtual-keyboard-accessibility-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxVirtualKeyboardEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_VIRTUAL_KEYBOARD/Accessibility Keyboard"
+			],
+			"title": "Accessibility Keyboard"
+		},
+		"ax-virtual-keyboard-panel-editor-panel-editor-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VIRTUAL_KEYBOARD_PANEL_EDITOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VIRTUAL_KEYBOARD_PANEL_EDITOR/Panel Editor (Keyboard)"
+			],
+			"title": "Panel Editor (Keyboard)"
+		},
+		"ax-vo-open-training-open-voiceover-tutorial": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VO_OPEN_TRAINING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VO_OPEN_TRAINING/Open VoiceOver Tutorial"
+			],
+			"title": "Open VoiceOver Tutorial"
+		},
+		"ax-vo-open-utility-open-voiceover-utility": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VO_OPEN_UTILITY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VO_OPEN_UTILITY/Open VoiceOver Utility"
+			],
+			"title": "Open VoiceOver Utility"
+		},
+		"ax-voice-control-audio-donation-enabled-improve-assistive-voice-features": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_AUDIO_DONATION_ENABLED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_AUDIO_DONATION_ENABLED/Improve Assistive Voice Features"
+			],
+			"title": "Improve Assistive Voice Features"
+		},
+		"ax-voice-control-commands-commands": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_COMMANDS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_COMMANDS/Commands"
+			],
+			"title": "Commands"
+		},
+		"ax-voice-control-enabled-voice-control": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Voice Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFeatureVoicecontrolEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_ENABLED/Voice Control"
+			],
+			"title": "Voice Control"
+		},
+		"ax-voice-control-language-language-voice-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_LANGUAGE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_LANGUAGE/Language (Voice Control)"
+			],
+			"title": "Language (Voice Control)"
+		},
+		"ax-voice-control-mic-microphone": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_MIC",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_MIC/Microphone"
+			],
+			"title": "Microphone"
+		},
+		"ax-voice-control-open-training-voice-control-tutorial": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_OPEN_TRAINING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_OPEN_TRAINING/Voice Control Tutorial"
+			],
+			"title": "Voice Control Tutorial"
+		},
+		"ax-voice-control-overlay-fading-enabled-fade-overlay-after-inactivity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_OVERLAY_FADING_ENABLED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_OVERLAY_FADING_ENABLED/Fade overlay after inactivity"
+			],
+			"title": "Fade overlay after inactivity"
+		},
+		"ax-voice-control-overlay-overlay": {
+			"choices": [
+				"None",
+				"Item Numbers",
+				"Item Names",
+				"Numbered Grid"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Voice Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxVoiceControlOverlayEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_OVERLAY/Overlay"
+			],
+			"title": "Overlay"
+		},
+		"ax-voice-control-play-sound-enabled-play-sound-when-command-is-recognized": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_PLAY_SOUND_ENABLED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_PLAY_SOUND_ENABLED/Play sound when command is recognized"
+			],
+			"title": "Play sound when command is recognized"
+		},
+		"ax-voice-control-show-hints-enabled-show-hints": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_SHOW_HINTS_ENABLED",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_SHOW_HINTS_ENABLED/Show hints"
+			],
+			"title": "Show hints"
+		},
+		"ax-voice-control-vocabulary-vocabulary": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_CONTROL_VOCABULARY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_CONTROL_VOCABULARY/Vocabulary"
+			],
+			"title": "Vocabulary"
+		},
+		"ax-voice-option-commands-delete-all-delete-all-custom-commands": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_OPTION_COMMANDS_DELETE_ALL",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_OPTION_COMMANDS_DELETE_ALL/Delete All Custom Commands"
+			],
+			"title": "Delete All Custom Commands"
+		},
+		"ax-voice-option-commands-export-export-custom-commands": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_OPTION_COMMANDS_EXPORT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_OPTION_COMMANDS_EXPORT/Export Custom Commands"
+			],
+			"title": "Export Custom Commands"
+		},
+		"ax-voice-option-commands-import-import-custom-commands": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_OPTION_COMMANDS_IMPORT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_OPTION_COMMANDS_IMPORT/Import Custom Commands"
+			],
+			"title": "Import Custom Commands"
+		},
+		"ax-voice-option-vocab-delete-all-delete-all-vocabulary": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_OPTION_VOCAB_DELETE_ALL",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_OPTION_VOCAB_DELETE_ALL/Delete All Vocabulary"
+			],
+			"title": "Delete All Vocabulary"
+		},
+		"ax-voice-option-vocab-export-export-vocabulary": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_OPTION_VOCAB_EXPORT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_OPTION_VOCAB_EXPORT/Export Vocabulary"
+			],
+			"title": "Export Vocabulary"
+		},
+		"ax-voice-option-vocab-import-import-vocabulary": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_VOICE_OPTION_VOCAB_IMPORT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_VOICE_OPTION_VOCAB_IMPORT/Import Vocabulary"
+			],
+			"title": "Import Vocabulary"
+		},
+		"ax-voiceover-enabled-voiceover": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "VoiceOver",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFeatureVoiceoverEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_VOICEOVER_ENABLED/VoiceOver"
+			],
+			"title": "VoiceOver"
+		},
+		"ax-zoom-adjust-size-size-and-location-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_ADJUST_SIZE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_ADJUST_SIZE/Size and Location (Zoom)"
+			],
+			"title": "Size and Location (Zoom)"
+		},
+		"ax-zoom-choose-display-choose-display": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_CHOOSE_DISPLAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_CHOOSE_DISPLAY/Choose Display"
+			],
+			"title": "Choose Display"
+		},
+		"ax-zoom-disable-universal-control-disable-universal-control-while-zoomed-in": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomDisableUniversalControlEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_DISABLE_UNIVERSAL_CONTROL/Disable Universal Control while zoomed in"
+			],
+			"title": "Disable Universal Control while zoomed in"
+		},
+		"ax-zoom-enable-gesture-use-scroll-gesture-with-modifier-keys-to-zoom": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomEnableGestureEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_ENABLE_GESTURE/Use scroll gesture with modifier keys to zoom"
+			],
+			"title": "Use scroll gesture with modifier keys to zoom"
+		},
+		"ax-zoom-enable-hotkeys-use-keyboard-shortcuts-to-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_ENABLE_HOTKEYS",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_ENABLE_HOTKEYS/Use keyboard shortcuts to zoom"
+			],
+			"title": "Use keyboard shortcuts to zoom"
+		},
+		"ax-zoom-flash-flash-screen-when-notification-banner-appears-outside-zoom-view": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomFlashEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_FLASH/Flash screen when notification banner appears outside zoom view"
+			],
+			"title": "Flash screen when notification banner appears outside zoom view"
+		},
+		"ax-zoom-focus-movement-delay-movement-speed": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_FOCUS_MOVEMENT_DELAY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_FOCUS_MOVEMENT_DELAY/Movement speed"
+			],
+			"title": "Movement speed"
+		},
+		"ax-zoom-focus-movement-move-screen-image": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_FOCUS_MOVEMENT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_FOCUS_MOVEMENT/Move screen image"
+			],
+			"title": "Move screen image"
+		},
+		"ax-zoom-follow-focus-activation-move-screen-image-when-focus-item-is": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_FOLLOW_FOCUS_ACTIVATION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_FOLLOW_FOCUS_ACTIVATION/Move screen image when focus item is"
+			],
+			"title": "Move screen image when focus item is"
+		},
+		"ax-zoom-follow-focus-mode-follow-keyboard-focus": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_FOLLOW_FOCUS_MODE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_FOLLOW_FOCUS_MODE/Follow keyboard focus"
+			],
+			"title": "Follow keyboard focus"
+		},
+		"ax-zoom-freeze-panning-disable-panning": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_FREEZE_PANNING",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_FREEZE_PANNING/Disable panning"
+			],
+			"title": "Disable panning"
+		},
+		"ax-zoom-gesture-field-modifier-key-for-scroll-gesture": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_GESTURE_FIELD",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_GESTURE_FIELD/Modifier key for scroll gesture"
+			],
+			"title": "Modifier key for scroll gesture"
+		},
+		"ax-zoom-individual-displays-zoom-each-display-independently": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomIndividualDisplaysEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_INDIVIDUAL_DISPLAYS/Zoom each display independently"
+			],
+			"title": "Zoom each display independently"
+		},
+		"ax-zoom-invert-invert-colors-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_INVERT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_INVERT/Invert colors (Zoom)"
+			],
+			"title": "Invert colors (Zoom)"
+		},
+		"ax-zoom-keep-stationary-keep-picture-in-picture-window-stationary": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_KEEP_STATIONARY",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_KEEP_STATIONARY/Keep picture-in-picture window stationary"
+			],
+			"title": "Keep picture-in-picture window stationary"
+		},
+		"ax-zoom-max-factor-maximum-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_MAX_FACTOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_MAX_FACTOR/Maximum zoom"
+			],
+			"title": "Maximum zoom"
+		},
+		"ax-zoom-min-factor-minimum-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_MIN_FACTOR",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_MIN_FACTOR/Minimum zoom"
+			],
+			"title": "Minimum zoom"
+		},
+		"ax-zoom-monitor-selection-move-cursor-to-next-monitor": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_MONITOR_SELECTION",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_MONITOR_SELECTION/Move cursor to next monitor"
+			],
+			"title": "Move cursor to next monitor"
+		},
+		"ax-zoom-monitor-selection-trackpad-use-trackpad-gesture-to-move-cursor-between-monitors": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_MONITOR_SELECTION_TRACKPAD",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_MONITOR_SELECTION_TRACKPAD/Use trackpad gesture to move cursor between monitors"
+			],
+			"title": "Use trackpad gesture to move cursor between monitors"
+		},
+		"ax-zoom-move-zoomed-image-moves": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_MOVE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_MOVE/Zoomed image moves"
+			],
+			"title": "Zoomed image moves"
+		},
+		"ax-zoom-rapid-set-range-for-rapid-zooming-in-and-out": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_RAPID",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_RAPID/Set range for rapid zooming in and out"
+			],
+			"title": "Set range for rapid zooming in and out"
+		},
+		"ax-zoom-resize-shortcuts-use-keyboard-shortcuts-to-adjust-zoom-window": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomResizeShortcutsEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_RESIZE_SHORTCUTS/Use keyboard shortcuts to adjust zoom window"
+			],
+			"title": "Use keyboard shortcuts to adjust zoom window"
+		},
+		"ax-zoom-restore-restore-zoom-factor-on-startup": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomRestoreEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_RESTORE/Restore zoom factor on startup"
+			],
+			"title": "Restore zoom factor on startup"
+		},
+		"ax-zoom-restore-shortcut-restore-shortcuts-and-modifiers": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_RESTORE_SHORTCUT",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_RESTORE_SHORTCUT/Restore shortcuts and modifiers"
+			],
+			"title": "Restore shortcuts and modifiers"
+		},
+		"ax-zoom-screen-share-show-zoomed-image-while-screen-sharing": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomScreenShareEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_SCREEN_SHARE/Show zoomed image while screen sharing"
+			],
+			"title": "Show zoomed image while screen sharing"
+		},
+		"ax-zoom-smooth-smooth-images": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_SMOOTH",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_SMOOTH/Smooth images"
+			],
+			"title": "Smooth images"
+		},
+		"ax-zoom-style-popup-zoom-style": {
+			"choices": [
+				"Full Screen",
+				"Picture-in-Picture",
+				"Split Screen"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomStylePopupEntity.value",
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_STYLE_POPUP/Zoom style"
+			],
+			"title": "Zoom style"
+		},
+		"ax-zoom-temp-detach-detach-zoom-view-from-pointer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_TEMP_DETACH",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_TEMP_DETACH/Detach zoom view from pointer"
+			],
+			"title": "Detach zoom view from pointer"
+		},
+		"ax-zoom-temp-toggle-toggle-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_TEMP_TOGGLE",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_TEMP_TOGGLE/Toggle zoom"
+			],
+			"title": "Toggle zoom"
+		},
+		"ax-zoom-toggle-fs-and-pip-toggle-between-full-screen-and-picture-in-picture": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_TOGGLE_FS_AND_PIP",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_TOGGLE_FS_AND_PIP/Toggle between full screen and picture-in-picture"
+			],
+			"title": "Toggle between full screen and picture-in-picture"
+		},
+		"ax-zoom-trackpad-use-trackpad-gesture-to-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "AX_ZOOM_TRACKPAD",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/AX_ZOOM_TRACKPAD/Use trackpad gesture to zoom"
+			],
+			"title": "Use trackpad gesture to zoom"
+		},
+		"display-display": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/display/Display"
+			],
+			"title": "Display"
+		},
+		"display-enable-color-filters": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDisplayFilterEnabledEntity.value"
+			],
+			"title": "Enable Color Filters"
+		},
+		"display-invert-colors": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxInvertColorEntity.value"
+			],
+			"title": "Invert Colors"
+		},
+		"display-show-borders": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxShowBordersEntity.value"
+			],
+			"title": "Show Borders"
+		},
+		"display-smart-invert": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Display",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxInvertColorModeEntity.value"
+			],
+			"title": "Smart Invert"
+		},
+		"full-keyboard-access-options-full-keyboard-access-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Full Keyboard Access Options",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/fullKeyboardAccessOptions/Full Keyboard Access Options"
+			],
+			"title": "Full Keyboard Access Options"
+		},
+		"headphones-headphones-airpods-beats": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Headphones",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/headphones/Headphones, AirPods, Beats"
+			],
+			"title": "Headphones, AirPods, Beats"
+		},
+		"hover-text-colors-colors-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Hover Text Colors",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/hoverTextColors/Colors (Hover Text)"
+			],
+			"title": "Colors (Hover Text)"
+		},
+		"hover-text-enable-hover-text": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Hover Text",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHoverTextEnableEntity.value"
+			],
+			"title": "Enable Hover Text"
+		},
+		"hover-text-hover-text-modifier": {
+			"choices": [
+				"⌃ Control",
+				"⌥ Option",
+				"⌘ Command"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Hover Text",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHoverTextModifierEntity.value"
+			],
+			"title": "Hover Text modifier"
+		},
+		"hover-text-hover-typing-location": {
+			"choices": [
+				"Near Current Line",
+				"Top Left",
+				"Top Right",
+				"Bottom Left",
+				"Bottom Right",
+				"Custom"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Hover Text",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHoverTypingEntryLocationEntity.value"
+			],
+			"title": "Hover Typing location"
+		},
+		"hover-text-settings-hover-text-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Hover Text Settings",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/hoverTextSettings/Hover Text Settings"
+			],
+			"title": "Hover Text Settings"
+		},
+		"hover-text-triple-press-modifier-to-set-hover-text-activation-lock": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Hover Text",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHoverTextActivationLockModeEntity.value"
+			],
+			"title": "Triple-press modifier to set Hover Text activation lock"
+		},
+		"hover-typing-colors-colors-hover-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Hover Typing Colors",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/hoverTypingColors/Colors (Hover Typing)"
+			],
+			"title": "Colors (Hover Typing)"
+		},
+		"hover-typing-settings-hover-typing-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Hover Typing Settings",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/hoverTypingSettings/Hover Typing Settings"
+			],
+			"title": "Hover Typing Settings"
+		},
+		"keyboard-accessibility-keyboard-sounds": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxKbUseClickSoundsEntity.value"
+			],
+			"title": "Accessibility keyboard sounds"
+		},
+		"keyboard-auto-hide-full-keyboard-access": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFkaAutoHideCheckboxEntity.value"
+			],
+			"title": "Auto-hide full keyboard access"
+		},
+		"keyboard-beep-when-a-modifier-key-is-set-with-sticky-keys": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxStickyKeysBeepEntity.value"
+			],
+			"title": "Beep when a modifier key is set with Sticky Keys"
+		},
+		"keyboard-bottom-left-dwell-corner": {
+			"choices": [
+				"-",
+				"Hide / Show Home Panel",
+				"Toggle Dwell Pause",
+				"Left Click",
+				"Right Click",
+				"Double Click",
+				"Drag and Drop",
+				"Scroll Menu",
+				"Options Menu"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHotCornerBottomLeftEntity.value"
+			],
+			"title": "Bottom left dwell corner"
+		},
+		"keyboard-bottom-right-dwell-corner": {
+			"choices": [
+				"-",
+				"Hide / Show Home Panel",
+				"Toggle Dwell Pause",
+				"Left Click",
+				"Right Click",
+				"Double Click",
+				"Drag and Drop",
+				"Scroll Menu",
+				"Options Menu"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHotCornerBottomRightEntity.value"
+			],
+			"title": "Bottom right dwell corner"
+		},
+		"keyboard-capitalize-sentences-automatically-when-using-the-accessibility-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxKbAutoCapitalizationEntity.value"
+			],
+			"title": "Capitalize sentences automatically when using the Accessibility Keyboard"
+		},
+		"keyboard-display-sticky-keys-on-screen": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxStickyKeysDisplayEntity.value"
+			],
+			"title": "Display Sticky Keys on screen"
+		},
+		"keyboard-dwell-auto-revert": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDwellAutoRevertEntity.value"
+			],
+			"title": "Dwell auto revert"
+		},
+		"keyboard-enable-zoom-when-using-dwell": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxDwellZoomEntity.value"
+			],
+			"title": "Enable zoom when using dwell"
+		},
+		"keyboard-fade-accessibility-keyboard-after-inactivity": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxKbHideEntity.value"
+			],
+			"title": "Fade accessibility keyboard after inactivity"
+		},
+		"keyboard-full-keyboard-access-high-contrast": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFkaHighContrastCheckboxEntity.value"
+			],
+			"title": "full keyboard access high contrast"
+		},
+		"keyboard-increase-full-keyboard-access-border-size": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxFkaIncreaseSizeCheckboxEntity.value"
+			],
+			"title": "Increase full keyboard access border size"
+		},
+		"keyboard-insert-and-remove-spaces-automatically-when-using-the-accessibility-keyboard": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxKbAutoSpacingEntity.value"
+			],
+			"title": "Insert and remove spaces automatically when using the Accessibility Keyboard"
+		},
+		"keyboard-keys-on-accessibility-keyboard-can-be-activated-with-right-click": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxKbRightClickEntity.value"
+			],
+			"title": "Keys on accessibility keyboard can be activated with right-click"
+		},
+		"keyboard-show-accessibility-keyboard-near-activated-screen-corner": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHotCornerMoveHomePanelEntity.value"
+			],
+			"title": "Show accessibility keyboard near activated screen corner"
+		},
+		"keyboard-slow-keys-sounds": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSlowKeysSoundEntity.value"
+			],
+			"title": "Slow keys sounds"
+		},
+		"keyboard-sticky-keys-display-location": {
+			"choices": [
+				"Top Right",
+				"Top Left",
+				"Bottom Right",
+				"Bottom Left"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxStickyKeysDisplayLocationEntity.value"
+			],
+			"title": "Sticky keys display location"
+		},
+		"keyboard-top-left-dwell-corner": {
+			"choices": [
+				"-",
+				"Hide / Show Home Panel",
+				"Toggle Dwell Pause",
+				"Left Click",
+				"Right Click",
+				"Double Click",
+				"Drag and Drop",
+				"Scroll Menu",
+				"Options Menu"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHotCornerTopLeftEntity.value"
+			],
+			"title": "Top left dwell corner"
+		},
+		"keyboard-top-right-dwell-corner": {
+			"choices": [
+				"-",
+				"Hide / Show Home Panel",
+				"Toggle Dwell Pause",
+				"Left Click",
+				"Right Click",
+				"Double Click",
+				"Drag and Drop",
+				"Scroll Menu",
+				"Options Menu"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Keyboard",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxHotCornerTopRightEntity.value"
+			],
+			"title": "Top right dwell corner"
+		},
+		"mouse-and-trackpad-mouse-and-trackpad": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Mouse And Trackpad",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/mouseAndTrackpad/Mouse & Trackpad"
+			],
+			"title": "Mouse & Trackpad"
+		},
+		"pointer-control-ignore-built-in-trackpad-when-using-mouse-keys": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMouseKeysIgnoreTrackpadEntity.value"
+			],
+			"title": "Ignore built-in trackpad when using Mouse Keys"
+		},
+		"pointer-control-play-sounds-for-alternative-pointer-actions": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxAltMouseEnableSoundsEntity.value"
+			],
+			"title": "Play sounds for alternative pointer actions"
+		},
+		"pointer-control-show-alternative-pointer-actions-visually": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxAltMouseEnableVisualsEntity.value"
+			],
+			"title": "Show alternative pointer actions visually"
+		},
+		"pointer-control-use-inertia-when-scrolling-with-mouse": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxMouseScrollBehaviorEntity.value"
+			],
+			"title": "Use inertia when scrolling with mouse"
+		},
+		"pointer-control-use-inertia-when-scrolling-with-trackpad": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Pointer Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxTrackpadScrollBehaviorEntity.value"
+			],
+			"title": "Use inertia when scrolling with trackpad"
+		},
+		"pointer-pointer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Pointer",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/pointer/Pointer"
+			],
+			"title": "Pointer"
+		},
+		"rtt-enable-rtt": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "RTT",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxRttEnableEntity.value"
+			],
+			"title": "Enable RTT"
+		},
+		"rtt-send-rtt-immediately": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "RTT",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxRttSendImmediatelyEntity.value"
+			],
+			"title": "Send RTT immediately"
+		},
+		"spoken-content-detect-languages-for-spoken-content": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenDetectLanguagesEntity.value"
+			],
+			"title": "Detect languages for Spoken Content"
+		},
+		"spoken-content-echo-characters-for-typing-feedback": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenTypingEchoCharsEntity.value"
+			],
+			"title": "Echo characters for typing feedback"
+		},
+		"spoken-content-echo-modifier-keys-for-typing-feedback": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenTypingEchoModifierKeysEntity.value"
+			],
+			"title": "Echo modifier keys for typing feedback"
+		},
+		"spoken-content-echo-selection-changes-for-typing-feedback": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenTypingEchoSelectionEntity.value"
+			],
+			"title": "Echo selection changes for typing feedback"
+		},
+		"spoken-content-echo-words-for-typing-feedback": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenTypingEchoWordsEntity.value"
+			],
+			"title": "Echo words for typing feedback"
+		},
+		"spoken-content-pronunciations-for-spoken-content": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenPronunciationsEntity.value"
+			],
+			"title": "Pronunciations for Spoken Content"
+		},
+		"spoken-content-show-speak-selection-controller": {
+			"choices": [
+				"Automatically",
+				"Never",
+				"Always"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenSelectionShowControllerEntity.value"
+			],
+			"title": "Show speak selection controller"
+		},
+		"spoken-content-speak-item-under-the-pointer-verbosity": {
+			"choices": [
+				"Low",
+				"Medium",
+				"High"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenPointerElementVerbosityEntity.value"
+			],
+			"title": "Speak item under the pointer verbosity"
+		},
+		"spoken-content-speak-selection-highlight": {
+			"choices": [
+				"None",
+				"Words",
+				"Sentences",
+				"Words and Sentences"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenSelectionHighlightContentEntity.value"
+			],
+			"title": "Speak selection highlight"
+		},
+		"spoken-content-speak-selection-highlight-style-for-sentences": {
+			"choices": [
+				"Underline",
+				"Background color"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenSelectionHighlightSentenceStyleEntity.value"
+			],
+			"title": "Speak selection highlight style for sentences"
+		},
+		"spoken-content-speak-selection-sentence-highlight-color": {
+			"choices": [
+				"Default",
+				"Blue",
+				"Yellow",
+				"Green",
+				"Pink",
+				"Purple"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenSelectionHighlightSentenceColorEntity.value"
+			],
+			"title": "Speak selection sentence highlight color"
+		},
+		"spoken-content-speak-selection-word-highlight-color": {
+			"choices": [
+				"Default",
+				"Blue",
+				"Yellow",
+				"Green",
+				"Pink",
+				"Purple"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Spoken Content",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSpokenSelectionHighlightWordColorEntity.value"
+			],
+			"title": "Speak selection word highlight color"
+		},
+		"switch-control-capitalize-sentences-automatically-when-using-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchAutoCapitalizationEntity.value"
+			],
+			"title": "Capitalize sentences automatically when using Switch Control"
+		},
+		"switch-control-fade-switch-control-overlay-after-inactivity": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchHideAfterDelayEntity.value"
+			],
+			"title": "Fade Switch Control overlay after inactivity"
+		},
+		"switch-control-insert-and-remove-spaces-automatically-when-using-the-switch-control": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchAutoSpacingEntity.value"
+			],
+			"title": "Insert and remove spaces automatically when using the Switch Control"
+		},
+		"switch-control-navigation-navigation": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Switch Control Navigation",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/switchControlNavigation/Navigation"
+			],
+			"title": "Navigation"
+		},
+		"switch-control-show-current-text-in-the-switch-control-keyboard-panel": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchHoverTextToolbarEntity.value"
+			],
+			"title": "Show current text in the Switch Control keyboard panel"
+		},
+		"switch-control-switch-control-appearance": {
+			"choices": [
+				"Dark",
+				"Light"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchControlAppearanceTypeEntity.value"
+			],
+			"title": "Switch Control appearance"
+		},
+		"switch-control-switch-control-auto-scanning": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchAutoscanEntity.value"
+			],
+			"title": "Switch Control auto scanning"
+		},
+		"switch-control-switch-control-resume-auto-scanning-after-selection": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchResumeAutoScanningEntity.value"
+			],
+			"title": "Switch Control resume auto scanning after selection"
+		},
+		"switch-control-switch-control-reverse-cursor-direction-after-hitting-edge": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Switch Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxSwitchMouseCursorEdgeEntity.value"
+			],
+			"title": "Switch control reverse cursor direction after hitting edge"
+		},
+		"switch-control-switches-switches": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Switch Control Switches",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/switchControlSwitches/Switches"
+			],
+			"title": "Switches"
+		},
+		"switch-control-typing-typing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Switch Control Typing",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/switchControlTyping/Typing"
+			],
+			"title": "Typing"
+		},
+		"text-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Text",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/text/Text"
+			],
+			"title": "Text"
+		},
+		"virtual-keyboard-dwell-dwell": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Virtual Keyboard Dwell",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/virtualKeyboardDwell/Dwell"
+			],
+			"title": "Dwell"
+		},
+		"virtual-keyboard-hot-corners-dwell-corners": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Virtual Keyboard Hot Corners",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/virtualKeyboardHotCorners/Dwell Corners"
+			],
+			"title": "Dwell Corners"
+		},
+		"vocal-shortcuts-enable-vocal-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Vocal Shortcuts",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxAdaptiveVoiceShortcutsEntity.value"
+			],
+			"title": "Enable Vocal Shortcuts"
+		},
+		"voice-control-fade-voice-control-overlay-after-inactivity": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Voice Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxVoiceControlOverlayFadingEnabledEntity.value"
+			],
+			"title": "Fade Voice Control overlay after inactivity"
+		},
+		"voice-control-voice-control-command-recognized-sound": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Voice Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxVoiceControlPlaySoundEnabledEntity.value"
+			],
+			"title": "Voice Control command recognized sound"
+		},
+		"voice-control-voice-control-show-hints": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Voice Control",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxVoiceControlShowHintsEnabledEntity.value"
+			],
+			"title": "Voice Control show hints"
+		},
+		"zoom-appearance-appearance-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Zoom Appearance",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/zoomAppearance/Appearance (Zoom)"
+			],
+			"title": "Appearance (Zoom)"
+		},
+		"zoom-controls-controls": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Zoom Controls",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/zoomControls/Controls"
+			],
+			"title": "Controls"
+		},
+		"zoom-detach-zoom-from-pointer-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomTempDetachEntity.value"
+			],
+			"title": "Detach zoom from pointer shortcut"
+		},
+		"zoom-follow-focus-follow-focus": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Zoom Follow Focus",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/zoomFollowFocus/Follow Focus"
+			],
+			"title": "Follow Focus"
+		},
+		"zoom-hotkey-config-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Zoom Hotkey Config",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/zoomHotkeyConfig/Shortcuts"
+			],
+			"title": "Shortcuts"
+		},
+		"zoom-invert-colors-when-using-picture-in-picture-zoom": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomInvertEntity.value"
+			],
+			"title": "Invert colors when using picture-in-picture zoom"
+		},
+		"zoom-keep-picture-in-picture-zoom-window-stationary": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomKeepStationaryEntity.value"
+			],
+			"title": "Keep picture-in-picture zoom window stationary"
+		},
+		"zoom-temp-modifiers-config-modifiers-for-temporary-actions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Zoom Temp Modifiers Config",
+			"sources": [
+				"search:AccessibilitySettingsExtension.appex/zoomTempModifiersConfig/Modifiers for Temporary Actions"
+			],
+			"title": "Modifiers for Temporary Actions"
+		},
+		"zoom-toggle-between-full-screen-and-picture-in-picture-zoom-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomToggleFsAndPipEntity.value"
+			],
+			"title": "Toggle between full screen and picture-in-picture zoom shortcut"
+		},
+		"zoom-use-trackpad-gesture-to-move-cursor-between-monitors-when-using-zoom": {
+			"choices": [
+				"Off",
+				"Swipe with Three Fingers",
+				"Swipe with Four Fingers",
+				"Swipe with Five Fingers"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomMonitorSelectionTrackpadEntity.value"
+			],
+			"title": "Use trackpad gesture to move cursor between monitors when using zoom"
+		},
+		"zoom-zoom-follow-keyboard-focus": {
+			"choices": [
+				"Never",
+				"Always",
+				"When Typing"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomFollowFocusModeEntity.value"
+			],
+			"title": "Zoom follow keyboard focus"
+		},
+		"zoom-zoom-keyboard-focus-movement-amount": {
+			"choices": [
+				"So focus item is centered",
+				"Just enough to show focus item"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomFocusMovementEntity.value"
+			],
+			"title": "Zoom keyboard focus movement amount"
+		},
+		"zoom-zoom-keyboard-focus-movement-style": {
+			"choices": [
+				"Off-Center",
+				"On Screen Edge",
+				"Near Screen Edge"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomFollowFocusActivationEntity.value"
+			],
+			"title": "Zoom keyboard focus movement style"
+		},
+		"zoom-zoom-keyboard-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomEnableHotkeysEntity.value"
+			],
+			"title": "Zoom keyboard shortcuts"
+		},
+		"zoom-zoom-move-cursor-to-next-monitor-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomMonitorSelectionEntity.value"
+			],
+			"title": "Zoom move cursor to next monitor shortcut"
+		},
+		"zoom-zoom-panning-mode": {
+			"choices": [
+				"Continuously with pointer",
+				"When pointer reaches edge",
+				"To keep pointer centered"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomMoveEntity.value"
+			],
+			"title": "Zoom panning mode"
+		},
+		"zoom-zoom-panning-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomFreezePanningEntity.value"
+			],
+			"title": "Zoom panning shortcut"
+		},
+		"zoom-zoom-quick-toggle-shortcut": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomTempToggleEntity.value"
+			],
+			"title": "Zoom quick toggle shortcut"
+		},
+		"zoom-zoom-smooth-images": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomSmoothEntity.value"
+			],
+			"title": "Zoom smooth images"
+		},
+		"zoom-zoom-trackpad-gestures": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Zoom",
+			"sources": [
+				"intent:AccessibilitySettingsWidgetExtension.appex/AxZoomTrackpadEntity.value"
+			],
+			"title": "Zoom trackpad gestures"
+		}
+	}
+}

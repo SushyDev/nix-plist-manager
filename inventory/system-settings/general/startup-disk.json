@@ -1,0 +1,9 @@
+{
+	"coverage": "none",
+	"group": "system-settings",
+	"pane": [
+		"General",
+		"Startup Disk"
+	],
+	"settings": {}
+}

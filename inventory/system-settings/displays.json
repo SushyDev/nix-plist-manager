@@ -1,0 +1,226 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Displays"
+	],
+	"settings": {
+		"advanced-section-advanced-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Advanced Section",
+			"sources": [
+				"search:DisplaysExt.appex/advancedSection/Advanced Settings"
+			],
+			"title": "Advanced Settings"
+		},
+		"advanced-section-universal-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Advanced Section",
+			"sources": [
+				"search:DisplaysExt.appex/advancedSection/Universal Control"
+			],
+			"title": "Universal Control"
+		},
+		"allow-your-pointer-and-keyboard-to-move-between-any-nearby-mac-or-ipad": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:DisplaysSettingsIntentsExtension.appex/ShareKeyboardEntity.value"
+			],
+			"title": "Allow your pointer and keyboard to move between any nearby Mac or iPad"
+		},
+		"ambience-section-display-brightness": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Ambience Section",
+			"sources": [
+				"search:DisplaysExt.appex/ambienceSection/Display Brightness"
+			],
+			"title": "Display Brightness"
+		},
+		"ambience-section-true-tone": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Ambience Section",
+			"sources": [
+				"intent:DisplaysSettingsIntentsExtension.appex/TrueToneEntity.value",
+				"search:DisplaysExt.appex/ambienceSection/True Tone"
+			],
+			"title": "True Tone"
+		},
+		"arrangement-section-arrange-multiple-displays": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Arrangement Section",
+			"sources": [
+				"search:DisplaysExt.appex/arrangementSection/Arrange multiple displays"
+			],
+			"title": "Arrange multiple displays"
+		},
+		"arrangement-section-relocate-menu-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Arrangement Section",
+			"sources": [
+				"search:DisplaysExt.appex/arrangementSection/Relocate menu bar"
+			],
+			"title": "Relocate menu bar"
+		},
+		"automatically-adjust-brightness-on-the-main-display": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:DisplaysSettingsIntentsExtension.appex/AutoBrightnessEntity.value"
+			],
+			"title": "Automatically adjust brightness on the main display"
+		},
+		"automatically-reconnect-to-any-nearby-mac-or-ipad": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:DisplaysSettingsIntentsExtension.appex/AutomaticReconnectEntity.value"
+			],
+			"title": "Automatically reconnect to any nearby Mac or iPad"
+		},
+		"characteristic-section-overscan": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Characteristic Section",
+			"sources": [
+				"search:DisplaysExt.appex/characteristicSection/Overscan"
+			],
+			"title": "Overscan"
+		},
+		"characteristic-section-screen-rotation": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Characteristic Section",
+			"sources": [
+				"search:DisplaysExt.appex/characteristicSection/Screen Rotation"
+			],
+			"title": "Screen Rotation"
+		},
+		"characteristic-section-underscan": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Characteristic Section",
+			"sources": [
+				"search:DisplaysExt.appex/characteristicSection/Underscan"
+			],
+			"title": "Underscan"
+		},
+		"displays-section-display-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Displays Section",
+			"sources": [
+				"search:DisplaysExt.appex/displaysSection/Display Settings"
+			],
+			"title": "Display Settings"
+		},
+		"miscellaneous-section-high-dynamic-range": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Miscellaneous Section",
+			"sources": [
+				"search:DisplaysExt.appex/miscellaneousSection/High Dynamic Range"
+			],
+			"title": "High Dynamic Range"
+		},
+		"miscellaneous-section-refresh-rate": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Miscellaneous Section",
+			"sources": [
+				"search:DisplaysExt.appex/miscellaneousSection/Refresh Rate"
+			],
+			"title": "Refresh Rate"
+		},
+		"night-shift-section-night-shift-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Night Shift Section",
+			"sources": [
+				"search:DisplaysExt.appex/nightShiftSection/Night Shift options"
+			],
+			"title": "Night Shift options"
+		},
+		"profile-section-display-colors-and-calibration": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Profile Section",
+			"sources": [
+				"search:DisplaysExt.appex/profileSection/Display colors and calibration"
+			],
+			"title": "Display colors and calibration"
+		},
+		"profile-section-display-presets": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Profile Section",
+			"sources": [
+				"search:DisplaysExt.appex/profileSection/Display Presets"
+			],
+			"title": "Display Presets"
+		},
+		"push-through-the-edge-of-a-display-to-connect-a-nearby-mac-or-ipad": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:DisplaysSettingsIntentsExtension.appex/MagicEdgeEntity.value"
+			],
+			"title": "Push through the edge of a display to connect a nearby Mac or iPad"
+		},
+		"resolution-section-display-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Resolution Section",
+			"sources": [
+				"search:DisplaysExt.appex/resolutionSection/Display Options"
+			],
+			"title": "Display Options"
+		},
+		"resolution-section-screen-resolution": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Resolution Section",
+			"sources": [
+				"search:DisplaysExt.appex/resolutionSection/Screen Resolution"
+			],
+			"title": "Screen Resolution"
+		},
+		"sidecar-section-sidecar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Sidecar Section",
+			"sources": [
+				"search:DisplaysExt.appex/sidecarSection/Sidecar"
+			],
+			"title": "Sidecar"
+		}
+	}
+}

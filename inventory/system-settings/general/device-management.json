@@ -1,0 +1,9 @@
+{
+	"coverage": "none",
+	"group": "system-settings",
+	"pane": [
+		"General",
+		"Device Management"
+	],
+	"settings": {}
+}

@@ -1,0 +1,19 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Wallet & Apple Pay"
+	],
+	"settings": {
+		"wallet-wallet-and-apple-pay": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Wallet",
+			"sources": [
+				"search:WalletSettingsExtension.appex/Wallet/Wallet & Apple Pay"
+			],
+			"title": "Wallet & Apple Pay"
+		}
+	}
+}

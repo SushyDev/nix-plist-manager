@@ -18,6 +18,13 @@
 				home-manager = self.homeManagerModules.default;
 			};
 
+			optionIndex =
+				let
+					lib = nixpkgs.lib;
+					options = import ./lib/options.nix { inherit lib; };
+				in
+				import ./lib/optionIndex.nix { inherit lib; } options;
+
 			documentation = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
@@ -62,6 +69,22 @@
 
 							runHook postInstall
 						'';
+					};
+				}
+			);
+
+			apps = forAllSystems (system:
+				let
+					pkgs = import nixpkgs { inherit system; };
+					inventory = pkgs.writeShellScript "inventory" ''
+						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
+						exec ${pkgs.python3}/bin/python3 ${./tools/inventory/inventory.py} "$@"
+					'';
+				in
+				{
+					inventory = {
+						type = "app";
+						program = "${inventory}";
 					};
 				}
 			);

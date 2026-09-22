@@ -1,0 +1,8 @@
+{
+	"coverage": "none",
+	"group": "system-settings",
+	"pane": [
+		"Internet Accounts"
+	],
+	"settings": {}
+}

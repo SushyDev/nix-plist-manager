@@ -1,0 +1,389 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Privacy & Security"
+	],
+	"settings": {
+		"advanced-lock-system-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Advanced",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Advanced/Lock System Settings"
+			],
+			"title": "Lock System Settings"
+		},
+		"advanced-log-out-when-idle": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Advanced",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Advanced/Log out when idle"
+			],
+			"title": "Log out when idle"
+		},
+		"file-vault-filevault": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "File Vault",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/FileVault/FileVault"
+			],
+			"title": "FileVault"
+		},
+		"location-access-report-location-access-report": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Location_Access_Report",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Location_Access_Report/Location Access Report"
+			],
+			"title": "Location Access Report"
+		},
+		"lockdown-mode-lockdown-mode": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Lockdown Mode",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/LockdownMode/Lockdown Mode"
+			],
+			"title": "Lockdown Mode"
+		},
+		"privacy-accessibility-allow-assistive-applications-to-control-the-computer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Accessibility",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Accessibility/Allow assistive applications to control the computer"
+			],
+			"title": "Allow assistive applications to control the computer"
+		},
+		"privacy-advertising-apple-advertising": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Advertising",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Advertising/Apple Advertising"
+			],
+			"title": "Apple Advertising"
+		},
+		"privacy-all-files-allow-applications-to-access-all-user-files": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_All Files",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_AllFiles/Allow applications to access all user files"
+			],
+			"title": "Allow applications to access all user files"
+		},
+		"privacy-analytics-diagnostic-and-usage-data": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Analytics",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Analytics/Diagnostic & usage data"
+			],
+			"title": "Diagnostic & usage data"
+		},
+		"privacy-app-bundles-allow-applications-to-update-or-delete-other-apps": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_App Bundles",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_AppBundles/Allow applications to update or delete other apps"
+			],
+			"title": "Allow applications to update or delete other apps"
+		},
+		"privacy-audio-capture-allow-applications-to-record-your-system-audio": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Audio Capture",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_AudioCapture/Allow applications to record your system audio"
+			],
+			"title": "Allow applications to record your system audio"
+		},
+		"privacy-automation-allow-applications-to-automate-your-mac": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Automation",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Automation/Allow applications to automate your Mac"
+			],
+			"title": "Allow applications to automate your Mac"
+		},
+		"privacy-bluetooth-allow-applications-to-access-bluetooth": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Bluetooth",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Bluetooth/Allow applications to access Bluetooth"
+			],
+			"title": "Allow applications to access Bluetooth"
+		},
+		"privacy-calendars-allow-applications-to-access-calendar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Calendars",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Calendars/Allow applications to access Calendar"
+			],
+			"title": "Allow applications to access Calendar"
+		},
+		"privacy-camera-allow-applications-to-access-the-camera": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Camera",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Camera/Allow applications to access the camera"
+			],
+			"title": "Allow applications to access the camera"
+		},
+		"privacy-contacts-allow-applications-to-access-contacts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Contacts",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Contacts/Allow applications to access Contacts"
+			],
+			"title": "Allow applications to access Contacts"
+		},
+		"privacy-dev-tools-allow-applications-to-use-developer-tools": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Dev Tools",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_DevTools/Allow applications to use developer tools"
+			],
+			"title": "Allow applications to use developer tools"
+		},
+		"privacy-dev-tools-enable-processor-trace": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Dev Tools",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_DevTools/Enable Processor Trace"
+			],
+			"title": "Enable Processor Trace"
+		},
+		"privacy-files-and-folders-allow-applications-to-access-user-files": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Files And Folders",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_FilesAndFolders/Allow applications to access user files"
+			],
+			"title": "Allow applications to access user files"
+		},
+		"privacy-focus-allow-applications-to-access-your-focus": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Focus",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Focus/Allow applications to access your Focus"
+			],
+			"title": "Allow applications to access your Focus"
+		},
+		"privacy-home-kit-allow-applications-to-access-home-data": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Home Kit",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_HomeKit/Allow applications to access Home data"
+			],
+			"title": "Allow applications to access Home data"
+		},
+		"privacy-listen-event-allow-applications-to-monitor-keyboard-input": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Listen Event",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_ListenEvent/Allow applications to monitor keyboard input"
+			],
+			"title": "Allow applications to monitor keyboard input"
+		},
+		"privacy-location-services-allow-applications-to-access-your-location": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Location Services",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_LocationServices/Allow applications to access your location"
+			],
+			"title": "Allow applications to access your location"
+		},
+		"privacy-media-allow-applications-to-access-media-library": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Media",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Media/Allow applications to access Media Library"
+			],
+			"title": "Allow applications to access Media Library"
+		},
+		"privacy-microphone-allow-applications-to-access-the-microphone": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Microphone",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Microphone/Allow applications to access the microphone"
+			],
+			"title": "Allow applications to access the microphone"
+		},
+		"privacy-motion-allow-applications-to-access-your-motion-and-fitness-activity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Motion",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Motion/Allow applications to access your motion and fitness activity"
+			],
+			"title": "Allow applications to access your motion and fitness activity"
+		},
+		"privacy-nudity-detection-allow-applications-to-detect-nudity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Nudity Detection",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_NudityDetection/Allow applications to detect nudity"
+			],
+			"title": "Allow applications to detect nudity"
+		},
+		"privacy-passkey-access-allow-web-browsers-to-use-passkeys": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Passkey Access",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_PasskeyAccess/Allow web browsers to use passkeys"
+			],
+			"title": "Allow web browsers to use passkeys"
+		},
+		"privacy-photos-allow-applications-to-access-photos": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Photos",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Photos/Allow applications to access Photos"
+			],
+			"title": "Allow applications to access Photos"
+		},
+		"privacy-reminders-allow-applications-to-access-reminders": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Reminders",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_Reminders/Allow applications to access Reminders"
+			],
+			"title": "Allow applications to access Reminders"
+		},
+		"privacy-remote-desktop-allow-applications-to-access-the-contents-of-your-screen-and-audio-through-remote-desktop": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Remote Desktop",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_RemoteDesktop/Allow applications to access the contents of your screen and audio through Remote Desktop"
+			],
+			"title": "Allow applications to access the contents of your screen and audio through Remote Desktop"
+		},
+		"privacy-screen-capture-allow-applications-to-record-your-screen": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Screen Capture",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_ScreenCapture/Allow applications to record your screen"
+			],
+			"title": "Allow applications to record your screen"
+		},
+		"privacy-speech-recognition-allow-applications-to-access-speech-recognition": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_Speech Recognition",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_SpeechRecognition/Allow applications to access speech recognition"
+			],
+			"title": "Allow applications to access speech recognition"
+		},
+		"privacy-system-services-system-services-can-access-your-location": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy_System Services",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Privacy_SystemServices/System services can access your location"
+			],
+			"title": "System services can access your location"
+		},
+		"security-allow-accessories-to-connect": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Security",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Security/Allow accessories to connect"
+			],
+			"title": "Allow accessories to connect"
+		},
+		"security-gatekeeper": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Security",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Security/Gatekeeper"
+			],
+			"title": "Gatekeeper"
+		},
+		"security-improvements-background-security-improvements": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Security Improvements",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/SecurityImprovements/Background Security Improvements"
+			],
+			"title": "Background Security Improvements"
+		},
+		"security-security-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Security",
+			"sources": [
+				"search:SecurityPrivacyExtension.appex/Security/Security settings"
+			],
+			"title": "Security settings"
+		}
+	}
+}

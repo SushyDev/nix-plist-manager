@@ -1,0 +1,849 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Desktop & Dock"
+	],
+	"settings": {
+		"desktop-click-wallpaper-to-show-desktop": {
+			"choices": [
+				"Always",
+				"Only in Stage Manager"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop",
+			"section": "Desktop",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DesktopSettingsEntity.clickWallpaperToRevealDesktop",
+				"option:applications.systemSettings.desktopAndDock.desktopAndStageManager.clickWallpaperToRevealDesktop"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "EnableStandardClickToShowDesktop",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Click wallpaper to show desktop"
+		},
+		"desktop-show-recent-apps-in-stage-manager": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManager",
+			"section": "Desktop",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DesktopSettingsEntity.showRecentAppsInStageManager",
+				"option:applications.systemSettings.desktopAndDock.desktopAndStageManager.showRecentAppsInStageManager"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "AutoHide",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show recent apps in Stage Manager"
+		},
+		"desktop-show-windows-from-an-application": {
+			"choices": [
+				"All at Once",
+				"One at a Time"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication",
+			"section": "Desktop",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DesktopSettingsEntity.showWindowsFromAnApplication",
+				"option:applications.systemSettings.desktopAndDock.desktopAndStageManager.showWindowsFromAnApplication"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "AppWindowGroupingBehavior",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show windows from an application"
+		},
+		"desktop-stage-manager": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.desktopAndStageManager.stageManager",
+			"section": "Desktop",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DesktopSettingsEntity.stageManager",
+				"option:applications.systemSettings.desktopAndDock.desktopAndStageManager.stageManager"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "GloballyEnabled",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Stage Manager"
+		},
+		"desktop-visible-items-in-stage-manager": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.desktopAndStageManager.showItems.inStageManager",
+			"section": "Desktop",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DesktopSettingsEntity.showItemsInStageManager",
+				"option:applications.systemSettings.desktopAndDock.desktopAndStageManager.showItems.inStageManager"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "HideDesktop",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Visible Items In Stage Manager"
+		},
+		"desktop-visible-items-on-desktop": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.desktopAndStageManager.showItems.onDesktop",
+			"section": "Desktop",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DesktopSettingsEntity.showItemsOnDesktop",
+				"option:applications.systemSettings.desktopAndDock.desktopAndStageManager.showItems.onDesktop"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "StandardHideDesktopIcons",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Visible Items On Desktop"
+		},
+		"dock-animate-opening-applications": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.animateOpeningApplications",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.animateOpeningApplications",
+				"option:applications.systemSettings.desktopAndDock.dock.animateOpeningApplications"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "launchanim",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Animate opening applications"
+		},
+		"dock-automatically-hide-and-show-the-dock": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.automaticallyHideAndShowTheDock.enabled",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.automaticallyHideAndShowTheDock",
+				"option:applications.systemSettings.desktopAndDock.dock.automaticallyHideAndShowTheDock.enabled"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "autohide",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Automatically hide and show the Dock"
+		},
+		"dock-automatically-hide-and-show-the-dock-animation-duration": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.automaticallyHideAndShowTheDock.duration",
+			"section": "Dock > Automatically hide and show the Dock",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.dock.automaticallyHideAndShowTheDock.duration"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "autohide-time-modifier",
+					"scope": "user",
+					"type": "float"
+				}
+			],
+			"title": "Animation duration"
+		},
+		"dock-automatically-hide-and-show-the-dock-delay": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.automaticallyHideAndShowTheDock.delay",
+			"section": "Dock > Automatically hide and show the Dock",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.dock.automaticallyHideAndShowTheDock.delay"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "autohide-delay",
+					"scope": "user",
+					"type": "float"
+				}
+			],
+			"title": "Delay"
+		},
+		"dock-dock-position-on-screen": {
+			"choices": [
+				"Bottom",
+				"Left",
+				"Right"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.dockPositionOnScreen",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.positionOnScreen",
+				"option:applications.systemSettings.desktopAndDock.dock.dockPositionOnScreen"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "orientation",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Dock position on screen"
+		},
+		"dock-magnification": {
+			"firstSeen": "26A428",
+			"kind": "number",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.magnification.enabled",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.magnification",
+				"option:applications.systemSettings.desktopAndDock.dock.magnification.enabled"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "magnification",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Magnification"
+		},
+		"dock-magnification-size": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.magnification.size",
+			"section": "Dock",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.dock.magnification.size"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "largesize",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Magnification Size"
+		},
+		"dock-minimize-windows-into-application-icon": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.minimizeWindowsIntoApplicationIcon",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.minimizeWindowsIntoApplicationIcon",
+				"option:applications.systemSettings.desktopAndDock.dock.minimizeWindowsIntoApplicationIcon"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "minimize-to-application",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Minimize windows into application icon"
+		},
+		"dock-minimized-window-animation": {
+			"choices": [
+				"Genie Effect",
+				"Scale Effect"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.minimizedWindowAnimation",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.minimizeWindowsUsing",
+				"option:applications.systemSettings.desktopAndDock.dock.minimizedWindowAnimation"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "mineffect",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Minimized window animation"
+		},
+		"dock-show-indicators-for-open-applications": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.showIndicatorsForOpenApplications",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.showIndicatorsForOpenApplications",
+				"option:applications.systemSettings.desktopAndDock.dock.showIndicatorsForOpenApplications"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "show-process-indicators",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show indicators for open applications"
+		},
+		"dock-show-suggested-and-recent-apps-in-dock": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.showSuggestedAndRecentAppsInDock",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.showSuggestedAndRecentAppsInDock",
+				"option:applications.systemSettings.desktopAndDock.dock.showSuggestedAndRecentAppsInDock"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "show-recents",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show suggested and recent apps in Dock"
+		},
+		"dock-size": {
+			"firstSeen": "26A428",
+			"kind": "number",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.size",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.size",
+				"option:applications.systemSettings.desktopAndDock.dock.size"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "tilesize",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Size"
+		},
+		"dock-window-title-bar-double-click-action": {
+			"choices": [
+				"Minimize",
+				"Zoom",
+				"No Action",
+				"Fill"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.windowTitleBarDoubleClickAction",
+			"section": "Dock",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/DockSettingsEntity.doubleClickAWindowsTitleBarTo",
+				"option:applications.systemSettings.desktopAndDock.dock.windowTitleBarDoubleClickAction"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleActionOnDoubleClick",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Window title bar double-click action"
+		},
+		"hot-corners-bottom-left-corner": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.hotCorners.bottomLeft",
+			"section": "Hot Corners",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.hotCorners.bottomLeft"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "wvous-bl-corner",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Bottom Left Corner"
+		},
+		"hot-corners-bottom-right-corner": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.hotCorners.bottomRight",
+			"section": "Hot Corners",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.hotCorners.bottomRight"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "wvous-br-corner",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Bottom Right Corner"
+		},
+		"hot-corners-top-left-corner": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.hotCorners.topLeft",
+			"section": "Hot Corners",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.hotCorners.topLeft"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "wvous-tl-corner",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Top Left Corner"
+		},
+		"hot-corners-top-right-corner": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.hotCorners.topRight",
+			"section": "Hot Corners",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.hotCorners.topRight"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.dock",
+					"key": "wvous-tr-corner",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Top Right Corner"
+		},
+		"mission-control-automatically-rearrange-spaces-based-on-most-recent-use": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.automaticallyRearrangeSpacesBasedOnMostRecentUse",
+			"section": "Mission Control",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/MissionControlSettingsEntity.automaticallyRearrangeSpacesBasedOnMostRecentUse",
+				"option:applications.systemSettings.desktopAndDock.missionControl.automaticallyRearrangeSpacesBasedOnMostRecentUse"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.dock",
+					"key": "mru-spaces",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Automatically rearrange Spaces based on most recent use"
+		},
+		"mission-control-displays-have-separate-spaces": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.displaysHaveSeparateSpaces",
+			"section": "Mission Control",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/MissionControlSettingsEntity.displaysHaveSeparateSpaces",
+				"option:applications.systemSettings.desktopAndDock.missionControl.displaysHaveSeparateSpaces"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.spaces",
+					"key": "spans-displays",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Displays have separate Spaces"
+		},
+		"mission-control-drag-windows-to-top-of-screen-to-enter-mission-control": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMissionControl",
+			"section": "Mission Control",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/MissionControlSettingsEntity.enterMissionControlByTopWindowDrag",
+				"option:applications.systemSettings.desktopAndDock.missionControl.dragWindowsToTopOfScreenToEnterMissionControl"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.dock",
+					"key": "enterMissionControlByTopWindowDrag",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Drag windows to top of screen to enter Mission Control"
+		},
+		"mission-control-group-windows-by-application": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.groupWindowsByApplication",
+			"section": "Mission Control",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/MissionControlSettingsEntity.groupWindowsByApplication",
+				"option:applications.systemSettings.desktopAndDock.missionControl.groupWindowsByApplication"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.dock",
+					"key": "expose-group-apps",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Group windows by application"
+		},
+		"mission-control-when-switching-to-an-application-switch-to-a-space-with-open-windows-for-the-application": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.whenSwitchingToAnApplicationSwitchToAspaceWithOpenWindowsForTheApplication",
+			"section": "Mission Control",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/MissionControlSettingsEntity.whenSwitchingToAnApplicationSwitchToASpaceWithOpenWindowsForTheApplication",
+				"option:applications.systemSettings.desktopAndDock.missionControl.whenSwitchingToAnApplicationSwitchToAspaceWithOpenWindowsForTheApplication"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": ".GlobalPreferences",
+					"key": "AppleSpacesSwitchOnActivate",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "When switching to an application, switch to a Space with open windows for the application"
+		},
+		"widget-dim-widgets-on-desktop": {
+			"choices": [
+				"Automatically",
+				"Never",
+				"Always"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.widgets.dimWidgetsOnDesktop",
+			"section": "Widget",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/WidgetSettingsEntity.widgetAppearance",
+				"option:applications.systemSettings.desktopAndDock.widgets.dimWidgetsOnDesktop"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.widgets",
+					"key": "widgetAppearance",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Dim widgets on desktop"
+		},
+		"widget-show-widgets-in-stage-manager": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.widgets.showWidgets.inStageManager",
+			"section": "Widget",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/WidgetSettingsEntity.showWidgetsInStageManager",
+				"option:applications.systemSettings.desktopAndDock.widgets.showWidgets.inStageManager"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "StageManagerHideWidgets",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show Widgets In Stage Manager"
+		},
+		"widget-show-widgets-on-desktop": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.widgets.showWidgets.onDesktop",
+			"section": "Widget",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/WidgetSettingsEntity.showWidgetsOnDesktop",
+				"option:applications.systemSettings.desktopAndDock.widgets.showWidgets.onDesktop"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "StandardHideWidgets",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Show Widgets On Desktop"
+		},
+		"widgets-use-iphone-widgets": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.widgets.useIphoneWidgets",
+			"section": "Widgets",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.widgets.useIphoneWidgets"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.chronod",
+					"key": "remoteWidgetsEnabled",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Use iPhone Widgets"
+		},
+		"windows-ask-to-keep-changes-when-closing-documents": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.windows.askToKeepChangesWhenClosingDocuments",
+			"section": "Windows",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/WindowsSettingsEntity.askToKeepChangesWhenClosingDocuments",
+				"option:applications.systemSettings.desktopAndDock.windows.askToKeepChangesWhenClosingDocuments"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.preference.global",
+					"key": "NSCloseAlwaysConfirmsChanges",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Ask to keep changes when closing documents"
+		},
+		"windows-close-windows-when-quitting-an-application": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.windows.closeWindowsWhenQuittingAnApplication",
+			"section": "Windows",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/WindowsSettingsEntity.closeWindowsWhenQuittingAnApplication",
+				"option:applications.systemSettings.desktopAndDock.windows.closeWindowsWhenQuittingAnApplication"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.preference.global",
+					"key": "NSQuitAlwaysKeepsWindows",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Close windows when quitting an application"
+		},
+		"windows-drag-windows-to-menu-bar-to-fill-screen": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.windows.dragWindowsToMenuBarToFillScreen",
+			"section": "Windows",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.windows.dragWindowsToMenuBarToFillScreen"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "EnableTopTilingByEdgeDrag",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Drag windows to menu bar to fill screen"
+		},
+		"windows-drag-windows-to-screen-edges-to-tile": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.windows.dragWindowsToScreenEdgesToTile",
+			"section": "Windows",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.windows.dragWindowsToScreenEdgesToTile"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "EnableTilingByEdgeDrag",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Drag windows to screen edges to tile"
+		},
+		"windows-hold-option-key-while-dragging-windows-to-tile": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.windows.holdOptionKeyWhileDraggingWindowsToTile",
+			"section": "Windows",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.windows.holdOptionKeyWhileDraggingWindowsToTile"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "EnableTilingOptionAccelerator",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Hold Option key while dragging windows to tile"
+		},
+		"windows-prefer-tabs-when-opening-documents": {
+			"choices": [
+				"Never",
+				"Always",
+				"In Full Screen"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.windows.preferTabsWhenOpeningDocuments",
+			"section": "Windows",
+			"sources": [
+				"intent:DesktopSettingsIntents.appex/WindowsSettingsEntity.preferTabsWhenOpeningDocuments",
+				"option:applications.systemSettings.desktopAndDock.windows.preferTabsWhenOpeningDocuments"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.preference.global",
+					"key": "AppleWindowTabbingMode",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Prefer tabs when opening documents"
+		},
+		"windows-tiled-windows-have-margin": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.windows.tiledWindowsHaveMargin",
+			"section": "Windows",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.windows.tiledWindowsHaveMargin"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.WindowManager",
+					"key": "EnableTiledWindowMargins",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Tiled windows have margin"
+		}
+	}
+}

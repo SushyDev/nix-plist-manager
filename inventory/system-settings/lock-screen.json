@@ -1,0 +1,88 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Lock Screen"
+	],
+	"settings": {
+		"display-off-turn-off-display-when-inactive": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Display Off",
+			"sources": [
+				"search:LockScreen.appex/DisplayOff/Turn off display when inactive"
+			],
+			"title": "Turn off display when inactive"
+		},
+		"large-clock-large-clock": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Large Clock",
+			"sources": [
+				"search:LockScreen.appex/LargeClock/Large clock"
+			],
+			"title": "Large clock"
+		},
+		"lock-screen-message-lock-screen-message": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Lock Screen Message",
+			"sources": [
+				"search:LockScreen.appex/LockScreenMessage/Lock screen message"
+			],
+			"title": "Lock screen message"
+		},
+		"login-window-login-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Login Window",
+			"sources": [
+				"search:LockScreen.appex/LoginWindow/Login options"
+			],
+			"title": "Login options"
+		},
+		"password-require-password-to-wake-computer": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Password",
+			"sources": [
+				"search:LockScreen.appex/Password/Require password to wake computer"
+			],
+			"title": "Require password to wake computer"
+		},
+		"password-security-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Password",
+			"sources": [
+				"search:LockScreen.appex/Password/Security settings"
+			],
+			"title": "Security settings"
+		},
+		"screen-saver-start-screen-saver-when-inactive": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Screen Saver",
+			"sources": [
+				"search:LockScreen.appex/ScreenSaver/Start Screen Saver when inactive"
+			],
+			"title": "Start Screen Saver when inactive"
+		},
+		"start-screen-saver": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:LockScreenIntentsExtension.appex/ScreenSaverDelayEntity.value"
+			],
+			"title": "Start Screen Saver"
+		}
+	}
+}

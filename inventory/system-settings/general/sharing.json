@@ -1,0 +1,130 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"General",
+		"Sharing"
+	],
+	"settings": {
+		"hostname-hostname": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Hostname",
+			"sources": [
+				"search:Sharing.appex/Hostname/Hostname"
+			],
+			"title": "Hostname"
+		},
+		"internet-internet-sharing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Internet",
+			"sources": [
+				"search:Sharing.appex/Internet/Internet sharing"
+			],
+			"title": "Internet sharing"
+		},
+		"services-ardservice-remote-management": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_ARDService",
+			"sources": [
+				"search:Sharing.appex/Services_ARDService/Remote Management"
+			],
+			"title": "Remote Management"
+		},
+		"services-bluetooth-sharing-bluetooth-sharing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Bluetooth Sharing",
+			"sources": [
+				"search:Sharing.appex/Services_BluetoothSharing/Bluetooth Sharing"
+			],
+			"title": "Bluetooth Sharing"
+		},
+		"services-content-caching-content-caching": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Content Caching",
+			"sources": [
+				"search:Sharing.appex/Services_ContentCaching/Content Caching"
+			],
+			"title": "Content Caching"
+		},
+		"services-media-sharing-media-sharing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Media Sharing",
+			"sources": [
+				"search:Sharing.appex/Services_MediaSharing/Media Sharing"
+			],
+			"title": "Media Sharing"
+		},
+		"services-personal-file-sharing-file-sharing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Personal File Sharing",
+			"sources": [
+				"search:Sharing.appex/Services_PersonalFileSharing/File sharing"
+			],
+			"title": "File sharing"
+		},
+		"services-printer-sharing-printer-sharing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Printer Sharing",
+			"sources": [
+				"search:Sharing.appex/Services_PrinterSharing/Printer sharing"
+			],
+			"title": "Printer sharing"
+		},
+		"services-remote-apple-event-remote-application-scripting": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Remote Apple Event",
+			"sources": [
+				"search:Sharing.appex/Services_RemoteAppleEvent/Remote Application Scripting"
+			],
+			"title": "Remote Application Scripting"
+		},
+		"services-remote-login-remote-login": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Remote Login",
+			"sources": [
+				"search:Sharing.appex/Services_RemoteLogin/Remote login"
+			],
+			"title": "Remote login"
+		},
+		"services-screen-sharing-screen-sharing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Screen Sharing",
+			"sources": [
+				"search:Sharing.appex/Services_ScreenSharing/Screen Sharing"
+			],
+			"title": "Screen Sharing"
+		},
+		"services-windows-sharing-windows-file-sharing": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Services_Windows Sharing",
+			"sources": [
+				"search:Sharing.appex/Services_WindowsSharing/Windows file sharing"
+			],
+			"title": "Windows file sharing"
+		}
+	}
+}

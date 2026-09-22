@@ -1,0 +1,95 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Mouse"
+	],
+	"settings": {
+		"mission-control": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:MouseIntentsExtension.appex/MissionControlEntity.value"
+			],
+			"title": "Mission Control"
+		},
+		"natural-scrolling": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:MouseIntentsExtension.appex/ScrollDirectionEntity.value"
+			],
+			"title": "Natural scrolling"
+		},
+		"secondary-click": {
+			"choices": [
+				"Off",
+				"Right",
+				"Left",
+				"Customized"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:MouseIntentsExtension.appex/SecondaryClickEntity.value"
+			],
+			"title": "Secondary click"
+		},
+		"smart-zoom": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:MouseIntentsExtension.appex/SmartZoomEntity.value"
+			],
+			"title": "Smart zoom"
+		},
+		"swipe-between-full-screen-applications": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:MouseIntentsExtension.appex/FullScreenSwipeEntity.value"
+			],
+			"title": "Swipe between full-screen applications"
+		},
+		"swipe-between-pages": {
+			"choices": [
+				"Off",
+				"Scroll Left or Right with One Finger",
+				"Swipe Left or Right with Two Fingers",
+				"Swipe with One or Two Fingers"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:MouseIntentsExtension.appex/SwipeBetweenPagesEntity.value"
+			],
+			"title": "Swipe between pages"
+		},
+		"tracking-speed": {
+			"choices": [
+				"0.0",
+				"0.125",
+				"0.6875",
+				"0.875",
+				"1.0",
+				"1.5",
+				"2.0",
+				"2.5",
+				"3.0"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:MouseIntentsExtension.appex/MouseTrackingSpeedEntity.value"
+			],
+			"title": "Tracking speed"
+		}
+	}
+}

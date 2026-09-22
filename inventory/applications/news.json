@@ -1,0 +1,99 @@
+{
+	"coverage": "",
+	"group": "applications",
+	"pane": [
+		"News"
+	],
+	"settings": {
+		"automatic-downloads": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/AutoDownloadEntity.value"
+			],
+			"title": "Automatic Downloads"
+		},
+		"automatically-download-audio-stories": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/AutoDownloadAudioStoriesEntity.value"
+			],
+			"title": "Automatically Download Audio Stories"
+		},
+		"automatically-download-magazine-issues": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/AutoDownloadMagazineIssuesEntity.value"
+			],
+			"title": "Automatically Download Magazine Issues"
+		},
+		"automatically-download-puzzles": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/AutoDownloadPuzzlesEntity.value"
+			],
+			"title": "Automatically Download Puzzles"
+		},
+		"automatically-download-recipes": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/AutoDownloadRecipesEntity.value"
+			],
+			"title": "Automatically Download Recipes"
+		},
+		"automatically-download-saved-stories": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/AutoDownloadSavedStoriesEntity.value"
+			],
+			"title": "Automatically Download Saved Stories"
+		},
+		"automatically-download-stories-in-feeds": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/AutoDownloadStoriesInFeedsEntity.value"
+			],
+			"title": "Automatically Download Stories In Feeds"
+		},
+		"game-center": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/GameCenterEntity.value"
+			],
+			"title": "Game Center"
+		},
+		"optimize-storage": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/OptimizeStorageEntity.value"
+			],
+			"title": "Optimize Storage"
+		},
+		"restrict-stories-in-today": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:NewsToday2.appex/RestrictStoriesInTodaySettingEntity.value"
+			],
+			"title": "Restrict Stories in Today"
+		}
+	}
+}

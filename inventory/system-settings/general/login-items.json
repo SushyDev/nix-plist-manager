@@ -1,0 +1,90 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"General",
+		"Login Items"
+	],
+	"settings": {
+		"extension-items-actions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Extension Items",
+			"sources": [
+				"search:LoginItems.appex/ExtensionItems/Actions"
+			],
+			"title": "Actions"
+		},
+		"extension-items-extensions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Extension Items",
+			"sources": [
+				"search:LoginItems.appex/ExtensionItems/Extensions"
+			],
+			"title": "Extensions"
+		},
+		"extension-items-finder": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Extension Items",
+			"sources": [
+				"search:LoginItems.appex/ExtensionItems/Finder"
+			],
+			"title": "Finder"
+		},
+		"extension-items-password-autofill-extensions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Extension Items",
+			"sources": [
+				"search:LoginItems.appex/ExtensionItems/Password AutoFill Extensions"
+			],
+			"title": "Password AutoFill Extensions"
+		},
+		"extension-items-share-menu-items": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Extension Items",
+			"sources": [
+				"search:LoginItems.appex/ExtensionItems/Share menu items"
+			],
+			"title": "Share menu items"
+		},
+		"extension-items-touch-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Extension Items",
+			"sources": [
+				"search:LoginItems.appex/ExtensionItems/Touch Bar"
+			],
+			"title": "Touch Bar"
+		},
+		"startup-items-pref-app-background-activity": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Startup Items Pref",
+			"sources": [
+				"search:LoginItems.appex/startupItemsPref/App Background Activity"
+			],
+			"title": "App Background Activity"
+		},
+		"startup-items-pref-open-at-login": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Startup Items Pref",
+			"sources": [
+				"search:LoginItems.appex/startupItemsPref/Open at Login"
+			],
+			"title": "Open at Login"
+		}
+	}
+}
