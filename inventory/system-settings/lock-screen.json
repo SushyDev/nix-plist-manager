@@ -5,51 +5,44 @@
 		"Lock Screen"
 	],
 	"settings": {
-		"display-off-turn-off-display-when-inactive": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Display Off",
-			"sources": [
-				"search:LockScreen.appex/DisplayOff/Turn off display when inactive"
-			],
-			"title": "Turn off display when inactive"
-		},
 		"large-clock-large-clock": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Large Clock",
+			"skip": "no longer in Lock Screen; the screen saver and clock moved to Wallpaper > Screen Saver… and Clock Appearance…",
 			"sources": [
 				"search:LockScreen.appex/LargeClock/Large clock"
 			],
 			"title": "Large clock"
 		},
-		"lock-screen-message-lock-screen-message": {
+		"login-window-shows": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"section": "Lock Screen Message",
+			"option": "applications.systemSettings.lockScreen.loginWindowShows",
+			"section": null,
 			"sources": [
-				"search:LockScreen.appex/LockScreenMessage/Lock screen message"
-			],
-			"title": "Lock screen message"
-		},
-		"login-window-login-options": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Login Window",
-			"sources": [
+				"option:applications.systemSettings.lockScreen.loginWindowShows",
 				"search:LockScreen.appex/LoginWindow/Login options"
 			],
-			"title": "Login options"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.loginwindow",
+					"key": "SHOWFULLNAME",
+					"scope": "system"
+				}
+			],
+			"title": "Login window shows"
 		},
 		"password-require-password-to-wake-computer": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Password",
+			"skip": "the delay is kept in the keybag and changing it needs the user's password (sysadminctl -screenLock … -password)",
 			"sources": [
 				"search:LockScreen.appex/Password/Require password to wake computer"
 			],
@@ -60,6 +53,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Password",
+			"skip": "a link to Privacy & Security, not a setting",
 			"sources": [
 				"search:LockScreen.appex/Password/Security settings"
 			],
@@ -70,19 +64,123 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Screen Saver",
+			"skip": "no longer in Lock Screen; the screen saver and clock moved to Wallpaper > Screen Saver… and Clock Appearance…",
 			"sources": [
 				"search:LockScreen.appex/ScreenSaver/Start Screen Saver when inactive"
 			],
 			"title": "Start Screen Saver when inactive"
 		},
+		"show-message-when-locked-set": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.lockScreen.messageWhenLocked",
+			"section": "Show message when locked",
+			"sources": [
+				"option:applications.systemSettings.lockScreen.messageWhenLocked",
+				"search:LockScreen.appex/LockScreenMessage/Lock screen message"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.loginwindow",
+					"key": "LoginwindowText",
+					"scope": "system"
+				}
+			],
+			"title": "Set…"
+		},
+		"show-password-hints": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.lockScreen.showPasswordHints",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.lockScreen.showPasswordHints"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.loginwindow",
+					"key": "RetriesUntilHint",
+					"scope": "system"
+				}
+			],
+			"title": "Show password hints"
+		},
+		"show-the-sleep-restart-and-shut-down-buttons": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.lockScreen.showTheSleepRestartAndShutDownButtons",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.lockScreen.showTheSleepRestartAndShutDownButtons"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.loginwindow",
+					"key": "PowerOffDisabled",
+					"scope": "system"
+				}
+			],
+			"title": "Show the Sleep, Restart, and Shut Down buttons"
+		},
 		"start-screen-saver": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"skip": "no longer in Lock Screen; the screen saver and clock moved to Wallpaper > Screen Saver… and Clock Appearance…",
 			"sources": [
 				"intent:LockScreenIntentsExtension.appex/ScreenSaverDelayEntity.value"
 			],
 			"title": "Start Screen Saver"
+		},
+		"turn-display-off-on-battery-when-inactive": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.lockScreen.turnDisplayOffOnBatteryWhenInactive",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.lockScreen.turnDisplayOffOnBatteryWhenInactive",
+				"search:LockScreen.appex/DisplayOff/Turn off display when inactive"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "Battery Power",
+					"scope": "system"
+				}
+			],
+			"title": "Turn display off on battery when inactive"
+		},
+		"turn-display-off-on-power-adapter-when-inactive": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.lockScreen.turnDisplayOffOnPowerAdapterWhenInactive",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.lockScreen.turnDisplayOffOnPowerAdapterWhenInactive"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "AC Power",
+					"scope": "system"
+				}
+			],
+			"title": "Turn display off on power adapter when inactive"
 		}
 	}
 }
