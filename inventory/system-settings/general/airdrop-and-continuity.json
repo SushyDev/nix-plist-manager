@@ -121,6 +121,7 @@
 			"section": "Widgets",
 			"sources": [
 				"intent:AirDropHandoffIntentsExtension.appex/WidgetsAndOnenessEntity.useiPhoneWidgets",
+				"option:applications.systemSettings.desktopAndDock.widgets.useIphoneWidgets",
 				"option:applications.systemSettings.general.airDropAndContinuity.iPhoneWidgets",
 				"search:AirDropHandoffExtension.appex/Widgets/iPhone Widgets"
 			],
