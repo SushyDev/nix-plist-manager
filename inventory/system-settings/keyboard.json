@@ -30,49 +30,52 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Customize Modifier Keys",
+			"skip": "kept per connected keyboard",
 			"sources": [
 				"search:KeyboardSettings.appex/CustomizeModifierKeys/Customize modifier keys"
 			],
 			"title": "Customize modifier keys"
+		},
+		"delay-until-repeat": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.delayUntilRepeat",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.keyboard.delayUntilRepeat"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "InitialKeyRepeat",
+					"scope": "user"
+				}
+			],
+			"title": "Delay until repeat"
 		},
 		"dictation-dictation": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Dictation",
+			"skip": "turning Dictation on asks for consent to send audio to Apple",
 			"sources": [
 				"search:KeyboardSettings.appex/Dictation/Dictation"
 			],
 			"title": "Dictation"
 		},
-		"function-keys-function-keys": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Function Keys",
-			"sources": [
-				"search:KeyboardSettings.appex/FunctionKeys/Function Keys"
-			],
-			"title": "Function Keys"
-		},
 		"illuminate-keyboard": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"skip": "keyboard brightness changes often and belongs to the keyboard",
 			"sources": [
 				"search:KeyboardSettings.appex/Keyboard/Illuminate keyboard"
 			],
 			"title": "Illuminate keyboard"
-		},
-		"input-sources-allow-a-different-input-source-for-each-document": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Input Sources",
-			"sources": [
-				"search:KeyboardSettings.appex/InputSources/Allow a different input source for each document"
-			],
-			"title": "Allow a different input source for each document"
 		},
 		"input-sources-keyboard-layouts": {
 			"firstSeen": "26A428",
@@ -89,6 +92,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Input Sources",
+			"skip": "the same switch as Menu Bar > Menu Bar Controls > Text Input (applications.systemSettings.menuBar.textInput)",
 			"sources": [
 				"search:KeyboardSettings.appex/InputSources/Show input menu in menu bar"
 			],
@@ -104,33 +108,81 @@
 			],
 			"title": "Show keyboard and emoji viewers in menu bar"
 		},
-		"input-sources-use-one-input-source-in-all-documents": {
+		"key-repeat-rate": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"section": "Input Sources",
+			"option": "applications.systemSettings.keyboard.keyRepeatRate",
+			"section": null,
 			"sources": [
-				"search:KeyboardSettings.appex/InputSources/Use one input source in all documents"
+				"option:applications.systemSettings.keyboard.keyRepeatRate"
 			],
-			"title": "Use one input source in all documents"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "KeyRepeat",
+					"scope": "user"
+				}
+			],
+			"title": "Key repeat rate"
 		},
 		"keyboard-navigation": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardNavigation",
 			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardNavigation",
 				"search:KeyboardSettings.appex/Keyboard/Keyboard Navigation"
 			],
-			"title": "Keyboard Navigation"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "AppleKeyboardUIMode",
+					"scope": "user"
+				}
+			],
+			"title": "Keyboard Navigation",
+			"verified": {
+				"build": "26A428",
+				"commands": "88c21f7e3599",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-sensitivity": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"skip": "keyboard brightness changes often and belongs to the keyboard",
 			"sources": [
 				"search:KeyboardSettings.appex/Keyboard/Keyboard sensitivity"
 			],
 			"title": "Keyboard sensitivity"
+		},
+		"keyboard-shortcuts-function-keys-use-f1-f2-etc-keys-as-standard-function-keys": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.useF1F2EtcKeysAsStandardFunctionKeys",
+			"section": "Keyboard Shortcuts… > Function Keys",
+			"sources": [
+				"option:applications.systemSettings.keyboard.useF1F2EtcKeysAsStandardFunctionKeys",
+				"search:KeyboardSettings.appex/FunctionKeys/Function Keys"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "com.apple.keyboard.fnState",
+					"scope": "user"
+				}
+			],
+			"title": "Use F1, F2, etc. keys as standard function keys"
 		},
 		"language-input-methods-language-input-methods": {
 			"firstSeen": "26A428",
@@ -147,6 +199,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Modifier Keys",
+			"skip": "kept per connected keyboard",
 			"sources": [
 				"search:KeyboardSettings.appex/ModifierKeys/Reset modifier keys"
 			],
@@ -156,10 +209,26 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.pressGlobeKeyTo",
 			"sources": [
+				"option:applications.systemSettings.keyboard.pressGlobeKeyTo",
 				"search:KeyboardSettings.appex/Keyboard/Press 🌐︎ key to"
 			],
-			"title": "Press 🌐︎ key to"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.HIToolbox",
+					"key": "AppleFnUsageType",
+					"scope": "user"
+				}
+			],
+			"title": "Press 🌐︎ key to",
+			"verified": {
+				"build": "26A428",
+				"commands": "a1105d87e0e9",
+				"date": "2026-09-24"
+			}
 		},
 		"services-services-keyboard-shortcuts": {
 			"firstSeen": "26A428",
@@ -175,6 +244,7 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"skip": "an action, not a setting",
 			"sources": [
 				"search:KeyboardSettings.appex/Keyboard/Set up Bluetooth keyboard"
 			],
@@ -190,16 +260,6 @@
 			],
 			"title": "App and system keyboard shortcuts"
 		},
-		"spelling-spelling-and-prediction": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Spelling",
-			"sources": [
-				"search:KeyboardSettings.appex/Spelling/Spelling and prediction"
-			],
-			"title": "Spelling and prediction"
-		},
 		"spotlight-spotlight-keyboard-shortcuts": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
@@ -209,6 +269,161 @@
 				"search:KeyboardSettings.appex/Spotlight/Spotlight keyboard shortcuts"
 			],
 			"title": "Spotlight keyboard shortcuts"
+		},
+		"text-input-input-sources-edit-add-period-with-double-space": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.addPeriodWithDoubleSpace",
+			"section": "Text Input > Input Sources > Edit…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.addPeriodWithDoubleSpace"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSAutomaticPeriodSubstitutionEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Add period with double-space",
+			"verified": {
+				"build": "26A428",
+				"commands": "9020b3a315e0",
+				"date": "2026-09-24"
+			}
+		},
+		"text-input-input-sources-edit-automatically-switch-to-a-documents-input-source": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.automaticallySwitchToADocumentsInputSource",
+			"section": "Text Input > Input Sources > Edit…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.automaticallySwitchToADocumentsInputSource",
+				"search:KeyboardSettings.appex/InputSources/Allow a different input source for each document",
+				"search:KeyboardSettings.appex/InputSources/Use one input source in all documents"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.HIToolbox",
+					"key": "AppleGlobalTextInputProperties",
+					"scope": "user"
+				}
+			],
+			"title": "Automatically switch to a document’s input source"
+		},
+		"text-input-input-sources-edit-capitalize-words-automatically": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.capitalizeWordsAutomatically",
+			"section": "Text Input > Input Sources > Edit…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.capitalizeWordsAutomatically"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSAutomaticCapitalizationEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Capitalize words automatically",
+			"verified": {
+				"build": "26A428",
+				"commands": "87ea06d20786",
+				"date": "2026-09-24"
+			}
+		},
+		"text-input-input-sources-edit-correct-spelling-automatically": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.correctSpellingAutomatically",
+			"section": "Text Input > Input Sources > Edit…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.correctSpellingAutomatically",
+				"search:KeyboardSettings.appex/Spelling/Spelling and prediction"
+			],
+			"storage": [
+				{
+					"as": "native",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSAutomaticSpellingCorrectionEnabled",
+					"scope": "user"
+				},
+				{
+					"as": "web",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "WebAutomaticSpellingCorrectionEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Correct spelling automatically",
+			"verified": {
+				"build": "26A428",
+				"commands": "072bd25a3446",
+				"date": "2026-09-24"
+			}
+		},
+		"text-input-input-sources-edit-show-inline-predictive-text": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.showInlinePredictiveText",
+			"section": "Text Input > Input Sources > Edit…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.showInlinePredictiveText"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSAutomaticInlinePredictionEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Show inline predictive text",
+			"verified": {
+				"build": "26A428",
+				"commands": "a8ff2ee860bb",
+				"date": "2026-09-24"
+			}
+		},
+		"text-input-input-sources-edit-show-suggested-replies": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.showSuggestedReplies",
+			"section": "Text Input > Input Sources > Edit…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.showSuggestedReplies"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSSmartReplyEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Show suggested replies",
+			"verified": {
+				"build": "26A428",
+				"commands": "25527a63d751",
+				"date": "2026-09-24"
+			}
 		},
 		"text-replacements-text-replacements": {
 			"firstSeen": "26A428",
@@ -225,6 +440,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Touch Bar Settings",
+			"skip": "only on Macs with a Touch Bar; not shown on this Mac",
 			"sources": [
 				"search:KeyboardSettings.appex/TouchBarSettings/Customize Touch Bar or Control Strip"
 			],
@@ -235,6 +451,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Touch Bar Settings",
+			"skip": "only on Macs with a Touch Bar; not shown on this Mac",
 			"sources": [
 				"search:KeyboardSettings.appex/TouchBarSettings/Touch Bar typing suggestions"
 			],
@@ -244,11 +461,34 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.useSmartQuotesAndDashes",
 			"section": "Use Smart Quotes",
 			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.useSmartQuotesAndDashes",
 				"search:KeyboardSettings.appex/UseSmartQuotes/Use smart quotes and dashes"
 			],
-			"title": "Use smart quotes and dashes"
+			"storage": [
+				{
+					"as": "dashes",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSAutomaticDashSubstitutionEnabled",
+					"scope": "user"
+				},
+				{
+					"as": "quotes",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSAutomaticQuoteSubstitutionEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Use smart quotes and dashes",
+			"verified": {
+				"build": "26A428",
+				"commands": "be97af428929",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }
