@@ -19,5 +19,12 @@ let
 in
 {
 	imports = lib.concatLists [
+		# labels System Settings changed on macOS 27
+		(renamed "user"
+			[ "applications" "systemSettings" "desktopAndDock" "windows" "dragWindowsToScreenEdgesToTile" ]
+			[ "applications" "systemSettings" "desktopAndDock" "windows" "dragWindowsToLeftOrRightEdgeOfScreenToTile" ])
+		(renamed "user"
+			[ "applications" "systemSettings" "desktopAndDock" "windows" "tiledWindowsHaveMargin" ]
+			[ "applications" "systemSettings" "desktopAndDock" "windows" "tiledWindowsHaveMargins" ])
 	];
 }

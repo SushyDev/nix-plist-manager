@@ -1,92 +1,77 @@
-{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib }:
+{ lib, settingsLib, ... }:
 let
-	byHostAppleWindowManager = pathLib.generatePath true true "com.apple.WindowManager";
+	inherit (settingsLib) setting user bool inverted enum;
+
+	pane = "com.apple.settings.desktopAndDock";
+	windowManager = name: user "com.apple.WindowManager" name;
+
+	# a WindowManager switch, many of which store the opposite ("hide …")
+	switch = { ui, key, control, value ? bool, operate ? true }: setting {
+		inherit ui value;
+		storage = windowManager key;
+		verify = {
+			inherit pane;
+			expect = {
+				true = { ${control} = 1; };
+				false = { ${control} = 0; };
+			};
+		} // lib.optionalAttrs operate { operate = [ "click" control ]; };
+	};
 in
 {
 	showItems = {
-		onDesktop = abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show Items" "On Desktop" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager "StandardHideDesktopIcons";
-			trueCommand = commandsLib.defaults.write byHostAppleWindowManager "StandardHideDesktopIcons" "bool" "false";
-			falseCommand = commandsLib.defaults.write byHostAppleWindowManager "StandardHideDesktopIcons" "bool" "true";
+		onDesktop = switch {
+			ui = [ "System Settings" "Desktop & Dock" "Desktop & Stage Manager" "Show items" "On Desktop" ];
+			key = "StandardHideDesktopIcons";
+			value = inverted bool;
+			control = "show-items-on-desktop";
 		};
-		inStageManager = abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show Items" "In Stage Manager" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager "HideDesktop";
-			trueCommand = commandsLib.defaults.write byHostAppleWindowManager "HideDesktop" "bool" "false";
-			falseCommand = commandsLib.defaults.write byHostAppleWindowManager "HideDesktop" "bool" "true";
+		inStageManager = switch {
+			ui = [ "System Settings" "Desktop & Dock" "Desktop & Stage Manager" "Show items" "In Stage Manager" ];
+			key = "HideDesktop";
+			value = inverted bool;
+			control = "show-items-in-stage-manager";
 		};
 	};
 
-	clickWallpaperToRevealDesktop = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Desktop & Stage Manager" "Click wallpaper to reveal desktop" ];
-		default = null;
-		perUser = true;
-		mapping = 
-			let
-				optionName = "EnableStandardClickToShowDesktop";
-			in
-			{
-				"unset" = {
-					command = commandsLib.defaults.delete byHostAppleWindowManager optionName;
-				};
-				"Always" = {
-					command = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
-				};
-				"Only in Stage Manager" = {
-					command = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "false";
-				};
+	clickWallpaperToRevealDesktop = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Desktop & Stage Manager" "Click wallpaper to show desktop" ];
+		storage = windowManager "EnableStandardClickToShowDesktop";
+		value = enum { Always = true; "Only in Stage Manager" = false; };
+		verify = {
+			inherit pane;
+			expect = {
+				Always = { click-wallpaper-to-reveal-desktop = "Always"; };
+				"Only in Stage Manager" = { click-wallpaper-to-reveal-desktop = "Only in Stage Manager"; };
 			};
+		};
 	};
 
-	stageManager = 
-		let
-			optionName = "GloballyEnabled";
-		in
-		abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Stage Manager" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
-			trueCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
-			falseCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "false";
-		};
+	stageManager = switch {
+		ui = [ "System Settings" "Desktop & Dock" "Desktop & Stage Manager" "Stage Manager" ];
+		key = "GloballyEnabled";
+		control = "stage-manager-on";
+		# turning it on in System Settings asks for confirmation in a separate dialog first
+		operate = false;
+	};
 
-	showRecentAppsInStageManager = 
-		let
-			optionName = "AutoHide";
-		in
-		abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show recent apps in Stage Manager" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleWindowManager optionName;
-			trueCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "false";
-			falseCommand = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
-		};
+	showRecentAppsInStageManager = switch {
+		ui = [ "System Settings" "Desktop & Dock" "Desktop & Stage Manager" "Show recent apps in Stage Manager" ];
+		key = "AutoHide";
+		value = inverted bool;
+		control = "recent-applications";
+	};
 
-	showWindowsFromAnApplication = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Desktop & Stage Manager" "Show windows from an application" ];
-		default = null;
-		perUser = true;
-		mapping = 
-			let
-				optionName = "AppWindowGroupingBehavior";
-			in
-			{
-				"unset" = {
-					command = commandsLib.defaults.delete byHostAppleWindowManager optionName;
-				};
-				"All at Once" = {
-					command = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "true";
-				};
-				"One at a Time" = {
-					command = commandsLib.defaults.write byHostAppleWindowManager optionName "bool" "false";
-				};
+	showWindowsFromAnApplication = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Desktop & Stage Manager" "Show windows from an application" ];
+		storage = windowManager "AppWindowGroupingBehavior";
+		value = enum { "All at Once" = 1; "One at a Time" = 0; };
+		verify = {
+			inherit pane;
+			expect = {
+				"All at Once" = { show-windows-from-application = "All at Once"; };
+				"One at a Time" = { show-windows-from-application = "One at a Time"; };
 			};
+		};
 	};
 }
