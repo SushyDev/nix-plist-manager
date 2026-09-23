@@ -1,0 +1,36 @@
+{
+	"coverage": "",
+	"group": "system-settings",
+	"pane": [
+		"Dock"
+	],
+	"settings": {
+		"contents": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.dock.contents",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.dock.contents"
+			],
+			"storage": [
+				{
+					"as": "apps",
+					"byHost": false,
+					"domain": "com.apple.dock",
+					"key": "persistent-apps",
+					"scope": "user"
+				},
+				{
+					"as": "others",
+					"byHost": false,
+					"domain": "com.apple.dock",
+					"key": "persistent-others",
+					"scope": "user"
+				}
+			],
+			"title": "Contents"
+		}
+	}
+}

@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user global stored bool number enum restarts implies;
+	inherit (settingsLib) setting user global stored bool number enum snapshot restarts restartsDiscardingItsState implies;
 
 	pane = "com.apple.settings.desktopAndDock";
 	option = name: "applications.systemSettings.desktopAndDock.dock.${name}";
@@ -169,5 +169,23 @@ in
 		ui = [ "System Settings" "Desktop & Dock" "Dock" "Show suggested and recent apps in Dock" ];
 		key = "show-recents";
 		control = "show-recents";
+	};
+
+	# the apps, folders and stacks in the Dock, arranged by hand
+	contents = setting {
+		ui = [ "Dock" ];
+		description = ''
+			The apps on the left of the Dock's separator and the folders and stacks on the right, as
+			arranged in the Dock. Save them into your configuration with
+			`nix run github:sushydev/nix-plist-manager#capture -- applications.systemSettings.desktopAndDock.dock.contents <directory>`
+			and set this option to that directory. Apps that aren't installed show as question marks.
+		'';
+		storage = {
+			apps = dock "persistent-apps";
+			others = dock "persistent-others";
+		};
+		value = snapshot;
+		# the Dock saves its contents when it quits
+		behaviors = [ (restartsDiscardingItsState "Dock") ];
 	};
 }
