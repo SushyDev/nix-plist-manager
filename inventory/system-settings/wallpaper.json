@@ -5,10 +5,36 @@
 		"Wallpaper"
 	],
 	"settings": {
+		"screen-saver-start-screen-saver": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.wallpaper.startScreenSaver",
+			"section": "Screen Saver…",
+			"sources": [
+				"option:applications.systemSettings.wallpaper.startScreenSaver"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": true,
+					"domain": "com.apple.screensaver",
+					"key": "idleTime",
+					"scope": "user"
+				}
+			],
+			"title": "Start Screen Saver…",
+			"verified": {
+				"build": "26A428",
+				"commands": "8bb1b6391197",
+				"date": "2026-09-24"
+			}
+		},
 		"show-screen-saver-as-wallpaper-on-main-display": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"skip": "kept in WallpaperAgent's store with the wallpaper; captured and restored by applications.systemSettings.wallpaper.wallpaper",
 			"sources": [
 				"intent:WallpaperSettingsIntents.appex/ShowAsWallpaperEntity.value"
 			],
@@ -18,6 +44,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"skip": "kept in WallpaperAgent's store with the wallpaper; captured and restored by applications.systemSettings.wallpaper.wallpaper",
 			"sources": [
 				"intent:WallpaperSettingsIntents.appex/ShowScreenSaverOnAllSpacesEntity.value"
 			],
@@ -27,19 +54,32 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"skip": "kept in WallpaperAgent's store with the wallpaper; captured and restored by applications.systemSettings.wallpaper.wallpaper",
 			"sources": [
 				"intent:WallpaperSettingsIntents.appex/ShowAsScreenSaverEntity.value"
 			],
 			"title": "Show wallpaper as screen saver on main display"
 		},
-		"show-wallpaper-on-all-spaces": {
+		"wallpaper": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.wallpaper.wallpaper",
+			"section": null,
 			"sources": [
-				"intent:WallpaperSettingsIntents.appex/ShowWallpaperOnAllSpacesEntity.value"
+				"intent:WallpaperSettingsIntents.appex/ShowWallpaperOnAllSpacesEntity.value",
+				"option:applications.systemSettings.wallpaper.wallpaper"
 			],
-			"title": "Show wallpaper on all Spaces"
+			"storage": [
+				{
+					"as": "index",
+					"byHost": false,
+					"domain": "~/Library/Application Support/com.apple.wallpaper/Store/Index",
+					"key": null,
+					"scope": "user"
+				}
+			],
+			"title": "Wallpaper"
 		}
 	}
 }
