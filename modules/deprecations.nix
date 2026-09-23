@@ -37,5 +37,9 @@ in
 	) [ "stageManager" "accessibilityShortcuts" "musicRecognition" "hearing" ]
 	++ renamed "user"
 		[ "applications" "systemSettings" "menuBar" "batteryShowPercentage" ]
-		[ "applications" "systemSettings" "menuBar" "batteryOptions" "showPercentage" ];
+		[ "applications" "systemSettings" "menuBar" "batteryOptions" "showPercentage" ]
+	++ removed "user" [ "applications" "systemSettings" "appleIntelligenceAndSiri" "siriResponses" ] ''
+		macOS 27 offers "Spoken Response" and "Silent Response" only. Use
+		applications.systemSettings.appleIntelligenceAndSiri.siri.responses.
+	'';
 }
