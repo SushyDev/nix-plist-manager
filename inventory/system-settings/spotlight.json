@@ -16,11 +16,11 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.Spotlight",
 					"key": "PasteboardHistoryTimeout",
-					"scope": "user",
-					"type": "int"
+					"scope": "user"
 				}
 			],
 			"title": "Clipboard history is available in Spotlight"
@@ -36,11 +36,11 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.assistant.support",
 					"key": "Search Queries Data Sharing Status",
-					"scope": "user",
-					"type": "int"
+					"scope": "user"
 				}
 			],
 			"title": "Help Apple improve Spotlight and Suggestions"
@@ -50,6 +50,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy",
+			"skip": "kept in /System/Volumes/Data/.Spotlight-V100 (root-only) by mds; not verified with root yet",
 			"sources": [
 				"search:SpotlightPreferenceExtension.appex/privacy/Block search of private files"
 			],
@@ -66,24 +67,55 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.Spotlight",
 					"key": "PasteboardHistoryEnabled",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Results from Clipboard"
 		},
-		"search-results-spotlight-search-categories": {
+		"search-results": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"section": "Search Results",
+			"option": "applications.systemSettings.spotlight.searchResults",
+			"section": null,
 			"sources": [
+				"option:applications.systemSettings.spotlight.searchResults",
 				"search:SpotlightPreferenceExtension.appex/searchResults/Spotlight search categories"
 			],
-			"title": "Spotlight search categories"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.Spotlight",
+					"key": "EnabledPreferenceRules",
+					"scope": "user"
+				}
+			],
+			"title": "Search results"
+		},
+		"show-related-content": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.spotlight.showRelatedContent",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.spotlight.showRelatedContent"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.Spotlight",
+					"key": "EnabledPreferenceRules",
+					"scope": "user"
+				}
+			],
+			"title": "Show Related Content"
 		}
 	}
 }
