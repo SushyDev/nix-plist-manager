@@ -1086,7 +1086,6 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"option": "applications.systemSettings.desktopAndDock.widgets.useIphoneWidgets",
 			"section": "Widgets",
 			"sources": [
 				"option:applications.systemSettings.desktopAndDock.widgets.useIphoneWidgets"

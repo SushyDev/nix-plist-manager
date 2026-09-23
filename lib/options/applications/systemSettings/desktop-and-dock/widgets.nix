@@ -1,9 +1,8 @@
-{ lib, commandsLib, pathLib, abstractionsLib, settingsLib, ... }:
+{ lib, settingsLib, ... }:
 let
 	inherit (settingsLib) setting user bool inverted enum;
 
 	pane = "com.apple.settings.desktopAndDock";
-	byHostAppleChronod = pathLib.generatePath true true "com.apple.chronod";
 
 	showWidgets = { ui, key, control }: setting {
 		inherit ui;
@@ -47,17 +46,4 @@ in
 		};
 	};
 
-	# TODO: moved to General > AirDrop & Continuity on macOS 27; move it with that pane
-	useIphoneWidgets = 
-		let
-			optionName = "remoteWidgetsEnabled";
-		in
-		abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Widgets" "Use iPhone Widgets" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleChronod optionName;
-			trueCommand = commandsLib.defaults.write byHostAppleChronod optionName "bool" "true";
-			falseCommand = commandsLib.defaults.write byHostAppleChronod optionName "bool" "false";
-		};
 }

@@ -13,40 +13,118 @@
 			"option": "applications.systemSettings.general.dateAndTime.24HourTime",
 			"sources": [
 				"intent:DateTimeIntentsExtension.appex/HourFormatEntity.value",
-				"option:applications.systemSettings.general.dateAndTime.24HourTime"
-			],
-			"storage": [],
-			"title": "24-Hour Time"
-		},
-		"24hour-time-use-a-24-hour-clock-in-the-menu-bar": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "24Hour Time",
-			"sources": [
+				"option:applications.systemSettings.general.dateAndTime.24HourTime",
 				"search:DateAndTime Extension.appex/24HourTime/Use a 24-hour clock in the menu bar"
 			],
-			"title": "Use a 24-hour clock in the menu bar"
+			"storage": [
+				{
+					"as": "force12",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "AppleICUForce12HourTime",
+					"scope": "user"
+				},
+				{
+					"as": "force24",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "AppleICUForce24HourTime",
+					"scope": "user"
+				}
+			],
+			"title": "24-Hour Time"
 		},
 		"date-time-pref-set-date-and-time": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Date Time Pref",
+			"skip": "the current date and time, not a preference",
 			"sources": [
 				"search:DateAndTime Extension.appex/DateTimePref/Set date and time"
 			],
 			"title": "Set date and time"
 		},
-		"time-zone-pref-set-time-zone": {
+		"set-time-and-date-automatically": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"section": "Time Zone Pref",
+			"option": "applications.systemSettings.general.dateAndTime.setTimeAndDateAutomatically",
+			"section": null,
 			"sources": [
+				"option:applications.systemSettings.general.dateAndTime.setTimeAndDateAutomatically"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.timed",
+					"key": "TMAutomaticTimeOnlyEnabled",
+					"scope": "system"
+				}
+			],
+			"title": "Set time and date automatically"
+		},
+		"set-time-zone-automatically-using-your-current-location": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.dateAndTime.setTimeZoneAutomaticallyUsingYourCurrentLocation",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.general.dateAndTime.setTimeZoneAutomaticallyUsingYourCurrentLocation"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.timezone.auto",
+					"key": "Active",
+					"scope": "system"
+				}
+			],
+			"title": "Set time zone automatically using your current location"
+		},
+		"source": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.dateAndTime.source",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.general.dateAndTime.source"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "/etc/ntp.conf",
+					"key": null,
+					"scope": "system"
+				}
+			],
+			"title": "Source"
+		},
+		"time-zone": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.dateAndTime.timeZone",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.general.dateAndTime.timeZone",
 				"search:DateAndTime Extension.appex/TimeZonePref/Set time zone"
 			],
-			"title": "Set time zone"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "/etc/localtime",
+					"key": null,
+					"scope": "system"
+				}
+			],
+			"title": "Time zone"
 		}
 	}
 }

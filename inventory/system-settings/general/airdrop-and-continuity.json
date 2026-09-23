@@ -15,38 +15,99 @@
 			"firstSeen": "26A428",
 			"kind": "enum",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.airDropAndContinuity.airDrop",
 			"section": "Air Drop_Handoff",
 			"sources": [
 				"intent:AirDropHandoffIntentsExtension.appex/AirDropEntity.value",
+				"option:applications.systemSettings.general.airDropAndContinuity.airDrop",
 				"search:AirDropHandoffExtension.appex/AirDrop_Handoff/AirDrop"
 			],
-			"title": "AirDrop"
-		},
-		"air-drop-handoff-allow-handoff": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Air Drop_Handoff",
-			"sources": [
-				"search:AirDropHandoffExtension.appex/AirDrop_Handoff/Allow Handoff"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.sharingd",
+					"key": "DiscoverableMode",
+					"scope": "user"
+				}
 			],
-			"title": "Allow Handoff"
+			"title": "AirDrop"
 		},
 		"air-play-receiver-airplay-receiver": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.airDropAndContinuity.airPlayReceiver",
 			"section": "Air Play_Receiver",
 			"sources": [
+				"option:applications.systemSettings.general.airDropAndContinuity.airPlayReceiver",
 				"search:AirDropHandoffExtension.appex/AirPlay_Receiver/AirPlay Receiver"
 			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": true,
+					"domain": "com.apple.controlcenter",
+					"key": "AirplayReceiverEnabled",
+					"scope": "user"
+				}
+			],
 			"title": "AirPlay Receiver"
+		},
+		"allow-airplay-for": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.airDropAndContinuity.allowAirPlayFor",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.general.airDropAndContinuity.allowAirPlayFor"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": true,
+					"domain": "com.apple.controlcenter",
+					"key": "AirplayReceiverAdvertising",
+					"scope": "user"
+				}
+			],
+			"title": "Allow AirPlay for"
+		},
+		"allow-handoff-between-this-mac-and-your-icloud-devices": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.airDropAndContinuity.allowHandoffBetweenThisMacAndYourIcloudDevices",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.general.airDropAndContinuity.allowHandoffBetweenThisMacAndYourIcloudDevices",
+				"search:AirDropHandoffExtension.appex/AirDrop_Handoff/Allow Handoff"
+			],
+			"storage": [
+				{
+					"as": "advertising",
+					"byHost": true,
+					"domain": "com.apple.coreservices.useractivityd",
+					"key": "ActivityAdvertisingAllowed",
+					"scope": "user"
+				},
+				{
+					"as": "receiving",
+					"byHost": true,
+					"domain": "com.apple.coreservices.useractivityd",
+					"key": "ActivityReceivingAllowed",
+					"scope": "user"
+				}
+			],
+			"title": "Allow Handoff between this Mac and your iCloud devices"
 		},
 		"iphone-mirroring-iphone-mirroring": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "IPhone_Mirroring",
+			"skip": "opens iPhone Mirroring; pairing is per device",
 			"sources": [
 				"search:AirDropHandoffExtension.appex/iPhone_Mirroring/iPhone Mirroring"
 			],
@@ -56,10 +117,21 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.airDropAndContinuity.iPhoneWidgets",
 			"section": "Widgets",
 			"sources": [
 				"intent:AirDropHandoffIntentsExtension.appex/WidgetsAndOnenessEntity.useiPhoneWidgets",
+				"option:applications.systemSettings.general.airDropAndContinuity.iPhoneWidgets",
 				"search:AirDropHandoffExtension.appex/Widgets/iPhone Widgets"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.chronod",
+					"key": "remoteWidgetsEnabled",
+					"scope": "user"
+				}
 			],
 			"title": "iPhone Widgets"
 		}
