@@ -40,6 +40,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Location_Access_Report",
+			"skip": "a report of recent location use, not a setting",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Location_Access_Report/Location Access Report"
 			],
@@ -60,6 +61,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Accessibility",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Accessibility/Allow assistive applications to control the computer"
 			],
@@ -80,6 +82,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_All Files",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_AllFiles/Allow applications to access all user files"
 			],
@@ -100,6 +103,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_App Bundles",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_AppBundles/Allow applications to update or delete other apps"
 			],
@@ -110,6 +114,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Audio Capture",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_AudioCapture/Allow applications to record your system audio"
 			],
@@ -120,6 +125,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Automation",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Automation/Allow applications to automate your Mac"
 			],
@@ -130,6 +136,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Bluetooth",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Bluetooth/Allow applications to access Bluetooth"
 			],
@@ -140,6 +147,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Calendars",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Calendars/Allow applications to access Calendar"
 			],
@@ -150,6 +158,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Camera",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Camera/Allow applications to access the camera"
 			],
@@ -160,6 +169,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Contacts",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Contacts/Allow applications to access Contacts"
 			],
@@ -170,6 +180,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Dev Tools",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_DevTools/Allow applications to use developer tools"
 			],
@@ -190,6 +201,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Files And Folders",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_FilesAndFolders/Allow applications to access user files"
 			],
@@ -200,6 +212,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Focus",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Focus/Allow applications to access your Focus"
 			],
@@ -210,6 +223,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Home Kit",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_HomeKit/Allow applications to access Home data"
 			],
@@ -220,6 +234,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Listen Event",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_ListenEvent/Allow applications to monitor keyboard input"
 			],
@@ -230,6 +245,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Location Services",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_LocationServices/Allow applications to access your location"
 			],
@@ -240,6 +256,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Media",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Media/Allow applications to access Media Library"
 			],
@@ -250,6 +267,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Microphone",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Microphone/Allow applications to access the microphone"
 			],
@@ -260,6 +278,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Motion",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Motion/Allow applications to access your motion and fitness activity"
 			],
@@ -270,6 +289,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Nudity Detection",
+			"skip": "Sensitive Content Warning is kept by Screen Time's managed settings, not in a preference file",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_NudityDetection/Allow applications to detect nudity"
 			],
@@ -280,6 +300,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Passkey Access",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_PasskeyAccess/Allow web browsers to use passkeys"
 			],
@@ -290,6 +311,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Photos",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Photos/Allow applications to access Photos"
 			],
@@ -300,6 +322,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Reminders",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_Reminders/Allow applications to access Reminders"
 			],
@@ -310,6 +333,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Remote Desktop",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_RemoteDesktop/Allow applications to access the contents of your screen and audio through Remote Desktop"
 			],
@@ -320,6 +344,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Screen Capture",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_ScreenCapture/Allow applications to record your screen"
 			],
@@ -330,6 +355,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_Speech Recognition",
+			"skip": "kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_SpeechRecognition/Allow applications to access speech recognition"
 			],
@@ -340,6 +366,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Privacy_System Services",
+			"skip": "kept by locationd in a root-only, SIP-protected store",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_SystemServices/System services can access your location"
 			],
@@ -370,6 +397,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Security Improvements",
+			"skip": "shows install status only; there's nothing to set",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/SecurityImprovements/Background Security Improvements"
 			],
@@ -380,6 +408,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Security",
+			"skip": "a link to the section, not a setting",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Security/Security settings"
 			],
