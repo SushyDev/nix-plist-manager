@@ -22,7 +22,7 @@ in
 			wallpaper = import ./options/applications/systemSettings/wallpaper.nix { inherit lib settingsLib; };
 			notifications = import ./options/applications/systemSettings/notifications.nix { inherit lib settingsLib; };
 			sound = import ./options/applications/systemSettings/sound.nix { inherit lib settingsLib; };
-			focus = import ./options/applications/systemSettings/focus.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
+			focus = import ./options/applications/systemSettings/focus.nix { inherit lib settingsLib; };
 		};
 		finder = import ./options/applications/finder.nix { inherit lib commandsLib configLib pathLib typesLib; };
 	};
