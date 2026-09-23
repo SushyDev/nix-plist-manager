@@ -38,6 +38,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "EnableStandardClickToShowDesktop",
@@ -64,6 +65,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "AutoHide",
@@ -94,6 +96,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "AppWindowGroupingBehavior",
@@ -120,6 +123,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "GloballyEnabled",
@@ -146,6 +150,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "HideDesktop",
@@ -172,6 +177,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "StandardHideDesktopIcons",
@@ -198,6 +204,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "launchanim",
@@ -224,6 +231,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "autohide",
@@ -248,6 +256,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "autohide-time-modifier",
@@ -268,6 +277,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "autohide-delay",
@@ -295,6 +305,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "orientation",
@@ -320,6 +331,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "magnification",
@@ -344,6 +356,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "largesize",
@@ -371,6 +384,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "minimize-to-application",
@@ -401,6 +415,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "mineffect",
@@ -427,6 +442,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "show-process-indicators",
@@ -453,6 +469,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "show-recents",
@@ -479,6 +496,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "tilesize",
@@ -512,6 +530,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "NSGlobalDomain",
 					"key": "AppleActionOnDoubleClick",
@@ -537,6 +556,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "EnableTilingByEdgeDrag",
@@ -561,6 +581,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "EnableTilingOptionAccelerator",
@@ -600,6 +621,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-bl-corner",
@@ -624,6 +646,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-bl-modifier",
@@ -658,6 +681,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-br-corner",
@@ -682,6 +706,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-br-modifier",
@@ -716,6 +741,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-tl-corner",
@@ -740,6 +766,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-tl-modifier",
@@ -774,6 +801,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-tr-corner",
@@ -798,6 +826,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "wvous-tr-modifier",
@@ -819,6 +848,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "mru-spaces",
@@ -845,6 +875,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.spaces",
 					"key": "spans-displays",
@@ -871,6 +902,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "enterMissionControlByTopWindowDrag",
@@ -897,6 +929,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.dock",
 					"key": "expose-group-apps",
@@ -923,6 +956,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "NSGlobalDomain",
 					"key": "AppleSpacesSwitchOnActivate",
@@ -948,6 +982,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "EnableTiledWindowMargins",
@@ -979,6 +1014,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.widgets",
 					"key": "widgetAppearance",
@@ -1005,6 +1041,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "StageManagerHideWidgets",
@@ -1031,6 +1068,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "StandardHideWidgets",
@@ -1077,6 +1115,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "NSGlobalDomain",
 					"key": "NSCloseAlwaysConfirmsChanges",
@@ -1103,6 +1142,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "NSGlobalDomain",
 					"key": "NSQuitAlwaysKeepsWindows",
@@ -1128,6 +1168,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.WindowManager",
 					"key": "EnableTopTilingByEdgeDrag",
@@ -1159,6 +1200,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "NSGlobalDomain",
 					"key": "AppleWindowTabbingMode",

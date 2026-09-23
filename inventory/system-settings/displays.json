@@ -18,6 +18,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.Displays-Settings.extension",
 					"key": "showListByDefault",
@@ -45,6 +46,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": true,
 					"domain": "com.apple.universalcontrol",
 					"key": "Disable",
@@ -305,6 +307,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": true,
 					"domain": "com.apple.universalcontrol",
 					"key": "DisableMagicEdges",
@@ -368,6 +371,7 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": true,
 					"domain": "com.apple.windowserver.displays",
 					"key": "TVConnectPolicy",

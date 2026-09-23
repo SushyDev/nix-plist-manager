@@ -5,46 +5,6 @@
 		"Menu Bar"
 	],
 	"settings": {
-		"accessibility-shortcuts": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.accessibilityShortcuts",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.accessibilityShortcuts"
-			],
-			"storage": [
-				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "AccessibilityShortcuts",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Accessibility Shortcuts"
-		},
-		"airdrop": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.airdrop",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.airdrop"
-			],
-			"storage": [
-				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "AirDrop",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "AirDrop"
-		},
 		"automatically-hide-and-show-the-menu-bar": {
 			"choices": [
 				"Always",
@@ -55,36 +15,47 @@
 			"firstSeen": "26A428",
 			"kind": "enum",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.menuBar.autoHideAndShowTheMenuBar",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/AutoHideMenuBarOptionEntity.autoHideMenuBar"
-			],
-			"title": "Automatically hide and show the menu bar"
-		},
-		"bluetooth": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.bluetooth",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.bluetooth"
+				"intent:ControlCenterSettingsIntents.appex/AutoHideMenuBarOptionEntity.autoHideMenuBar",
+				"option:applications.systemSettings.menuBar.autoHideAndShowTheMenuBar"
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "choice",
+					"byHost": false,
 					"domain": "com.apple.controlcenter",
-					"key": "Bluetooth",
-					"scope": "user",
-					"type": "int"
+					"key": "AutoHideMenuBarOption",
+					"scope": "user"
+				},
+				{
+					"as": "hidden",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "_HIHideMenuBar",
+					"scope": "user"
+				},
+				{
+					"as": "visibleInFullScreen",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "AppleMenuBarVisibleInFullscreen",
+					"scope": "user"
 				}
 			],
-			"title": "Bluetooth"
+			"title": "Automatically hide and show the menu bar",
+			"verified": {
+				"build": "26A428",
+				"commands": "85321f24702f",
+				"date": "2026-09-23"
+			}
 		},
 		"clock-options-announce-the-time": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
 			"section": "Clock Options",
+			"skip": "stored in a nested dictionary in com.apple.speech.synthesis.general.prefs, which settings can't write partially yet",
 			"sources": [
 				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.announceTime"
 			],
@@ -94,21 +65,53 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.menuBar.clock.displayTheTimeWithSeconds",
 			"section": "Clock Options",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.showSeconds"
+				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.showSeconds",
+				"option:applications.systemSettings.menuBar.clock.displayTheTimeWithSeconds"
 			],
-			"title": "Display the time with seconds"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.menuextra.clock",
+					"key": "ShowSeconds",
+					"scope": "user"
+				}
+			],
+			"title": "Display the time with seconds",
+			"verified": {
+				"build": "26A428",
+				"commands": "e04e9e6776c9",
+				"date": "2026-09-23"
+			}
 		},
 		"clock-options-flash-the-time-separators": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.menuBar.clock.flashTheTimeSeparators",
 			"section": "Clock Options",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.flashSeparators"
+				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.flashSeparators",
+				"option:applications.systemSettings.menuBar.clock.flashTheTimeSeparators"
 			],
-			"title": "Flash the time separators"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.menuextra.clock",
+					"key": "FlashDateSeparators",
+					"scope": "user"
+				}
+			],
+			"title": "Flash the time separators",
+			"verified": {
+				"build": "26A428",
+				"commands": "d1ae3901f817",
+				"date": "2026-09-23"
+			}
 		},
 		"clock-options-interval": {
 			"choices": [
@@ -120,6 +123,7 @@
 			"kind": "enum",
 			"lastSeen": "26A428",
 			"section": "Clock Options",
+			"skip": "stored in a nested dictionary in com.apple.speech.synthesis.general.prefs, which settings can't write partially yet",
 			"sources": [
 				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.timeAnnouncementsInterval"
 			],
@@ -130,6 +134,7 @@
 			"kind": "bool",
 			"lastSeen": "26A428",
 			"section": "Clock Options",
+			"skip": "only offered with 12-hour time; not verified yet",
 			"sources": [
 				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.showAMPM"
 			],
@@ -139,21 +144,53 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.menuBar.clock.showDate",
 			"section": "Clock Options",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.showDate"
+				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.showDate",
+				"option:applications.systemSettings.menuBar.clock.showDate"
 			],
-			"title": "Show date"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.menuextra.clock",
+					"key": "ShowDate",
+					"scope": "user"
+				}
+			],
+			"title": "Show date",
+			"verified": {
+				"build": "26A428",
+				"commands": "7c84541e7500",
+				"date": "2026-09-23"
+			}
 		},
 		"clock-options-show-the-day-of-the-week": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.menuBar.clock.showTheDayOfTheWeek",
 			"section": "Clock Options",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.showDayOfWeek"
+				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.showDayOfWeek",
+				"option:applications.systemSettings.menuBar.clock.showTheDayOfTheWeek"
 			],
-			"title": "Show the day of the week"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.menuextra.clock",
+					"key": "ShowDayOfWeek",
+					"scope": "user"
+				}
+			],
+			"title": "Show the day of the week",
+			"verified": {
+				"build": "26A428",
+				"commands": "889db9981406",
+				"date": "2026-09-23"
+			}
 		},
 		"clock-options-style": {
 			"choices": [
@@ -163,205 +200,114 @@
 			"firstSeen": "26A428",
 			"kind": "enum",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.menuBar.clock.style",
 			"section": "Clock Options",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.clockStyle"
-			],
-			"title": "Style"
-		},
-		"control-center-module-always-show-in-menu-bar": {
-			"firstSeen": "26A428",
-			"kind": "bool",
-			"lastSeen": "26A428",
-			"section": "Control Center Module",
-			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ControlCenterModule.alwaysShowInMenuBar"
-			],
-			"title": "Always Show in Menu Bar"
-		},
-		"control-center-module-show-in-menu-bar": {
-			"firstSeen": "26A428",
-			"kind": "bool",
-			"lastSeen": "26A428",
-			"section": "Control Center Module",
-			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ControlCenterModule.showInMenuBar"
-			],
-			"title": "Show in Menu Bar"
-		},
-		"display": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.display",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.display"
+				"intent:ControlCenterSettingsIntents.appex/ClockOptionsEntity.clockStyle",
+				"option:applications.systemSettings.menuBar.clock.style"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Display",
-					"scope": "user",
-					"type": "int"
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.menuextra.clock",
+					"key": "IsAnalog",
+					"scope": "user"
 				}
 			],
-			"title": "Display"
+			"title": "Style",
+			"verified": {
+				"build": "26A428",
+				"commands": "37bd34bd9e56",
+				"date": "2026-09-23"
+			}
 		},
-		"fast-user-switching-menu-style": {
+		"menu-bar-controls": {
 			"choices": [
 				"Full Name",
 				"Account Name",
 				"Icon"
 			],
 			"firstSeen": "26A428",
-			"kind": "enum",
+			"kind": "bool",
 			"lastSeen": "26A428",
-			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/UserSwitcherMenuStyleEntity.userSwitcherMenuStyle"
-			],
-			"title": "Fast User Switching menu style"
-		},
-		"focus": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.focusModes",
+			"option": "applications.systemSettings.menuBar.layout",
 			"section": null,
 			"sources": [
-				"option:applications.systemSettings.menuBar.focusModes"
+				"intent:ControlCenterSettingsIntents.appex/ControlCenterModule.alwaysShowInMenuBar",
+				"intent:ControlCenterSettingsIntents.appex/ControlCenterModule.showInMenuBar",
+				"intent:ControlCenterSettingsIntents.appex/ShowBatteryPercentageEntity.showBatteryPercentage",
+				"intent:ControlCenterSettingsIntents.appex/UserSwitcherMenuStyleEntity.userSwitcherMenuStyle",
+				"option:applications.systemSettings.menuBar.accessibilityShortcuts",
+				"option:applications.systemSettings.menuBar.airdrop",
+				"option:applications.systemSettings.menuBar.battery",
+				"option:applications.systemSettings.menuBar.batteryShowPercentage",
+				"option:applications.systemSettings.menuBar.bluetooth",
+				"option:applications.systemSettings.menuBar.display",
+				"option:applications.systemSettings.menuBar.fastUserSwitching",
+				"option:applications.systemSettings.menuBar.focusModes",
+				"option:applications.systemSettings.menuBar.hearing",
+				"option:applications.systemSettings.menuBar.keyboardBrightness",
+				"option:applications.systemSettings.menuBar.layout",
+				"option:applications.systemSettings.menuBar.musicRecognition",
+				"option:applications.systemSettings.menuBar.nowPlaying",
+				"option:applications.systemSettings.menuBar.screenMirroring",
+				"option:applications.systemSettings.menuBar.sound",
+				"option:applications.systemSettings.menuBar.stageManager",
+				"option:applications.systemSettings.menuBar.wifi"
 			],
 			"storage": [
 				{
+					"as": "controlCenter",
 					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Focus",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Focus"
-		},
-		"hearing": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.hearing",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.hearing"
-			],
-			"storage": [
+					"domain": "com.apple.controlcenter.bentoboxes",
+					"key": null,
+					"scope": "user"
+				},
 				{
+					"as": "menuExtras",
 					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Hearing",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Hearing"
-		},
-		"keyboard-brightness": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.keyboardBrightness",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.keyboardBrightness"
-			],
-			"storage": [
+					"domain": "com.apple.controlcenter.displayablemenuextras",
+					"key": null,
+					"scope": "user"
+				},
 				{
+					"as": "modules",
 					"byHost": true,
 					"domain": "com.apple.controlcenter",
-					"key": "KeyboardBrightness",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Keyboard Brightness"
-		},
-		"music-recognition": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.musicRecognition",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.musicRecognition"
-			],
-			"storage": [
+					"key": null,
+					"scope": "user"
+				},
 				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "MusicRecognition",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Music Recognition"
-		},
-		"now-playing": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.nowPlaying",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.nowPlaying"
-			],
-			"storage": [
+					"as": "positions",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/com.apple.MenuBar/Library/Preferences/com.apple.MenuBar",
+					"key": "TrailingItemPreferredPositions",
+					"scope": "user"
+				},
 				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Now Playing",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Now Playing"
-		},
-		"other-modules-battery": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.battery",
-			"section": "Other Modules",
-			"sources": [
-				"option:applications.systemSettings.menuBar.battery"
-			],
-			"storage": [
+					"as": "showSiri",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.controlcenter/Library/Preferences/group.com.apple.controlcenter",
+					"key": "showSiri",
+					"scope": "user"
+				},
 				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Battery",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Battery"
-		},
-		"other-modules-battery-show-percentage": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.batteryShowPercentage",
-			"section": "Other Modules > Battery",
-			"sources": [
-				"option:applications.systemSettings.menuBar.batteryShowPercentage"
-			],
-			"storage": [
+					"as": "showSpotlight",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.controlcenter/Library/Preferences/group.com.apple.controlcenter",
+					"key": "showSpotlight",
+					"scope": "user"
+				},
 				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "BatteryShowPercentage",
-					"scope": "user",
-					"type": "bool"
+					"as": "siri",
+					"byHost": false,
+					"domain": "com.apple.Siri",
+					"key": "StatusMenuVisible",
+					"scope": "user"
 				}
 			],
-			"title": "Show Percentage"
+			"title": "Menu Bar Controls"
 		},
 		"recent-documents-applications-and-servers": {
 			"choices": [
@@ -376,128 +322,46 @@
 			"firstSeen": "26A428",
 			"kind": "enum",
 			"lastSeen": "26A428",
+			"skip": "the limit is com.apple.LSSharedFileList.MaxAmount inside the shared file list archives, which sharedfilelistd owns; com.apple.controlcenter NumberOfRecents only mirrors it",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/RecentDocumentsOptionEntity.recentDocuments"
-			],
-			"title": "Recent documents, applications, and servers"
-		},
-		"screen-mirroring": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.screenMirroring",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.screenMirroring"
+				"intent:ControlCenterSettingsIntents.appex/RecentDocumentsOptionEntity.recentDocuments",
+				"option:applications.systemSettings.menuBar.recentDocumentsApplicationsAndServers"
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.controlcenter",
-					"key": "Screen Mirroring",
-					"scope": "user",
-					"type": "int"
+					"key": "NumberOfRecents",
+					"scope": "user"
 				}
 			],
-			"title": "Screen Mirroring"
-		},
-		"show-battery-percentage": {
-			"firstSeen": "26A428",
-			"kind": "bool",
-			"lastSeen": "26A428",
-			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ShowBatteryPercentageEntity.showBatteryPercentage"
-			],
-			"title": "Show Battery Percentage"
+			"title": "Recent documents, applications, and servers"
 		},
 		"show-menu-bar-background": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.menuBar.showMenuBarBackground",
 			"sources": [
-				"intent:ControlCenterSettingsIntents.appex/ShowMenuBarBackgroundEntity.showMenuBarBackground"
-			],
-			"title": "Show menu bar background"
-		},
-		"sound": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.sound",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.sound"
+				"intent:ControlCenterSettingsIntents.appex/ShowMenuBarBackgroundEntity.showMenuBarBackground",
+				"option:applications.systemSettings.menuBar.showMenuBarBackground"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Sound",
-					"scope": "user",
-					"type": "int"
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "SLSMenuBarUseBlurredAppearance",
+					"scope": "user"
 				}
 			],
-			"title": "Sound"
-		},
-		"stage-manager": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.stageManager",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.stageManager"
-			],
-			"storage": [
-				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Stage Manager",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "Stage Manager"
-		},
-		"user-switcher": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.fastUserSwitching",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.fastUserSwitching"
-			],
-			"storage": [
-				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "UserSwitcher",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "User Switcher"
-		},
-		"wifi": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.wifi",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.menuBar.wifi"
-			],
-			"storage": [
-				{
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "WiFi",
-					"scope": "user",
-					"type": "int"
-				}
-			],
-			"title": "WiFi"
+			"title": "Show menu bar background",
+			"verified": {
+				"build": "26A428",
+				"commands": "6bbf0f76474e",
+				"date": "2026-09-23"
+			}
 		}
 	}
 }

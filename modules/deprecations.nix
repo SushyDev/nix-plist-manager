@@ -26,5 +26,17 @@ in
 		(renamed "user"
 			[ "applications" "systemSettings" "desktopAndDock" "windows" "tiledWindowsHaveMargin" ]
 			[ "applications" "systemSettings" "desktopAndDock" "windows" "tiledWindowsHaveMargins" ])
+	]
+	# the menu bar is arranged in System Settings and captured since macOS 27
+	++ lib.concatMap (module:
+		removed "user" [ "applications" "systemSettings" "menuBar" module ] ''
+			Arrange the menu bar in System Settings and capture it with
+			`nix run github:sushydev/nix-plist-manager#capture -- applications.systemSettings.menuBar.layout <directory>`,
+			then set applications.systemSettings.menuBar.layout to that directory.
+		''
+	) [
+		"wifi" "bluetooth" "airdrop" "focusModes" "stageManager" "screenMirroring" "display" "sound" "nowPlaying"
+		"accessibilityShortcuts" "battery" "batteryShowPercentage" "musicRecognition" "hearing" "fastUserSwitching"
+		"keyboardBrightness"
 	];
 }

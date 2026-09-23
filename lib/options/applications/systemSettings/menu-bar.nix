@@ -1,277 +1,147 @@
-{ lib, commandsLib }:
+{ lib, settingsLib, ... }:
 let
-	calculateBitmaskValue = boolOptions: bitmaskMap:
-		lib.foldl' builtins.bitOr 0 (lib.mapAttrsToList (name: value:
-			if builtins.isNull boolOptions.${name} then 0
-			else if boolOptions.${name} or false then value 
-			else 0
-		) bitmaskMap);
+	inherit (settingsLib) setting global user domain byHost bool enum storedAs snapshot restarts onlyWhen;
 
-	/**
-	 * Maps the battery settings to their corresponding bitmask value.
-	 *
-	 * @param value An attribute set with "Show in Menu Bar" and "Show in Control Center" boolean options.
-	 * @return The calculated bitmask value for the battery settings.
-	 */
-	mapBatteryValue = value:
-		if builtins.isNull value then null
-		else (if value.showInMenuBar then 0 else 8) + (if value.showInControlCenter then 1 else 0);
+	pane = "com.apple.settings.controlCenter";
+	option = name: "applications.systemSettings.menuBar.${name}";
 
-	mkShowActiveHideMenuBarOption = optionName: rec {
-		path = [ "System Settings" "Control Center" optionName ];
-		description = "";
+	clock = name: user "com.apple.menuextra.clock" name;
+	groupContainer = group: "~/Library/Group Containers/${group}/Library/Preferences/${group}";
 
-		mapping = {
-			"unset" = {
-				command = commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" optionName;
-			};
-			"always" = {
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" optionName "int" "18";
-			};
-			"active" = {
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" optionName "int" "24";
-			};
-			"never" = {
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" optionName "int" "24";
-			};
-		};
-
-		default = null;
-
-		option = lib.mkOption {
-			inherit description default;
-			type = lib.types.nullOr (lib.types.enum (lib.attrNames mapping));
-		};
-
-		config = {
-			perUser = true;
-			command = value:
-				if builtins.isNull value then null
-				else mapping.${lib.escapeShellArg value}.command;
-		};
-	};
-
-	mkShowHideMenuBarOption = optionName: rec {
-		path = [ "System Settings" "Control Center" optionName ];
-		description = "";
-
-		mapping = {
-			"unset" = {
-				command = commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" optionName;
-			};
-			"true" = {
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" optionName "int" "18";
-			};
-			"false" = {
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" optionName "int" "24";
-			};
-		};
-
-		default = null;
-
-		option = lib.mkOption {
-			inherit description default;
-			type = lib.types.nullOr (lib.types.either lib.types.bool (lib.types.enum [ "unset" ]));
-		};
-
-		config = {
-			perUser = true;
-			command = value:
-				if builtins.isNull value then mapping."null".command
-				else if value == true then mapping."true".command
-				else mapping."false".command;
-		};
-	};
-
-	mkBitmapOption = options: rec {
-		path = [ "System Settings" "Control Center" options.name ];
-		description = "";
-
-		mapping = lib.mapAttrs (name: bitValue:
-			{
-				description = "System Settings > Control Center > ${options.name} > ${name}";
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" options.key "int" (toString bitValue);
-			}
-		) options.mapping // {
-			"unset" = {
-				command = commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" options.key;
-			};
-		};
-
-		default = null;
-
-		option = lib.mkOption {
-			inherit description default;
-			type = lib.types.nullOr (lib.types.either (lib.types.enum ["unset"]) (lib.types.submodule {
-				options = lib.mapAttrs (name: options: lib.mkOption {
-					description = "System Settings > Control Center > ${options.name} > ${name}";
-					type = lib.types.nullOr lib.types.bool;
-					default = null;
-				}) options.mapping;
-			}));
-			apply = value:
-				if builtins.isNull value then null
-				else if value == "unset" then "unset"
-				else calculateBitmaskValue value options.mapping;
-		};
-
-		config = {
-			perUser = true;
-			command = value:
-				if builtins.isNull value then null
-				else if value == "unset" then commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" options.key
-				else commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" options.key "int" (toString value);
-		};
-	};
-
-	showActiveHideMenuBarOptions = {
-		"focusModes" = "Focus";
-		"screenMirroring" = "Screen Mirroring";
-		"display" = "Display";
-		"sound" = "Sound";
-		"nowPlaying" = "Now Playing";
-	};
-
-	showHideMenuBarOptions = {
-		"wifi" = "WiFi";
-		"bluetooth" = "Bluetooth";
-		"airdrop" = "AirDrop";
-		"stageManager" = "Stage Manager";
-	};
-
-	bitmapOptions = {
-		accessibilityShortcuts = {
-			name = "Accessibility Shortcuts";
-			key = "AccessibilityShortcuts";
-			mapping = {
-				showInMenuBar = 2;
-				showInControlCenter = 1;
-			};
-		};
-		musicRecognition = {
-			name = "Music Recognition";
-			key = "MusicRecognition";
-			mapping = {
-				showInMenuBar = 2;
-				showInControlCenter = 1;
-			};
-		};
-		hearing = {
-			name = "Hearing";
-			key = "Hearing";
-			mapping = {
-				showInMenuBar = 2;
-				showInControlCenter = 1;
-			};
-		};
-		fastUserSwitching = {
-			name = "User Switcher";
-			key = "UserSwitcher";
-			mapping = {
-				showInMenuBar = 2;
-				showInControlCenter = 1;
-			};
-		};
-		keyboardBrightness = {
-			name = "Keyboard Brightness";
-			key = "KeyboardBrightness";
-			mapping = {
-				showInMenuBar = 2;
-				showInControlCenter = 1;
+	# the menu bar clock is drawn by Control Center, which reads these at launch
+	clockSwitch = { ui, key, control, relations ? [] }: setting {
+		inherit relations;
+		ui = [ "System Settings" "Menu Bar" "Clock Options…" ui ];
+		storage = clock key;
+		value = bool;
+		behaviors = [ (restarts "ControlCenter") ];
+		verify = {
+			inherit pane;
+			open = [ "Clock Options…" ];
+			operate = [ "click" control ];
+			expect = {
+				true = { ${control} = 1; };
+				false = { ${control} = 0; };
 			};
 		};
 	};
+
+	digitalOnly = onlyWhen (option "clock.style") (style: style == "Digital") "an analog clock doesn't show it";
 in
-(lib.mapAttrs (name: optionName: mkShowActiveHideMenuBarOption optionName) showActiveHideMenuBarOptions) //
-(lib.mapAttrs (name: optionName: mkShowHideMenuBarOption optionName) showHideMenuBarOptions) //
-(lib.mapAttrs (name: options: mkBitmapOption options) bitmapOptions) //
 {
-	battery = rec {
-		path = [ "System Settings" "Control Center" "Other Modules" "Battery" ];
-		description = "";
-
-		mapping = {
-			"unset" = {
-				command = commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery";
-			};
-			"{ showInMenuBar = true; showInControlCenter = false }" = {
-				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = true; showInControlCenter = false; });
-			};
-			"{ showInMenuBar = false; showInControlCenter = true }" = {
-				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = false; showInControlCenter = true; });
-			};
-			"{ showInMenuBar = true; showInControlCenter = true }" = {
-				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = true; showInControlCenter = true; });
-			};
-			"{ showInMenuBar = false; showInControlCenter = false }" = {
-				command = value: commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (mapBatteryValue { showInMenuBar = false; showInControlCenter = false; });
+	autoHideAndShowTheMenuBar = setting {
+		ui = [ "System Settings" "Menu Bar" "Automatically hide and show the menu bar" ];
+		storage = {
+			hidden = global "_HIHideMenuBar";
+			visibleInFullScreen = global "AppleMenuBarVisibleInFullscreen";
+			choice = user "com.apple.controlcenter" "AutoHideMenuBarOption";
+		};
+		value = enum {
+			Always = { hidden = true; visibleInFullScreen = false; choice = 0; };
+			"On Desktop Only" = { hidden = true; visibleInFullScreen = true; choice = 1; };
+			"In Full Screen Only" = { hidden = false; visibleInFullScreen = false; choice = 2; };
+			Never = { hidden = false; visibleInFullScreen = true; choice = 3; };
+		};
+		verify = {
+			inherit pane;
+			expect = {
+				Always = { autohide-menubar = "Always"; };
+				"On Desktop Only" = { autohide-menubar = "On Desktop Only"; };
+				"In Full Screen Only" = { autohide-menubar = "In Full Screen Only"; };
+				Never = { autohide-menubar = "Never"; };
 			};
 		};
+	};
 
-		default = null;
+	showMenuBarBackground = setting {
+		ui = [ "System Settings" "Menu Bar" "Show menu bar background" ];
+		storage = global "SLSMenuBarUseBlurredAppearance";
+		value = bool;
+		verify = {
+			inherit pane;
+			# the switch sits under the window's title bar, where a click doesn't reach it
+			operate = [ "press" "Show menu bar background" ];
+			expect = {
+				true = { "Show menu bar background" = 1; };
+				false = { "Show menu bar background" = 0; };
+			};
+		};
+	};
 
-		option = lib.mkOption {
-			inherit description default;
-			type = lib.types.nullOr (lib.types.either (lib.types.enum [ "unset" ]) (lib.types.submodule {
-				options = {
-					showInMenuBar = lib.mkOption {
-						description = "System Settings > Control Center > Other Modules > Battery";
-						type = lib.types.nullOr lib.types.bool;
-						default = null;
-					};
-					showInControlCenter = lib.mkOption {
-						description = "System Settings > Control Center > Other Modules > Battery";
-						type = lib.types.nullOr lib.types.bool;
-						default = null;
-					};
+	clock = {
+		showDate = setting {
+			ui = [ "System Settings" "Menu Bar" "Clock Options…" "Show date" ];
+			storage = clock "ShowDate";
+			value = storedAs { true = 1; false = 2; } bool;
+			behaviors = [ (restarts "ControlCenter") ];
+			verify = {
+				inherit pane;
+				open = [ "Clock Options…" ];
+				operate = [ "click" "show-date" ];
+				expect = {
+					true = { show-date = 1; };
+					false = { show-date = 0; };
 				};
-			}));
-			apply = value: if builtins.isNull value then null else mapBatteryValue value;
-		};
-
-		config = {
-			perUser = true;
-			command = value:
-				if builtins.isNull value then null
-				else if value == "unset" then commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery"
-				else commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "Battery" "int" (toString value);
-		};
-	};
-	batteryShowPercentage = rec {
-		path = [ "System Settings" "Control Center" "Other Modules" "Battery" "Show Percentage" ];
-		description = "";
-
-		mapping = {
-			"unset" = {
-				command = commandsLib.defaults.delete "~/Library/Preferences/ByHost/com.apple.controlcenter" "BatteryShowPercentage";
-			};
-			"true" = {
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "BatteryShowPercentage" "bool" "true";
-			};
-			"false" = {
-				command = commandsLib.defaults.write "~/Library/Preferences/ByHost/com.apple.controlcenter" "BatteryShowPercentage" "bool" "false";
 			};
 		};
 
-		default = null;
-
-		option = lib.mkOption {
-			inherit description default;
-			type = lib.types.nullOr (lib.types.either lib.types.bool (lib.types.enum [ "unset" ]));
+		showTheDayOfTheWeek = clockSwitch {
+			ui = "Show the day of the week";
+			key = "ShowDayOfWeek";
+			control = "show-day-of-week";
 		};
 
-		config = {
-			perUser = true;
-			command = value:
-				if builtins.isNull value then mapping."null".command
-				else if value == true then mapping."true".command
-				else mapping."false".command;
+		style = setting {
+			ui = [ "System Settings" "Menu Bar" "Clock Options…" "Style" ];
+			storage = clock "IsAnalog";
+			value = enum { Digital = false; Analog = true; };
+			behaviors = [ (restarts "ControlCenter") ];
+			verify = {
+				inherit pane;
+				open = [ "Clock Options…" ];
+				operate = [ [ "press" "AXRadioButton:Analog" ] [ "press" "AXRadioButton:Digital" ] ];
+				expect = {
+					Digital = { "AXRadioButton:Digital" = 1; };
+					Analog = { "AXRadioButton:Analog" = 1; };
+				};
+			};
+		};
+
+		flashTheTimeSeparators = clockSwitch {
+			ui = "Flash the time separators";
+			key = "FlashDateSeparators";
+			control = "flash-separators";
+			relations = [ digitalOnly ];
+		};
+
+		displayTheTimeWithSeconds = clockSwitch {
+			ui = "Display the time with seconds";
+			key = "ShowSeconds";
+			control = "show-seconds";
+			relations = [ digitalOnly ];
 		};
 	};
 
-	# menuBarOnly = {
-	# 	spotlight = false;
-	# 	siri = false;
-	# };
-	# automaticallyHideAndShowTheMenuBar = "In Full Screen Only";
+	# Which modules show in the menu bar and Control Center, how, and in what order, plus
+	# the Battery options: arranged in System Settings and captured, rather than typed.
+	layout = setting {
+		ui = [ "Menu Bar" "Menu Bar Controls" ];
+		description = ''
+			The menu bar and Control Center layout, as arranged in System Settings. Arrange it,
+			then save it into your configuration with
+			`nix run github:sushydev/nix-plist-manager#capture -- applications.systemSettings.menuBar.layout <directory>`
+			and set this option to that directory.
+		'';
+		storage = {
+			modules = byHost (domain "com.apple.controlcenter");
+			controlCenter = byHost (domain "com.apple.controlcenter.bentoboxes");
+			menuExtras = byHost (domain "com.apple.controlcenter.displayablemenuextras");
+			positions = user (groupContainer "com.apple.MenuBar") "TrailingItemPreferredPositions";
+			siri = user "com.apple.Siri" "StatusMenuVisible";
+			showSiri = user (groupContainer "group.com.apple.controlcenter") "showSiri";
+			showSpotlight = user (groupContainer "group.com.apple.controlcenter") "showSpotlight";
+		};
+		value = snapshot;
+		behaviors = [ (restarts "ControlCenter") ];
+	};
 }
