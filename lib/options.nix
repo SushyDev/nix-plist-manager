@@ -11,6 +11,7 @@ in
 	applications = {
 		systemSettings = {
 			general = import ./options/applications/systemSettings/general.nix { inherit lib settingsLib; };
+			accessibility = import ./options/applications/systemSettings/accessibility.nix { inherit lib settingsLib; };
 			appearance = import ./options/applications/systemSettings/appearance.nix { inherit lib settingsLib; };
 			appleIntelligenceAndSiri = import ./options/applications/systemSettings/apple-intelligence-and-siri.nix { inherit lib settingsLib; };
 			desktopAndDock = import ./options/applications/systemSettings/desktop-and-dock.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib settingsLib; };
