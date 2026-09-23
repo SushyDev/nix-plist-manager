@@ -47,6 +47,7 @@ rec {
 
 	text = {
 		kind = "string";
+		read = { direct = true; };
 		type = lib.types.str;
 		choices = [];
 		examples = [ "…" ];
@@ -57,6 +58,7 @@ rec {
 	# an ordered list of strings, stored as an array, e.g. preferred languages
 	strings = {
 		kind = "list";
+		read = { direct = true; };
 		type = lib.types.listOf lib.types.str;
 		choices = [];
 		examples = [ [ "…" ] ];
@@ -71,6 +73,7 @@ rec {
 		in
 		{
 			kind = "number";
+			read = { direct = true; };
 			inherit min max unit;
 			type = if float then lib.types.numbers.between min max else lib.types.ints.between min max;
 			choices = [];
@@ -107,6 +110,7 @@ rec {
 	# entry. Each entry, a whole domain or one key, is replaced by what was captured.
 	snapshot = {
 		kind = "snapshot";
+		read = { snapshot = true; };
 		type = lib.types.path;
 		choices = [];
 		examples = [ "/path/to/snapshot" ];
@@ -118,6 +122,7 @@ rec {
 	# Shortcut offers. Switches left null are left as they are.
 	dictSwitches = entries: {
 		kind = "switches";
+		read = { dict = entries; };
 		type = lib.types.submodule {
 			options = lib.mapAttrs (name: _: lib.mkOption {
 				type = lib.types.nullOr lib.types.bool;
@@ -140,6 +145,7 @@ rec {
 	# Switches left null are left as they are.
 	members = { items, listedWhen ? true }: {
 		kind = "switches";
+		read = { members = items; inherit listedWhen; };
 		type = lib.types.submodule {
 			options = lib.mapAttrs (name: _: lib.mkOption {
 				type = lib.types.nullOr lib.types.bool;
@@ -169,6 +175,7 @@ rec {
 	# the same, for a key whose absence means some flags are set
 	flagsWhenAbsent = absentValue: bits: {
 		kind = "flags";
+		read = { flags = bits; absent = absentValue; };
 		type = lib.types.submodule {
 			options = lib.mapAttrs (name: _: lib.mkOption {
 				type = lib.types.nullOr lib.types.bool;
