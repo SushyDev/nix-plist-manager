@@ -2,3 +2,4 @@
 *.bak
 result
 __pycache__/
+tests/modules/flake.lock

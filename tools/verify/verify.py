@@ -12,7 +12,7 @@ Commands:
                                     Operate every checkbox, pop-up and radio button in a pane and
                                     record which preferences each choice writes, putting it back.
     apply <option> <json value>     Run the command an option generates for a value.
-    check [--pane P] [--setting S]  For every inventory setting with an option and a `ui` spec:
+    check [--pane P] [--setting S]  For every inventory setting whose option has a `verify` spec:
                                     back up the keys it stores, apply each value in the spec,
                                     reopen System Settings and compare the controls against the
                                     spec, then restore the backup. Passing settings get `verified`.
@@ -20,27 +20,27 @@ Commands:
 <pane> is the identifier of the pane's sidebar item, e.g. com.apple.settings.appearance
 (`ax dump` lists them).
 
-The `ui` spec on an inventory setting:
+`check` reads the spec from the setting's `verify` field in Nix (see lib/settings/setting.nix):
 
-    "ui": {
-        "pane": "com.apple.settings.appearance",
-        "open": ["Hot Corners…"],                     # optional: controls to press first
-        "expect": {
-            "true":  { "Tint window background with wallpaper color": 1 },
-            "false": { "Tint window background with wallpaper color": 0 },
-            "\"dark\"": { "Dark": { "selected": true } }
-        }
-    }
+    verify = {
+      pane = "com.apple.settings.appearance";
+      open = [ "Hot Corners…" ];                     # optional: controls to press first
+      operate = [ "click" "TintWindowBackgroundToggle" ];  # optional, see below
+      expect = {
+        true = { TintWindowBackgroundToggle = 1; };
+        false = { TintWindowBackgroundToggle = 0; };
+      };
+    };
 
-Optionally, "operate": ["click", "<label>"] (an ax command) flips the control in the UI, twice,
-and fails unless every preference it writes is one the option writes too. For controls that
-don't toggle, give the action there and the one back: [["press", "A"], ["press", "B"]].
+`expect` maps each value (as the option spells it) to control labels (in `ax` label syntax)
+and the expected AXValue, or { selected = true; } for buttons that only show selection.
 
-`check` finds the value System Settings shows before it starts and applies it again at the end, so
-order doesn't matter, but include the values people are likely to have.
+`operate` is an ax command that flips the control in the UI, twice, and fails unless that
+changes the keys the option writes. For controls that don't toggle, give the action there and
+the one back: [ [ "press" "A" ] [ "press" "B" ] ].
 
-Keys of `expect` are option values as JSON. Each maps control labels (in `ax` label syntax)
-to the expected AXValue, or to {"selected": true} for buttons that only show selection.
+`check` finds the value System Settings shows before it starts and applies it again at the end,
+so order doesn't matter, but include the values people are likely to have.
 
 Requires Accessibility permission. ax.swift is compiled on first use.
 """
@@ -330,6 +330,8 @@ def matches(actual: dict, expected) -> bool:
 	value = actual.get("value")
 	if isinstance(expected, (int, float)) and isinstance(value, (int, float)):
 		return abs(value - expected) < 1e-6
+	if isinstance(expected, str) and isinstance(value, str):
+		return value.strip() == expected.strip()  # some menus pad their titles
 	return value == expected
 
 
@@ -337,11 +339,11 @@ def check_ui_writes(spec: dict, option: dict) -> list[str]:
 	"""Operate the control in System Settings, there and back, and make sure that changes the keys
 	the option writes. If it doesn't, the option writes somewhere System Settings doesn't look
 	(e.g. a ByHost domain that shadows the one it uses) or the spec operates the wrong control."""
-	storage = inventory.storage_from_commands(option["commands"])
+	storage = storage_of(option)
 	operate = spec["operate"]
 	# a toggle is operated twice; radio buttons and pickers need an action there and one back
 	there_action, back_action = operate if isinstance(operate[0], list) else (operate, operate)
-	open_pane(spec["pane"], fresh=True, wait_for=there_action[1], steps=spec.get("open", []))
+	open_pane(spec["pane"], fresh=True, wait_for=there_action[1], steps=spec["open"])
 	time.sleep(1)
 	if back_action != there_action:
 		ax(*back_action)  # start from the "back" state, whatever the last applied value was
@@ -356,7 +358,9 @@ def check_ui_writes(spec: dict, option: dict) -> list[str]:
 	time.sleep(1.5)
 	back = storage_values(storage)
 
-	if any(there[key] != before[key] and back[key] == before[key] for key in before):
+	# the key has to move and move back; "back" may be an equivalent value (e.g. System Settings
+	# deletes a key the option writes as false)
+	if any(there[key] != before[key] and back[key] != there[key] for key in before):
 		return []
 	return [
 		f"operating {there_action} in System Settings doesn't change what the option writes "
@@ -379,38 +383,56 @@ def expectations_met(expectations: dict) -> list[str]:
 	return failures
 
 
-def current_value(spec: dict) -> str | None:
+NOTHING = object()
+
+
+def current_value(spec: dict):
 	"""The spec value System Settings shows right now, so it can be put back afterwards."""
-	open_pane(spec["pane"], fresh=True, steps=spec.get("open", []))
+	try:
+		open_pane(spec["pane"], fresh=True, steps=spec["open"])
+	except RuntimeError:
+		# the page only exists for some values (e.g. a list of the apps that have shortcuts)
+		return NOTHING
 	time.sleep(1)
-	for raw_value, expectations in spec["expect"].items():
-		if not expectations_met(expectations):
-			return raw_value
-	return None
+	for case in spec["expect"]:
+		if not expectations_met(case["controls"]):
+			return case["value"]
+	return NOTHING
 
 
-def check_setting(data: dict, setting_id: str, setting: dict, build: str, index: dict) -> bool:
-	spec, option = setting["ui"], setting["option"]
+def storage_of(entry: dict) -> list[dict]:
+	"""Where an option keeps its value: declared for settings, parsed from commands otherwise."""
+	return entry.get("storage") or inventory.storage_from_commands(entry["commands"])
+
+
+def check_setting(data: dict, setting: dict, build: str, entry: dict) -> bool:
+	spec, option = entry["verify"], setting["option"]
 	label = f"{inventory.pane_label(data)} :: {setting['title']}"
-	storage = [s for s in setting.get("storage", []) if s.get("scope") != "system"]  # needs root
+	commands = {json.dumps(case["value"]): command_for(option, case["value"]) for case in spec["expect"]}
+	# back up what the option stores, and what the values write besides (settings they imply)
+	storage = []
+	for key in storage_of(entry) + inventory.storage_from_commands(commands):
+		if key.get("scope") != "system" and key not in storage:  # system keys need root
+			storage.append(key)
 	before = storage_values(storage)
 	original = current_value(spec)
 	failures, command = [], ""
 	try:
-		for raw_value, expectations in spec["expect"].items():
-			command = command_for(option, json.loads(raw_value))
+		for case in spec["expect"]:
+			value, expectations = case["value"], case["controls"]
+			command = commands[json.dumps(value)]
 			subprocess.run(["/bin/bash", "-c", command], check=True)
 			time.sleep(spec.get("settle", 1.5))
 			first = next(iter(expectations))
-			open_pane(spec["pane"], fresh=True, wait_for=None if spec.get("open") else first, steps=spec.get("open", []))
-			failures += [f"{raw_value}: {failure}" for failure in expectations_met(expectations)]
-		if spec.get("operate"):
-			failures += check_ui_writes(spec, index[option])
+			open_pane(spec["pane"], fresh=True, wait_for=None if spec["open"] else first, steps=spec["open"])
+			failures += [f"{json.dumps(value)}: {failure}" for failure in expectations_met(expectations)]
+		if spec["operate"]:
+			failures += check_ui_writes(spec, entry)
 	finally:
 		# some options change live state (e.g. dark mode) that restoring preference keys alone
 		# doesn't undo, so put the original value back through the option first
-		if original is not None:
-			subprocess.run(["/bin/bash", "-c", command_for(option, json.loads(original))], check=False)
+		if original is not NOTHING:
+			subprocess.run(["/bin/bash", "-c", command_for(option, original)], check=False)
 		restore_values(before)
 		# let the processes the option restarts, and System Settings, pick the restored values up
 		for process in re.findall(r"killall '?([^' \n]+)'?", command) + ["System Settings"]:
@@ -431,7 +453,7 @@ def check_setting(data: dict, setting_id: str, setting: dict, build: str, index:
 	setting["verified"] = {
 		"build": build,
 		"date": datetime.date.today().isoformat(),
-		"commands": inventory.commands_digest(index[option]),
+		"commands": inventory.commands_digest(entry),
 	}
 	return True
 
@@ -769,10 +791,11 @@ def cmd_check(args):
 		for setting_id, setting in data["settings"].items():
 			if args.setting and args.setting != setting_id:
 				continue
-			if not (setting.get("ui") and setting.get("option")):
+			entry = index.get(setting.get("option"))
+			if not (entry and entry.get("verify")):
 				continue
 			try:
-				ok = check_setting(data, setting_id, setting, build, index)
+				ok = check_setting(data, setting, build, entry)
 			except Exception as error:  # one broken spec shouldn't stop the others
 				print(f"FAIL {inventory.pane_label(data)} :: {setting['title']}\n     {error}")
 				ok = False
