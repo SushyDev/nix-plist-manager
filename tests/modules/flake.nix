@@ -26,6 +26,8 @@
 					textHighlightColor = "Blue";
 				};
 				applications.systemSettings.desktopAndDock.dock.size = 48;
+				# renamed in modules/deprecations.nix: forwards with a warning
+				applications.systemSettings.desktopAndDock.windows.tiledWindowsHaveMargin = false;
 			};
 			systemSettings = {
 				applications.systemSettings.general.softwareUpdate.automaticallyDownloadNewUpdatesWhenAvailable = true;

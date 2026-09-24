@@ -13,7 +13,7 @@ in
 			general =  import ./options/applications/systemSettings/general.nix { inherit lib commandsLib; };
 			appearance = import ./options/applications/systemSettings/appearance.nix { inherit lib settingsLib; };
 			appleIntelligenceAndSiri = import ./options/applications/systemSettings/apple-intelligence-and-siri.nix { inherit lib commandsLib; };
-			desktopAndDock = import ./options/applications/systemSettings/desktop-and-dock.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
+			desktopAndDock = import ./options/applications/systemSettings/desktop-and-dock.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib settingsLib; };
 			menuBar =  import ./options/applications/systemSettings/menu-bar.nix { inherit lib commandsLib; };
 			spotlight = import ./options/applications/systemSettings/spotlight.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
 			notifications = import ./options/applications/systemSettings/notifications.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };

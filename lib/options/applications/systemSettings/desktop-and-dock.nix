@@ -1,7 +1,7 @@
-{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib }:
+{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib, settingsLib }:
 let
 	imports = {
-		inherit lib commandsLib pathLib typesLib configLib abstractionsLib;
+		inherit lib commandsLib pathLib typesLib configLib abstractionsLib settingsLib;
 	};
 in
 {

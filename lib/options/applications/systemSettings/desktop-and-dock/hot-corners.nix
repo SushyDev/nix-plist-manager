@@ -1,69 +1,53 @@
-{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib }:
+{ lib, settingsLib, ... }:
 let
-	byHostAppleDock = pathLib.generatePath true true "com.apple.dock";
+	inherit (settingsLib) setting user enum flags restarts family onlyWhen;
 
-	mkMapping = optionName: {
-		"Mission Control" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "2";
-		};
-		"Application Windows" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "3";
-		};
-		"Desktop" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "4";
-		};
-		"Notification Center" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "12";
-		};
-		"Launchpad" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "11";
-		};
-		"Quick Note" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "14";
-		};
-		"Start Screen Saver" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "5";
-		};
-		"Disable Screen Saver" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "6";
-		};
-		"Put Display to Sleep" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "10";
-		};
-		"Lock Screen" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "13";
-		};
-		"Dashboard" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "7";
-		};
-		"-" = {
-			command = commandsLib.defaults.write byHostAppleDock optionName "int" "1";
-		};
-	};
+	pane = "com.apple.settings.desktopAndDock";
 in
-{
-	topLeft = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Hot Corners" "Top Left Corner" ];
-		default = null;
-		perUser = true;
-		mapping = mkMapping "wvous-tl-corner";
+family {
+	topLeft = { corner = "tl"; label = "Top Left"; };
+	topRight = { corner = "tr"; label = "Top Right"; };
+	bottomLeft = { corner = "bl"; label = "Bottom Left"; };
+	bottomRight = { corner = "br"; label = "Bottom Right"; };
+} ({ name, corner, label }: {
+	action = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Hot Corners…" "${label} Hot Corner" ];
+		storage = user "com.apple.dock" "wvous-${corner}-corner";
+		value = enum {
+			"-" = 1;
+			"Mission Control" = 2;
+			"Application Windows" = 3;
+			"Desktop" = 4;
+			"Start Screen Saver" = 5;
+			"Disable Screen Saver" = 6;
+			"Put Display to Sleep" = 10;
+			"Apps" = 11;
+			"Notification Center" = 12;
+			"Lock Screen" = 13;
+			"Quick Note" = 14;
+		};
+		behaviors = [ (restarts "Dock") ];
+		verify = {
+			inherit pane;
+			open = [ "Hot Corners…" ];
+			expect = {
+				"-" = { "${label} Hot Corner" = "-"; };
+				"Mission Control" = { "${label} Hot Corner" = "Mission Control"; };
+				"Quick Note" = { "${label} Hot Corner" = "Quick Note"; };
+			};
+		};
 	};
-	topRight = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Hot Corners" "Top Right Corner" ];
-		default = null;
-		perUser = true;
-		mapping = mkMapping "wvous-tr-corner";
+
+	# keys to hold for the corner to trigger, picked in System Settings by holding them while
+	# opening the menu
+	modifiers = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Hot Corners…" "${label} Hot Corner" "Modifier keys" ];
+		storage = user "com.apple.dock" "wvous-${corner}-modifier";
+		value = flags { shift = 131072; control = 262144; option = 524288; command = 1048576; };
+		behaviors = [ (restarts "Dock") ];
+		relations = [
+			(onlyWhen "applications.systemSettings.desktopAndDock.hotCorners.${name}.action" (action: action != "-")
+				"a corner without an action doesn't use modifier keys")
+		];
 	};
-	bottomLeft = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Hot Corners" "Bottom Left Corner" ];
-		default = null;
-		perUser = true;
-		mapping = mkMapping "wvous-bl-corner";
-	};
-	bottomRight = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Hot Corners" "Bottom Right Corner" ];
-		default = null;
-		perUser = true;
-		mapping = mkMapping "wvous-br-corner";
-	};
-}
+})

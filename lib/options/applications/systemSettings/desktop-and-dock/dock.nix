@@ -1,356 +1,173 @@
-{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib }:
+{ lib, settingsLib, ... }:
 let
-	byHostGlobalPreferences = pathLib.generatePath true true ".GlobalPreferences";
-	byHostAppleDock = pathLib.generatePath true true "com.apple.dock";
+	inherit (settingsLib) setting user global stored bool number enum restarts implies;
+
+	pane = "com.apple.settings.desktopAndDock";
+	option = name: "applications.systemSettings.desktopAndDock.dock.${name}";
+
+	# the Dock reads its preferences at launch
+	dock = name: user "com.apple.dock" name;
+	restartsDock = restarts "Dock";
+
+	# a Dock switch: the setting, its verify spec and the Dock restart
+	dockSwitch = { ui, key, control }: setting {
+		inherit ui;
+		storage = dock key;
+		value = bool;
+		behaviors = [ restartsDock ];
+		verify = {
+			inherit pane;
+			operate = [ "click" control ];
+			expect = {
+				true = { ${control} = 1; };
+				false = { ${control} = 0; };
+			};
+		};
+	};
+
+	# the size sliders run from 16 to 128 points
+	slider = size: (size - 16) / 112.0;
 in
 {
-	size = rec {
-		path = [ "Desktop & Dock" "Dock" "Size" ];
-		description = "";
-
-		mapping = 
-			let
-				optionName = "tilesize";
-			in
-			{
-				"unset" = {
-					command = lib.concatStrings [ 
-						(commandsLib.defaults.delete byHostAppleDock optionName)
-						commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-					];
-
-				};
-				"value" = {
-					command = value: lib.concatStrings [
-						(commandsLib.defaults.write byHostAppleDock optionName "int" "${toString value}")
-						commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-					];
-				};
+	size = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Size" ];
+		description = "Icon size in points.";
+		storage = stored "float" (dock "tilesize");
+		value = number { min = 16; max = 128; };
+		behaviors = [ restartsDock ];
+		verify = {
+			inherit pane;
+			expect = {
+				"16" = { "Dock Size" = slider 16; };
+				"48" = { "Dock Size" = slider 48; };
+				"128" = { "Dock Size" = slider 128; };
 			};
-
-		default = null;
-
-		option = lib.mkOption {
-			inherit description default;
-			type = 
-				let
-					minValue = 16;
-					maxValue = 128;
-				in
-				typesLib.nullOrIntsBetweenOrUnset minValue maxValue;
-		};
-
-		config = {
-			perUser = true;
-			command = configLib.commandNullOrValueOrUnset mapping;
 		};
 	};
 
 	magnification = {
-		enabled = 
-			let
-				optionName = "magnification";
-			in
-			abstractionsLib.mkBasicBoolOption {
-				path = [ "Desktop & Dock" "Dock" "Magnification" ];
-				default = null;
-				perUser = true;
-				unsetCommand = lib.concatStrings [ 
-					(commandsLib.defaults.delete byHostAppleDock optionName)
-					commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-				];
-				trueCommand = lib.concatStrings [
-					(commandsLib.defaults.write byHostAppleDock optionName "bool" "true")
-					commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-				];
-				falseCommand = lib.concatStrings [
-					(commandsLib.defaults.write byHostAppleDock  optionName "bool" "false")
-					commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-				];
+		# System Settings has no switch for this since macOS 27: the magnification slider at "Off"
+		enabled = setting {
+			ui = [ "System Settings" "Desktop & Dock" "Dock" "Magnification" ];
+			storage = dock "magnification";
+			value = bool;
+			behaviors = [ restartsDock ];
+			verify = {
+				inherit pane;
+				expect.false = { "Dock Magnification Size" = 0; };
 			};
+		};
 
-		size = rec {
-			path = [ "Desktop & Dock" "Dock" "Magnification Size" ];
-			description = "";
-
-			mapping = 
-				let
-					optionName = "largesize";
-				in
-				{
-					"unset" = {
-						command = lib.concatStrings [ 
-							(commandsLib.defaults.delete byHostAppleDock optionName)
-							commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-						];
-					};
-					"value" = {
-						command = value: lib.concatStrings [
-							(commandsLib.defaults.write byHostAppleDock  optionName "int" "${toString value}")
-							commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-						];
-					};
+		size = setting {
+			ui = [ "System Settings" "Desktop & Dock" "Dock" "Magnification" "Size" ];
+			description = "Magnified icon size in points.";
+			storage = stored "float" (dock "largesize");
+			value = number { min = 16; max = 128; };
+			behaviors = [ restartsDock ];
+			relations = [
+				(implies (option "magnification.enabled") true "moving the slider off \"Off\" turns magnification on")
+			];
+			verify = {
+				inherit pane;
+				expect = {
+					"72" = { "Dock Magnification Size" = slider 72; };
+					"128" = { "Dock Magnification Size" = slider 128; };
 				};
-
-			default = null;
-
-			option = lib.mkOption {
-				inherit description default;
-				type = 
-					let
-						minValue = 30;
-						maxValue = 128;
-					in
-					typesLib.nullOrIntsBetweenOrUnset minValue maxValue;
-			};
-
-			config = {
-				perUser = true;
-				command = configLib.commandNullOrValueOrUnset mapping;
 			};
 		};
 	};
 
-	dockPositionOnScreen = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Dock" "Dock position on screen" ];
-		default = null;
-		perUser = true;
-		mapping = 
-			let
-				optionName = "orientation";
-			in
-			{
-				"unset" = {
-					command = lib.concatStrings [ 
-						(commandsLib.defaults.delete byHostAppleDock optionName)
-						commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-					];
-				};
-				"Left" = {
-					command = lib.concatStrings [
-						(commandsLib.defaults.write byHostAppleDock  optionName "string" "left")
-						commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-					];
-				};
-				"Bottom" = {
-					command = lib.concatStrings [
-						(commandsLib.defaults.write byHostAppleDock optionName "string" "bottom")
-						commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-					];
-				};
-				"Right" = {
-					command = lib.concatStrings [
-						(commandsLib.defaults.write byHostAppleDock optionName "string" "right")
-						commandsLib.chainOnSuccess (commandsLib.killall "Dock")
-					];
-				};
+	dockPositionOnScreen = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Dock position on screen" ];
+		storage = dock "orientation";
+		value = enum { Left = "left"; Bottom = "bottom"; Right = "right"; };
+		behaviors = [ restartsDock ];
+		verify = {
+			inherit pane;
+			expect = {
+				Left = { position = "Left"; };
+				Right = { position = "Right"; };
+				Bottom = { position = "Bottom"; };
 			};
+		};
 	};
 
-	minimizedWindowAnimation = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Dock" "Minimized window animation" ];
-		default = null;
-		perUser = true;
-		mapping = 
-			let
-				optionName = "mineffect";
-			in
-			{
-				"unset" = {
-					command = commandsLib.defaults.delete byHostAppleDock optionName;
-				};
-				"Genie Effect" = {
-					command = commandsLib.defaults.write byHostAppleDock optionName "string" "genie";
-				};
-				"Scale Effect" = {
-					command = commandsLib.defaults.write byHostAppleDock optionName "string" "scale";
-				};
+	minimizedWindowAnimation = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Minimized window animation" ];
+		storage = dock "mineffect";
+		value = enum { "Genie Effect" = "genie"; "Scale Effect" = "scale"; };
+		behaviors = [ restartsDock ];
+		verify = {
+			inherit pane;
+			expect = {
+				"Scale Effect" = { minimize-windows = "Scale Effect"; };
+				"Genie Effect" = { minimize-windows = "Genie Effect"; };
 			};
+		};
 	};
 
-	windowTitleBarDoubleClickAction = abstractionsLib.mkBasicMappingOption {
-		path = [ "Desktop & Dock" "Dock" "Window title bar double-click action" ];
-		default = null;
-		perUser = true;
-		mapping = 
-			let
-				optionName = "AppleActionOnDoubleClick";
-			in
-			{
-				"unset" = {
-					command = commandsLib.defaults.delete byHostGlobalPreferences optionName;
-				};
-				"Fill" = {
-					command = commandsLib.defaults.write byHostGlobalPreferences optionName "string" "Fill";
-				};
-				"Zoom" = {
-					command = commandsLib.defaults.write byHostGlobalPreferences optionName "string" "Maximize";
-				};
-				"Minimize" = {
-					command = commandsLib.defaults.write byHostGlobalPreferences optionName "string" "Minimize";
-				};
-				"Do nothing" = {
-					command = commandsLib.defaults.write byHostGlobalPreferences optionName "string" "None";
-				};
+	windowTitleBarDoubleClickAction = setting {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Window title bar double-click action" ];
+		storage = global "AppleActionOnDoubleClick";
+		value = enum { Fill = "Fill"; Zoom = "Maximize"; Minimize = "Minimize"; "No Action" = "None"; };
+		verify = {
+			inherit pane;
+			expect = {
+				Zoom = { double-click = "Zoom"; };
+				Minimize = { double-click = "Minimize"; };
+				"No Action" = { double-click = "No Action"; };
+				Fill = { double-click = "Fill"; };
 			};
+		};
 	};
 
-	minimizeWindowsIntoApplicationIcon = abstractionsLib.mkBasicBoolOption {
-		path = [ "Desktop & Dock" "Dock" "Minimize windows into application icon" ];
-		default = null;
-		perUser = true;
-		unsetCommand = commandsLib.defaults.delete byHostAppleDock "minimize-to-application";
-		trueCommand = commandsLib.defaults.write byHostAppleDock "minimize-to-application" "bool" "true";
-		falseCommand = commandsLib.defaults.write byHostAppleDock "minimize-to-application" "bool" "false";
+	minimizeWindowsIntoApplicationIcon = dockSwitch {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Minimize windows into application icon" ];
+		key = "minimize-to-application";
+		control = "minimize-into-app";
 	};
 
 	automaticallyHideAndShowTheDock = {
-		enabled = abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Dock" "Automatically hide and show the Dock" ];
-			default = null;
-			perUser = true;
-			unsetCommand = lib.concatStrings [ 
-				(commandsLib.defaults.delete byHostAppleDock "autohide")
-				commandsLib.chainOnSuccess
-				(commandsLib.killall "Dock")
-			];
-			trueCommand = lib.concatStrings [
-				(commandsLib.defaults.write byHostAppleDock "autohide" "bool" "true")
-				commandsLib.chainOnSuccess
-				(commandsLib.killall "Dock")
-			];
-			falseCommand = lib.concatStrings [
-				(commandsLib.defaults.write byHostAppleDock "autohide" "bool" "false")
-				commandsLib.chainOnSuccess
-				(commandsLib.killall "Dock")
-			];
+		enabled = dockSwitch {
+			ui = [ "System Settings" "Desktop & Dock" "Dock" "Automatically hide and show the Dock" ];
+			key = "autohide";
+			control = "auto-hide-dock";
 		};
 
-		delay = rec {
-			path = [ "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Delay" ];
-			description = "";
-
-			mapping = 
-				let
-					optionName = "autohide-delay";
-				in
-				{
-					"unset" = {
-						command = lib.concatStrings [ 
-							(commandsLib.defaults.delete byHostAppleDock optionName)
-							commandsLib.chainOnSuccess
-							(commandsLib.killall "Dock")
-						];
-					};
-					"value" = {
-						command = value: lib.concatStrings [
-							(commandsLib.defaults.write byHostAppleDock optionName "float" "${toString value}")
-							commandsLib.chainOnSuccess
-							(commandsLib.killall "Dock")
-						];
-					};
-				};
-
-			default = null;
-
-			option = lib.mkOption {
-				inherit description default;
-				type = 
-					let
-						minValue = 0.0;
-						maxValue = 5.0;
-					in
-					typesLib.nullOrFloatsBetweenOrUnset minValue maxValue;
-			};
-
-			config = {
-				perUser = true;
-				command = configLib.commandNullOrValueOrUnset mapping;
-			};
+		# not in System Settings
+		delay = setting {
+			ui = [ "System Settings" "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Delay" ];
+			description = "Seconds before a hidden Dock appears when the pointer reaches it.";
+			storage = stored "float" (dock "autohide-delay");
+			value = number { min = 0.0; max = 10.0; };
+			behaviors = [ restartsDock ];
 		};
 
-		duration = rec {
-			path = [ "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Animation duration" ];
-			description = "";
-
-			mapping = 
-				let
-					optionName = "autohide-time-modifier";
-				in
-				{
-					"unset" = {
-						command = lib.concatStrings [ 
-							(commandsLib.defaults.delete byHostAppleDock optionName)
-							commandsLib.chainOnSuccess
-							(commandsLib.killall "Dock")
-						];
-					};
-					"value" = {
-						command = value: lib.concatStrings [
-							(commandsLib.defaults.write byHostAppleDock optionName "float" "${toString value}")
-							commandsLib.chainOnSuccess
-							(commandsLib.killall "Dock")
-						];
-					};
-				};
-
-			default = null;
-
-			option = lib.mkOption {
-				inherit description default;
-				type = 
-					let
-						minValue = 0.0;
-						maxValue = 5.0;
-					in
-					typesLib.nullOrFloatsBetweenOrUnset minValue maxValue;
-			};
-
-			config = {
-				perUser = true;
-				command = configLib.commandNullOrValueOrUnset mapping;
-			};
+		# not in System Settings
+		duration = setting {
+			ui = [ "System Settings" "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Animation duration" ];
+			description = "How long the Dock takes to slide in and out, in seconds; 0 turns the animation off.";
+			storage = stored "float" (dock "autohide-time-modifier");
+			value = number { min = 0.0; max = 10.0; };
+			behaviors = [ restartsDock ];
 		};
 	};
 
-	animateOpeningApplications = 
-		let
-			optionName = "launchanim";
-		in
-		abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Dock" "Animate opening applications" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleDock optionName;
-			trueCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "true";
-			falseCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "false";
-		};
+	animateOpeningApplications = dockSwitch {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Animate opening applications" ];
+		key = "launchanim";
+		control = "animate-app-opening";
+	};
 
-	showIndicatorsForOpenApplications = 
-		let
-			optionName = "show-process-indicators";
-		in
-		abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Dock" "Show indicators for open applications" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleDock optionName;
-			trueCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "true";
-			falseCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "false";
-		};
+	showIndicatorsForOpenApplications = dockSwitch {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Show indicators for open applications" ];
+		key = "show-process-indicators";
+		control = "show-indicators";
+	};
 
-	showSuggestedAndRecentAppsInDock = 
-		let
-			optionName = "show-recents";
-		in
-		abstractionsLib.mkBasicBoolOption {
-			path = [ "Desktop & Dock" "Dock" "Show suggested and recent apps in Dock" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete byHostAppleDock optionName;
-			trueCommand = commandsLib.defaults.write byHostAppleDock  optionName "bool" "true";
-			falseCommand = commandsLib.defaults.write byHostAppleDock optionName "bool" "false";
-		};
-	#persistentApps
-	#persistentOthers
+	showSuggestedAndRecentAppsInDock = dockSwitch {
+		ui = [ "System Settings" "Desktop & Dock" "Dock" "Show suggested and recent apps in Dock" ];
+		key = "show-recents";
+		control = "show-recents";
+	};
 }
