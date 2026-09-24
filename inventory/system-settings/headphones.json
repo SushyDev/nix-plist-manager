@@ -10,6 +10,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "per paired headphones, kept with the device; only shown while they're connected",
 			"sources": [
 				"search:HeadphoneSettingsExtension.appex/Main/Connect to this Mac"
 			],
@@ -20,6 +21,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "per paired headphones, kept with the device; only shown while they're connected",
 			"sources": [
 				"search:HeadphoneSettingsExtension.appex/Main/Find My"
 			],
@@ -30,6 +32,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "per paired headphones, kept with the device; only shown while they're connected",
 			"sources": [
 				"search:HeadphoneSettingsExtension.appex/Main/Listening Mode"
 			],
@@ -40,6 +43,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "per paired headphones, kept with the device; only shown while they're connected",
 			"sources": [
 				"search:HeadphoneSettingsExtension.appex/Main/Microphone"
 			],
@@ -50,6 +54,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "per paired headphones, kept with the device; only shown while they're connected",
 			"sources": [
 				"search:HeadphoneSettingsExtension.appex/Main/Personalized Spatial Audio"
 			],
@@ -60,6 +65,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "per paired headphones, kept with the device; only shown while they're connected",
 			"sources": [
 				"search:HeadphoneSettingsExtension.appex/Main/Press and Hold"
 			],

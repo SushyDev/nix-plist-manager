@@ -10,6 +10,7 @@
 			"kind": "bool",
 			"lastSeen": "26A428",
 			"section": "VPN Configuration",
+			"skip": "part of each VPN configuration, kept by the network extension or a profile",
 			"sources": [
 				"intent:VPNAppIntentWidgetExtension.appex/VPNConfigurationEntity.connectOnDemand"
 			],

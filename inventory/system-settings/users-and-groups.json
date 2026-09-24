@@ -5,11 +5,22 @@
 		"Users & Groups"
 	],
 	"settings": {
+		"automatically-log-in-as": {
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"skip": "needs the user's password",
+			"sources": [
+				"ui:com.apple.settings.usersAndGroups/Automatically log in as"
+			],
+			"title": "Automatically log in as"
+		},
 		"login-options-pref-allow-network-users-at-login-window": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Login Options Pref",
+			"skip": "account and directory management rather than a preference",
 			"sources": [
 				"search:UsersGroups.appex/loginOptionsPref/Allow network users at login window"
 			],
@@ -20,6 +31,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Login Options Pref",
+			"skip": "account and directory management rather than a preference",
 			"sources": [
 				"search:UsersGroups.appex/loginOptionsPref/Directory services"
 			],
@@ -30,6 +42,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Login Options Pref",
+			"skip": "needs the user's password",
 			"sources": [
 				"search:UsersGroups.appex/loginOptionsPref/Log in automatically"
 			],
@@ -40,6 +53,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Login Options Pref",
+			"skip": "account and directory management rather than a preference",
 			"sources": [
 				"search:UsersGroups.appex/loginOptionsPref/Network account server"
 			],
@@ -50,6 +64,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Password Pref",
+			"skip": "account and directory management rather than a preference",
 			"sources": [
 				"search:UsersGroups.appex/passwordPref/Administrator account"
 			],
@@ -60,6 +75,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Password Pref",
+			"skip": "account and directory management rather than a preference",
 			"sources": [
 				"search:UsersGroups.appex/passwordPref/Login name and password"
 			],
@@ -70,6 +86,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Password Pref",
+			"skip": "account and directory management rather than a preference",
 			"sources": [
 				"search:UsersGroups.appex/passwordPref/User and group accounts"
 			],
@@ -80,6 +97,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Password Pref",
+			"skip": "account and directory management rather than a preference",
 			"sources": [
 				"search:UsersGroups.appex/passwordPref/User picture"
 			],

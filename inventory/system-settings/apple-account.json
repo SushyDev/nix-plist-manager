@@ -10,6 +10,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Apple Account",
+			"skip": "Apple Account state, kept on Apple's servers",
 			"sources": [
 				"search:AppleIDSettings.appex/AppleAccount/Apple ID"
 			],
@@ -20,6 +21,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Com.apple.Apple Media Services UI.Spyglass Purchases",
+			"skip": "Apple Account state, kept on Apple's servers",
 			"sources": [
 				"search:AppleIDSettings.appex/com.apple.AppleMediaServicesUI.SpyglassPurchases/Media and Purchases"
 			],
@@ -30,6 +32,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "ICloud",
+			"skip": "Apple Account state, kept on Apple's servers",
 			"sources": [
 				"search:AppleIDSettings.appex/iCloud/iCloud"
 			],

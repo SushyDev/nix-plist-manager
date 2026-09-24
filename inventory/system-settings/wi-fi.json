@@ -4,5 +4,76 @@
 	"pane": [
 		"Wi‑Fi"
 	],
-	"settings": {}
+	"settings": {
+		"ask-to-join-hotspots": {
+			"choices": [
+				"Never",
+				"Ask To Join",
+				"Automatic"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"notes": "in /Library/Preferences/SystemConfiguration/com.apple.airport.preferences; needs root to write and verify",
+			"sources": [
+				"ui:com.apple.settings.wifi/Ask to join hotspots"
+			],
+			"title": "Ask to join hotspots"
+		},
+		"ask-to-join-networks": {
+			"choices": [
+				"Off",
+				"Notify",
+				"Ask"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"notes": "JoinModeFallback in /Library/Preferences/SystemConfiguration/com.apple.airport.preferences (Off DoNothing, Notify Notify, Ask Prompt); needs root to write and verify",
+			"sources": [
+				"ui:com.apple.settings.wifi/Ask to join networks"
+			],
+			"title": "Ask to join networks"
+		},
+		"change-networks": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"notes": "administrator requirement in the airport preferences; needs root",
+			"sources": [
+				"ui:com.apple.settings.wifi/Advanced…/Change networks"
+			],
+			"title": "Change networks"
+		},
+		"show-legacy-networks-and-options": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"notes": "needs root to observe",
+			"sources": [
+				"ui:com.apple.settings.wifi/Advanced…/Show legacy networks and options"
+			],
+			"title": "Show legacy networks and options"
+		},
+		"turn-wi-fi-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"notes": "administrator requirement in the airport preferences; needs root",
+			"sources": [
+				"ui:com.apple.settings.wifi/Advanced…/Turn Wi‑Fi on or off"
+			],
+			"title": "Turn Wi‑Fi on or off"
+		},
+		"wi-fi": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"skip": "Wi-Fi on or off changes in daily use and belongs to the hardware",
+			"sources": [
+				"ui:com.apple.settings.wifi/Wi‑Fi"
+			],
+			"title": "Wi‑Fi"
+		}
+	}
 }
