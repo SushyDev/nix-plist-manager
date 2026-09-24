@@ -2,10 +2,10 @@
 """
 current — print this Mac's settings as nix-plist-manager options.
 
-    nix run .#current -- [--scope user|system] [--against <file.nix>] [--only <prefix>] [--ui] [--snapshots <dir>] [--verbose]
+    nix run .#current -- [<file.nix>] [--scope user|system] [--against <file.nix>] [--only <prefix>] [--ui] [--snapshots <dir>] [--verbose]
     nix run .#capture -- <option> <directory>
 
---scope prints the options for home-manager (user) or nix-darwin (system) alone, ready to import.
+With a file, writes it there instead of printing. --scope prints the options for home-manager (user) or nix-darwin (system) alone, ready to import.
 --against prints only what differs from that file, e.g. after changing something in System Settings.
 """
 
@@ -127,6 +127,7 @@ def main():
 		return cmd_capture(sys.argv[2], Path(sys.argv[3]))
 
 	parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+	parser.add_argument("file", nargs="?", help="write the settings to this file")
 	parser.add_argument("--scope", choices=["user", "system"])
 	parser.add_argument("--against", metavar="FILE")
 	parser.add_argument("--only", metavar="PREFIX", default="", help="only options whose path starts with PREFIX")
@@ -156,7 +157,10 @@ def main():
 				state["ui"][missing["option"]] = value
 		result = evaluate(state, args.scope, args.against, args.only)
 
-	print(result["text"])
+	if args.file:
+		Path(args.file).write_text(result["text"] + "\n")
+	else:
+		print(result["text"])
 	unread = [m for m in result["unread"] if not m["snapshot"]]
 	summary = f"{result['read']} settings read"
 	if args.against:
@@ -169,6 +173,8 @@ def main():
 	snapshots = sum(m["snapshot"] for m in result["unread"])
 	if snapshots:
 		summary += f"; {snapshots} snapshots skipped (--snapshots)"
+	if args.file:
+		summary = f"wrote {args.file}: " + summary
 	print(summary, file=sys.stderr)
 	if args.verbose:
 		for missing in unread:

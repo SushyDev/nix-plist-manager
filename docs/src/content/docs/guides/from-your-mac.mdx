@@ -8,8 +8,8 @@ You've spent years getting your Mac the way you like it. `current` reads it back
 ## 1. Write your settings down
 
 ```sh
-nix run github:sushydev/nix-plist-manager#current -- --scope user > mac.nix
-nix run github:sushydev/nix-plist-manager#current -- --scope system > mac-system.nix
+nix run github:sushydev/nix-plist-manager#current -- mac.nix --scope user
+nix run github:sushydev/nix-plist-manager#current -- mac-system.nix --scope system
 ```
 
 `--scope user` is everything home-manager applies, `--scope system` what nix-darwin applies as root. Import them where they belong:
@@ -28,7 +28,7 @@ programs.nix-plist-manager = {
 };
 ```
 
-Without `--scope` you get one file with both, as `{ user = …; system = …; }`, for `(import ./mac.nix).user`.
+Without a file name it prints to the terminal. Without `--scope` you get one file with both, as `{ user = …; system = …; }`, for `(import ./mac.nix).user`.
 
 ## 2. Keep what you care about
 
