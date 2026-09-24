@@ -1,44 +1,89 @@
-{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib }:
+{ lib, settingsLib, ... }:
+# usernoted keeps notification settings in its group container and reads them at launch.
+# The older com.apple.ncprefs keys aren't read on macOS 27.
 let
-	appleNCPrefs = pathLib.generatePath true false "com.apple.ncprefs";
+	inherit (settingsLib) setting user bool enum snapshot restarts appliesThrough;
+
+	pane = "com.apple.settings.notifications";
+	domain = "~/Library/Group Containers/group.com.apple.usernoted/Library/Preferences/group.com.apple.usernoted";
+	usernoted = user domain;
+	restartsUsernoted = restarts "usernoted";
+
+	# "Allow notifications" switches are entries of dnd_prefs, a property list stored as data,
+	# kept the other way around (dndDisplaySleep is true when notifications are not allowed)
+	dndPreference = entry: allowed:
+		let
+			q = lib.escapeShellArg;
+			path = ''"$HOME"/${q (lib.removePrefix "~/" domain)}'';
+		in
+		''f=$(/usr/bin/mktemp) && /usr/bin/defaults export ${path} - | /usr/bin/plutil -extract dnd_prefs raw -o - - | /usr/bin/base64 -D > "$f" && /usr/bin/plutil -replace ${entry} -bool ${lib.boolToString (!allowed)} "$f" && /usr/bin/defaults write ${path} dnd_prefs -data "$(/usr/bin/xxd -p "$f" | /usr/bin/tr -d '\n')" || echo ${q "nix-plist-manager: failed: setting ${entry} in dnd_prefs"} >&2; /bin/rm -f "$f"'';
+
+	allow = { ui, entry, control }: setting {
+		ui = [ "System Settings" "Notifications" "Allow notifications" ui ];
+		storage = usernoted "dnd_prefs";
+		value = bool;
+		canUnset = false;
+		behaviors = [ (appliesThrough (dndPreference entry)) restartsUsernoted ];
+		verify = {
+			inherit pane;
+			expect = {
+				true = { "AXCheckBox:${control}" = 1; };
+				false = { "AXCheckBox:${control}" = 0; };
+			};
+		};
+	};
 in
 {
 	notificationCenter = {
-		showPreviews = abstractionsLib.mkBasicMappingOption {
-			path = [ "System Settings" "Notifications" "Show Previews" ];
-			default = null;
-			perUser = true;
-			mapping = 
-				let
-					optionName = "content_visibility";
-				in
-				{
-					"unset" = {
-						command = commandsLib.defaults.delete appleNCPrefs optionName;
-					};
-					"Always" = {
-						command = commandsLib.defaults.write appleNCPrefs optionName "int" "3";
-					};
-					"When Unlocked" = {
-						command = commandsLib.defaults.write appleNCPrefs optionName "int" "2";
-					};
-					"Never" = {
-						command = commandsLib.defaults.write appleNCPrefs optionName "int" "1";
-					};
+		showPreviews = setting {
+			ui = [ "System Settings" "Notifications" "Show previews" ];
+			storage = usernoted "content_visibility";
+			value = enum { Always = 3; "When Unlocked" = 2; Never = 1; };
+			behaviors = [ restartsUsernoted ];
+			verify = {
+				inherit pane;
+				expect = {
+					Always = { "AXPopUpButton:show-previews" = "Always"; };
+					"When Unlocked" = { "AXPopUpButton:show-previews" = "When Unlocked"; };
 				};
-		};
-		summarizeNotifications = 
-			let
-				optionName = "summarize_previews";
-			in
-			abstractionsLib.mkBasicBoolOption {
-				path = [ "System Settings" "Notifications" "Summarize Notifications" ];
-				default = null;
-				perUser = true;
-				unsetCommand = commandsLib.defaults.delete appleNCPrefs optionName;
-				trueCommand = commandsLib.defaults.write appleNCPrefs  optionName "bool" "true";
-				falseCommand = commandsLib.defaults.write appleNCPrefs optionName "bool" "false";
 			};
+		};
+
+		summarizeNotifications = setting {
+			ui = [ "System Settings" "Notifications" "Summarize notifications" ];
+			storage = usernoted "summarize_previews";
+			value = bool;
+			behaviors = [ restartsUsernoted ];
+		};
+	};
+
+	allowNotifications = {
+		whenTheDisplayIsSleeping = allow { ui = "When the display is sleeping"; entry = "dndDisplaySleep"; control = "allow-when-sleeping"; };
+		whenTheScreenIsLocked = allow { ui = "When the screen is locked"; entry = "dndDisplayLock"; control = "allow-when-locked"; };
+
+		whenMirroringOrSharingTheDisplay = setting {
+			ui = [ "System Settings" "Notifications" "Allow notifications" "When mirroring or sharing the display" ];
+			storage = usernoted "dnd_prefs";
+			value = enum { "Allow Notifications" = true; "Notifications Off" = false; };
+			canUnset = false;
+			behaviors = [ (appliesThrough (choice: dndPreference "dndMirrored" (choice == "Allow Notifications"))) restartsUsernoted ];
+			verify = {
+				inherit pane;
+				expect = {
+					"Allow Notifications" = { "AXPopUpButton:allow-when-sharing" = "Allow Notifications"; };
+					"Notifications Off" = { "AXPopUpButton:allow-when-sharing" = "Notifications Off"; };
+				};
+			};
+		};
+	};
+
+	# Application Notifications: every app's switches and alert style, as arranged in System
+	# Settings. Save them with
+	# `nix run github:sushydev/nix-plist-manager#capture -- applications.systemSettings.notifications.applications <directory>`
+	applications = setting {
+		ui = [ "System Settings" "Notifications" "Application Notifications" ];
+		storage.apps = usernoted "apps";
+		value = snapshot;
+		behaviors = [ restartsUsernoted ];
 	};
 }
-
