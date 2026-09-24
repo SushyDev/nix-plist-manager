@@ -430,7 +430,8 @@
 		"Appearance": {
 			"search index entry for Liquid Glass": ["Button, menu, and window look"],
 			"search index entry covering Show scroll bars and Click in the scroll bar to": ["Scroll bar behavior"],
-			"search index entry for Sidebar icon size": ["Sidebar icons"]
+			"search index entry for Sidebar icon size": ["Sidebar icons"],
+			"a link to another pane": ["More in Accessibility Settings…"]
 		},
 		"Apple Account": {
 			"Apple Account state, kept on Apple's servers": ["Apple Account › Apple ID", "Com.apple.Apple Media Services UI.Spyglass Purchases › Media and Purchases", "ICloud › iCloud"]

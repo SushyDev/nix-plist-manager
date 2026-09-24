@@ -15,7 +15,7 @@ Every option lives in `lib/options/`, one file per System Settings pane or app. 
 ### Implement a setting
 
 1. Pick one from `todo` in `coverage.json`, or a control System Settings shows that has no option yet (`nix run .#verify -- discover <pane>` lists them).
-2. Find where it's stored. Run `nix run .#verify -- observe <pane> click "<control>"`, `tools/watch.sh` or `tools/plist-watcher.py --filter …`, flip the setting in System Settings and note the domain, key and type that change.
+2. Find where it's stored. Run `nix run .#watch` (or `nix run .#watch -- com.apple.dock` for one domain), flip the setting in System Settings and note the domain, key and value it prints. `nix run .#verify -- observe <pane> click "<control>"` does the same by operating the control for you.
 3. Register it as a `setting` under `lib/options/…` (see [Writing a setting](#writing-a-setting)) and remove it from `todo`.
 4. Give it a `verify` spec and run `nix run .#verify -- check --option <option.path>` (see below), which adds it to `verified` when System Settings shows every value the option sets.
 5. Commit the option and `coverage.json` together.

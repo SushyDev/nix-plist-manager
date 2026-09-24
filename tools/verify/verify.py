@@ -6,7 +6,10 @@ Commands:
     controls <pane>                 List the labeled controls a pane shows, with their values.
     observe <pane> <ax command…>    Operate a control through Accessibility and print which
                                     preferences changed, e.g. `observe <pane> press "Magnification"`.
-    discover <pane>                 List the settings a pane shows: switches, sliders, pop-ups.
+    discover <pane>                 List the settings a pane shows: switches, sliders, pop-ups
+                                    and the sheets its "…" buttons open.
+    gaps [--pane P]                 Walk System Settings and list what no option covers and
+                                    coverage.json doesn't list as todo or not covered.
     probe <pane> [--open …] [--skip regex] [--out file]
                                     Operate every checkbox, pop-up and radio button in a pane and
                                     record which preferences each choice writes, putting it back.
@@ -123,7 +126,13 @@ def open_pane(pane: str, fresh: bool = False, wait_for: str | None = None, steps
 	def show():
 		try:
 			return ax("press", pane)
-		except RuntimeError:
+		except RuntimeError as error:
+			# once its window is closed, opening System Settings again doesn't bring one back
+			if "no window" in str(error):
+				subprocess.run(["killall", "System Settings"], capture_output=True)
+				time.sleep(1)
+				subprocess.run(["open", "-b", "com.apple.systempreferences"], check=True)
+				raise
 			return ax("click", pane)
 	wait_until(show, f"sidebar item {pane}")
 	for step in steps:
@@ -576,7 +585,11 @@ def discover(pane: str, steps: list[str] = ()) -> list[dict]:
 		if role == "AXStaticText":
 			last_text = entry.get("value")
 			continue
-		if role in ("AXButton", "AXRadioButton") and labels and not labels[0].endswith("…"):
+		if role == "AXButton" and labels and labels[0].endswith("…"):
+			flush()
+			candidates.append({"title": labels[0], "kind": "sheet", "choices": []})
+			continue
+		if role in ("AXButton", "AXRadioButton") and labels:
 			# members of one picker share a second label ("Blue | Color") or follow each other
 			title = labels[1] if len(labels) > 1 else last_text
 			if group is None or group["title"] != title or group["role"] != role:
@@ -830,6 +843,60 @@ def cmd_discover(args):
 		print(f"{candidate['kind']:7} {candidate['title']}" + (f"  {candidate['choices']}" if candidate["choices"] else ""))
 
 
+def normalize(title: str) -> str:
+	return re.sub(r"[^a-z0-9]+", " ", title.replace("’", "'").lower()).strip()
+
+
+def sidebar() -> dict[str, str]:
+	"""The panes in System Settings' sidebar, identifier → name."""
+	open_pane("com.apple.settings.appearance")
+	entries = [json.loads(line) for line in ax("dump").splitlines()]
+	return {
+		e["labels"][-1]: e["labels"][0] for e in entries
+		if "Sidebar" in e.get("path", []) and e["role"] == "AXButton" and len(e.get("labels", [])) == 2
+	}
+
+
+def cmd_gaps(args):
+	"""Every pane's top page, and every page a verify spec opens, compared against the words the
+	options' UI paths and coverage.json use for that pane. What's left is a setting nobody has
+	looked at yet, or a label that changed."""
+	options, coverage = load_options(), load_coverage()
+	panes = sidebar()
+	known: dict[str, set[str]] = {}
+	for entry in options:
+		ui, spec = entry["path"], entry.get("verify")
+		if ui[0] == "System Settings":
+			known.setdefault(ui[1], set()).update(normalize(part) for part in ui[2:])
+		if spec and spec["pane"] in panes:
+			# the labels a spec reads controls by, which can differ from what the UI shows
+			labels = [label for case in spec["expect"] for label in case["controls"]] + spec["open"]
+			parts = [re.sub(r"^\w+:|#\d+$", "", part) for label in labels for part in re.split(r" > | \+ ", label)]
+			known.setdefault(panes[spec["pane"]], set()).update(normalize(part) for part in ui[1:] + parts)
+	for listed in (coverage["todo"], coverage["notCovered"]):
+		for pane, reasons in listed.items():
+			for titles in reasons.values():
+				known.setdefault(pane, set()).update(normalize(part) for title in titles for part in title.split(" › "))
+
+	pages = {(pane, ()) for pane in panes} | {
+		(entry["verify"]["pane"], tuple(entry["verify"]["open"])) for entry in options
+		if entry.get("verify") and entry["verify"]["pane"] in panes
+	}
+	for pane, steps in sorted(pages):
+		name = panes[pane]
+		if args.pane and normalize(args.pane) != normalize(name):
+			continue
+		try:
+			found = discover(pane, list(steps))
+		except RuntimeError as error:
+			print(f"{name} > {' > '.join(steps)}: couldn't open ({error})")
+			continue
+		# discover tells apart controls with the same label by their choices: "Style (Light/Dark)"
+		missing = [c for c in found if normalize(re.sub(r" \([^)]*\)$", "", c["title"])) not in known.get(name, set())]
+		for candidate in missing:
+			print(f"{' > '.join([name, *steps, candidate['title']])}  ({candidate['kind']})", flush=True)
+
+
 ACTIVATE_SETTINGS = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings"
 
 
@@ -973,6 +1040,9 @@ def main():
 	p.add_argument("pane")
 	p.add_argument("--open", action="append", help="control to press first (a sheet or sub-page), repeatable")
 
+	p = sub.add_parser("gaps", help="list what System Settings shows that coverage doesn't account for")
+	p.add_argument("--pane", help="one pane, by its name in the sidebar")
+
 	p = sub.add_parser("probe", help="operate every control in a pane and record what it writes")
 	p.add_argument("pane")
 	p.add_argument("--open", action="append", help="control to press first (a sheet or sub-page), repeatable")
@@ -989,7 +1059,7 @@ def main():
 	p.add_argument("--batch", action="store_true", help="check the settings of one page together (much faster; see check_batch)")
 
 	args = parser.parse_args()
-	{"controls": cmd_controls, "observe": cmd_observe, "apply": cmd_apply, "check": cmd_check, "discover": cmd_discover, "probe": cmd_probe}[args.command](args)
+	{"controls": cmd_controls, "observe": cmd_observe, "apply": cmd_apply, "check": cmd_check, "discover": cmd_discover, "gaps": cmd_gaps, "probe": cmd_probe}[args.command](args)
 
 
 if __name__ == "__main__":

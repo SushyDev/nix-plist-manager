@@ -134,6 +134,16 @@
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
 						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify/verify.py" "$@"
 					'';
+					# compiled with the system's swiftc on first use, once per version of the source
+					watch = pkgs.writeShellScript "watch" ''
+						cache="''${XDG_CACHE_HOME:-$HOME/.cache}/nix-plist-manager"
+						binary="$cache/$(basename ${./tools/watch.swift} .swift)"
+						if [ ! -x "$binary" ]; then
+							mkdir -p "$cache"
+							/usr/bin/swiftc -O ${./tools/watch.swift} -o "$binary"
+						fi
+						exec "$binary" "$@"
+					'';
 					# used from users' own configurations, so they read this flake's source, not the
 					# repository they're run in
 					apply = pkgs.writeShellScript "apply" (
@@ -165,6 +175,10 @@
 					verify = {
 						type = "app";
 						program = "${verify}";
+					};
+					watch = {
+						type = "app";
+						program = "${watch}";
 					};
 				}
 			);
