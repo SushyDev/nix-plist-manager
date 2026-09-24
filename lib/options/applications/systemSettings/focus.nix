@@ -1,18 +1,21 @@
-{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib }:
+{ lib, settingsLib, ... }:
+# The Focus modes themselves, their schedules and Focus status are kept in donotdisturbd's
+# database (~/Library/DoNotDisturb/DB) and synced through iCloud; they aren't covered.
 let
-	appleDoNotDisturbd = pathLib.generatePath true false "com.apple.donotdisturbd";
+	inherit (settingsLib) setting user bool inverted restarts;
 in
 {
-	shareAcrossDevices = 
-		let
-			optionName = "disableCloudSync";
-		in
-		abstractionsLib.mkBasicBoolOption {
-			path = [ "System Settings" "Focus" "Share across devices" ];
-			default = null;
-			perUser = true;
-			unsetCommand = commandsLib.defaults.delete appleDoNotDisturbd optionName;
-			trueCommand = commandsLib.defaults.write appleDoNotDisturbd optionName "bool" "false";
-			falseCommand = commandsLib.defaults.write appleDoNotDisturbd optionName "bool" "true";
+	shareAcrossDevices = setting {
+		ui = [ "System Settings" "Focus" "Share across devices" ];
+		storage = user "com.apple.donotdisturbd" "disableCloudSync";
+		value = inverted bool;
+		behaviors = [ (restarts "donotdisturbd") ];
+		verify = {
+			pane = "com.apple.settings.focus";
+			expect = {
+				true = { "AXCheckBox:Share across devices" = 1; };
+				false = { "AXCheckBox:Share across devices" = 0; };
+			};
 		};
+	};
 }
