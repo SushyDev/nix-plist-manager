@@ -152,6 +152,10 @@
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-${self}}"
 						exec ${pkgs.python3}/bin/python3 ${./tools/capture.py} "$@"
 					'';
+					current = pkgs.writeShellScript "current" ''
+						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-${self}}"
+						exec ${pkgs.python3}/bin/python3 ${./tools/current.py} "$@"
+					'';
 				in
 				{
 					apply = {
@@ -161,6 +165,10 @@
 					capture = {
 						type = "app";
 						program = "${capture}";
+					};
+					current = {
+						type = "app";
+						program = "${current}";
 					};
 					inventory = {
 						type = "app";

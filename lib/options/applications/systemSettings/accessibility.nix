@@ -13,7 +13,7 @@
 # per-route audio profiles (Headphone Accommodations), and options System Settings only shows
 # with a mouse connected.
 let
-	inherit (settingsLib) setting user global bool inverted enum storedAs absent text number strings snapshot byHost flagsWhenAbsent dictSwitches activatesShortcuts allowedWhen conflictsWith ops;
+	inherit (settingsLib) setting user global bool inverted enum inDict storedAs absent text number strings snapshot byHost flagsWhenAbsent dictSwitches activatesShortcuts allowedWhen conflictsWith ops;
 
 	pane = "com.apple.settings.accessibility";
 
@@ -289,9 +289,7 @@ in
 			preferredReadingSize = setting {
 				ui = [ "System Settings" "Accessibility" "Display" "Text size" "Preferred reading size" ];
 				storage = universalAccess "FontSizeCategory";
-				value = enum (lib.genAttrs sizes (size: { value = size; })) // {
-					encode = keys: size: [ (ops.mergeDict keys.value { global = size; }) ];
-				};
+				value = inDict "global" (enum (lib.genAttrs sizes (size: size)));
 				# unset would reset every app's size too
 				canUnset = false;
 			};
@@ -1200,9 +1198,7 @@ in
 				corner = ui: entry: setting {
 					ui = [ "System Settings" "Accessibility" "Keyboard" "Accessibility Keyboard (i)" ui ];
 					storage = universalAccess "virtualKeyboardCornerActionType";
-					value = enum (lib.mapAttrs (_: action: { value = action; }) actions) // {
-						encode = keys: label: [ (ops.mergeDict keys.value { ${entry} = actions.${label}; }) ];
-					};
+					value = inDict entry (enum actions);
 					verify = shows keyboardSheet "AXPopUpButton:${ui}" { "Left Click" = "Left Click"; "Hide / Show Home Panel" = "Hide / Show Home Panel"; };
 					# unset would reset all four corners
 					canUnset = false;
@@ -1914,9 +1910,7 @@ in
 		page = "RTT"; pageId = "AX_FEATURE_RTT";
 		ui = "RTT";
 		storage = user "com.apple.TTY" "TTYSoftwareEnabledPreference";
-		value = bool // {
-			encode = keys: enabled: [ (ops.mergeDict keys.value { RTTWildcardContext = enabled; }) ];
-		};
+		value = inDict "RTTWildcardContext" bool;
 		control = "AXCheckBox:AX_RTT_ENABLE";
 	};
 
@@ -1924,9 +1918,7 @@ in
 		page = "RTT"; pageId = "AX_FEATURE_RTT";
 		ui = "Send immediately";
 		storage = user "com.apple.TTY" "TTYShouldBeRealtimePreference";
-		value = bool // {
-			encode = keys: enabled: [ (ops.mergeDict keys.value { RTTWildcardContext = enabled; }) ];
-		};
+		value = inDict "RTTWildcardContext" bool;
 		control = "AXCheckBox:AX_RTT_SEND_IMMEDIATELY";
 	};
 
