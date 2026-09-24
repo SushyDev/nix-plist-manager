@@ -6,6 +6,34 @@
 		"Software Update"
 	],
 	"settings": {
+		"automatic-updates-install-system-data-files-and-security-updates": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.general.softwareUpdate.automaticallyInstallSystemDataFilesAndSecurityUpdates",
+			"section": "Automatic Updates",
+			"sources": [
+				"option:applications.systemSettings.general.softwareUpdate.automaticallyInstallSecurityResponseAndSystemFiles",
+				"option:applications.systemSettings.general.softwareUpdate.automaticallyInstallSystemDataFilesAndSecurityUpdates"
+			],
+			"storage": [
+				{
+					"as": "configData",
+					"byHost": false,
+					"domain": "com.apple.SoftwareUpdate",
+					"key": "ConfigDataInstall",
+					"scope": "system"
+				},
+				{
+					"as": "critical",
+					"byHost": false,
+					"domain": "com.apple.SoftwareUpdate",
+					"key": "CriticalUpdateInstall",
+					"scope": "system"
+				}
+			],
+			"title": "Install system data files and security updates"
+		},
 		"download-new-updates-when-available": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
@@ -15,7 +43,15 @@
 			"sources": [
 				"option:applications.systemSettings.general.softwareUpdate.automaticallyDownloadNewUpdatesWhenAvailable"
 			],
-			"storage": [],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.SoftwareUpdate",
+					"key": "AutomaticDownload",
+					"scope": "system"
+				}
+			],
 			"title": "Download new updates when available"
 		},
 		"install-application-updates-from-the-app-store": {
@@ -27,7 +63,15 @@
 			"sources": [
 				"option:applications.systemSettings.general.softwareUpdate.automaticallyInstallApplicationUpdatesFromTheAppStore"
 			],
-			"storage": [],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.commerce",
+					"key": "AutoUpdate",
+					"scope": "system"
+				}
+			],
 			"title": "Install application updates from the App Store"
 		},
 		"install-macos-updates": {
@@ -39,20 +83,16 @@
 			"sources": [
 				"option:applications.systemSettings.general.softwareUpdate.automaticallyInstallMacOSUpdates"
 			],
-			"storage": [],
-			"title": "Install macOS updates"
-		},
-		"install-security-response-and-system-files": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.general.softwareUpdate.automaticallyInstallSecurityResponseAndSystemFiles",
-			"section": null,
-			"sources": [
-				"option:applications.systemSettings.general.softwareUpdate.automaticallyInstallSecurityResponseAndSystemFiles"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.SoftwareUpdate",
+					"key": "AutomaticallyInstallMacOSUpdates",
+					"scope": "system"
+				}
 			],
-			"storage": [],
-			"title": "Install Security Response and system files"
+			"title": "Install macOS updates"
 		}
 	}
 }

@@ -108,8 +108,20 @@
 				let
 					pkgs = import nixpkgs { inherit system; };
 					failures = import ./lib/settings/tests.nix { inherit (nixpkgs) lib; };
+					# every option's UI path starts at the app it's found in, so the docs say where the
+					# setting is: "System Settings > Accessibility > Zoom > Advanced… > Smooth images"
+					apps = [ "System Settings" "Finder" "Dock" "Menu bar" "App Store" ];
+					unrooted = builtins.filter (entry: !(builtins.elem (builtins.head entry.path) apps)) self.optionIndex;
+					# each option has its own path: the inventory links options to settings by it
+					paths = map (entry: builtins.concatStringsSep " > " entry.path) self.optionIndex;
+					duplicates = nixpkgs.lib.unique (builtins.filter (path: nixpkgs.lib.count (p: p == path) paths > 1) paths);
 				in
 				{
+					ui-paths = pkgs.runCommand "ui-paths" {} (
+						if duplicates != [] then throw "these UI paths belong to more than one option:\n${builtins.concatStringsSep "\n" duplicates}"
+						else if unrooted == [] then "touch $out"
+						else throw "these options' UI paths don't start at an app (${builtins.concatStringsSep ", " apps}):\n${builtins.concatStringsSep "\n" (map (entry: entry.option) unrooted)}"
+					);
 
 					settings = pkgs.runCommand "settings-tests" {} (
 						if failures == [] then "touch $out"
