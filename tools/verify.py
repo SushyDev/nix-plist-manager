@@ -49,11 +49,26 @@ def tool(name: str) -> str:
 	return str(binary)
 
 
+server: subprocess.Popen | None = None
+
+
 def ax(*args: str) -> str:
-	result = subprocess.run([tool("ax"), *args], capture_output=True, text=True)
-	if result.returncode != 0:
-		raise RuntimeError(result.stderr.strip())
-	return result.stdout
+	"""Runs an ax command in one long-lived ax process; starting one per command costs a quarter second."""
+	global server
+	if server is None or server.poll() is not None:
+		server = subprocess.Popen([tool("ax"), "serve"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, bufsize=1)
+	server.stdin.write(json.dumps(list(args)) + "\n")
+	server.stdin.flush()
+	lines = []
+	for line in server.stdout:
+		if line.startswith("\x04 "):
+			status = line[2:].rstrip("\n")
+			if status != "ok":
+				raise RuntimeError(f"ax: {status}")
+			return "".join(lines)
+		lines.append(line)
+	server = None
+	raise RuntimeError("ax: the ax process stopped")
 
 
 def dump(sheet: bool = False) -> list[dict]:
@@ -72,33 +87,51 @@ def wait_until(attempt, what: str, timeout: float = 15):
 		except RuntimeError:
 			if time.time() > deadline:
 				raise RuntimeError(f"timed out waiting for {what}")
-			time.sleep(0.5)
+			time.sleep(0.15)
+
+
+def poll(check, timeout: float):
+	"""check() until it's true or the time is up; returns its last result."""
+	deadline = time.time() + timeout
+	while True:
+		result = check()
+		if result or time.time() > deadline:
+			return result
+		time.sleep(0.2)
+
+
+def settings_window():
+	"""Launch System Settings if needed and wait for its window; one closed earlier only comes
+	back with a relaunch."""
+	subprocess.run(["open", "-b", "com.apple.systempreferences"], check=True)
+	for attempt in range(2):
+		deadline = time.time() + 8
+		while time.time() < deadline:
+			try:
+				return ax("values")
+			except RuntimeError:
+				time.sleep(0.2)
+		quit_settings()
+		subprocess.run(["open", "-b", "com.apple.systempreferences"], check=True)
+	raise RuntimeError("System Settings shows no window")
 
 
 def quit_settings():
-	subprocess.run(["killall", "System Settings"], capture_output=True)
-	time.sleep(1)
+	# a normal quit makes System Settings write what it shows back to the preferences
+	subprocess.run(["killall", "-KILL", "System Settings"], capture_output=True)
+	time.sleep(0.5)
 
 
 def open_pane(pane: str, fresh: bool = False, wait_for: str | None = None, steps: list[str] = ()):
 	# x-apple.systempreferences: URLs sometimes land on the wrong pane
 	if fresh:
 		quit_settings()
-	subprocess.run(["open", "-b", "com.apple.systempreferences"], check=True)
-
-	restarted = False
+	settings_window()
 
 	def show():
-		nonlocal restarted
 		try:
 			return ax("press", pane)
-		except RuntimeError as error:
-			# reopening doesn't bring back a closed window, but a restart does
-			if "no window" in str(error) and not restarted:
-				restarted = True
-				quit_settings()
-				subprocess.run(["open", "-b", "com.apple.systempreferences"], check=True)
-				raise
+		except RuntimeError:
 			# sidebar rows only exist once scrolled to, which a click does
 			return ax("click", pane)
 
@@ -106,9 +139,81 @@ def open_pane(pane: str, fresh: bool = False, wait_for: str | None = None, steps
 	for step in steps:
 		action, target = ("click", step.removeprefix("click:")) if step.startswith("click:") else ("press", step)
 		wait_until(lambda: ax(action, target), step)
-		time.sleep(0.5)
+		time.sleep(0.2)
 	if wait_for:
 		wait_until(lambda: ax("get", wait_for), wait_for)
+
+
+# pages that keep showing old values, or write them back when they're left, until System
+# Settings is quit without saving and relaunched
+stale_pages: set[tuple] = set()
+
+
+def settled(keys: list[tuple], quiet: float = 0.5, timeout: float = 4) -> dict:
+	"""The keys once they've stopped changing; activateSettings rewrites shortcuts a moment later."""
+	last, since, deadline = storage_values(keys), time.time(), time.time() + timeout
+	while time.time() - since < quiet and time.time() < deadline:
+		time.sleep(0.2)
+		now = storage_values(keys)
+		if now != last:
+			last, since = now, time.time()
+	return last
+
+
+# pages that show a written value without being reloaded, and ones that don't
+live_pages: set[tuple] = set()
+reloaded_pages: set[tuple] = set()
+
+
+def apply_and_show(spec: dict, script: str, keys: list[tuple], root: bool, wait_for: str | None = None, shown=None):
+	"""Write, then show the page with what was written: some pages show it by themselves, most
+	after being switched away from and back, the rest after a relaunch. `shown` says whether the
+	page shows what's expected."""
+	page = page_of(spec)
+	if shown and page not in reloaded_pages and page not in stale_pages:
+		run_script(script, root)
+		if "activateSettings" in script:
+			settled(keys)
+		if poll(shown, 0.8):
+			live_pages.add(page)
+			return
+		reloaded_pages.add(page)
+		live_pages.discard(page)
+	if page_of(spec) in stale_pages:
+		quit_settings()  # before writing, so the open page can't write its values back
+	run_script(script, root)
+	time.sleep(spec.get("settle", 0.3))
+	written = settled(keys) if "activateSettings" in script else storage_values(keys)
+	refresh(spec, wait_for)
+	if page_of(spec) not in stale_pages and storage_values(keys) != written:
+		stale_pages.add(page_of(spec))
+		apply_and_show(spec, script, keys, root, wait_for)
+
+
+def page_of(spec: dict) -> tuple:
+	return (spec["pane"], tuple(spec["open"]))
+
+
+def refresh(spec: dict, wait_for: str | None = None, relaunch: bool = False):
+	"""Show the page with what's stored now: switching to another pane and back reloads most
+	pages; the rest need System Settings relaunched."""
+	if relaunch or page_of(spec) in stale_pages:
+		open_pane(spec["pane"], fresh=True, wait_for=wait_for, steps=spec["open"])
+		return
+	for label in ("Done", "OK", "Cancel"):  # an open sheet blocks the sidebar
+		try:
+			ax("press", f"AXButton:{label}")
+			time.sleep(0.3)
+			break
+		except RuntimeError:
+			pass
+	other = "com.apple.settings.general" if spec["pane"] != "com.apple.settings.general" else "com.apple.settings.appearance"
+	try:
+		ax("press", other)
+		time.sleep(0.2)
+		open_pane(spec["pane"], wait_for=wait_for, steps=spec["open"])
+	except RuntimeError:
+		refresh(spec, wait_for, relaunch=True)
 
 
 def load_options() -> list[dict]:
@@ -118,12 +223,29 @@ def load_options() -> list[dict]:
 	return json.loads(result.stdout)
 
 
-def command_for(option: str, value) -> str:
-	expr = f"f: f {json.dumps(option)} (builtins.fromJSON {json.dumps(json.dumps(value))})"
-	result = subprocess.run(["nix", "eval", "--raw", f"path:{ROOT}#lib.commandFor", "--apply", expr], capture_output=True, text=True)
+commands: dict[tuple, str] = {}
+
+
+def prepare_commands(pairs: list[tuple]):
+	"""Evaluate the scripts for (option, value) pairs in one go; evaluating each alone costs a second."""
+	wanted = [{"option": o, "value": v} for o, v in dict.fromkeys((o, json.dumps(v)) for o, v in pairs) if (o, v) not in commands]
+	wanted = [{"option": w["option"], "value": json.loads(w["value"])} for w in wanted]
+	if not wanted:
+		return
+	with tempfile.NamedTemporaryFile("w", suffix=".json") as file:
+		json.dump(wanted, file)
+		file.flush()
+		expr = f"f: map (p: f p.option p.value) (builtins.fromJSON (builtins.readFile {file.name}))"
+		result = subprocess.run(["nix", "eval", "--json", "--impure", f"path:{ROOT}#lib.commandFor", "--apply", expr], capture_output=True, text=True)
 	if result.returncode != 0:
 		raise RuntimeError(result.stderr.strip().splitlines()[-1])
-	return result.stdout
+	for pair, script in zip(wanted, json.loads(result.stdout)):
+		commands[(pair["option"], json.dumps(pair["value"]))] = script
+
+
+def command_for(option: str, value) -> str:
+	prepare_commands([(option, value)])
+	return commands[(option, json.dumps(value))]
 
 
 def label_of(entry: dict) -> str:
@@ -199,11 +321,60 @@ def restore_after_restarting(values: dict, processes: list[str]):
 	# the Dock and SystemUIServer write what they have loaded when they quit
 	for process in processes:
 		subprocess.run(["killall", process], capture_output=True)
-	time.sleep(2)
+	if processes:
+		time.sleep(2)
 	restore_values(values)
 	for process in processes:
 		subprocess.run(["killall", process], capture_output=True)
-	time.sleep(1)
+	if processes:
+		time.sleep(1)
+
+
+BACKUP = CACHE / "restore.plist"
+NOISE = re.compile(r"LastUpdate|Timestamp|LastSeen|lastUsed|LaunchCount|WindowFrame|NSWindow|NSSplitView|NSNavPanel|NSToolbar|MRU|Recent|History|Session", re.I)
+
+
+def export_domain(domain: str, by_host: bool, system: bool) -> dict:
+	host = ["-currentHost"] if by_host else []
+	result = subprocess.run(as_root(["defaults", *host, "export", domain, "-"], system), capture_output=True)
+	return plistlib.loads(result.stdout) if result.returncode == 0 and result.stdout else {}
+
+
+def domain_snapshot(keys: list[tuple]) -> dict:
+	"""Whole domains, because turning a feature on can make its agent write other keys there
+	(Switch Control writes its scanning intervals)."""
+	return {(d, b, s): export_domain(d, b, s) for d, b, s in dict.fromkeys((d, b, s) for d, _, b, s in keys)}
+
+
+def restore_domains(snapshot: dict, declared: set) -> list[tuple]:
+	"""Put back keys that changed in the snapshot's domains besides the declared ones."""
+	side = []
+	for (domain, by_host, system), old in snapshot.items():
+		now = export_domain(domain, by_host, system)
+		for key in set(old) | set(now):
+			if old.get(key) != now.get(key) and not NOISE.search(key) and (domain, key, by_host, system) not in declared:
+				side.append((domain, key, by_host, system))
+		restore_values({k: old.get(k[1]) for k in side if k[0] == domain and k[2] == by_host and k[3] == system})
+	return side
+
+
+def save_backup(before: dict, scripts: list[str], root: bool, domains: dict | None = None):
+	"""Kept on disk until the values are back, so an interrupted run can still put them back."""
+	CACHE.mkdir(parents=True, exist_ok=True)
+	entries = [{"key": list(key), **({"value": value} if value is not None else {})} for key, value in before.items()]
+	snapshots = [{"domain": list(key), "values": values} for key, values in (domains or {}).items()]
+	BACKUP.write_bytes(plistlib.dumps({"entries": entries, "scripts": scripts, "root": root, "domains": snapshots}))
+
+
+def restore_backup():
+	if not BACKUP.exists():
+		return
+	saved = plistlib.loads(BACKUP.read_bytes())
+	print(f"putting back the values an interrupted run left in {BACKUP}")
+	restore_values({tuple(e["key"]): e.get("value") for e in saved["entries"]})
+	restore_domains({tuple(d["domain"]): d["values"] for d in saved.get("domains", [])}, set())
+	run_script(run_once_at_the_end("\n".join(saved["scripts"])), saved["root"], check=False)
+	BACKUP.unlink()
 
 
 def matches(actual: dict, expected) -> bool:
@@ -217,13 +388,21 @@ def matches(actual: dict, expected) -> bool:
 	return value == expected
 
 
-def expectations_met(expectations: dict) -> list[str]:
+def read_controls(labels) -> dict:
+	labels = list(dict.fromkeys(labels))
+	try:
+		return json.loads(ax("values", *labels)) if labels else {}
+	except (RuntimeError, ValueError) as error:
+		return {label: {"error": str(error)} for label in labels}
+
+
+def expectations_met(expectations: dict, controls: dict | None = None) -> list[str]:
+	controls = controls if controls is not None else read_controls(expectations)
 	failures = []
 	for control, expected in expectations.items():
-		try:
-			actual = json.loads(ax("get", control))
-		except RuntimeError as error:
-			failures.append(f"{control}: {error}")
+		actual = controls.get(control, {"error": "not read"})
+		if "error" in actual:
+			failures.append(f"{control}: {actual['error']}")
 			continue
 		if not matches(actual, expected):
 			shown = {k: actual.get(k) for k in ("value", "selected") if k in actual}
@@ -231,39 +410,49 @@ def expectations_met(expectations: dict) -> list[str]:
 	return failures
 
 
-def shown_values(group: list[dict]) -> dict:
+def open_for_reading(spec: dict, group: list[dict]) -> dict:
+	"""What the page shows now; nothing when the page only exists for some values."""
+	try:
+		refresh(spec)
+	except RuntimeError:
+		return {}
+	return shown_values(group, opened=True)
+
+
+def shown_now(group: list[dict]) -> dict:
+	"""Which of its spec's values each option shows, read in one go; None when it's none of them."""
+	controls = read_controls(label for entry in group for case in entry["verify"]["expect"] for label in case["controls"])
+	return {
+		entry["option"]: next((c["value"] for c in entry["verify"]["expect"] if not expectations_met(c["controls"], controls)), None)
+		for entry in group
+	}
+
+
+def shown_values(group: list[dict], opened: bool = False) -> dict:
 	# restoring keys alone doesn't undo live state such as dark mode
 	spec = group[0]["verify"]
-	try:
-		open_pane(spec["pane"], fresh=True, steps=spec["open"])
-	except RuntimeError:
-		return {}  # the page only exists for some values
-	time.sleep(1)
-	shown = {}
-	for entry in group:
-		case = next((c for c in entry["verify"]["expect"] if not expectations_met(c["controls"])), None)
-		if case:
-			shown[entry["option"]] = case["value"]
-	return shown
+	if not opened:
+		try:
+			open_pane(spec["pane"], steps=spec["open"])
+		except RuntimeError:
+			return {}  # the page only exists for some values
+	shown = poll(lambda: (lambda now: now if None not in now.values() else None)(shown_now(group)), 3) or shown_now(group)
+	return {option: value for option, value in shown.items() if value is not None}
 
 
 def operating_writes(entry: dict, root: bool) -> list[str]:
 	# catches options that write somewhere System Settings doesn't read, such as a ByHost copy
 	spec, keys = entry["verify"], storage_of(entry, root)
 	there, back = spec["operate"] if isinstance(spec["operate"][0], list) else (spec["operate"], spec["operate"])
-	open_pane(spec["pane"], fresh=True, wait_for=there[1], steps=spec["open"])
-	time.sleep(1)
+	refresh(spec, there[1])
 	if back != there:
 		ax(*back)  # start from the "back" state, whatever was applied last
-		time.sleep(1.5)
-	# the files are written seconds after cfprefsd has the value
+		time.sleep(1)
 	before = storage_values(keys)
 	ax(*there)
-	time.sleep(1.5)
-	after_there = storage_values(keys)
+	after_there = poll(lambda: (lambda now: now if now != before else None)(storage_values(keys)), 3) or storage_values(keys)
 	ax(*back)
-	time.sleep(1.5)
-	after_back = storage_values(keys)
+	after_back = poll(lambda: (lambda now: now if now != after_there else None)(storage_values(keys)), 3) or storage_values(keys)
 	# "back" may be an equivalent value, like a deleted key for false
 	if any(after_there[k] != before[k] and after_back[k] != after_there[k] for k in before):
 		return []
@@ -276,46 +465,68 @@ def run_once_at_the_end(script: str) -> str:
 	return "\n".join(line for index, line in enumerate(lines) if last[line] == index)
 
 
-def put_back(keys: list[tuple], before: dict, scripts: list[str], shown_scripts: list[str], root: bool):
+def put_back(keys: list[tuple], before: dict, scripts: list[str], shown_scripts: list[str], root: bool, domains: dict | None = None):
 	every = "\n".join(scripts)
 	run_script(run_once_at_the_end("\n".join(shown_scripts)), root, check=False)
-	restore_after_restarting(before, sorted(set(re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", every))) + ["System Settings"])
+	restore_after_restarting(before, sorted(set(re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", every)) - {"System Settings"}))
 	# activateSettings writes keyboard shortcuts back a moment later
 	if "activateSettings" in every:
 		subprocess.run([ACTIVATE_SETTINGS, "-u"], capture_output=True)
-		time.sleep(3)
-		restore_values(before)
-	for key, value in storage_values(keys).items():
-		if value != before[key]:
-			print(f"RESTORE MISMATCH {key[0]} {key[1]}: was {before[key]!r}, now {value!r}")
+		if settled(keys) != before:
+			restore_values(before)
+	for key in restore_domains(domains or {}, set(keys)):
+		print(f"     put back {key[0]} {key[1]}, which the page changed besides its own keys")
+	mismatched = [key for key, value in storage_values(keys).items() if value != before[key]]
+	for key in mismatched:
+		print(f"RESTORE MISMATCH {key[0]} {key[1]}: was {before[key]!r}, now {storage_values([key])[key]!r}")
+	if not mismatched:
+		BACKUP.unlink(missing_ok=True)
+
+
+def case_of(entry: dict, index: int) -> dict:
+	"""A page's options are checked together, so shorter specs repeat their values."""
+	cases = entry["verify"]["expect"]
+	return cases[index % len(cases)]
 
 
 def check_group(group: list[dict]) -> set[str]:
 	spec = group[0]["verify"]
 	root = any(entry["module"] == "darwin" for entry in group)
-	commands = {e["option"]: {json.dumps(c["value"]): command_for(e["option"], c["value"]) for c in e["verify"]["expect"]} for e in group}
+	rounds = max(len(entry["verify"]["expect"]) for entry in group)
+	scripts = {e["option"]: {json.dumps(c["value"]): command_for(e["option"], c["value"]) for c in e["verify"]["expect"]} for e in group}
 	keys = list(dict.fromkeys(key for entry in group for key in storage_of(entry, root)))
 	before = storage_values(keys)
-	shown = shown_values(group)
+	domains = domain_snapshot(keys)
+	shown = open_for_reading(spec, group)
+	shown_scripts = [scripts[o][json.dumps(v)] for o, v in shown.items() if o in scripts]
+	save_backup(before, shown_scripts, root, domains)
 	failures = {entry["option"]: [] for entry in group}
 	try:
-		for index in range(len(spec["expect"])):
-			value = lambda entry: json.dumps(entry["verify"]["expect"][index]["value"])
-			# System Settings writes back what it has open when it quits
-			quit_settings()
-			run_script(run_once_at_the_end("\n".join(commands[e["option"]][value(e)] for e in group)), root)
-			time.sleep(spec.get("settle", 1.5))
-			first = next(iter(spec["expect"][index]["controls"]))
-			open_pane(spec["pane"], fresh=True, wait_for=None if spec["open"] else first, steps=spec["open"])
-			time.sleep(1)
+		for index in range(rounds):
+			value = lambda entry: json.dumps(case_of(entry, index)["value"])
+			wait_for = None if spec["open"] else next(iter(case_of(group[0], index)["controls"]))
+
+			def misses():
+				controls = read_controls(label for e in group for label in case_of(e, index)["controls"])
+				return {e["option"]: expectations_met(case_of(e, index)["controls"], controls) for e in group}
+
+			all_shown = lambda: (lambda m: m if not any(m.values()) else None)(misses())
+			apply_and_show(spec, run_once_at_the_end("\n".join(scripts[e["option"]][value(e)] for e in group)), keys, root, wait_for,
+				shown=lambda: not any(misses().values()))
+			missed = poll(all_shown, 3) or misses()
+			# a stale view isn't a failure: relaunch and look again
+			if any(missed.values()) and page_of(spec) not in stale_pages:
+				refresh(spec, wait_for, relaunch=True)
+				missed = poll(all_shown, 4) or misses()
+				if not any(missed.values()):
+					stale_pages.add(page_of(spec))
 			for entry in group:
-				failures[entry["option"]] += [f"{value(entry)}: {f}" for f in expectations_met(entry["verify"]["expect"][index]["controls"])]
+				failures[entry["option"]] += [f"{value(entry)}: {f}" for f in missed[entry["option"]]]
 		for entry in group:
 			if entry["verify"]["operate"]:
 				failures[entry["option"]] += operating_writes(entry, root)
 	finally:
-		put_back(keys, before, [c for per in commands.values() for c in per.values()],
-			[commands[o][json.dumps(v)] for o, v in shown.items()], root)
+		put_back(keys, before, [c for per in scripts.values() for c in per.values()], shown_scripts, root, domains)
 	for entry in group:
 		print(f"{'FAIL' if failures[entry['option']] else 'ok  '} {label_of(entry)}")
 		for failure in failures[entry["option"]]:
@@ -335,23 +546,27 @@ def default_group(group: list[dict]) -> dict:
 	root = any(entry["module"] == "darwin" for entry in group)
 	keys = list(dict.fromkeys(key for entry in group for key in storage_of(entry, root)))
 	before = storage_values(keys)
+	domains = domain_snapshot(keys)
+	before_shown = open_for_reading(spec, group)
 	# restoring the keys puts back everything that isn't applied live
-	shown = shown_values([entry for entry in group if applies_live(entry)]) if any(map(applies_live, group)) else {}
-	shown_scripts = [command_for(option, value) for option, value in shown.items()]
+	shown_scripts = [command_for(e["option"], before_shown[e["option"]]) for e in group if applies_live(e) and e["option"] in before_shown]
 	unset = [entry["commands"]["unset"] for entry in group]
-	found = {}
+	save_backup(before, shown_scripts, root, domains)
+	read = lambda entries: poll(lambda: (lambda now: now if None not in now.values() else None)(shown_now(entries)), 3) or shown_now(entries)
 	try:
-		quit_settings()
-		run_script(run_once_at_the_end("\n".join(unset)), root)
-		time.sleep(spec.get("settle", 1.5))
-		open_pane(spec["pane"], fresh=True, steps=spec["open"])
-		time.sleep(1)
-		for entry in group:
-			case = next((c for c in entry["verify"]["expect"] if not expectations_met(c["controls"])), None)
-			if case:
-				found[entry["option"]] = case["value"]
+		apply_and_show(spec, run_once_at_the_end("\n".join(unset)), keys, root)
+		found = read(group)
+		# the same value as before can be the default or a view that didn't reload: relaunch to tell
+		unsure = [e for e in group if found[e["option"]] is None or found[e["option"]] == before_shown.get(e["option"])]
+		if unsure and page_of(spec) not in stale_pages:
+			refresh(spec, relaunch=True)
+			again = read(unsure)
+			if any(again[o] != found[o] for o in again):
+				stale_pages.add(page_of(spec))
+			found.update(again)
+		found = {option: value for option, value in found.items() if value is not None}
 	finally:
-		put_back(keys, before, unset + shown_scripts, shown_scripts, root)
+		put_back(keys, before, unset + shown_scripts, shown_scripts, root, domains)
 	for entry in group:
 		shown_default = json.dumps(found[entry["option"]], ensure_ascii=False) if entry["option"] in found else "none of the spec's values"
 		print(f"{label_of(entry)}: {shown_default}")
@@ -363,14 +578,15 @@ def select(args, verified: set = frozenset()) -> list[list[dict]]:
 	groups: dict[tuple, list] = {}
 	for entry in load_options():
 		spec = entry.get("verify")
-		if not spec or (args.option and args.option != entry["option"]) \
+		if not spec or not spec["expect"] or (args.option and args.option != entry["option"]) \
 				or (args.pane and normalize(args.pane) not in normalize(label_of(entry))) \
 				or (args.skip and re.search(args.skip, label_of(entry))) \
 				or ((getattr(args, "only_unverified", False) or getattr(args, "missing", False)) and entry["option"] in verified) \
 				or (args.command == "defaults" and "unset" not in entry["commands"]) \
+				or (spec["sideEffects"] and not args.side_effects) \
 				or (entry["module"] == "darwin" and not root):  # nix-darwin's settings need root
 			continue
-		page = (spec["pane"], tuple(spec["open"])) + (() if args.command == "defaults" else (len(spec["expect"]),)) if args.batch else entry["option"]
+		page = (spec["pane"], tuple(spec["open"])) if args.batch else entry["option"]
 		groups.setdefault(page, []).append(entry)
 	return list(groups.values())
 
@@ -379,10 +595,17 @@ def build() -> str:
 	return subprocess.run(["sw_vers", "-buildVersion"], capture_output=True, text=True).stdout.strip()
 
 
+def start(groups: list[list[dict]]):
+	restore_backup()
+	prepare_commands([(e["option"], c["value"]) for group in groups for e in group for c in e["verify"]["expect"]])
+
+
 def cmd_defaults(args):
 	path = ROOT / "defaults" / f"{build()}.json"
 	defaults = json.loads(path.read_text()) if path.exists() else {}
-	for group in select(args, set(defaults) if args.missing else frozenset()):
+	groups = select(args, set(defaults) if args.missing else frozenset())
+	start(groups)
+	for group in groups:
 		try:
 			defaults.update(default_group(group))
 		except Exception as error:
@@ -390,6 +613,7 @@ def cmd_defaults(args):
 			continue
 		path.parent.mkdir(exist_ok=True)
 		path.write_text("{\n" + ",\n".join(f"\t{json.dumps(o)}: {json.dumps(v, ensure_ascii=False)}" for o, v in sorted(defaults.items())) + "\n}\n")
+	quit_settings()
 	print(f"{len(defaults)} defaults in {path.relative_to(ROOT)}")
 
 
@@ -397,11 +621,16 @@ def cmd_check(args):
 	coverage = load_coverage()
 	verified = {option for options in coverage["verified"].values() for option in options}
 	groups = {index: group for index, group in enumerate(select(args, verified))}
+	start(list(groups.values()))
 
 	passed, failed, errors = set(), set(), 0
 	for group in groups.values():
 		try:
 			ok = check_group(group)
+			# values of options on one page can depend on each other: check failures on their own
+			for entry in (e for e in group if e["option"] not in ok and len(group) > 1):
+				print(f"     again on its own: {label_of(entry)}")
+				ok |= check_group([entry])
 		except Exception as error:  # e.g. System Settings not opening: says nothing about the options
 			print(f"ERROR {', '.join(label_of(e) for e in group)}\n     {error}")
 			errors += 1
@@ -413,6 +642,7 @@ def cmd_check(args):
 	coverage["verified"] = {b: sorted(set(options) - passed - failed) for b, options in coverage["verified"].items()}
 	coverage["verified"][build_version] = sorted(set(coverage["verified"].get(build_version, [])) | passed)
 	save_coverage(coverage)
+	quit_settings()
 	print(f"{len(passed)} passed, {len(failed)} failed" + (f", {errors} pages couldn't be checked" if errors else ""))
 	sys.exit(1 if failed or errors else 0)
 
@@ -539,6 +769,7 @@ def main():
 	p.add_argument("--skip", help="regex of UI paths to leave out, e.g. ones that play sound or speak")
 	p.add_argument("--only-unverified", action="store_true", help="leave out options that are verified already")
 	p.add_argument("--batch", action="store_true", help="check the options of one page together (much faster)")
+	p.add_argument("--side-effects", action="store_true", help="also options whose check has side effects, such as turning on the camera")
 	p.set_defaults(run=cmd_check)
 
 	p = sub.add_parser("defaults", help="record what System Settings shows once each option's keys are deleted")
@@ -547,6 +778,7 @@ def main():
 	p.add_argument("--skip", help="regex of UI paths to leave out")
 	p.add_argument("--batch", action="store_true", help="the options of one page together")
 	p.add_argument("--missing", action="store_true", help="only options with no default recorded yet, e.g. to continue a run")
+	p.add_argument("--side-effects", action="store_true", help="also options whose check has side effects, such as turning on the camera")
 	p.set_defaults(run=cmd_defaults)
 
 	p = sub.add_parser("discover", help="list the settings a page shows")
