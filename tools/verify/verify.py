@@ -129,7 +129,9 @@ def open_pane(pane: str, fresh: bool = False, wait_for: str | None = None, steps
 			return ax("click", pane)
 	wait_until(show, f"sidebar item {pane}")
 	for step in steps:
-		wait_until(lambda: ax("press", step), step)
+		# "click:<label>" clicks instead, for list rows that ignore AXPress (Keyboard Shortcuts…'s categories)
+		action, target = ("click", step.removeprefix("click:")) if step.startswith("click:") else ("press", step)
+		wait_until(lambda: ax(action, target), step)
 		time.sleep(0.5)
 	if wait_for:
 		wait_until(lambda: ax("get", wait_for), wait_for)
@@ -433,11 +435,7 @@ def check_setting(data: dict, setting: dict, build: str, entry: dict) -> bool:
 		# doesn't undo, so put the original value back through the option first
 		if original is not NOTHING:
 			subprocess.run(["/bin/bash", "-c", command_for(option, original)], check=False)
-		restore_values(before)
-		# let the processes the option restarts, and System Settings, pick the restored values up
-		for process in re.findall(r"killall '?([^' \n]+)'?", command) + ["System Settings"]:
-			subprocess.run(["killall", process], capture_output=True)
-		time.sleep(1)
+		restore_after_restarting(before, re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", command) + ["System Settings"])
 		after = storage_values(storage)
 		for key, value in before.items():
 			if after.get(key) != value:
@@ -780,6 +778,89 @@ def cmd_discover(args):
 	inventory.save_all(files)
 
 
+ACTIVATE_SETTINGS = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings"
+
+
+def restore_after_restarting(values: dict, processes: list[str]):
+	"""Put preference keys back, and restart the processes an option restarts so they read them.
+	Some (the Dock, SystemUIServer) write what they have loaded when they quit, so they are
+	quit before the keys are restored as well as after."""
+	for process in processes:
+		subprocess.run(["killall", process], capture_output=True)
+	time.sleep(2)
+	restore_values(values)
+	for process in processes:
+		subprocess.run(["killall", process], capture_output=True)
+	time.sleep(1)
+
+
+def run_once_at_the_end(script: str) -> str:
+	"""Several settings' scripts joined: lines they share (restarts, activateSettings) run once,
+	where the last of them was, as they would in one activation."""
+	lines = script.splitlines()
+	last = {line: index for index, line in enumerate(lines)}
+	return "\n".join(line for index, line in enumerate(lines) if last[line] == index)
+
+
+def check_batch(data: dict, group: list[tuple[dict, dict]], build: str) -> tuple[int, int]:
+	"""Check settings that are shown on the same page together: apply case n of every one of
+	them, open the page once and read all their controls. They need the same number of cases,
+	and expectations that don't depend on each other: each its own controls, and values that
+	don't collide (e.g. a different test shortcut per row)."""
+	spec = group[0][1]["verify"]
+	commands = {setting["option"]: {json.dumps(case["value"]): command_for(setting["option"], case["value"])
+		for case in entry["verify"]["expect"]} for setting, entry in group}
+	storage = []
+	for setting, entry in group:
+		for key in storage_of(entry) + inventory.storage_from_commands(commands[setting["option"]]):
+			if key.get("scope") != "system" and key not in storage:
+				storage.append(key)
+	before = storage_values(storage)
+	failures = {setting["option"]: [] for setting, _ in group}
+	try:
+		for index in range(len(spec["expect"])):
+			value_of_case = lambda entry: json.dumps(entry["verify"]["expect"][index]["value"])
+			script = run_once_at_the_end("\n".join(commands[setting["option"]][value_of_case(entry)] for setting, entry in group))
+			# System Settings writes back what it has open when it quits, so it goes first
+			subprocess.run(["killall", "System Settings"], capture_output=True)
+			time.sleep(1)
+			subprocess.run(["/bin/bash", "-c", script], check=True)
+			time.sleep(spec.get("settle", 1.5))
+			first = next(iter(group[0][1]["verify"]["expect"][index]["controls"]))
+			open_pane(spec["pane"], fresh=True, wait_for=None if spec["open"] else first, steps=spec["open"])
+			time.sleep(1)
+			for setting, entry in group:
+				expectations = entry["verify"]["expect"][index]["controls"]
+				failures[setting["option"]] += [f"{value_of_case(entry)}: {failure}" for failure in expectations_met(expectations)]
+	finally:
+		every = "\n".join(c for per in commands.values() for c in per.values())
+		restore_after_restarting(before, sorted(set(re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", every))) + ["System Settings"])
+		# restored keyboard shortcuts take effect like applied ones; activateSettings writes the
+		# shortcuts back a moment later, so restore once more after it
+		if "activateSettings" in every:
+			subprocess.run([ACTIVATE_SETTINGS, "-u"], capture_output=True)
+			time.sleep(3)
+			restore_values(before)
+		after = storage_values(storage)
+		for key, value in before.items():
+			if after.get(key) != value:
+				print(f"RESTORE MISMATCH {key[0]} {key[1]}: was {value!r}, now {after.get(key)!r}")
+	passed = failed = 0
+	for setting, entry in group:
+		label = f"{inventory.pane_label(data)} :: {setting['title']}"
+		if failures[setting["option"]]:
+			setting.pop("verified", None)
+			print(f"FAIL {label}")
+			for failure in failures[setting["option"]]:
+				print(f"     {failure}")
+			failed += 1
+		else:
+			print(f"ok   {label}")
+			setting["verified"] = {"build": build, "date": datetime.date.today().isoformat(), "commands": inventory.commands_digest(entry)}
+			passed += 1
+	return passed, failed
+
+
 def cmd_check(args):
 	files = inventory.load_all()
 	build = inventory.current_build()
@@ -788,11 +869,24 @@ def cmd_check(args):
 	for path, data in files.items():
 		if args.pane and inventory.normalize(args.pane) not in inventory.normalize(inventory.pane_label(data)):
 			continue
+		batches: dict[tuple, list] = {}
 		for setting_id, setting in data["settings"].items():
 			if args.setting and args.setting != setting_id:
 				continue
+			if args.skip and re.search(args.skip, setting["title"]):
+				continue
+			if args.only_unverified and setting.get("verified"):
+				continue
 			entry = index.get(setting.get("option"))
 			if not (entry and entry.get("verify")):
+				continue
+			# nix-darwin's settings are applied as root
+			if entry.get("module") == "darwin" and os.geteuid() != 0:
+				continue
+			if args.batch:
+				spec = entry["verify"]
+				page = (spec["pane"], tuple(spec["open"]), len(spec["expect"]))
+				batches.setdefault(page, []).append((setting, entry))
 				continue
 			try:
 				ok = check_setting(data, setting, build, entry)
@@ -800,6 +894,14 @@ def cmd_check(args):
 				print(f"FAIL {inventory.pane_label(data)} :: {setting['title']}\n     {error}")
 				ok = False
 			passed, failed = passed + ok, failed + (not ok)
+		for group in batches.values():
+			try:
+				ok, bad = check_batch(data, group, build)
+			except Exception as error:
+				print(f"FAIL {inventory.pane_label(data)} :: {', '.join(s['title'] for s, _ in group)}\n     {error}")
+				ok, bad = 0, len(group)
+			passed, failed = passed + ok, failed + bad
+		inventory.save_all(files)
 	inventory.save_all(files)
 	print(f"{passed} passed, {failed} failed")
 	sys.exit(1 if failed else 0)
@@ -838,6 +940,9 @@ def main():
 	p = sub.add_parser("check")
 	p.add_argument("--pane")
 	p.add_argument("--setting")
+	p.add_argument("--skip", help="regex of setting titles to leave out, e.g. ones that play sound or speak")
+	p.add_argument("--only-unverified", action="store_true", help="leave out settings that are verified already")
+	p.add_argument("--batch", action="store_true", help="check the settings of one page together (much faster; see check_batch)")
 
 	args = parser.parse_args()
 	{"controls": cmd_controls, "observe": cmd_observe, "apply": cmd_apply, "check": cmd_check, "discover": cmd_discover, "probe": cmd_probe}[args.command](args)
