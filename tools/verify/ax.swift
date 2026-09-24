@@ -12,6 +12,9 @@
 //   ax items <label>                     list a pop-up button's menu items
 //   ax pick <label> <item>               open a pop-up button and choose a menu item
 //
+// A trailing "#N" picks the Nth of several elements with the same label; "AXPopUpButton:#2" is
+// the second pop-up button, for controls without a label.
+//
 // <label> matches an element's title, description, label or identifier (case-insensitive,
 // whole string). "A > B" matches B inside an element labelled A, "B + C" an element labelled
 // both B and C, and "AXRadioButton:B" only elements with that role.
@@ -49,6 +52,13 @@ func labels(_ element: AXUIElement) -> [String] {
 	// SwiftUI rows often carry their label on a static text child instead of the control
 	if let titleElement = attribute(element, kAXTitleUIElementAttribute) {
 		result += [string(titleElement as! AXUIElement, kAXValueAttribute)].compactMap { $0 }
+	}
+	// and list rows (e.g. Keyboard Shortcuts…) put an unlabelled checkbox next to the row's text
+	if result.isEmpty, string(element, kAXRoleAttribute) == kAXCheckBoxRole,
+	   let cell = attribute(element, kAXParentAttribute) {
+		result += children(cell as! AXUIElement)
+			.filter { string($0, kAXRoleAttribute) == kAXStaticTextRole }
+			.compactMap { string($0, kAXValueAttribute) }
 	}
 	return result
 }
@@ -158,12 +168,20 @@ struct Selector {
 
 	func matches(_ element: AXUIElement) -> Bool {
 		if let role = role, string(element, kAXRoleAttribute) != role { return false }
+		// "AXPopUpButton:" with no label matches by role alone, for unlabelled controls ("…#2")
+		if role != nil && wanted == [""] { return true }
 		let own = labels(element).map { $0.lowercased() }
 		return wanted.allSatisfy(own.contains)
 	}
 }
 
-func find(_ query: String, in root: AXUIElement) throws -> AXUIElement {
+func find(_ fullQuery: String, in root: AXUIElement) throws -> AXUIElement {
+	// "label#3" picks the third element with that label, for rows that repeat one (disclosure triangles)
+	var query = fullQuery, nth: Int? = nil
+	if let hash = fullQuery.lastIndex(of: "#"), let n = Int(fullQuery[fullQuery.index(after: hash)...]), n > 0 {
+		query = String(fullQuery[..<hash])
+		nth = n
+	}
 	let parts = query.components(separatedBy: " > ").map { $0.trimmingCharacters(in: .whitespaces) }
 	let selector = Selector(parts.last ?? "")
 	let ancestorsWanted = parts.dropLast().map { $0.lowercased() }
@@ -181,6 +199,10 @@ func find(_ query: String, in root: AXUIElement) throws -> AXUIElement {
 	}
 	// prefer an actual control over the static text that labels it
 	let controls = matches.filter { string($0, kAXRoleAttribute) != kAXStaticTextRole }
+	if let nth = nth {
+		guard nth <= controls.count else { throw Failure(description: "only \(controls.count) elements labelled '\(query)'") }
+		return controls[nth - 1]
+	}
 	guard let match = controls.first ?? matches.first else { throw Failure(description: "no element labelled '\(query)'") }
 	if controls.count > 1 {
 		FileHandle.standardError.write("warning: \(controls.count) elements labelled '\(query)', using the first\n".data(using: .utf8)!)

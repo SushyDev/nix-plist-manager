@@ -149,7 +149,86 @@ def read_with(entry: dict):
 		return folders
 	if reader.get("appLanguages"):
 		return app_languages()
+	if "hotKey" in reader:
+		return hot_key(stored(key), reader)
+	if reader.get("inputSources"):
+		return input_sources()
+	if reader.get("services"):
+		return services(stored(key), reader["names"])
+	if reader.get("appShortcuts"):
+		return app_shortcuts(reader["names"])
 	return UNREAD
+
+
+def input_sources() -> list:
+	"""The enabled keyboard layouts and input methods, by input source id."""
+	script = (
+		"ObjC.import('Carbon');"
+		"var list = ObjC.castRefToObject($.TISCreateInputSourceList($(), false)); var ids = [];"
+		"for (var i = 0; i < list.count; i++) { var s = list.objectAtIndex(i);"
+		"  if (ObjC.castRefToObject($.TISGetInputSourceProperty(s, $.kTISPropertyInputSourceCategory)).js == 'TISCategoryKeyboardInputSource')"
+		"    ids.push(ObjC.castRefToObject($.TISGetInputSourceProperty(s, $.kTISPropertyInputSourceID)).js); }"
+		"JSON.stringify(ids)"
+	)
+	result = subprocess.run(["osascript", "-l", "JavaScript", "-e", script], capture_output=True, text=True)
+	return json.loads(result.stdout) if result.returncode == 0 else UNREAD
+
+
+def key_equivalent_glyphs(equivalent: str, names: dict) -> str:
+	"""NSUserKeyEquivalents' "@$s" as the options write it, "⇧⌘S"."""
+	glyphs = ""
+	while equivalent[:1] in names["equivalentModifiers"] and len(equivalent) > 1:
+		glyphs += names["equivalentModifiers"][equivalent[0]]
+		equivalent = equivalent[1:]
+	ordered = "".join(g for g in "⌃⌥⇧⌘" if g in glyphs)
+	return ordered + names["equivalentKeys"].get(equivalent, equivalent.upper())
+
+
+def services(entries, names: dict):
+	"""Services changed in System Settings: false, true, or their keys."""
+	if not isinstance(entries, dict):
+		return UNREAD
+	result = {}
+	for service, status in entries.items():
+		if not status.get("enabled_services_menu", True) and not status.get("enabled_context_menu", True):
+			result[service] = False
+		elif status.get("key_equivalent"):
+			result[service] = key_equivalent_glyphs(status["key_equivalent"], names)
+		else:
+			result[service] = True
+	return result
+
+
+def app_shortcuts(names: dict) -> dict:
+	"""App Shortcuts as the option takes them: { app: { "Menu->Item": "⌘⇧S" } }."""
+	apps = export("com.apple.universalaccess", False).get("com.apple.custommenu.apps") or []
+	result = {}
+	for app in apps:
+		items = export(app, False).get("NSUserKeyEquivalents") or {}
+		shortcuts = {}
+		for title, equivalent in items.items():
+			shortcuts["->".join(part for part in title.split("\x1b") if part)] = key_equivalent_glyphs(equivalent, names)
+		if shortcuts:
+			result["All Applications" if app == "NSGlobalDomain" else app] = shortcuts
+	return result
+
+
+def hot_key(entries, reader: dict):
+	"""A symbolic hotkey as the option takes it: false, true (default keys) or "⌘⇧S"."""
+	entry = (entries or {}).get(str(reader["hotKey"]))
+	if entry is None:
+		return UNREAD
+	if not entry.get("enabled"):
+		return False
+	parameters = entry.get("value", {}).get("parameters")
+	if not parameters:
+		return True
+	_, code, flags = parameters
+	key = reader["names"]["keys"].get(str(code))
+	if key is None:
+		return True
+	glyphs = [glyph for flag, glyph in sorted(reader["names"]["modifiers"].items(), key=lambda item: "⌃⌥⇧⌘".index(item[1])) if flags & int(flag)]
+	return "".join(glyphs) + key
 
 
 def app_languages() -> dict:

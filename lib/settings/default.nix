@@ -4,7 +4,8 @@
 let
 	ops = import ./ops.nix { inherit lib; };
 	storage = import ./storage.nix { inherit lib; };
-	codecs = import ./codecs.nix { inherit lib ops storage; };
+	shortcuts = import ./shortcuts.nix { inherit lib; };
+	codecs = import ./codecs.nix { inherit lib ops storage shortcuts; };
 	behaviorsLib = import ./behaviors.nix { inherit lib ops; };
 	relations = import ./relations.nix { inherit lib; };
 	core = import ./setting.nix { inherit lib ops behaviorsLib; };
@@ -14,5 +15,5 @@ let
 	live = import ./live.nix { inherit lib; };
 in
 storage // codecs // behaviorsLib // relations // core // describe // {
-	inherit ops render module live;
+	inherit ops render module live shortcuts;
 }
