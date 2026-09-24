@@ -18,15 +18,36 @@
 				home-manager = self.homeManagerModules.default;
 			};
 
-			# The shell command an option runs for a value, used by tools/verify
+			# The script that applies one option value, as a configuration with only that value would:
+			# type-checked, with the writes of settings it implies. Used by tools/verify.
 			lib.commandFor = optionPath: value:
 				let
 					lib = nixpkgs.lib;
-					options = import ./lib/options.nix { inherit lib; };
-					option = lib.getAttrFromPath (lib.splitString "." optionPath) options;
+					result = self.lib.standalone (lib.setAttrByPath (lib.splitString "." optionPath) value);
+					failed = result.user.assertions ++ result.system.assertions;
 				in
-				if option.option.type.check value then option.config.command value
-				else throw "${builtins.toJSON value} is not a valid value for ${optionPath}";
+				if failed != [] then throw (lib.concatStringsSep "\n" failed)
+				else lib.concatStringsSep "\n" (lib.filter (script: script != "") [ result.user.script result.system.script ]);
+
+			# `nix run .#apply` evaluates this: the scripts, warnings and failed assertions for a
+			# set of option values, outside a system configuration
+			lib.standalone = values:
+				let
+					lib = nixpkgs.lib;
+					settingsLib = import ./lib/settings { inherit lib; };
+					result = settingsLib.module.standalone {
+						tree = import ./lib/options.nix { inherit lib; };
+						inherit values;
+					};
+					scope = build: {
+						inherit (build) script warnings;
+						assertions = map (assertion: assertion.message) build.assertions;
+					};
+				in
+				{
+					user = scope result.user;
+					system = scope result.system;
+				};
 
 			optionIndex =
 				let
@@ -83,6 +104,20 @@
 				}
 			);
 
+			checks = forAllSystems (system:
+				let
+					pkgs = import nixpkgs { inherit system; };
+					failures = import ./lib/settings/tests.nix { inherit (nixpkgs) lib; };
+				in
+				{
+
+					settings = pkgs.runCommand "settings-tests" {} (
+						if failures == [] then "touch $out"
+						else throw "settings tests failed:\n${builtins.toJSON failures}"
+					);
+				}
+			);
+
 			apps = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
@@ -95,8 +130,26 @@
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
 						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify/verify.py" "$@"
 					'';
+					# used from users' own configurations, so they read this flake's source, not the
+					# repository they're run in
+					apply = pkgs.writeShellScript "apply" (
+						"export NIX_PLIST_MANAGER_ROOT=\"\${NIX_PLIST_MANAGER_ROOT:-${self}}\"\n"
+						+ builtins.readFile ./tools/apply.sh
+					);
+					capture = pkgs.writeShellScript "capture" ''
+						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-${self}}"
+						exec ${pkgs.python3}/bin/python3 ${./tools/capture.py} "$@"
+					'';
 				in
 				{
+					apply = {
+						type = "app";
+						program = "${apply}";
+					};
+					capture = {
+						type = "app";
+						program = "${capture}";
+					};
 					inventory = {
 						type = "app";
 						program = "${inventory}";

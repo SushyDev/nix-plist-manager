@@ -1,28 +1,29 @@
 { lib }:
 let
-	isOption = value: lib.isAttrs value && value ? path && value ? mapping;
+	settingsLib = import ./settings { inherit lib; };
+	isOption = settingsLib.isEntry;
 
 	generateOptionMarkdown = option: path: name:
 		let
-			moduleType = if option.config.perUser then "home-manager" else "darwin";
+			described = settingsLib.describe option;
 
-			mkCommandRow = val: cmd: 
-				let
-					cmdStr = 
-						if lib.isFunction cmd.command then cmd.command "value"
-						else builtins.toString cmd.command;
-				in
-				"`${val}`:\n```bash\n${cmdStr}\n```\n";
+			mkCommandRow = value: command: "`${value}`:\n```bash\n${command}\n```\n";
 
-			header = "## ${lib.lists.last option.path}\n\n";
-			thing = "${lib.concatStringsSep " > " option.path}\n\n";
-			module = "**Option Module:** `${moduleType}`\n\n";
+			storage = lib.optionalString (described ? storage) (
+				"**Stored in:**\n\n" + lib.concatMapStrings (key:
+					"- `${key.domain}`${lib.optionalString (key.key != null) " `${key.key}`"}${lib.optionalString key.byHost " (current host)"}\n"
+				) described.storage + "\n"
+			);
+
+			header = "## ${lib.lists.last described.path}\n\n";
+			thing = "${lib.concatStringsSep " > " described.path}\n\n";
+			module = "**Option Module:** `${described.module}`\n\n";
 			optionPath = "**Option Path:** `${lib.concatStringsSep "." path}.${name}`\n\n";
-			valueDescription = "**Option Value Description:** `${option.option.type.description}`\n\n";
-			commands = lib.concatStringsSep "\n" (lib.mapAttrsToList (val: cmd: mkCommandRow val cmd) option.mapping);
+			valueDescription = "**Option Value Description:** `${described.type}`\n\n";
+			commands = lib.concatStringsSep "\n" (lib.mapAttrsToList mkCommandRow described.commands);
 			separator = "\n---\n\n";
 		in
-		header + thing + module + optionPath + valueDescription + commands + separator;
+		header + thing + module + optionPath + valueDescription + storage + commands + separator;
 
 	traverseOptions = options: currentPath:
 		if isOption options then generateOptionMarkdown options currentPath

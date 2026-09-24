@@ -54,15 +54,71 @@ The status is derived from these fields, not stored:
 
 1. Find one with `nix run .#inventory -- todo --status todo --pane Keyboard`, or look at `COVERAGE.md`.
 2. Find where it's stored. Run `tools/watch.sh` (or `tools/plist-watcher.py --filter …`), flip the setting in System Settings and note the domain, key and type that change. Record them in `storage`, even if you stop here.
-3. Add the option under `lib/options/…`. Its `path` should follow the UI labels, e.g. `[ "Desktop & Dock" "Dock" "Size" ]`.
+3. Register it as a `setting` under `lib/options/…` (see [Writing a setting](#writing-a-setting)).
 4. Run `nix run .#inventory -- sync`. It links the option to the entry with the same title. If the title differs (the UI label and Apple's metadata sometimes disagree), link it yourself:
    ```sh
    nix run .#inventory -- link inventory/system-settings/keyboard.json#<setting-id> <option.path>
    ```
-5. Add a `ui` spec and run `nix run .#verify -- check --setting <setting-id>` (see below), which marks the setting verified when System Settings shows every value the option sets.
+5. Give it a `verify` spec and run `nix run .#verify -- check --setting <setting-id>` (see below), which marks the setting verified when System Settings shows every value the option sets.
 6. Run `nix run .#inventory -- report` and commit the option, the inventory JSON and `COVERAGE.md` together.
 
 New files have to be `git add`ed before `nix` can see them.
+
+### Writing a setting
+
+A setting is data: where it is in System Settings, where the value is stored, how values are encoded, and how it behaves. The option, the activation commands, the docs and the inventory's storage are all derived from it, in `lib/settings/`.
+
+```nix
+{ lib, settingsLib, ... }:
+let
+	inherit (settingsLib) setting global user enum number bool inverted restarts notifies allowedWhen;
+in
+{
+	allowWallpaperTintingInWindows = setting {
+		ui = [ "System Settings" "Appearance" "Windows" "Tint window background with wallpaper color" ];
+		storage = global "AppleReduceDesktopTinting";
+		value = inverted bool;   # the key says "reduce", the switch says "tint"
+		verify = {
+			pane = "com.apple.settings.appearance";
+			operate = [ "click" "TintWindowBackgroundToggle" ];
+			expect = {
+				true = { TintWindowBackgroundToggle = 1; };
+				false = { TintWindowBackgroundToggle = 0; };
+			};
+		};
+	};
+}
+```
+
+| Part | What's there | File |
+| --- | --- | --- |
+| `ui` | The full path to the control in the UI's own words, starting at the app ("System Settings", "Finder", "Dock", "Menu bar"): pane, sub-page, the button that opens a sheet ("Advanced…", or "Speak selection (i)" for an info button), then the control's label. The docs show it as the way to the setting; `nix flake check` fails when it doesn't start at an app. | `setting.nix` |
+| `storage` | `user "<domain>" "<key>"`, `global "<key>"` (NSGlobalDomain), `system "<domain>" "<key>"` (nix-darwin, as root), wrapped in `byHost` for the current-host copy or `stored "float"` to force the plist type. Several keys: `{ color = global "…"; variant = global "…"; }`. | `storage.nix` |
+| `value` | `bool`, `inverted bool`, `text`, `number { min; max; stored ? ; }`, `enum { "<label as shown>" = <stored value>; }` (`absent` deletes the key, `{ <key name> = …; }` writes several), `flags { <name> = <bit>; }` (read-modify-write, so unmanaged bits are kept). | `codecs.nix` |
+| `behaviors` | `restarts "Dock"` and `notifies "…"` run once after all writes; `appliesThrough (value: "<command>")` for state a system service owns. Every setting also clears a stale ByHost copy of its keys. | `behaviors.nix` |
+| `relations` | `onlyWhen`, `allowedWhen`, `conflictsWith` and `implies`, against other settings by option path. They fail evaluation when both settings are managed and disagree, and warn when the other one isn't managed (silenced with `ignoreWarnings`). | `relations.nix` |
+| `family` | Settings with the same shape, generated from a table (e.g. the four hot corners). | `setting.nix` |
+| `snapshot` | For state that's arranged rather than typed, like the menu bar layout: `storage` lists whole domains (`domain "…"`) and single keys, `nix run .#capture -- <option> <dir>` saves them as plists, and the option takes that directory. Each entry is replaced by what was captured. | `codecs.nix` |
+
+Settings people change often in daily use (brightness, volume) and per-device hardware state (resolution, a specific monitor's preset) don't get options: skip them in the inventory with the reason.
+
+Every setting accepts `null` (not managed) and `"unset"` (delete the keys, back to the macOS default) on top of what its value type allows. `nix flake check` runs the library's tests in `lib/settings/tests.nix`.
+
+Renamed or removed options go in `modules/deprecations.nix`, not in the option files.
+
+### Try settings without rebuilding your system
+
+`nix run .#apply` applies settings straight from this checkout, with the same type checks and relations as a system configuration:
+
+```sh
+nix run .#apply -- set applications.systemSettings.appearance.accentColor '"Graphite"'
+nix run .#apply -- set applications.systemSettings.desktopAndDock.dock.size 48 --dry-run
+nix run .#apply -- config ./my-settings.nix      # { applications.systemSettings.… = …; }
+```
+
+The value is a Nix expression, so strings need their quotes. `--dry-run` prints the script instead of running it. System settings (nix-darwin's) run through `sudo`.
+
+`nix eval --raw ./tests/modules#home` (or `#darwin`) evaluates the modules inside real home-manager and nix-darwin configurations and prints the activation script they produce.
 
 ### Verify against the real UI
 
@@ -74,14 +130,14 @@ nix run .#verify -- discover com.apple.settings.appearance inventory/system-sett
                                                                     # add what the pane shows to the inventory
 nix run .#verify -- observe com.apple.settings.appearance click "TintWindowBackgroundToggle"
                                                                     # which preference keys a control writes
-nix run .#verify -- check --pane Appearance                        # round-trip every option with a `ui` spec
+nix run .#verify -- check --pane Appearance                        # round-trip every setting with a `verify` spec
 ```
 
 Panes are addressed by their sidebar identifier; `ax dump` lists them. Operate a control with `press` (buttons, radio buttons), `click` (SwiftUI switches ignore `press`), `pick` (pop-up menus) or `set` (sliders). Labels that appear more than once can be narrowed down: `AXRadioButton:Dark` matches only radio buttons, and `Dark + Icon & widget style` matches only an element that carries both labels.
 
 `discover` is how panes whose `coverage` is `none` get their settings, and how the others get the ones Apple's metadata leaves out. Use `--open "Hot Corners…"` to reach sheets and sub-pages.
 
-`check` needs a `ui` spec on the setting that says what System Settings should show for each value. Its format is described at the top of `tools/verify/verify.py`. `check` backs up the setting's preference keys, applies each value with the option's own generated command, reopens the pane and compares, then restores the backup. Settings that pass get `verified`.
+`check` needs a `verify` spec on the setting that says what System Settings should show for each value. Its format is described at the top of `tools/verify/verify.py`. `check` backs up the setting's preference keys, applies each value with the option's own generated command, reopens the pane and compares, then restores the backup. Settings that pass get `verified`.
 
 Write the storage you record in `storage` from what `observe` reports. Don't take it from an existing option: an option that writes the wrong domain (for example `ByHost` when System Settings writes the global domain) still "works" in one direction, but it silently overrides whatever the user picks in the UI.
 

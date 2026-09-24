@@ -49,9 +49,9 @@ STATUSES = ["verified", "implemented", "mapped", "todo", "skipped"]
 KINDS = ["bool", "number", "string", "enum", "unknown"]
 SETTING_FIELDS = {
 	"title", "section", "kind", "choices", "sources", "firstSeen", "lastSeen",
-	"storage", "option", "verified", "skip", "notes", "ui",
+	"storage", "option", "verified", "skip", "notes",
 }
-STORAGE_FIELDS = {"domain", "key", "type", "byHost", "scope"}
+STORAGE_FIELDS = {"domain", "key", "type", "byHost", "scope", "as"}
 
 
 # ---------------------------------------------------------------------------
@@ -484,12 +484,14 @@ def normalize_domain(domain: str) -> str:
 def storage_from_commands(commands: dict) -> list[dict]:
 	"""Where an option's commands keep its value. Deletes only count for keys the option never
 	writes, so clearing a stale copy elsewhere (e.g. in ByHost) isn't mistaken for storage."""
-	pattern = r"/usr/bin/defaults (?:(-currentHost) )?(write|delete) (\S+) \"([^\"]+)\"(?: -(\w+))?"
+	# keys are quoted by older options ("key") and only when needed by the settings renderer
+	pattern = r"/usr/bin/defaults (?:(-currentHost) )?(write|delete) (\S+) (?:\"([^\"]+)\"|'([^']+)'|([^\s'\"]+))(?: -(\w+))?"
 	operations = [
 		(action, normalize_domain(domain), key, bool(current_host) or "/ByHost/" in domain,
 		 "system" if domain.startswith("/Library/") else "user", value_type)
 		for command in commands.values()
-		for current_host, action, domain, key, value_type in re.findall(pattern, command)
+		for current_host, action, domain, *quoted, value_type in re.findall(pattern, command)
+		for key in [next(k for k in quoted if k)]
 	]
 	written_keys = {key for action, _, key, *_ in operations if action == "write"}
 
@@ -564,7 +566,8 @@ def cmd_sync(args):
 			setting["option"] = name
 			setting["sources"] = sorted(set(setting.get("sources", [])) | {f"option:{name}"})
 
-		setting["storage"] = storage_from_commands(option["commands"]) or setting.get("storage", [])
+		# declared by settings; recovered from the commands of options that don't use `setting` yet
+		setting["storage"] = option.get("storage") or storage_from_commands(option["commands"]) or setting.get("storage", [])
 		# a verification only holds for the commands that were verified
 		if setting.get("verified") and setting["verified"].get("commands") != commands_digest(option):
 			setting.pop("verified")
@@ -672,9 +675,6 @@ def cmd_check(args):
 			for storage in setting.get("storage", []):
 				if not {"domain", "key"} <= set(storage) or set(storage) - STORAGE_FIELDS:
 					errors.append(f"{label}: storage entries need domain and key, and only {sorted(STORAGE_FIELDS)}")
-			ui = setting.get("ui")
-			if ui is not None and not (isinstance(ui.get("pane"), str) and isinstance(ui.get("expect"), dict)):
-				errors.append(f"{label}: ui needs a pane and an expect table (see tools/verify/verify.py)")
 			if setting.get("verified") and not setting.get("option"):
 				errors.append(f"{label}: verified without an option")
 			if options is not None and setting.get("option") and setting["option"] not in options:
@@ -733,7 +733,7 @@ def cmd_merge(args):
 	if duplicate.get("option") and target.get("option") and duplicate["option"] != target["option"]:
 		sys.exit(f"both entries have an option ({duplicate['option']}, {target['option']}); unlink one first")
 	target["sources"] = sorted(set(target.get("sources", [])) | set(duplicate.get("sources", [])))
-	for field in ("option", "storage", "verified", "ui", "notes", "choices"):
+	for field in ("option", "storage", "verified", "notes", "choices"):
 		if duplicate.get(field) and not target.get(field):
 			target[field] = duplicate[field]
 	if target.get("kind", "unknown") == "unknown":

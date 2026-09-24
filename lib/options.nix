@@ -5,6 +5,7 @@ let
 	configLib = import ./config.nix { inherit lib; };
 	pathLib = import ./paths.nix { inherit lib; };
 	abstractionsLib = import ../lib/abstractions.nix { inherit lib commandsLib pathLib typesLib configLib; };
+	settingsLib = import ./settings { inherit lib; };
 in
 {
 	applications = {
