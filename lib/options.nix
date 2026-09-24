@@ -21,7 +21,7 @@ in
 			spotlight = import ./options/applications/systemSettings/spotlight.nix { inherit lib settingsLib; };
 			wallpaper = import ./options/applications/systemSettings/wallpaper.nix { inherit lib settingsLib; };
 			notifications = import ./options/applications/systemSettings/notifications.nix { inherit lib settingsLib; };
-			sound = import ./options/applications/systemSettings/sound.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
+			sound = import ./options/applications/systemSettings/sound.nix { inherit lib settingsLib; };
 			focus = import ./options/applications/systemSettings/focus.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
 		};
 		finder = import ./options/applications/finder.nix { inherit lib commandsLib configLib pathLib typesLib; };
