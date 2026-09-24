@@ -42,6 +42,7 @@
 			verify = lib.mapNullable (spec: spec // {
 				open = spec.open or [];
 				operate = spec.operate or null;
+				sideEffects = spec.sideEffects or null;
 				expect = lib.mapAttrsToList (name: controls: {
 					value = value.fromName name;
 					inherit controls;
