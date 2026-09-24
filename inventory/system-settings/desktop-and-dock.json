@@ -943,6 +943,66 @@
 				"date": "2026-09-23"
 			}
 		},
+		"mission-control-shortcuts-application-windows": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.shortcuts.applicationWindows",
+			"section": "Mission Control > Shortcuts…",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.missionControl.shortcuts.applicationWindows"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Application windows"
+		},
+		"mission-control-shortcuts-mission-control": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.shortcuts.missionControl",
+			"section": "Mission Control > Shortcuts…",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.missionControl.shortcuts.missionControl"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Mission Control"
+		},
+		"mission-control-shortcuts-show-desktop": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.desktopAndDock.missionControl.shortcuts.showDesktop",
+			"section": "Mission Control > Shortcuts…",
+			"sources": [
+				"option:applications.systemSettings.desktopAndDock.missionControl.shortcuts.showDesktop"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show Desktop"
+		},
 		"mission-control-when-switching-to-an-application-switch-to-a-space-with-open-windows-for-the-application": {
 			"firstSeen": "26A428",
 			"kind": "bool",
