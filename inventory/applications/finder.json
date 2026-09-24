@@ -16,11 +16,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
-					"key": "ShowPathBar",
-					"scope": "user",
-					"type": "bool"
+					"key": "ShowPathbar",
+					"scope": "user"
 				}
 			],
 			"title": "Show Path Bar"
@@ -36,11 +36,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "ShowSidebar",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Show Sidebar"
@@ -56,11 +56,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "ShowStatusBar",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Show Status Bar"
@@ -76,11 +76,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "NSWindowTabbingShoudShowTabBarKey-com.apple.finder.TBrowserWindow",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Show Tab Bar"
@@ -96,11 +96,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "_FXSortFoldersFirst",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "In windows when sorting by name"
@@ -116,11 +116,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "_FXSortFoldersFirstOnDesktop",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "On Desktop"
@@ -136,11 +136,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "FXRemoveOldTrashItems",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Remove items from the Trash after 30 days"
@@ -156,11 +156,11 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "NSGlobalDomain",
 					"key": "AppleShowAllExtensions",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Show all filename extensions"
@@ -176,11 +176,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "FXEnableExtensionChangeWarning",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Show warning before changing an extension"
@@ -196,11 +196,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "WarnOnEmptyTrash",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Show warning before emptying the Trash"
@@ -216,11 +216,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.bird",
-					"key": "FXEnableExtensionChangeWarning",
-					"scope": "user",
-					"type": "bool"
+					"key": "com.apple.clouddocs.unshared.moveOut.suppress",
+					"scope": "user"
 				}
 			],
 			"title": "Show warning before removing from iCloud Drive"
@@ -236,11 +236,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "FXDefaultSearchScope",
-					"scope": "user",
-					"type": "string"
+					"scope": "user"
 				}
 			],
 			"title": "When performing a search"
@@ -256,11 +256,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "FinderSpawnTab",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Open folders in tabs instead of new windows"
@@ -276,11 +276,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "ShowRemovableMediaOnDesktop",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "CDs, DVDs, and iPods"
@@ -296,11 +296,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "ShowMountedServersOnDesktop",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Connected servers"
@@ -316,11 +316,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "ShowExternalHardDrivesOnDesktop",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "External disks"
@@ -336,11 +336,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "ShowHardDrivesOnDesktop",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Hard disks"
@@ -356,11 +356,11 @@
 			],
 			"storage": [
 				{
-					"byHost": true,
+					"as": "value",
+					"byHost": false,
 					"domain": "com.apple.finder",
 					"key": "ShowRecentTags",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Show Recent Tags"
