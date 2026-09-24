@@ -36,6 +36,7 @@ let
 		# how `nix run .#current` reads the value back: the codec's own reader, or, for values
 		# picked from a list, what each one writes
 		read = setting.codec.read or null;
+		inherit (setting) reads;
 		candidates =
 			if lib.elem setting.codec.kind [ "bool" "enum" ] && !(appliedThroughCommand setting) then
 				map (value: { inherit value; ops = map opJson (setting.codec.encode setting.keys value); }) setting.codec.examples

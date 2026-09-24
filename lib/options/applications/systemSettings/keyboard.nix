@@ -152,9 +152,10 @@ in
 				`nix run .#current` lists the ones in use.
 			'';
 			storage = user "com.apple.HIToolbox" "AppleEnabledInputSources";
-			value = strings // { read = { inputSources = true; }; };
+			value = strings;
 			canUnset = false;
 			behaviors = [ (appliesThrough live.inputSources) ];
+			reads.command = live.enabledInputSources;
 		};
 
 		correctSpellingAutomatically = setting {

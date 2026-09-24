@@ -325,14 +325,6 @@ func run(_ args: [String]) throws {
 		let result = AXUIElementSetAttributeValue(element, kAXValueAttribute as CFString, value)
 		guard result == .success else { throw Failure(description: "setting AXValue failed: \(result.rawValue)") }
 
-	case "step":
-		// move a slider or stepper one step, as its arrow keys do: ax step <label> up|down
-		guard args.count == 3, ["up", "down"].contains(args[2]) else { throw Failure(description: "usage: ax step <label> up|down") }
-		let element = try find(args[1], in: window)
-		let action = args[2] == "up" ? kAXIncrementAction : kAXDecrementAction
-		let result = AXUIElementPerformAction(element, action as CFString)
-		guard result == .success else { throw Failure(description: "\(action) failed: \(result.rawValue)") }
-
 	case "items":
 		guard args.count == 2 else { throw Failure(description: "usage: ax items <label>") }
 		let menu = try openMenu(for: try find(args[1], in: window))

@@ -49,6 +49,20 @@ rec {
 		"  if (isKeyboard(source) && wanted.indexOf(id(source)) < 0) $.TISDisableInputSource(source); }"
 	]);
 
+	# the input sources that are enabled now, as a JSON list of ids
+	enabledInputSources = "/usr/bin/osascript -l JavaScript -e ${q (lib.concatStrings [
+		"ObjC.import('Carbon');"
+		"var list = ObjC.castRefToObject($.TISCreateInputSourceList($(), false)); var ids = [];"
+		"for (var i = 0; i < list.count; i++) { var source = list.objectAtIndex(i);"
+		"  if (ObjC.castRefToObject($.TISGetInputSourceProperty(source, $.kTISPropertyInputSourceCategory)).js == 'TISCategoryKeyboardInputSource')"
+		"    ids.push(ObjC.castRefToObject($.TISGetInputSourceProperty(source, $.kTISPropertyInputSourceID)).js); }"
+		"JSON.stringify(ids)"
+	])}";
+
+	# one of powerd's settings for a power source ("Battery Power" or "AC Power"), as pmset reports it
+	pmsetValue = source: key:
+		"/usr/bin/pmset -g custom | /usr/bin/awk ${q "$0 == \"${source}:\" { found = 1; next } /^[^ ]/ { found = 0 } found && $1 == \"${key}\" { print $2 }"}";
+
 	# Light, Dark and automatic appearance. The window server keeps this state and only reads
 	# the preferences at login; System Settings goes through these calls, which update the
 	# preferences too.
