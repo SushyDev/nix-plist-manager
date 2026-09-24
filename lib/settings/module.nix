@@ -1,35 +1,28 @@
 { lib, ops, render, isSetting }:
 # What the home-manager and nix-darwin modules share: collect the plan of every managed
 # setting in their scope, evaluate relations, and render one script.
-#
-# Options that don't use `setting` yet (a `config.command` per value) are wrapped as `run`
-# steps, so both kinds can live side by side while panes move over.
 let
-	isLegacy = value: lib.isAttrs value && value ? option && value ? config;
-
-	# [ { path = [ … ]; entry = <setting or legacy option>; } ]
+	# [ { path = [ … ]; entry = <setting>; } ]
 	leaves = tree: prefix:
 		lib.concatLists (lib.mapAttrsToList (name: value:
 			let
 				path = prefix ++ [ name ];
 			in
-			if isSetting value || isLegacy value then [ { inherit path; entry = value; } ]
+			if isSetting value then [ { inherit path; entry = value; } ]
 			else if lib.isAttrs value then leaves value path
 			else []
 		) tree);
 
 	# scope null: both
 	inScope = scope: entry:
-		if scope == null then true
-		else if isSetting entry then entry.scope == scope
-		else entry.config.perUser == (scope == "user");
+		scope == null || entry.scope == scope;
 in
 {
 	# the option declarations for one scope, same shape as `tree`, without empty branches
 	optionTree = { tree, scope }:
 		let
 			walk = node: lib.filterAttrs (_: value: value != {}) (lib.mapAttrs (_: value:
-				if isSetting value || isLegacy value then (if inScope scope value then value.option else {})
+				if isSetting value then (if inScope scope value then value.option else {})
 				else if lib.isAttrs value then walk value
 				else {}
 			) node);
@@ -62,22 +55,13 @@ in
 
 			managed = lib.filter (leaf: inScope scope leaf.entry && get leaf.path != null) (leaves tree []);
 
-			planOf = leaf:
-				let
-					value = get leaf.path;
-				in
-				if isSetting leaf.entry then leaf.entry.plan value
-				else
-					let
-						command = leaf.entry.config.command value;
-					in
-					lib.optional (command != null && command != "") (ops.run command);
+			planOf = leaf: leaf.entry.plan (get leaf.path);
 
 			results = lib.concatMap (leaf:
 				let
 					value = get leaf.path;
 				in
-				lib.optionals (isSetting leaf.entry && value != "unset") (lib.concatMap (relation: relation {
+				lib.optionals (value != "unset") (lib.concatMap (relation: relation {
 					inherit value;
 					path = dotted leaf.path;
 					get = path: get (lib.splitString "." path);

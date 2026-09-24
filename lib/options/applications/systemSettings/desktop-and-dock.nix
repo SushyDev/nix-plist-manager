@@ -1,8 +1,6 @@
-{ lib, commandsLib, pathLib, typesLib, configLib, abstractionsLib, settingsLib }:
+{ lib, settingsLib }:
 let
-	imports = {
-		inherit lib commandsLib pathLib typesLib configLib abstractionsLib settingsLib;
-	};
+	imports = { inherit lib settingsLib; };
 in
 {
 	dock = import ./desktop-and-dock/dock.nix imports;
