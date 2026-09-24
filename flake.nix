@@ -83,13 +83,14 @@
 					paths = map (entry: lib.concatStringsSep " > " entry.path) self.optionIndex;
 					known = map (entry: entry.option) self.optionIndex;
 					verified = lib.concatLists (lib.attrValues (lib.importJSON ./coverage.json).verified);
+					defaults = lib.concatMap (file: lib.attrNames (lib.importJSON (./defaults + "/${file}"))) (lib.attrNames (builtins.readDir ./defaults));
 				in
 				{
 					ui-paths = check "ui-paths" "UI paths that belong to more than one option, or don't start at an app"
 						(lib.unique (lib.filter (path: lib.count (p: p == path) paths > 1) paths)
 						++ map (entry: entry.option) (lib.filter (entry: !(lib.elem (lib.head entry.path) apps)) self.optionIndex));
 
-					coverage = check "coverage" "coverage.json lists options that don't exist" (lib.filter (option: !(lib.elem option known)) verified);
+					coverage = check "coverage" "coverage.json or defaults/ name options that don't exist" (lib.filter (option: !(lib.elem option known)) (verified ++ defaults));
 
 					settings = check "settings-tests" "settings tests failed" (map builtins.toJSON (import ./lib/settings/tests.nix { inherit lib; }));
 

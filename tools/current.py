@@ -2,11 +2,12 @@
 """
 current — print this Mac's settings as nix-plist-manager options.
 
-    nix run .#current -- [<file.nix>] [--scope user|system] [--against <file.nix>] [--only <prefix>] [--ui] [--snapshots <dir>] [--verbose]
+    nix run .#current -- [<file.nix>] [--scope user|system] [--against <file.nix>] [--all] [--only <prefix>] [--ui] [--snapshots <dir>] [--verbose]
     nix run .#capture -- <option> <directory>
 
 With a file, writes it there instead of printing. --scope prints the options for home-manager (user) or nix-darwin (system) alone, ready to import.
---against prints only what differs from that file, e.g. after changing something in System Settings.
+Settings at macOS's default are left out; --all includes them. --against prints only what differs
+from that file, e.g. after changing something in System Settings.
 """
 
 from __future__ import annotations
@@ -84,7 +85,15 @@ def collect(options: list[dict]) -> dict:
 	readers = {e["option"]: e["reads"]["command"] for e in options if e["reads"]}
 	with concurrent.futures.ThreadPoolExecutor() as pool:
 		reads = dict(zip(readers, pool.map(run_reader, readers.values())))
-	return {"domains": domains, "reads": reads, "ui": {}, "snapshots": {}}
+	return {"domains": domains, "reads": reads, "ui": {}, "snapshots": {}, "defaults": {}}
+
+
+def defaults_for_this_build() -> tuple[dict, str | None]:
+	"""The defaults recorded on this macOS build, or on the latest one recorded before it."""
+	build = subprocess.run(["sw_vers", "-buildVersion"], capture_output=True, text=True).stdout.strip()
+	recorded = sorted((ROOT / "defaults").glob("*.json"))
+	match = next((p for p in recorded if p.stem == build), None) or next((p for p in reversed(recorded) if p.stem < build), None)
+	return (json.loads(match.read_text()), match.stem) if match else ({}, None)
 
 
 def capture(entry: dict, directory: Path):
@@ -110,11 +119,11 @@ def cmd_capture(option: str, directory: Path):
 	print(f"programs.nix-plist-manager.options.{option} = {path};")
 
 
-def evaluate(state: dict, scope: str | None, against: str | None, only: str) -> dict:
+def evaluate(state: dict, scope: str | None, against: str | None, only: str, all_: bool) -> dict:
 	with tempfile.NamedTemporaryFile("w", suffix=".json") as file:
 		json.dump(state, file)
 		file.flush()
-		args = [f"only = {json.dumps(only)};"] + ([f"scope = {json.dumps(scope)};"] if scope else [])
+		args = [f"only = {json.dumps(only)};", f"all = {json.dumps(all_)};"] + ([f"scope = {json.dumps(scope)};"] if scope else [])
 		if against:
 			args.append(f"against = import {Path(against).resolve()};")
 		return nix_eval("lib.current", f"f: f (builtins.fromJSON (builtins.readFile {file.name})) {{ {' '.join(args)} }}")
@@ -130,6 +139,7 @@ def main():
 	parser.add_argument("file", nargs="?", help="write the settings to this file")
 	parser.add_argument("--scope", choices=["user", "system"])
 	parser.add_argument("--against", metavar="FILE")
+	parser.add_argument("--all", action="store_true", help="include settings at macOS's default")
 	parser.add_argument("--only", metavar="PREFIX", default="", help="only options whose path starts with PREFIX")
 	parser.add_argument("--ui", action="store_true", help="read what isn't stored from System Settings (opens it)")
 	parser.add_argument("--snapshots", metavar="DIR", help="capture the snapshot options into DIR/<name>")
@@ -140,12 +150,13 @@ def main():
 	if args.scope:
 		options = [o for o in options if (o["module"] == "darwin") == (args.scope == "system")]
 	state = collect(options)
+	state["defaults"], defaults_build = defaults_for_this_build()
 	if args.snapshots:
 		for entry in (o for o in options if o["kind"] == "snapshot"):
 			directory = Path(args.snapshots).resolve() / entry["option"].rsplit(".", 1)[1]
 			capture(entry, directory)
 			state["snapshots"][entry["option"]] = str(directory)
-	result = evaluate(state, args.scope, args.against, args.only)
+	result = evaluate(state, args.scope, args.against, args.only, args.all)
 
 	if args.ui:
 		sys.path.insert(0, str(HERE))
@@ -155,7 +166,7 @@ def main():
 			value = verify.shown_values([index[missing["option"]]]).get(missing["option"])
 			if value is not None:
 				state["ui"][missing["option"]] = value
-		result = evaluate(state, args.scope, args.against, args.only)
+		result = evaluate(state, args.scope, args.against, args.only, args.all)
 
 	if args.file:
 		Path(args.file).write_text(result["text"] + "\n")
@@ -165,6 +176,10 @@ def main():
 	summary = f"{result['read']} settings read"
 	if args.against:
 		summary += f", {result['changed']} differ from {args.against}"
+	elif not args.all:
+		summary += f", {result['atDefault']} at macOS's default left out"
+		if result["read"] - result["defaultKnown"]:
+			summary += f" ({result['read'] - result['defaultKnown']} have no known default{'' if defaults_build else '; none recorded for this macOS yet'})"
 	if unread:
 		summary += f"; {len(unread)} {'has' if len(unread) == 1 else 'have'} nothing stored"
 		readable = sum(m["ui"] for m in unread)

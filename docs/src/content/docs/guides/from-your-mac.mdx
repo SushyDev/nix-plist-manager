@@ -32,7 +32,7 @@ Without a file name it prints to the terminal. Without `--scope` you get one fil
 
 ## 2. Keep what you care about
 
-The file holds every setting macOS has an answer for, most of them still at the default. Declaring a default pins it: if Apple changes it in a later release, your Mac keeps the old one. Delete what you don't have an opinion about; what's left is your setup.
+Settings still at macOS's default are left out, so the file is what you changed. The defaults come from deleting each setting and reading what System Settings shows, on the macOS version they were recorded for; settings without a known default are included, so look over the file and delete what you don't have an opinion about. `--all` includes the defaults too, but declaring a default pins it: if Apple changes it in a later release, your Mac keeps the old one.
 
 ## 3. Pick up what you change later
 
@@ -60,6 +60,7 @@ Only the settings whose value on your Mac isn't the one in `mac.nix` are printed
 
 ## Options
 
+- `--all` includes the settings at macOS's default.
 - `--only <prefix>` reads part of it: `--only applications.systemSettings.keyboard`.
 - `--ui` reads the settings macOS hasn't written down yet from System Settings itself. It opens System Settings while it runs; combine it with `--only` to keep that short.
 - `--snapshots <directory>` also captures the [snapshot](/nix-plist-manager/guides/snapshots/) settings (the Dock's apps, the menu bar layout, the wallpaper) into that directory.

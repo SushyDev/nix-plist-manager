@@ -3,6 +3,7 @@
 verify — check options against System Settings; needs Accessibility permission.
 
     check [--pane P] [--option O] [--batch] [--skip regex] [--only-unverified]
+    defaults [--pane P] [--option O] [--batch] [--skip regex] [--missing]
     discover <pane> [--open control…]
     gaps [--pane name]
     observe <pane> [--open control…] <ax command…>
@@ -275,6 +276,20 @@ def run_once_at_the_end(script: str) -> str:
 	return "\n".join(line for index, line in enumerate(lines) if last[line] == index)
 
 
+def put_back(keys: list[tuple], before: dict, scripts: list[str], shown_scripts: list[str], root: bool):
+	every = "\n".join(scripts)
+	run_script(run_once_at_the_end("\n".join(shown_scripts)), root, check=False)
+	restore_after_restarting(before, sorted(set(re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", every))) + ["System Settings"])
+	# activateSettings writes keyboard shortcuts back a moment later
+	if "activateSettings" in every:
+		subprocess.run([ACTIVATE_SETTINGS, "-u"], capture_output=True)
+		time.sleep(3)
+		restore_values(before)
+	for key, value in storage_values(keys).items():
+		if value != before[key]:
+			print(f"RESTORE MISMATCH {key[0]} {key[1]}: was {before[key]!r}, now {value!r}")
+
+
 def check_group(group: list[dict]) -> set[str]:
 	spec = group[0]["verify"]
 	root = any(entry["module"] == "darwin" for entry in group)
@@ -299,17 +314,8 @@ def check_group(group: list[dict]) -> set[str]:
 			if entry["verify"]["operate"]:
 				failures[entry["option"]] += operating_writes(entry, root)
 	finally:
-		every = "\n".join(c for per in commands.values() for c in per.values())
-		run_script(run_once_at_the_end("\n".join(commands[o][json.dumps(v)] for o, v in shown.items())), root, check=False)
-		restore_after_restarting(before, sorted(set(re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", every))) + ["System Settings"])
-		# activateSettings writes keyboard shortcuts back a moment later
-		if "activateSettings" in every:
-			subprocess.run([ACTIVATE_SETTINGS, "-u"], capture_output=True)
-			time.sleep(3)
-			restore_values(before)
-		for key, value in storage_values(keys).items():
-			if value != before[key]:
-				print(f"RESTORE MISMATCH {key[0]} {key[1]}: was {before[key]!r}, now {value!r}")
+		put_back(keys, before, [c for per in commands.values() for c in per.values()],
+			[commands[o][json.dumps(v)] for o, v in shown.items()], root)
 	for entry in group:
 		print(f"{'FAIL' if failures[entry['option']] else 'ok  '} {label_of(entry)}")
 		for failure in failures[entry["option"]]:
@@ -317,21 +323,80 @@ def check_group(group: list[dict]) -> set[str]:
 	return {option for option, failed in failures.items() if not failed}
 
 
-def cmd_check(args):
+PREFERENCE_ONLY = re.compile(r"^\s*(/usr/bin/(defaults|killall|notifyutil)\b|current=|case |/usr/bin/osascript -l JavaScript -e 'ObjC\.import\('Foundation'\);var d = \$\.NSUserDefaults|" + re.escape(ACTIVATE_SETTINGS) + ")")
+
+
+def applies_live(entry: dict) -> bool:
+	return any(not PREFERENCE_ONLY.match(line) for script in entry["commands"].values() for line in script.splitlines() if line.strip())
+
+
+def default_group(group: list[dict]) -> dict:
+	spec = group[0]["verify"]
+	root = any(entry["module"] == "darwin" for entry in group)
+	keys = list(dict.fromkeys(key for entry in group for key in storage_of(entry, root)))
+	before = storage_values(keys)
+	# restoring the keys puts back everything that isn't applied live
+	shown = shown_values([entry for entry in group if applies_live(entry)]) if any(map(applies_live, group)) else {}
+	shown_scripts = [command_for(option, value) for option, value in shown.items()]
+	unset = [entry["commands"]["unset"] for entry in group]
+	found = {}
+	try:
+		quit_settings()
+		run_script(run_once_at_the_end("\n".join(unset)), root)
+		time.sleep(spec.get("settle", 1.5))
+		open_pane(spec["pane"], fresh=True, steps=spec["open"])
+		time.sleep(1)
+		for entry in group:
+			case = next((c for c in entry["verify"]["expect"] if not expectations_met(c["controls"])), None)
+			if case:
+				found[entry["option"]] = case["value"]
+	finally:
+		put_back(keys, before, unset + shown_scripts, shown_scripts, root)
+	for entry in group:
+		shown_default = json.dumps(found[entry["option"]], ensure_ascii=False) if entry["option"] in found else "none of the spec's values"
+		print(f"{label_of(entry)}: {shown_default}")
+	return found
+
+
+def select(args, verified: set = frozenset()) -> list[list[dict]]:
 	root = has_root()
-	coverage = load_coverage()
-	verified = {option for options in coverage["verified"].values() for option in options}
 	groups: dict[tuple, list] = {}
 	for entry in load_options():
 		spec = entry.get("verify")
 		if not spec or (args.option and args.option != entry["option"]) \
 				or (args.pane and normalize(args.pane) not in normalize(label_of(entry))) \
 				or (args.skip and re.search(args.skip, label_of(entry))) \
-				or (args.only_unverified and entry["option"] in verified) \
+				or ((getattr(args, "only_unverified", False) or getattr(args, "missing", False)) and entry["option"] in verified) \
+				or (args.command == "defaults" and "unset" not in entry["commands"]) \
 				or (entry["module"] == "darwin" and not root):  # nix-darwin's settings need root
 			continue
-		page = (spec["pane"], tuple(spec["open"]), len(spec["expect"])) if args.batch else entry["option"]
+		page = (spec["pane"], tuple(spec["open"])) + (() if args.command == "defaults" else (len(spec["expect"]),)) if args.batch else entry["option"]
 		groups.setdefault(page, []).append(entry)
+	return list(groups.values())
+
+
+def build() -> str:
+	return subprocess.run(["sw_vers", "-buildVersion"], capture_output=True, text=True).stdout.strip()
+
+
+def cmd_defaults(args):
+	path = ROOT / "defaults" / f"{build()}.json"
+	defaults = json.loads(path.read_text()) if path.exists() else {}
+	for group in select(args, set(defaults) if args.missing else frozenset()):
+		try:
+			defaults.update(default_group(group))
+		except Exception as error:
+			print(f"ERROR {', '.join(label_of(e) for e in group)}\n     {error}")
+			continue
+		path.parent.mkdir(exist_ok=True)
+		path.write_text("{\n" + ",\n".join(f"\t{json.dumps(o)}: {json.dumps(v, ensure_ascii=False)}" for o, v in sorted(defaults.items())) + "\n}\n")
+	print(f"{len(defaults)} defaults in {path.relative_to(ROOT)}")
+
+
+def cmd_check(args):
+	coverage = load_coverage()
+	verified = {option for options in coverage["verified"].values() for option in options}
+	groups = {index: group for index, group in enumerate(select(args, verified))}
 
 	passed, failed, errors = set(), set(), 0
 	for group in groups.values():
@@ -344,9 +409,9 @@ def cmd_check(args):
 		passed |= ok
 		failed |= {entry["option"] for entry in group} - ok
 
-	build = subprocess.run(["sw_vers", "-buildVersion"], capture_output=True, text=True).stdout.strip()
+	build_version = build()
 	coverage["verified"] = {b: sorted(set(options) - passed - failed) for b, options in coverage["verified"].items()}
-	coverage["verified"][build] = sorted(set(coverage["verified"].get(build, [])) | passed)
+	coverage["verified"][build_version] = sorted(set(coverage["verified"].get(build_version, [])) | passed)
 	save_coverage(coverage)
 	print(f"{len(passed)} passed, {len(failed)} failed" + (f", {errors} pages couldn't be checked" if errors else ""))
 	sys.exit(1 if failed or errors else 0)
@@ -475,6 +540,14 @@ def main():
 	p.add_argument("--only-unverified", action="store_true", help="leave out options that are verified already")
 	p.add_argument("--batch", action="store_true", help="check the options of one page together (much faster)")
 	p.set_defaults(run=cmd_check)
+
+	p = sub.add_parser("defaults", help="record what System Settings shows once each option's keys are deleted")
+	p.add_argument("--pane", help="options whose UI path contains this")
+	p.add_argument("--option", help="one option")
+	p.add_argument("--skip", help="regex of UI paths to leave out")
+	p.add_argument("--batch", action="store_true", help="the options of one page together")
+	p.add_argument("--missing", action="store_true", help="only options with no default recorded yet, e.g. to continue a run")
+	p.set_defaults(run=cmd_defaults)
 
 	p = sub.add_parser("discover", help="list the settings a page shows")
 	p.add_argument("pane")
