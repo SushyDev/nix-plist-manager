@@ -1,0 +1,34 @@
+---
+title: Start from your Mac
+description: Turn the settings you already have into nix-plist-manager configuration.
+---
+
+You've spent years getting your Mac the way you like it. One command writes that down:
+
+```sh
+nix run github:sushydev/nix-plist-manager#current
+```
+
+It reads every setting nix-plist-manager knows and prints them as Nix, split into what goes in home-manager and what goes in nix-darwin:
+
+```nix
+# home-manager: 212 options
+programs.nix-plist-manager.options = {
+  applications = {
+    systemSettings = {
+      appearance = {
+        accentColor = "Purple";
+        appearance = "Dark";
+      };
+      …
+```
+
+Paste the parts you care about into your configuration, and your next Mac is set up the same way on its first rebuild.
+
+## Options
+
+- `--only <prefix>` reads just part of it: `--only applications.systemSettings.keyboard`
+- `--ui` also asks System Settings for the settings macOS doesn't write down until you change them (it opens System Settings while it runs)
+- `--snapshots <directory>` also captures the [snapshot](/nix-plist-manager/guides/snapshots/) settings (the Dock's apps, the menu bar layout, the wallpaper) into that directory
+
+Settings still at macOS's default often have nothing written down yet; those are left out unless you pass `--ui`.

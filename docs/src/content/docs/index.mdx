@@ -1,92 +1,169 @@
 ---
 title: nix-plist-manager
-description: A Nix module for managing macOS system settings through plist files
+description: Your Mac's System Settings, declared in Nix. Dark mode, the Dock, trackpad gestures, keyboard shortcuts and hundreds more, one line each.
 template: splash
-pagefind: false
 hero:
-  title: nix-plist-manager
-  tagline: Declarative management of macOS system settings via plist files using nix-darwin
+  title: Your Mac's System Settings, in Nix.
+  tagline: Dark mode, the Dock, your trackpad, keyboard shortcuts, the firewall and hundreds more, one readable line each. Set up a new Mac in one rebuild, and never click through System Settings again.
   actions:
-    - text: Reference
-      link: reference
+    - text: Get started
+      link: /nix-plist-manager/guides/install/
       icon: right-arrow
       variant: primary
-    - text: View on GitHub
+    - text: Browse the settings
+      link: /nix-plist-manager/settings/appearance/
+      variant: secondary
+    - text: GitHub
       link: https://github.com/sushydev/nix-plist-manager
       icon: external
-      variant: secondary
+      variant: minimal
 ---
 
-## Overview
+import { Card, CardGrid, Code, Steps } from "@astrojs/starlight/components";
+import stats from "@generated/stats.json";
 
-nix-plist-manager is a Nix module that provides a declarative interface for configuring macOS system settings stored in plist files. It integrates with nix-darwin to allow users to define system preferences in Nix expressions, ensuring reproducible and version-controlled configurations.
+export const config = `programs.nix-plist-manager.options.applications.systemSettings = {
+  appearance.appearance = "Dark";
+  appearance.accentColor = "Purple";
+  displays.trueTone = false;
+  desktopAndDock.dock.automaticallyHideAndShowTheDock.enabled = true;
+  trackpad.pointAndClick.tapToClick = true;
+  keyboard.keyboardShortcuts.screenshots.copyPictureOfSelectedAreaToTheClipboard = "⌘⇧S";
+};`;
 
-## Usage
+<Code code={config} lang="nix" title="configuration.nix" />
 
-### nix-darwin (Global Settings)
+<div class="metrics">
+	<div class="metric metric-lead">
+		<strong>{stats.options}</strong>
+		<span>settings you can declare</span>
+	</div>
+	<div class="metric">
+		<strong>{stats.user}</strong>
+		<span>per user, with home-manager</span>
+	</div>
+	<div class="metric">
+		<strong>{stats.system}</strong>
+		<span>system-wide, with nix-darwin</span>
+	</div>
+	<div class="metric">
+		<strong>{stats.systemSettings}</strong>
+		<span>in System Settings, across {stats.panes} panes</span>
+	</div>
+	<div class="metric">
+		<strong>{stats.finder}</strong>
+		<span>in Finder</span>
+	</div>
+	<div class="metric">
+		<strong>{stats.otherApps}</strong>
+		<span>in Journal and Voice Memos</span>
+	</div>
+	<div class="metric metric-wide">
+		<strong>{Math.round((stats.verified / stats.options) * 100)}%</strong>
+		<span>{stats.verified} settings round-tripped through System Settings on macOS 27, to prove they show what you declared</span>
+	</div>
+</div>
 
-Integrate the module into your nix-darwin configuration:
+## One line each
 
-```nix
-{
-  inputs = {
-    nix-plist-manager.url = "github:sushydev/nix-plist-manager";
-  };
+Everything you'd normally click through, named after the control you'd click.
 
-  outputs = { self, nix-darwin, nix-plist-manager, ... }: {
-    darwinConfigurations."hostname" = nix-darwin.lib.darwinSystem {
-      modules = [
-        nix-plist-manager.darwinModules.default
-        # Configuration options here
-      ];
-    };
-  };
-}
-```
+<div class="showcase">
+	<div class="showcase-item">
+		<h3>Turn off True Tone</h3>
+		<Code code={`displays.trueTone = false;`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>Night Shift at night</h3>
+		<Code code={`displays.nightShift.schedule = "Sunset to Sunrise";`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>Your color, everywhere</h3>
+		<Code code={`appearance.accentColor = "Pink";`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>A smaller Dock without the clutter</h3>
+		<Code code={`desktopAndDock.dock.size = 36;\ndesktopAndDock.dock.showSuggestedAndRecentAppsInDock = false;`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>Lock the screen from a corner</h3>
+		<Code code={`desktopAndDock.hotCorners.topRight.action = "Lock Screen";`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>Three-finger drag</h3>
+		<Code code={`accessibility.pointerControl.trackpadOptions.dragging = "Three Finger Drag";`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>Keys that repeat fast</h3>
+		<Code code={`keyboard.keyRepeatRate = 2;\nkeyboard.delayUntilRepeat = 15;`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>Seconds and battery % in the menu bar</h3>
+		<Code code={`menuBar.clock.displayTheTimeWithSeconds = true;\nmenuBar.batteryOptions.showPercentage = true;`} lang="nix" frame="none" wrap />
+	</div>
+	<div class="showcase-item">
+		<h3>Firewall on, and invisible</h3>
+		<Code code={`network.firewall.firewall = true;\nnetwork.firewall.options.enableStealthMode = true;`} lang="nix" frame="none" wrap />
+	</div>
+</div>
 
-### home-manager (User Settings)
+Each line goes inside `programs.nix-plist-manager.options.applications.systemSettings`, like the configuration above. Finder, Journal and Voice Memos have theirs under `applications`.
 
-For user-specific settings with home-manager:
+## Why you'll like it
 
-```nix
-{
-  inputs = {
-    nix-plist-manager.url = "github:sushydev/nix-plist-manager";
-  };
+<CardGrid>
+	<Card title="Named after what you click" icon="open-book">
+		`desktopAndDock.dock.automaticallyHideAndShowTheDock` is the switch labeled
+		*Automatically hide and show the Dock* in *Desktop & Dock*. The values are the words in the
+		pop-up menus: `"Sunset to Sunrise"`, `"Lock Screen"`, `"Three Finger Drag"`.
+	</Card>
+	<Card title="Start from the Mac you have" icon="laptop">
+		`nix run github:sushydev/nix-plist-manager#current` reads your Mac and writes its
+		settings out as Nix. Paste it in and you're declarative.
+	</Card>
+	<Card title="Checked against the real thing" icon="approve-check">
+		Every setting was worked out from what macOS itself writes, and {stats.verified} of
+		them are round-tripped through System Settings on macOS 27 to prove it shows your value.
+	</Card>
+	<Card title="Applied the way macOS does" icon="setting">
+		The Dock restarts, keyboard shortcuts activate without logging out, the firewall goes
+		through Apple's own tool. The settings that only apply at login say so.
+	</Card>
+	<Card title="Per user and system-wide" icon="puzzle">
+		Your preferences through home-manager, the machine's (firewall, sharing, power, login
+		window) through nix-darwin, with the same option names.
+	</Card>
+	<Card title="Even what you arrange" icon="seti:image">
+		The Dock's apps, the menu bar's layout and your wallpaper are captured once and restored on
+		every Mac.
+	</Card>
+</CardGrid>
 
-  outputs = { self, home-manager, nix-plist-manager, ... }: {
-    homeConfigurations."username" = home-manager.lib.homeManagerConfiguration {
-      modules = [
-        nix-plist-manager.homeManagerModules.default
-        # Configuration options here
-      ];
-    };
-  };
-}
-```
+## Get going in a minute
 
-### Example
+<Steps>
 
-Configure Dock size for user settings:
+1. Add the flake and the module (home-manager, nix-darwin, or both):
 
-```nix
-{
-  programs.nix-plist-manager = {
-    enable = true;
-    options.applications.systemSettings.desktopAndDock.dock.size = 64;
-  };
-}
-```
+   ```nix
+   inputs.nix-plist-manager.url = "github:sushydev/nix-plist-manager";
+   ```
 
-For system settings with nix-darwin:
+   ```nix
+   imports = [ inputs.nix-plist-manager.homeManagerModules.default ];
+   ```
 
-```nix
-{
-  programs.nix-plist-manager = {
-    enable = true;
-    options.applications.systemSettings.general.softwareUpdate.automaticallyDownloadNewUpdatesWhenAvailable = true;
-  };
-}
-```
+2. Turn it on and set something:
 
-Refer to the [reference documentation](/nix-plist-manager/reference) for available configuration attributes.
+   ```nix
+   programs.nix-plist-manager = {
+     enable = true;
+     options.applications.systemSettings.appearance.appearance = "Dark";
+   };
+   ```
+
+3. Rebuild. System Settings now shows what you declared.
+
+</Steps>
+
+The [install guide](/nix-plist-manager/guides/install/) covers nix-darwin and home-manager in full, and [Start from your Mac](/nix-plist-manager/guides/from-your-mac/) turns what you've already set up into configuration.

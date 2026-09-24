@@ -125,7 +125,7 @@ The value is a Nix expression, so strings need their quotes. `--dry-run` prints 
 `tools/verify` drives System Settings through the Accessibility API, so the terminal running it needs Accessibility permission (Privacy & Security → Accessibility). It moves the mouse and quits and reopens System Settings while it runs.
 
 ```sh
-nix run .#verify -- controls com.apple.settings.appearance         # labelled controls and their values
+nix run .#verify -- controls com.apple.settings.appearance         # labeled controls and their values
 nix run .#verify -- discover com.apple.settings.appearance inventory/system-settings/appearance.json
                                                                     # add what the pane shows to the inventory
 nix run .#verify -- observe com.apple.settings.appearance click "TintWindowBackgroundToggle"
@@ -134,7 +134,7 @@ nix run .#verify -- check --pane Appearance                        # round-trip 
 nix run .#verify -- check --pane Keyboard --batch --skip 'Speak'    # a page's settings together; leave some out
 ```
 
-Panes are addressed by their sidebar identifier; `ax dump` lists them. Operate a control with `press` (buttons, radio buttons), `click` (SwiftUI switches ignore `press`), `pick` (pop-up menus) or `set` (sliders). Labels that appear more than once can be narrowed down: `AXRadioButton:Dark` matches only radio buttons, `Dark + Icon & widget style` matches only an element that carries both labels, and `…#2` picks the second match (e.g. the second of a list's disclosure triangles). An unlabelled checkbox in a list row goes by the row's text. In a spec's `open` steps, `click:<label>` clicks instead of pressing, for list rows that ignore `press` (Keyboard Shortcuts…'s categories).
+Panes are addressed by their sidebar identifier; `ax dump` lists them. Operate a control with `press` (buttons, radio buttons), `click` (SwiftUI switches ignore `press`), `pick` (pop-up menus) or `set` (sliders). Labels that appear more than once can be narrowed down: `AXRadioButton:Dark` matches only radio buttons, `Dark + Icon & widget style` matches only an element that carries both labels, and `…#2` picks the second match (e.g. the second of a list's disclosure triangles). An unlabeled checkbox in a list row goes by the row's text. In a spec's `open` steps, `click:<label>` clicks instead of pressing, for list rows that ignore `press` (Keyboard Shortcuts…'s categories).
 
 `check --batch` applies the same case of every setting that has the same `open` steps, opens that page once and reads all of their controls, which is many times faster. Give the settings of one page values that can't be mistaken for each other (the keyboard shortcuts each use their own test keys); a setting that fails in a batch can be checked on its own with `--setting`. `--skip <regex>` leaves settings out by title, e.g. ones that would speak or play sound.
 

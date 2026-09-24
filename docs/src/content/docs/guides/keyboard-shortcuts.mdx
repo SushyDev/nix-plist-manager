@@ -1,0 +1,38 @@
+---
+title: Keyboard shortcuts
+description: Turning shortcuts off and on, and giving them your own keys.
+---
+
+Every shortcut in **System Settings › Keyboard › Keyboard Shortcuts…** is an option: `false` turns it off, `true` turns it on with its default keys, and a string sets your own keys, written the way macOS shows them:
+
+```nix
+keyboard.keyboardShortcuts = {
+  spotlight.showSpotlightSearch = false;
+  screenshots.copyPictureOfSelectedAreaToTheClipboard = "⌘⇧S";
+  windows.fill = "⌃⌥Return";
+};
+```
+
+Keys are any of `⌃ ⌥ ⇧ ⌘`, in any order, followed by one key:
+
+| Key | Write it as |
+| --- | --- |
+| Letters, digits, punctuation | `A`, `7`, `/`, `-`… (US layout) |
+| Arrows | `←` `→` `↑` `↓` |
+| Function keys | `F1` … `F20` |
+| Others | `Space`, `Return`, `Tab`, `Delete`, `Escape`, `Home`, `End`, `PageUp`, `PageDown`, `ForwardDelete` |
+
+Shortcuts take effect straight away, without logging out.
+
+## App shortcuts
+
+Keys for any app's menu items, like **Keyboard Shortcuts… › App Shortcuts**. A menu item in a submenu is written with its menus:
+
+```nix
+keyboard.keyboardShortcuts.appShortcuts.menuItems = {
+  "com.apple.TextEdit"."Format->Make Plain Text" = "⌘⇧T";
+  "All Applications"."Show Help menu" = "⌘⇧/";
+};
+```
+
+Each app you list gets exactly those shortcuts; apps you leave out keep theirs.

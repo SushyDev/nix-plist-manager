@@ -1,0 +1,25 @@
+---
+title: Snapshots
+description: The Dock's apps, the menu bar layout and the wallpaper, captured once and restored on every Mac.
+---
+
+Some things aren't set with a switch but arranged: the apps in your Dock, the order of your menu bar, your wallpaper. You arrange them once, capture them, and your configuration restores them.
+
+```sh
+nix run github:sushydev/nix-plist-manager#capture -- applications.systemSettings.desktopAndDock.dock.contents ./dock
+```
+
+That writes what macOS has right now into `./dock`. Point the option at it:
+
+```nix
+desktopAndDock.dock.contents = ./dock;
+```
+
+Settings captured this way:
+
+- `desktopAndDock.dock.contents` — the Dock's apps and folders
+- `menuBar.layout` — which items show in the menu bar, and in what order
+- `wallpaper.wallpaper` — the wallpaper for every display and Space
+- a few Accessibility voices and sounds, which point at downloaded assets
+
+Capture again whenever you rearrange things, and commit the directory with the rest of your configuration.

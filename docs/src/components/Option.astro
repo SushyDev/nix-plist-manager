@@ -1,0 +1,76 @@
+---
+// One option of the settings reference: where it is in the UI, a line to paste, the values it
+// takes, and (folded away) where macOS keeps it and what applying it runs.
+import { Code } from "@astrojs/starlight/components";
+import { inline } from "./inline";
+
+interface Props {
+	title: string;
+	path: string;
+	ui: string[];
+	module: "home-manager" | "darwin";
+	example: string;
+	values: string;
+	choices: string[];
+	description: string;
+	verified: boolean;
+	canUnset: boolean;
+	logout: boolean;
+	restarts: string[];
+	storage: { domain: string; key: string; byHost: boolean; system: boolean }[];
+	commands: Record<string, string>;
+}
+
+const { path, ui, module, example, values, choices, description, verified, canUnset, logout, restarts, storage, commands } = Astro.props;
+const system = module === "darwin";
+---
+
+<div class="option">
+	<p class="option-where">{ui.join(" › ")}</p>
+
+	<div class="option-badges">
+		{system
+			? <span class="pill pill-system">nix-darwin · system-wide</span>
+			: <span class="pill pill-user">home-manager · per user</span>}
+		{verified
+			? <span class="pill pill-verified">✓ Verified on macOS 27</span>
+			: <span class="pill">Not verified</span>}
+		{restarts.map((process) => <span class="pill">Restarts {process}</span>)}
+		{logout && <span class="pill pill-logout">After logging out</span>}
+	</div>
+
+	{description && <p class="option-description" set:html={inline(description)} />}
+
+	<Code code={`${path} = ${example};`} lang="nix" frame="none" />
+
+	<p class="option-values">
+		<span set:html={inline(values)} />
+		{choices.length > 0 && (
+			<span class="option-choices">
+				{choices.map((choice) => <code>{JSON.stringify(choice)}</code>)}
+			</span>
+		)}
+		{canUnset && <span class="option-unset"><code>"unset"</code> puts back macOS's default.</span>}
+	</p>
+
+	<details class="option-details">
+		<summary>Where it's stored and what runs</summary>
+		{storage.length > 0 && (
+			<ul class="option-storage">
+				{storage.map((key) => (
+					<li>
+						<code>{key.system && !key.domain.startsWith("/") ? `/Library/Preferences/${key.domain}` : key.domain}</code>{" "}
+						<code>{key.key}</code>
+						{key.byHost && " (current host)"}
+					</li>
+				))}
+			</ul>
+		)}
+		{Object.entries(commands).map(([value, script]) => (
+			<>
+				<p class="option-command-for">For <code>{value}</code>:</p>
+				<Code code={script} lang="sh" frame="none" wrap />
+			</>
+		))}
+	</details>
+</div>

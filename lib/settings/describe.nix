@@ -27,6 +27,12 @@ let
 		commands = lib.listToAttrs (map (value: lib.nameValuePair (name value) (render.script (setting.plan value)))
 			(setting.codec.examples ++ lib.optional (setting.option.type.check "unset") "unset"));
 		verify = setting.verify;
+		# for the docs: what the option is for, a value to show it with (as Nix), whether it
+		# accepts "unset", and a number's range
+		description = setting.option.description or "";
+		example = lib.generators.toPretty { } (lib.head setting.codec.examples);
+		canUnset = setting.option.type.check "unset";
+		range = if setting.codec ? min then { inherit (setting.codec) min max; unit = setting.codec.unit or null; } else null;
 		# how `nix run .#current` reads the value back: the codec's own reader, or, for values
 		# picked from a list, what each one writes
 		read = setting.codec.read or null;

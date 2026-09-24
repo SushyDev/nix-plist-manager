@@ -1,0 +1,100 @@
+---
+title: Install
+description: Add nix-plist-manager to a nix-darwin or home-manager configuration.
+---
+
+import { Tabs, TabItem, Aside } from "@astrojs/starlight/components";
+
+nix-plist-manager comes as two modules with the same options:
+
+- **home-manager** manages *your* settings: appearance, the Dock, the trackpad, keyboard shortcuts, Finder, anything System Settings keeps per user.
+- **nix-darwin** manages the *machine's* settings, as root: the firewall, sharing, power, date and time, software updates, the login window.
+
+Each settings page marks every option with the module it belongs to. Most people want both.
+
+## Add the flake
+
+```nix title="flake.nix"
+{
+  inputs.nix-plist-manager.url = "github:sushydev/nix-plist-manager";
+}
+```
+
+## Import the modules
+
+<Tabs>
+<TabItem label="nix-darwin + home-manager">
+
+```nix title="flake.nix"
+darwinConfigurations.my-mac = nix-darwin.lib.darwinSystem {
+  modules = [
+    nix-plist-manager.darwinModules.default
+    home-manager.darwinModules.home-manager
+    {
+      home-manager.sharedModules = [ nix-plist-manager.homeManagerModules.default ];
+    }
+    ./configuration.nix
+  ];
+};
+```
+
+</TabItem>
+<TabItem label="nix-darwin only">
+
+```nix title="flake.nix"
+darwinConfigurations.my-mac = nix-darwin.lib.darwinSystem {
+  modules = [
+    nix-plist-manager.darwinModules.default
+    ./configuration.nix
+  ];
+};
+```
+
+</TabItem>
+<TabItem label="home-manager only">
+
+```nix title="flake.nix"
+homeConfigurations.me = home-manager.lib.homeManagerConfiguration {
+  modules = [
+    nix-plist-manager.homeManagerModules.default
+    ./home.nix
+  ];
+};
+```
+
+</TabItem>
+</Tabs>
+
+## Set something
+
+In your home-manager configuration:
+
+```nix title="home.nix"
+programs.nix-plist-manager = {
+  enable = true;
+  options.applications.systemSettings = {
+    appearance.appearance = "Dark";
+    desktopAndDock.dock.size = 48;
+  };
+};
+```
+
+And system-wide, in nix-darwin:
+
+```nix title="configuration.nix"
+programs.nix-plist-manager = {
+  enable = true;
+  options.applications.systemSettings = {
+    network.firewall.firewall = true;
+    general.softwareUpdate.automaticallyInstallMacOSUpdates = true;
+  };
+};
+```
+
+Then rebuild (`darwin-rebuild switch`, or `home-manager switch`).
+
+<Aside type="tip">
+Every option is named after the control in System Settings, so the quickest way to find one is the pane you'd open: [Desktop & Dock](/nix-plist-manager/settings/desktop-and-dock/), [Keyboard](/nix-plist-manager/settings/keyboard/), and so on. The search box finds them by their labels too.
+</Aside>
+
+Don't want to write it all by hand? [Start from your Mac](/nix-plist-manager/guides/from-your-mac/).

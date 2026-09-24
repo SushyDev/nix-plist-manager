@@ -3,7 +3,7 @@
 verify — round-trip testing of options against the real System Settings UI.
 
 Commands:
-    controls <pane>                 List the labelled controls a pane shows, with their values.
+    controls <pane>                 List the labeled controls a pane shows, with their values.
     observe <pane> <ax command…>    Operate a control through Accessibility and print which
                                     preferences changed, e.g. `observe <pane> press "Magnification"`.
     discover <pane> <inventory file>
@@ -530,7 +530,7 @@ def discover(pane: str, steps: list[str] = ()) -> list[dict]:
 		nonlocal group
 		# a picker, not a row of unrelated buttons: something in it is selected, or its
 		# members say which setting they belong to
-		if group and (group["labelled"] or any(m.get("selected") or m.get("value") == 1 for m in group["members"])):
+		if group and (group["labeled"] or any(m.get("selected") or m.get("value") == 1 for m in group["members"])):
 			choices = [human_label(m["labels"]) for m in group["members"]]
 			title = group["title"]
 			if any(c["title"] == title for c in candidates):
@@ -548,7 +548,7 @@ def discover(pane: str, steps: list[str] = ()) -> list[dict]:
 			title = labels[1] if len(labels) > 1 else last_text
 			if group is None or group["title"] != title or group["role"] != role:
 				flush()
-				group = {"title": title, "members": [], "role": role, "labelled": len(labels) > 1}
+				group = {"title": title, "members": [], "role": role, "labeled": len(labels) > 1}
 			group["members"].append(entry)
 			continue
 		flush()

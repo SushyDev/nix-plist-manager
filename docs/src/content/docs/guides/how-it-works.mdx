@@ -1,0 +1,26 @@
+---
+title: How settings are applied
+description: What happens when you rebuild, when a setting takes effect, and what "unset" does.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+When you rebuild, nix-plist-manager writes each setting you declared the way System Settings does, then makes it take effect. Settings you don't declare are left alone: you can adopt it one option at a time.
+
+## Taking effect
+
+- **Most settings apply right away.** The processes that read them are restarted once, at the end: the Dock, Finder, Control Center, SystemUIServer. Each option says what it restarts.
+- **Some go through macOS's own tools.** Appearance, True Tone and Night Shift, input sources and keyboard shortcuts are applied live through the same APIs System Settings uses; the firewall through `socketfilterfw`, power through `pmset`, sharing through `launchctl`.
+- **A few only apply after logging out.** Key repeat, and the trackpad's gestures and clicking, are read by the input drivers at login. Their pages say *After logging out*.
+
+## `"unset"`
+
+Every option also accepts `"unset"`: it removes what was written, so macOS goes back to its default. Leaving an option out (`null`) means *don't manage it*, which leaves whatever is there.
+
+## Settings that depend on each other
+
+Some settings only mean something together. The Dock's magnification size needs magnification on, and Three Finger Drag takes the three-finger swipes. When two of your declarations contradict each other, the rebuild fails and says why. When the other setting isn't declared, you get a warning instead, which `programs.nix-plist-manager.ignoreWarnings` can silence.
+
+<Aside>
+Each option shows where macOS keeps it and the exact commands a rebuild runs for it, under *Where it's stored and what runs*.
+</Aside>
