@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting global user byHost bool enum member storedAs snapshot restarts onlyWhen appliesThrough live ops;
+	inherit (settingsLib) setting global user byHost bool enum inDict member storedAs snapshot restarts onlyWhen appliesThrough live;
 
 	pane = "com.apple.settings.controlCenter";
 	option = name: "applications.systemSettings.menuBar.${name}";
@@ -185,19 +185,13 @@ in
 				};
 			};
 		in {
-			enable = entry "Announce the time" "announce-time" (bool // {
-				encode = keys: enabled: [ (ops.mergeDict keys.value { TimeAnnouncementsEnabled = enabled; }) ];
-			});
+			enable = entry "Announce the time" "announce-time" (inDict "TimeAnnouncementsEnabled" bool);
 
-			interval = entry "Interval" "time-interval" (enum {
-				"On the hour" = { value = "EveryHourInterval"; };
-				"On the half hour" = { value = "EveryHalfHourInterval"; };
-				"On the quarter hour" = { value = "EveryQuarterHourInterval"; };
-			} // {
-				encode = keys: label: [ (ops.mergeDict keys.value {
-					TimeAnnouncementsIntervalIdentifier = { "On the hour" = "EveryHourInterval"; "On the half hour" = "EveryHalfHourInterval"; "On the quarter hour" = "EveryQuarterHourInterval"; }.${label};
-				}) ];
-			});
+			interval = entry "Interval" "time-interval" (inDict "TimeAnnouncementsIntervalIdentifier" (enum {
+				"On the hour" = "EveryHourInterval";
+				"On the half hour" = "EveryHalfHourInterval";
+				"On the quarter hour" = "EveryQuarterHourInterval";
+			}));
 		};
 	};
 

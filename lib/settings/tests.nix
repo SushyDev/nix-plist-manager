@@ -273,4 +273,14 @@ lib.runTests {
 		expr = lib.last (lib.splitString "\n" (s.render.script [ (s.ops.afterwards "x") (s.ops.restart "Dock") (s.ops.afterwards "x") ]));
 		expected = "x";
 	};
+
+	testInDictMergesOneEntry = {
+		expr = (s.inDict "global" (enum { Large = "XL"; Default = "DEFAULT"; })).encode { value = global "FontSizeCategory"; } "Large";
+		expected = [ (s.ops.mergeDict (global "FontSizeCategory") { global = "XL"; }) ];
+	};
+
+	testInDictKeepsTheCodecsType = {
+		expr = (s.inDict "on" bool).type.check true;
+		expected = true;
+	};
 }
