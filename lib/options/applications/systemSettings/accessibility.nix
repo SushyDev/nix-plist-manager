@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user global bool inverted enum inDict storedAs absent text number strings snapshot byHost flagsWhenAbsent dictSwitches activatesShortcuts allowedWhen conflictsWith ops shows;
+	inherit (settingsLib) restarts setting user global bool inverted enum inDict storedAs absent text number strings snapshot byHost flagsWhenAbsent dictSwitches activatesShortcuts allowedWhen conflictsWith ops shows;
 
 	pane = "com.apple.settings.accessibility";
 
@@ -61,11 +61,11 @@ let
 	mediaAccessibility = user "com.apple.mediaaccessibility";
 	comfortSounds = user "com.apple.ComfortSounds";
 
-	switch = { page, ui, storage, value ? bool, control ? ui }: setting {
-		inherit storage value;
+	switch = { page, ui, storage, value ? bool, control ? ui, behaviors ? [], sideEffects ? null }: setting {
+		inherit storage value behaviors;
 		ui = [ "System Settings" "Accessibility" page ui ];
 		verify = {
-			inherit pane;
+			inherit pane sideEffects;
 			open = [ pageIds.${page} ];
 			expect = shows.checkbox "AXCheckBox:${control}";
 		};
@@ -1314,8 +1314,19 @@ in
 
 	pointerControl = {
 		mouseKeys = feature "Pointer Control" "Mouse Keys" "mouseDriver" "AX_MOUSE_KEYS";
-		headPointer = feature "Pointer Control" "Head Pointer" "headMouseEnabled" "AX_HEAD_MOUSE";
-		alternatePointerActions = feature "Pointer Control" "Alternate pointer actions" "alternateMouseButtonsEnabled" "AX_ALT_MOUSE_BUTTONS";
+		# The camera these use stays on after they're switched off until universalaccessd restarts.
+		headPointer = switch {
+			page = "Pointer Control"; ui = "Head Pointer"; control = "AX_HEAD_MOUSE";
+			storage = universalAccess "headMouseEnabled";
+			behaviors = [ (restarts "universalaccessd") ];
+			sideEffects = "turns on the camera";
+		};
+		alternatePointerActions = switch {
+			page = "Pointer Control"; ui = "Alternate pointer actions"; control = "AX_ALT_MOUSE_BUTTONS";
+			storage = universalAccess "alternateMouseButtonsEnabled";
+			behaviors = [ (restarts "universalaccessd") ];
+			sideEffects = "can turn on the camera for facial expressions";
+		};
 
 		springLoading = pointer {
 			ui = "Spring-loading";
@@ -1520,7 +1531,11 @@ in
 	};
 
 	liveCaptions = {
-		liveCaptions = feature "Live Captions" "Live Captions" "systemTranscriptionEnabled" "AX_SYSTEM_TRANSCRIPTION_ENABLED";
+		liveCaptions = switch {
+			page = "Live Captions"; ui = "Live Captions"; control = "AX_SYSTEM_TRANSCRIPTION_ENABLED";
+			storage = universalAccess "systemTranscriptionEnabled";
+			sideEffects = "turns on the microphone";
+		};
 
 		language = setting {
 			ui = [ "System Settings" "Accessibility" "Live Captions" "Language" ];
