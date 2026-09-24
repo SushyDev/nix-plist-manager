@@ -10,6 +10,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "6to4",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/6to4/6to4 address"
 			],
@@ -20,6 +21,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "6to4",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/6to4/Relay address"
 			],
@@ -30,6 +32,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/802.1X"
 			],
@@ -40,6 +43,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/802.1X authentication"
 			],
@@ -50,6 +54,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/802.1X certificate"
 			],
@@ -60,6 +65,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/EAP-FAST"
 			],
@@ -70,6 +76,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/LEAP"
 			],
@@ -80,6 +87,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/MD5"
 			],
@@ -90,6 +98,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/PEAP"
 			],
@@ -100,6 +109,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/TLS"
 			],
@@ -110,6 +120,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "802.1X",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/802.1X/TTLS"
 			],
@@ -120,6 +131,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Advanced Ethernet",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Advanced Ethernet/Duplex"
 			],
@@ -130,6 +142,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Advanced Ethernet",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Advanced Ethernet/Ethernet ID"
 			],
@@ -140,6 +153,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Advanced Ethernet",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Advanced Ethernet/Ethernet speed"
 			],
@@ -150,6 +164,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Advanced Ethernet",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Advanced Ethernet/MTU"
 			],
@@ -160,6 +175,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Advanced Modem",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Advanced Modem/Advanced modem options"
 			],
@@ -170,6 +186,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Advanced VPN",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Advanced VPN/Advanced VPN options"
 			],
@@ -180,6 +197,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Advanced Wi-Fi",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Advanced Wi-Fi/Wi-Fi MAC address"
 			],
@@ -190,6 +208,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Bluetooth",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Bluetooth/Bluetooth account and password"
 			],
@@ -200,6 +219,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Bluetooth",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Bluetooth/Bluetooth networking"
 			],
@@ -210,6 +230,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Bluetooth",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Bluetooth/Connect or disconnect Bluetooth"
 			],
@@ -220,6 +241,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Bond",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Bond/Bond status"
 			],
@@ -230,6 +252,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Bond",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Bond/Manage Link Aggregates"
 			],
@@ -240,6 +263,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "DNS",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/DNS/DNS domains"
 			],
@@ -250,6 +274,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "DNS",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/DNS/DNS servers"
 			],
@@ -260,6 +285,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Ethernet",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Ethernet/Ethernet options"
 			],
@@ -270,6 +296,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Ethernet",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Ethernet/Search domains"
 			],
@@ -279,6 +306,7 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"notes": "kept by the application firewall (socketfilterfw), as root; nix-darwin has networking.applicationFirewall",
 			"section": "Firewall",
 			"sources": [
 				"search:Network.appex/Firewall/Firewall advanced settings"
@@ -289,6 +317,7 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"notes": "kept by the application firewall (socketfilterfw), as root; nix-darwin has networking.applicationFirewall",
 			"section": "Firewall",
 			"sources": [
 				"search:Network.appex/Firewall/Stealth Mode"
@@ -299,6 +328,7 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"notes": "kept by the application firewall (socketfilterfw), as root; nix-darwin has networking.applicationFirewall",
 			"section": "Firewall",
 			"sources": [
 				"search:Network.appex/Firewall/Turn firewall on or off"
@@ -310,6 +340,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Modem",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Modem/Connect or disconnect modem"
 			],
@@ -320,6 +351,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Modem",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Modem/Modem account and password"
 			],
@@ -330,6 +362,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Modem",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Modem/Modem options"
 			],
@@ -340,6 +373,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Modem",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Modem/Show modem status in menu bar"
 			],
@@ -349,6 +383,7 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Network/Networking services"
 			],
@@ -359,6 +394,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "PPP",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/PPP/PPP"
 			],
@@ -369,6 +405,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "PPP",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/PPP/PPP disconnect settings"
 			],
@@ -379,6 +416,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "PPPo E",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/PPPoE/PPPoE account and password"
 			],
@@ -389,6 +427,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "PPPo E",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/PPPoE/PPPoE service"
 			],
@@ -399,6 +438,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "PPPo E",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/PPPoE/PPPoE status"
 			],
@@ -409,6 +449,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Proxies",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Proxies/Proxies"
 			],
@@ -419,6 +460,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "TCP/IP",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/TCP/IP/IPv4"
 			],
@@ -429,6 +471,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "TCP/IP",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/TCP/IP/IPv6"
 			],
@@ -439,6 +482,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "TCP/IP",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/TCP/IP/TCP/IP"
 			],
@@ -449,6 +493,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Thunderbolt",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Thunderbolt/Configure Thunderbolt networking"
 			],
@@ -459,6 +504,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Thunderbolt",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/Thunderbolt/IP Over Thunderbolt"
 			],
@@ -469,6 +515,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Virtual Interfaces",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/VirtualInterfaces/Manage virtual interfaces"
 			],
@@ -479,6 +526,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "VLAN",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/VLAN/VLAN"
 			],
@@ -489,6 +537,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "VPN",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/VPN/Connect or disconnect VPN"
 			],
@@ -499,6 +548,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "VPN on Demand",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/VPN on Demand/VPN on Demand"
 			],
@@ -509,6 +559,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "VPN",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/VPN/VPN options"
 			],
@@ -519,6 +570,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "WINS",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/WINS/NetBIOS"
 			],
@@ -529,6 +581,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "WINS",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/WINS/Windows networking"
 			],
@@ -539,6 +592,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "WINS",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/WINS/WINS server"
 			],
@@ -549,6 +603,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "WINS",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/WINS/Workgroup"
 			],
@@ -559,6 +614,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "WWAN",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/WWAN/Connect or disconnect WWAN"
 			],
@@ -569,6 +625,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "WWAN",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/WWAN/WWAN account and password"
 			],
@@ -579,6 +636,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "WWAN",
+			"skip": "per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services",
 			"sources": [
 				"search:Network.appex/WWAN/WWAN status"
 			],
