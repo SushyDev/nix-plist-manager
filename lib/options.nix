@@ -25,6 +25,7 @@ in
 			focus = import ./options/applications/systemSettings/focus.nix { inherit lib settingsLib; };
 			lockScreen = import ./options/applications/systemSettings/lock-screen.nix { inherit lib settingsLib; };
 			keyboard = import ./options/applications/systemSettings/keyboard.nix { inherit lib settingsLib; };
+			trackpad = import ./options/applications/systemSettings/trackpad.nix { inherit lib settingsLib; };
 		};
 		finder = import ./options/applications/finder.nix { inherit lib commandsLib configLib pathLib typesLib; };
 	};
