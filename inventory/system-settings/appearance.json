@@ -16,20 +16,36 @@
 			"option": "applications.systemSettings.appearance.clickInTheScrollBarTo",
 			"sources": [
 				"intent:AppearanceIntentsExtension.appex/ClickScrollBarToEntity.value",
-				"option:applications.systemSettings.appearance.clickInTheScrollBarTo"
+				"option:applications.systemSettings.appearance.clickInTheScrollBarTo",
+				"ui:com.apple.settings.appearance/Click in the scroll bar to"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleScrollerPagingBehavior",
-					"scope": "user",
-					"type": "int"
+					"scope": "user"
 				}
 			],
-			"title": "Click in the scroll bar to"
+			"title": "Click in the scroll bar to",
+			"verified": {
+				"build": "26A428",
+				"commands": "acc51c9dec21",
+				"date": "2026-09-23"
+			}
 		},
 		"main-accent-color": {
+			"choices": [
+				"Multicolor",
+				"Blue",
+				"Purple",
+				"Pink",
+				"Red",
+				"Orange",
+				"Yellow",
+				"Green",
+				"Graphite"
+			],
 			"firstSeen": "26A428",
 			"kind": "enum",
 			"lastSeen": "26A428",
@@ -38,25 +54,29 @@
 			"sources": [
 				"intent:AppearanceIntentsExtension.appex/AccentColorEntity.value",
 				"option:applications.systemSettings.appearance.accentColor",
-				"search:Appearance.appex/Main/Accent color"
+				"search:Appearance.appex/Main/Accent color",
+				"ui:com.apple.settings.appearance/Color"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleAccentColor",
-					"scope": "user",
-					"type": "int"
+					"scope": "user"
 				},
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleAquaColorVariant",
-					"scope": "user",
-					"type": "int"
+					"scope": "user"
 				}
 			],
-			"title": "Accent color"
+			"title": "Accent color",
+			"verified": {
+				"build": "26A428",
+				"commands": "20e577617388",
+				"date": "2026-09-23"
+			}
 		},
 		"main-appearance": {
 			"choices": [
@@ -72,36 +92,54 @@
 			"sources": [
 				"intent:AppearanceIntentsExtension.appex/AppearanceEntity.value",
 				"option:applications.systemSettings.appearance.appearance",
-				"search:Appearance.appex/Main/Appearance"
+				"search:Appearance.appex/Main/Appearance",
+				"ui:com.apple.settings.appearance/Appearance"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
-					"key": "AppleInterfaceStyle",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "AppleInterfaceStyleSwitchesAutomatically",
 					"scope": "user"
 				},
 				{
 					"byHost": false,
 					"domain": "NSGlobalDomain",
-					"key": "AppleInterfaceStyleSwitchesAutomatically",
-					"scope": "user",
-					"type": "bool"
+					"key": "AppleInterfaceStyle",
+					"scope": "user"
 				}
 			],
-			"title": "Appearance"
+			"title": "Appearance",
+			"verified": {
+				"build": "26A428",
+				"commands": "72bd74ae99ec",
+				"date": "2026-09-23"
+			}
 		},
 		"main-button-menu-and-window-look": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "search index entry for Liquid Glass",
 			"sources": [
 				"search:Appearance.appex/Main/Button, menu, and window look"
 			],
 			"title": "Button, menu, and window look"
 		},
 		"main-highlight-color": {
+			"choices": [
+				"Automatic",
+				"Blue",
+				"Purple",
+				"Pink",
+				"Red",
+				"Orange",
+				"Yellow",
+				"Green",
+				"Graphite",
+				"Choose Color…"
+			],
 			"firstSeen": "26A428",
 			"kind": "enum",
 			"lastSeen": "26A428",
@@ -110,45 +148,57 @@
 			"sources": [
 				"intent:AppearanceIntentsExtension.appex/HighlightColorEntity.value",
 				"option:applications.systemSettings.appearance.textHighlightColor",
-				"search:Appearance.appex/Main/Highlight color"
+				"search:Appearance.appex/Main/Highlight color",
+				"ui:com.apple.settings.appearance/Text highlight color"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleHighlightColor",
-					"scope": "user",
-					"type": "string"
+					"scope": "user"
 				}
 			],
-			"title": "Highlight color"
+			"title": "Highlight color",
+			"verified": {
+				"build": "26A428",
+				"commands": "7bba4111e17a",
+				"date": "2026-09-23"
+			}
 		},
 		"main-liquid-glass": {
 			"firstSeen": "26A428",
-			"kind": "unknown",
+			"kind": "number",
 			"lastSeen": "26A428",
 			"option": "applications.systemSettings.appearance.liquidGlass",
 			"section": "Main",
 			"sources": [
 				"option:applications.systemSettings.appearance.liquidGlass",
-				"search:Appearance.appex/Main/Liquid Glass"
+				"search:Appearance.appex/Main/Liquid Glass",
+				"ui:com.apple.settings.appearance/Liquid Glass Tint Amount"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
-					"key": "NSGlassDiffusionSetting",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "NSGlassTintAmount",
 					"scope": "user",
-					"type": "bool"
+					"type": "float"
 				}
 			],
-			"title": "Liquid Glass"
+			"title": "Liquid Glass",
+			"verified": {
+				"build": "26A428",
+				"commands": "823b8130c577",
+				"date": "2026-09-23"
+			}
 		},
 		"main-scroll-bar-behavior": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "search index entry covering Show scroll bars and Click in the scroll bar to",
 			"sources": [
 				"search:Appearance.appex/Main/Scroll bar behavior"
 			],
@@ -159,6 +209,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Main",
+			"skip": "search index entry for Sidebar icon size",
 			"sources": [
 				"search:Appearance.appex/Main/Sidebar icons"
 			],
@@ -176,18 +227,23 @@
 			"option": "applications.systemSettings.appearance.showScrollBars",
 			"sources": [
 				"intent:AppearanceIntentsExtension.appex/ShowScrollBarsEntity.value",
-				"option:applications.systemSettings.appearance.showScrollBars"
+				"option:applications.systemSettings.appearance.showScrollBars",
+				"ui:com.apple.settings.appearance/Show scroll bars"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleShowScrollBars",
-					"scope": "user",
-					"type": "string"
+					"scope": "user"
 				}
 			],
-			"title": "Show scroll bars"
+			"title": "Show scroll bars",
+			"verified": {
+				"build": "26A428",
+				"commands": "2d5f2de774c0",
+				"date": "2026-09-23"
+			}
 		},
 		"sidebar-icon-size": {
 			"choices": [
@@ -201,58 +257,92 @@
 			"option": "applications.systemSettings.appearance.sidebarIconSize",
 			"sources": [
 				"intent:AppearanceIntentsExtension.appex/SidebarIconSizeEntity.value",
-				"option:applications.systemSettings.appearance.sidebarIconSize"
+				"option:applications.systemSettings.appearance.sidebarIconSize",
+				"ui:com.apple.settings.appearance/Sidebar icon size"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "NSTableViewDefaultSizeMode",
-					"scope": "user",
-					"type": "int"
+					"scope": "user"
 				}
 			],
-			"title": "Sidebar icon size"
+			"title": "Sidebar icon size",
+			"verified": {
+				"build": "26A428",
+				"commands": "9d6e3b8138b0",
+				"date": "2026-09-23"
+			}
 		},
 		"theme-icon-and-widget-style": {
+			"choices": [
+				"Default",
+				"Dark",
+				"Clear",
+				"Tinted"
+			],
 			"firstSeen": "26A428",
-			"kind": "unknown",
+			"kind": "enum",
 			"lastSeen": "26A428",
 			"option": "applications.systemSettings.appearance.iconAndWidgetStyle",
 			"section": "Theme",
 			"sources": [
-				"option:applications.systemSettings.appearance.iconAndWidgetStyle"
+				"option:applications.systemSettings.appearance.iconAndWidgetStyle",
+				"ui:com.apple.settings.appearance/Icon & widget style",
+				"ui:com.apple.settings.appearance/Icon & widget style (Light/Dark/Auto)"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleIconAppearanceTheme",
-					"scope": "user",
-					"type": "string"
+					"scope": "user"
 				}
 			],
-			"title": "Icon & widget style"
+			"title": "Icon & widget style",
+			"verified": {
+				"build": "26A428",
+				"commands": "7ff82ce61a59",
+				"date": "2026-09-23"
+			}
 		},
 		"theme-icon-widget-and-folder-color": {
+			"choices": [
+				"Automatic",
+				"Red",
+				"Orange",
+				"Yellow",
+				"Green",
+				"Blue",
+				"Purple",
+				"Pink",
+				"Graphite",
+				"Choose Color…"
+			],
 			"firstSeen": "26A428",
-			"kind": "unknown",
+			"kind": "enum",
 			"lastSeen": "26A428",
 			"option": "applications.systemSettings.appearance.iconWidgetAndFolderColor",
 			"section": "Theme",
 			"sources": [
-				"option:applications.systemSettings.appearance.iconWidgetAndFolderColor"
+				"option:applications.systemSettings.appearance.iconWidgetAndFolderColor",
+				"ui:com.apple.settings.appearance/Icon, widget & Folder color"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleIconAppearanceTintColor",
-					"scope": "user",
-					"type": "string"
+					"scope": "user"
 				}
 			],
-			"title": "Icon, widget & folder color"
+			"title": "Icon, widget & Folder color",
+			"verified": {
+				"build": "26A428",
+				"commands": "2cfdbc8d9908",
+				"date": "2026-09-23"
+			}
 		},
 		"tint-window-background-with-wallpaper-color": {
 			"firstSeen": "26A428",
@@ -261,18 +351,23 @@
 			"option": "applications.systemSettings.appearance.allowWallpaperTintingInWindows",
 			"sources": [
 				"intent:AppearanceIntentsExtension.appex/AllowWallPaperTintingEntity.value",
-				"option:applications.systemSettings.appearance.allowWallpaperTintingInWindows"
+				"option:applications.systemSettings.appearance.allowWallpaperTintingInWindows",
+				"ui:com.apple.settings.appearance/Tint window background with wallpaper color"
 			],
 			"storage": [
 				{
-					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
 					"key": "AppleReduceDesktopTinting",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
-			"title": "Tint window background with wallpaper color"
+			"title": "Tint window background with wallpaper color",
+			"verified": {
+				"build": "26A428",
+				"commands": "d0c770296db1",
+				"date": "2026-09-23"
+			}
 		}
 	}
 }
