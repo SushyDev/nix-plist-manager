@@ -110,7 +110,7 @@
 					failures = import ./lib/settings/tests.nix { inherit (nixpkgs) lib; };
 					# every option's UI path starts at the app it's found in, so the docs say where the
 					# setting is: "System Settings > Accessibility > Zoom > Advanced… > Smooth images"
-					apps = [ "System Settings" "Finder" "Dock" "Menu bar" "App Store" ];
+					apps = [ "System Settings" "Finder" "Dock" "Menu bar" "App Store" "Voice Memos" "News" "Journal" ];
 					unrooted = builtins.filter (entry: !(builtins.elem (builtins.head entry.path) apps)) self.optionIndex;
 					# each option has its own path: the inventory links options to settings by it
 					paths = map (entry: builtins.concatStringsSep " > " entry.path) self.optionIndex;

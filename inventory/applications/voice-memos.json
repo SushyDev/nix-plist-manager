@@ -1,0 +1,83 @@
+{
+	"coverage": "",
+	"group": "applications",
+	"pane": [
+		"Voice Memos"
+	],
+	"settings": {
+		"settings-audio-quality": {
+			"choices": [
+				"Lossy",
+				"Lossless"
+			],
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.voiceMemos.audioQuality",
+			"section": "Settings…",
+			"sources": [
+				"intent:VoiceMemosSettingsWidgetExtension.appex/AudioQualityEntity.value",
+				"option:applications.voiceMemos.audioQuality"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Library/Preferences/group.com.apple.VoiceMemos.shared",
+					"key": "RCVoiceMemosAudioQualityKey",
+					"scope": "user"
+				}
+			],
+			"title": "Audio Quality"
+		},
+		"settings-clear-deleted": {
+			"choices": [
+				"Immediately",
+				"After 1 Day",
+				"After 7 Days",
+				"After 30 Days",
+				"Never"
+			],
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.voiceMemos.clearDeleted",
+			"section": "Settings…",
+			"sources": [
+				"intent:VoiceMemosSettingsWidgetExtension.appex/ClearDeletedEntity.value",
+				"option:applications.voiceMemos.clearDeleted"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Library/Preferences/group.com.apple.VoiceMemos.shared",
+					"key": "RCVoiceMemosRecentlyDeletedWindowKey",
+					"scope": "user"
+				}
+			],
+			"title": "Clear Deleted"
+		},
+		"settings-location-based-naming": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.voiceMemos.locationBasedNaming",
+			"section": "Settings…",
+			"sources": [
+				"intent:VoiceMemosSettingsWidgetExtension.appex/LocationBasedNamingEntity.value",
+				"option:applications.voiceMemos.locationBasedNaming"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Library/Preferences/group.com.apple.VoiceMemos.shared",
+					"key": "RCVoiceMemosUseLocationBasedNaming",
+					"scope": "user"
+				}
+			],
+			"title": "Location-based Naming"
+		}
+	}
+}

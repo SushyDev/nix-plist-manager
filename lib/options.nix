@@ -28,6 +28,8 @@ in
 			trackpad = import ./options/applications/systemSettings/trackpad.nix { inherit lib settingsLib; };
 			printersAndScanners = import ./options/applications/systemSettings/printers-and-scanners.nix { inherit lib settingsLib; };
 		};
+		voiceMemos = import ./options/applications/voice-memos.nix { inherit lib settingsLib; };
+		journal = import ./options/applications/journal.nix { inherit lib settingsLib; };
 		finder = import ./options/applications/finder.nix { inherit lib commandsLib configLib pathLib typesLib; };
 	};
 }

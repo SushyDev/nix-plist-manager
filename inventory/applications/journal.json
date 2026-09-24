@@ -9,6 +9,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"skip": "asks for permission to use location",
 			"sources": [
 				"intent:JournalWidgets.appex/AddCurrentLocationEntity.value"
 			],
@@ -18,8 +19,19 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.journal.alwaysUseMomentDate",
 			"sources": [
-				"intent:JournalWidgets.appex/AlwaysUseMomentDateEntity.value"
+				"intent:JournalWidgets.appex/AlwaysUseMomentDateEntity.value",
+				"option:applications.journal.alwaysUseMomentDate"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.Journal/Library/Preferences/group.com.apple.Journal",
+					"key": "ALWAYS_USE_MOMENT_DATE",
+					"scope": "user"
+				}
 			],
 			"title": "Always Use Moment Date"
 		},
@@ -27,28 +39,62 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"skip": "asks for permission to use Photos",
 			"sources": [
 				"intent:JournalWidgets.appex/SaveToPhotosEntity.value"
 			],
 			"title": "Save To Photos"
 		},
+		"settings-general-add-entry-title": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.journal.addEntryTitle",
+			"section": "Settings… > General",
+			"sources": [
+				"option:applications.journal.addEntryTitle"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.Journal/Library/Preferences/group.com.apple.Journal",
+					"key": "ADD_ENTRY_TITLE",
+					"scope": "user"
+				}
+			],
+			"title": "Add Entry Title"
+		},
+		"settings-general-get-writing-prompts": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.journal.getWritingPrompts",
+			"section": "Settings… > General",
+			"sources": [
+				"intent:JournalWidgets.appex/ShowWritingPromptsEntity.value",
+				"option:applications.journal.getWritingPrompts"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "~/Library/Group Containers/group.com.apple.Journal/Library/Preferences/group.com.apple.Journal",
+					"key": "showFollowupPrompts",
+					"scope": "user"
+				}
+			],
+			"title": "Get Writing Prompts"
+		},
 		"show-suggested-moments": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"skip": "not shown in Journal's settings on this Mac (needs Journaling Suggestions)",
 			"sources": [
 				"intent:JournalWidgets.appex/SkipJournalingSuggestionsEntity.value"
 			],
 			"title": "Show Suggested Moments"
-		},
-		"show-writing-prompts": {
-			"firstSeen": "26A428",
-			"kind": "bool",
-			"lastSeen": "26A428",
-			"sources": [
-				"intent:JournalWidgets.appex/ShowWritingPromptsEntity.value"
-			],
-			"title": "Show Writing Prompts"
 		}
 	}
 }
