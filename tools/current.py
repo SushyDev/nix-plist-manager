@@ -256,50 +256,6 @@ def app_languages() -> dict:
 	return found
 
 
-LEGACY_WRITE = re.compile(
-	r"defaults (?:-currentHost )?write (\S+) (?:\"([^\"]+)\"|'([^']+)'|(\S+)) -(\w+) (?:\"([^\"]*)\"|'([^']*)'|(\S+))"
-)
-
-
-def legacy_key(domain: str) -> tuple[str, bool]:
-	domain = domain.replace("$HOME/Library/Preferences/", "")
-	if domain.startswith("ByHost/"):
-		return domain[len("ByHost/"):], True
-	return ("NSGlobalDomain" if domain == ".GlobalPreferences" else domain), False
-
-
-def parse_plist_value(kind: str, text: str):
-	if kind == "bool":
-		return text in ("true", "YES", "1")
-	if kind == "int":
-		return int(text)
-	if kind == "float":
-		return float(text)
-	return text
-
-
-def read_legacy(entry: dict):
-	for choice, command in entry["commands"].items():
-		if choice == "unset":
-			continue
-		match = LEGACY_WRITE.search(command)
-		if not match:
-			continue
-		domain, by_host = legacy_key(match.group(1))
-		name = match.group(2) or match.group(3) or match.group(4)
-		kind = match.group(5)
-		text = match.group(6) if match.group(6) is not None else (match.group(7) if match.group(7) is not None else match.group(8))
-		# the key in effect: a ByHost copy shadows the plain one
-		actual = export(domain, True).get(name) if by_host else None
-		if actual is None:
-			actual = export(domain, False).get(name)
-		if choice == "value":
-			return UNREAD if actual is None else actual
-		if actual is not None and same(actual, parse_plist_value(kind, text)):
-			return choice == "true" if choice in ("true", "false") else choice
-	return UNREAD
-
-
 def read_pmset(entry: dict):
 	"""Battery settings applied through pmset: read `pmset -g custom`."""
 	output = subprocess.run(["pmset", "-g", "custom"], capture_output=True, text=True).stdout
@@ -375,15 +331,12 @@ def read_ui(entry: dict):
 
 def read(entry: dict, use_ui: bool):
 	value = UNREAD
-	if entry["kind"] == "legacy":
-		value = read_legacy(entry)
-	else:
-		if entry.get("read"):
-			value = read_with(entry)
-		if value is UNREAD and entry.get("appliedThroughCommand"):
-			value = read_special(entry)
-		if value is UNREAD and entry.get("candidates"):
-			value = read_candidates(entry)
+	if entry.get("read"):
+		value = read_with(entry)
+	if value is UNREAD and entry.get("appliedThroughCommand"):
+		value = read_special(entry)
+	if value is UNREAD and entry.get("candidates"):
+		value = read_candidates(entry)
 	if value is UNREAD and use_ui and entry.get("verify"):
 		try:
 			value = read_ui(entry)

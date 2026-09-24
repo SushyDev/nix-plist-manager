@@ -1,10 +1,5 @@
 { lib }:
 let
-	commandsLib = import ./commands.nix { inherit lib; };
-	typesLib = import ./types.nix { inherit lib; };
-	configLib = import ./config.nix { inherit lib; };
-	pathLib = import ./paths.nix { inherit lib; };
-	abstractionsLib = import ../lib/abstractions.nix { inherit lib commandsLib pathLib typesLib configLib; };
 	settingsLib = import ./settings { inherit lib; };
 in
 {
@@ -14,7 +9,7 @@ in
 			accessibility = import ./options/applications/systemSettings/accessibility.nix { inherit lib settingsLib; };
 			appearance = import ./options/applications/systemSettings/appearance.nix { inherit lib settingsLib; };
 			appleIntelligenceAndSiri = import ./options/applications/systemSettings/apple-intelligence-and-siri.nix { inherit lib settingsLib; };
-			desktopAndDock = import ./options/applications/systemSettings/desktop-and-dock.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib settingsLib; };
+			desktopAndDock = import ./options/applications/systemSettings/desktop-and-dock.nix { inherit lib settingsLib; };
 			displays = import ./options/applications/systemSettings/displays.nix { inherit lib settingsLib; };
 			battery = import ./options/applications/systemSettings/battery.nix { inherit lib settingsLib; };
 			menuBar = import ./options/applications/systemSettings/menu-bar.nix { inherit lib settingsLib; };

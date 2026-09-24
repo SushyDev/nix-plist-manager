@@ -1,9 +1,6 @@
 { lib, render, isSetting }:
-# One description of an option, for the docs, optionIndex and the verify tools, whether it's
-# a setting or an option that doesn't use `setting` yet.
+# One description of a setting, for the docs, optionIndex and the verify tools.
 let
-	isLegacy = value: lib.isAttrs value && value ? path && value ? mapping && value ? config;
-
 	name = value:
 		if lib.isAttrs value then "{ ${lib.concatStringsSep "; " (lib.mapAttrsToList (k: v: "${k} = ${builtins.toJSON v}") value)}; }"
 		else if lib.isString value then value
@@ -40,21 +37,9 @@ let
 		# applied through a command, so the keys may not say what is in effect
 		appliedThroughCommand = appliedThroughCommand setting;
 	};
-
-	describeLegacy = option: {
-		inherit (option) path;
-		module = if option.config.perUser then "home-manager" else "darwin";
-		type = option.option.type.description;
-		kind = "legacy";
-		choices = [];
-		commands = lib.mapAttrs (_: entry:
-			if lib.isFunction entry.command then entry.command "value" else toString entry.command
-		) option.mapping;
-		verify = null;
-	};
 in
 {
-	isEntry = value: isSetting value || isLegacy value;
+	isEntry = isSetting;
 
-	describe = value: if isSetting value then describeSetting value else describeLegacy value;
+	describe = describeSetting;
 }

@@ -92,12 +92,6 @@ let
 			storage = user "com.apple.menuextra.clock" "ShowDate";
 			value = storedAs { true = 1; false = 2; } bool;
 		};
-		legacy = {
-			path = [ "Legacy" ];
-			mapping = {};
-			option = lib.mkOption { type = lib.types.nullOr lib.types.bool; default = null; };
-			config = { perUser = true; command = value: "legacy ${lib.boolToString value}"; };
-		};
 	};
 
 	build = values: s.module.build { inherit tree values; scope = "user"; };
@@ -203,11 +197,6 @@ lib.runTests {
 	testImpliesConflictAsserts = {
 		expr = lib.length (build { magnificationSize = 64; magnification = false; }).assertions;
 		expected = 1;
-	};
-
-	testLegacyOptionsStillRun = {
-		expr = (build { legacy = true; }).script;
-		expected = "legacy true";
 	};
 
 	testSnapshotRestoresDomainsAndKeys = {
