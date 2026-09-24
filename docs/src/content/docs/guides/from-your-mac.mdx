@@ -1,34 +1,66 @@
 ---
 title: Start from your Mac
-description: Turn the settings you already have into nix-plist-manager configuration.
+description: Turn the settings you already have into nix-plist-manager configuration, and pick up what you change later.
 ---
 
-You've spent years getting your Mac the way you like it. One command writes that down:
+You've spent years getting your Mac the way you like it. `current` reads it back as Nix, in a file you can import as it is.
+
+## 1. Write your settings down
 
 ```sh
-nix run github:sushydev/nix-plist-manager#current
+nix run github:sushydev/nix-plist-manager#current -- --scope user > mac.nix
+nix run github:sushydev/nix-plist-manager#current -- --scope system > mac-system.nix
 ```
 
-It reads every setting nix-plist-manager knows and prints them as Nix, split into what goes in home-manager and what goes in nix-darwin:
+`--scope user` is everything home-manager applies, `--scope system` what nix-darwin applies as root. Import them where they belong:
 
 ```nix
-# home-manager: 212 options
-programs.nix-plist-manager.options = {
-  applications = {
-    systemSettings = {
-      appearance = {
-        accentColor = "Purple";
-        appearance = "Dark";
-      };
-      …
+# home-manager
+programs.nix-plist-manager = {
+  enable = true;
+  options = import ./mac.nix;
+};
+
+# nix-darwin
+programs.nix-plist-manager = {
+  enable = true;
+  options = import ./mac-system.nix;
+};
 ```
 
-Paste the parts you care about into your configuration, and your next Mac is set up the same way on its first rebuild.
+Without `--scope` you get one file with both, as `{ user = …; system = …; }`, for `(import ./mac.nix).user`.
+
+## 2. Keep what you care about
+
+The file holds every setting macOS has an answer for, most of them still at the default. Declaring a default pins it: if Apple changes it in a later release, your Mac keeps the old one. Delete what you don't have an opinion about; what's left is your setup.
+
+## 3. Pick up what you change later
+
+Change something in System Settings, then ask what's different from your file:
+
+```sh
+nix run github:sushydev/nix-plist-manager#current -- --scope user --against mac.nix
+```
+
+```nix
+{
+  applications = {
+    finder = {
+      menuBar = {
+        view = {
+          showPathBar = false;
+        };
+      };
+    };
+  };
+}
+```
+
+Only the settings whose value on your Mac isn't the one in `mac.nix` are printed, so you can copy them over.
 
 ## Options
 
-- `--only <prefix>` reads just part of it: `--only applications.systemSettings.keyboard`
-- `--ui` also asks System Settings for the settings macOS doesn't write down until you change them (it opens System Settings while it runs)
-- `--snapshots <directory>` also captures the [snapshot](/nix-plist-manager/guides/snapshots/) settings (the Dock's apps, the menu bar layout, the wallpaper) into that directory
-
-Settings still at macOS's default often have nothing written down yet; those are left out unless you pass `--ui`.
+- `--only <prefix>` reads part of it: `--only applications.systemSettings.keyboard`.
+- `--ui` reads the settings macOS hasn't written down yet from System Settings itself. It opens System Settings while it runs; combine it with `--only` to keep that short.
+- `--snapshots <directory>` also captures the [snapshot](/nix-plist-manager/guides/snapshots/) settings (the Dock's apps, the menu bar layout, the wallpaper) into that directory.
+- `--verbose` lists the settings that couldn't be read.

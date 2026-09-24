@@ -46,6 +46,8 @@
 					(lib.optionalString (scripts.system != "") "sudo /bin/bash -c ${lib.escapeShellArg scripts.system}")
 				]);
 
+			lib.current = state: args: settingsLib.read.current ({ inherit tree state; } // args);
+
 			optionIndex = import ./lib/optionIndex.nix { inherit lib; } tree;
 
 			documentation = forAllSystems (pkgs: pkgs.runCommand "documentation" { } ''
@@ -90,6 +92,8 @@
 					coverage = check "coverage" "coverage.json lists options that don't exist" (lib.filter (option: !(lib.elem option known)) verified);
 
 					settings = check "settings-tests" "settings tests failed" (map builtins.toJSON (import ./lib/settings/tests.nix { inherit lib; }));
+
+					reads-back = check "reads-back" "options that don't read back what they write" (settingsLib.read.readsBack tree);
 				}
 			);
 

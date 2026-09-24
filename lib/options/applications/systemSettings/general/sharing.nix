@@ -210,9 +210,9 @@ in
 			examples = [ { "/Users/me/Public" = "Public"; } ];
 			encode = _: folders: [];
 			fromName = builtins.fromJSON;
-			read = { sharedFolders = true; };
 		};
 		canUnset = false;
+		reads.command = ''/usr/sbin/sharing -l | /usr/bin/awk 'function quote(s) { gsub(/[\\"]/, "\\\\&", s); return "\"" s "\"" } BEGIN { printf "{" } /^name:/ { sub(/^name:[ \t]*/, ""); name = $0 } /^path:/ { sub(/^path:[ \t]*/, ""); printf "%s%s:%s", separator, quote($0), quote(name); separator = "," } END { print "}" }' '';
 		behaviors = [
 			(appliesThrough (folders:
 				let

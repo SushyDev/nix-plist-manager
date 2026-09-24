@@ -12,7 +12,8 @@ let
 	describe = import ./describe.nix { inherit lib render; };
 	live = import ./live.nix { inherit lib; };
 	shows = import ./shows.nix { inherit lib; };
+	read = import ./read.nix { inherit lib module; };
 in
 storage // codecs // behaviorsLib // relations // core // describe // {
-	inherit ops render module live shortcuts shows;
+	inherit ops render module live shortcuts shows read;
 }

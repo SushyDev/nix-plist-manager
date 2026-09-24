@@ -279,7 +279,15 @@ in
 			storage = user "pbs" "NSServicesStatus";
 			value = {
 				kind = "services";
-				read = { services = true; inherit (shortcuts) names; };
+				decode = keys: get:
+					let
+						stored = get keys.value;
+						choice = status:
+							if !(status.enabled_services_menu or true) && !(status.enabled_context_menu or true) then false
+							else if (status.key_equivalent or "") != "" then shortcuts.fromKeyEquivalent status.key_equivalent
+							else true;
+					in
+					if lib.isAttrs stored then lib.mapAttrs (_: choice) stored else null;
 				type = lib.types.attrsOf (lib.types.either lib.types.bool shortcuts.type);
 				choices = [];
 				examples = [ { "com.apple.Terminal - New Terminal at Folder - newTerminalAtFolder" = "⌘⇧T"; } ];
@@ -332,7 +340,6 @@ in
 				};
 				value = {
 					kind = "applications";
-					read = { appShortcuts = true; inherit (shortcuts) names; };
 					type = lib.types.attrsOf (lib.types.attrsOf shortcuts.type);
 					choices = [];
 					examples = [ { "com.apple.TextEdit" = { "Make Plain Text" = "⌘⇧T"; }; } ];
@@ -343,6 +350,21 @@ in
 					fromName = builtins.fromJSON;
 				};
 				canUnset = false;
+				reads = {
+					command = ''
+						printf '{'
+						/usr/bin/defaults read com.apple.universalaccess com.apple.custommenu.apps 2>/dev/null | /usr/bin/tr -d ' ",()' | /usr/bin/grep . | while IFS= read -r app; do
+							items=$(/usr/bin/defaults export "$app" - | /usr/bin/plutil -extract NSUserKeyEquivalents json -o - - 2>/dev/null) || continue
+							printf '%s"%s":%s' "$separator" "$app" "$items"; separator=,
+						done
+						printf '}'
+					'';
+					parse = lib.mapAttrs' (domain: items: lib.nameValuePair
+						(if domain == "NSGlobalDomain" then "All Applications" else domain)
+						(lib.mapAttrs' (title: equivalent: lib.nameValuePair
+							(lib.concatStringsSep "->" (lib.filter (part: part != "") (lib.splitString (builtins.fromJSON ''"\u001b"'') title)))
+							(shortcuts.fromKeyEquivalent equivalent)) items));
+				};
 				verify = {
 					inherit pane;
 					open = [ "AXButton:Keyboard Shortcuts…" "click:Application shortcuts" "AXDisclosureTriangle:NSOutlineViewDisclosureButtonKey#2" ];

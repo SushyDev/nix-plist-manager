@@ -60,6 +60,7 @@ in
 			storage = system ".GlobalPreferences" "com.apple.autologout.AutoLogOutDelay";
 			value = number { min = 0; max = 960; } // {
 				encode = keys: minutes: [ (ops.write keys.value (minutes * 60)) ];
+				decode = keys: get: let seconds = get keys.value; in if seconds == null then null else seconds / 60;
 			};
 			verify = {
 				inherit pane;

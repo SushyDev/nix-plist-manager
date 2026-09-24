@@ -143,8 +143,20 @@ in
 			examples = [ { "com.example.app" = [ "nl" ]; } ];
 			encode = _: apps: lib.mapAttrsToList (id: languages: ops.run (appLanguages id languages)) apps;
 			fromName = builtins.fromJSON;
-			read = { appLanguages = true; };
 		};
 		canUnset = false;
+		# system services keep copies of the global list, which Language & Region doesn't show
+		reads.command = ''
+			printf '{'
+			/usr/bin/grep -l AppleLanguages ~/Library/Preferences/*.plist ~/Library/Containers/*/Data/Library/Preferences/*.plist 2>/dev/null | while IFS= read -r file; do
+				id=$(basename "$file" .plist)
+				case "$file" in */Containers/*) [ "$(basename "$(dirname "$(dirname "$(dirname "$(dirname "$file")")")")")" = "$id" ] || continue ;; esac
+				case "$id" in .*) continue ;; esac
+				languages=$(/usr/bin/plutil -extract AppleLanguages json -o - "$file" 2>/dev/null) || continue
+				/usr/bin/mdfind "kMDItemCFBundleIdentifier == '$id'" | /usr/bin/grep -q '\.app$' || continue
+				printf '%s"%s":%s' "$separator" "$id" "$languages"; separator=,
+			done
+			printf '}'
+		'';
 	};
 }

@@ -8,6 +8,7 @@ let
 	};
 
 	functionFlag = 8388608;
+	glyphOrder = [ "⌃" "⌥" "⇧" "⌘" ];
 	noCharacter = 65535;
 
 	characterKeyCodes = {
@@ -76,11 +77,29 @@ rec {
 		lib.concatMapStrings (glyph: modifiers.${glyph}.equivalent) ordered
 		+ (namedKeys.${shortcut.key}.equivalent or shortcut.key);
 
-	names = {
-		keys = lib.mapAttrs' (key: code: lib.nameValuePair (toString code) (lib.toUpper key)) characterKeyCodes
-			// lib.mapAttrs' (name: key: lib.nameValuePair (toString key.code) name) namedKeys;
-		modifiers = lib.mapAttrs' (glyph: modifier: lib.nameValuePair (toString modifier.flag) glyph) modifiers;
-		equivalentModifiers = lib.mapAttrs' (glyph: modifier: lib.nameValuePair modifier.equivalent glyph) modifiers;
-		equivalentKeys = lib.mapAttrs' (name: key: lib.nameValuePair key.equivalent name) namedKeys;
-	};
+	fromHotKey = parameters:
+		let
+			flags = lib.elemAt parameters 2;
+			code = lib.elemAt parameters 1;
+			key = lib.findFirst (name: characterKeyCodes.${name} == code) null (lib.attrNames characterKeyCodes);
+			named = lib.findFirst (name: namedKeys.${name}.code == code) null (lib.attrNames namedKeys);
+			glyphs = lib.filter (glyph: builtins.bitAnd flags modifiers.${glyph}.flag != 0) glyphOrder;
+		in
+		if key != null then lib.concatStrings glyphs + lib.toUpper key
+		else if named != null then lib.concatStrings glyphs + named
+		else null;
+
+	fromKeyEquivalent = equivalent:
+		let
+			characters = lib.stringToCharacters equivalent;
+			modifierOf = character: lib.findFirst (glyph: modifiers.${glyph}.equivalent == character) null (lib.attrNames modifiers);
+			split = list:
+				if lib.length list > 1 && modifierOf (lib.head list) != null
+				then let rest = split (lib.tail list); in rest // { glyphs = [ (modifierOf (lib.head list)) ] ++ rest.glyphs; }
+				else { glyphs = []; key = lib.concatStrings list; };
+			parts = split characters;
+			named = lib.findFirst (name: namedKeys.${name}.equivalent == parts.key) null (lib.attrNames namedKeys);
+		in
+		lib.concatStrings (lib.filter (glyph: lib.elem glyph parts.glyphs) glyphOrder)
+		+ (if named != null then named else lib.toUpper parts.key);
 }

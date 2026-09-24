@@ -10,10 +10,6 @@ let
 		key = key.name;
 	} // lib.optionalAttrs (key.type != null) { inherit (key) type; };
 
-	opJson = op: removeAttrs op [ "key" ] // lib.optionalAttrs (op ? key) { key = storageKey op.key; };
-
-	appliedThroughCommand = setting: lib.any (op: op.op == "run") (setting.plan (lib.head setting.codec.examples));
-
 	describeSetting = setting: {
 		path = setting.ui;
 		module = if setting.scope == "system" then "darwin" else "home-manager";
@@ -26,14 +22,9 @@ let
 		verify = setting.verify;
 		description = setting.option.description or "";
 		example = lib.generators.toPretty { } (lib.head setting.codec.examples);
-		inherit (setting) canUnset reads;
+		inherit (setting) canUnset;
+		reads = lib.mapNullable (reads: { inherit (reads) command; }) setting.reads;
 		range = if setting.codec ? min then { inherit (setting.codec) min max; unit = setting.codec.unit or null; } else null;
-		read = setting.codec.read or null;
-		candidates =
-			if lib.elem setting.codec.kind [ "bool" "enum" ] && !(appliedThroughCommand setting) then
-				map (value: { inherit value; ops = map opJson (setting.codec.encode setting.keys value); }) setting.codec.examples
-			else null;
-		appliedThroughCommand = appliedThroughCommand setting;
 	};
 in
 {
