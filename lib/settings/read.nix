@@ -58,6 +58,21 @@ let
 		else if setting.codec.kind == "string" then output.raw
 		else output.json or output.raw;
 
+	# a value written by deleting every key is what macOS falls back to
+	codecDefault = setting:
+		let
+			keyOps = value: lib.filter (op: op ? key) (setting.codec.encode setting.keys value);
+		in
+		lib.findFirst (value: keyOps value != [] && lib.all (op: op.op == "delete") (keyOps value)) null
+			(if lib.elem setting.codec.kind [ "bool" "enum" ] then setting.codec.examples else []);
+
+	isDefault = state: option: setting: value:
+		let
+			default = state.defaults.${option} or (codecDefault setting);
+			encode = setting.codec.encode setting.keys;
+		in
+		default != null && setting.codec.kind != "snapshot" && setting.option.type.check default && encode default == encode value;
+
 	valueOf = state: option: setting:
 		let
 			get = key: if key.name == null then null else (state.domains.${keyId key} or {}).${key.name} or null;
@@ -108,7 +123,7 @@ in
 		lib.concatMap (leaf: lib.concatMap (check leaf) leaf.entry.codec.examples)
 			(lib.filter (leaf: readable leaf.entry) (module.settingsIn tree));
 
-	current = { tree, state, scope ? null, against ? {}, only ? "" }:
+	current = { tree, state, scope ? null, against ? null, only ? "", all ? false }:
 		let
 			readScope = scopeName:
 				let
@@ -125,12 +140,18 @@ in
 						}) leaves;
 					known = lib.filter (leaf: leaf.value != null) read;
 					compared = if scope == null then against.${scopeName} or {} else against;
-					changed = lib.filter (leaf: lib.attrByPath leaf.path null compared != leaf.value) known;
+					atDefault = lib.filter (leaf: isDefault state leaf.option leaf.entry leaf.value) known;
+					changed =
+						if against != null then lib.filter (leaf: lib.attrByPath leaf.path null compared != leaf.value) known
+						else if all then known
+						else lib.filter (leaf: !(isDefault state leaf.option leaf.entry leaf.value)) known;
 				in
 				{
 					values = lib.foldl' (tree: leaf: lib.recursiveUpdate tree (lib.setAttrByPath leaf.path leaf.value)) {} changed;
 					read = lib.length known;
 					changed = lib.length changed;
+					atDefault = lib.length atDefault;
+					defaultKnown = lib.count (leaf: (state.defaults ? ${leaf.option}) || codecDefault leaf.entry != null) known;
 					unread = map (leaf: { inherit (leaf) option; ui = leaf.entry.verify != null; snapshot = leaf.entry.codec.kind == "snapshot"; })
 						(lib.filter (leaf: leaf.value == null) read);
 				};
@@ -140,6 +161,8 @@ in
 			text = lib.generators.toPretty {} (if scope == null then lib.mapAttrs (_: result: result.values) scopes else scopes.${scope}.values);
 			read = lib.foldl' (sum: result: sum + result.read) 0 (lib.attrValues scopes);
 			changed = lib.foldl' (sum: result: sum + result.changed) 0 (lib.attrValues scopes);
+			atDefault = lib.foldl' (sum: result: sum + result.atDefault) 0 (lib.attrValues scopes);
+			defaultKnown = lib.foldl' (sum: result: sum + result.defaultKnown) 0 (lib.attrValues scopes);
 			unread = lib.concatMap (result: result.unread) (lib.attrValues scopes);
 		};
 }

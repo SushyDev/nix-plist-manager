@@ -1,0 +1,6 @@
+{
+	"applications.systemSettings.appearance.allowWallpaperTintingInWindows": true,
+	"applications.systemSettings.appearance.clickInTheScrollBarTo": "Jump to the next page",
+	"applications.systemSettings.appearance.showScrollBars": "Automatically based on mouse or trackpad",
+	"applications.systemSettings.appearance.sidebarIconSize": "Medium"
+}
