@@ -5,7 +5,9 @@ in
 rec {
 	appleScript = script: "/usr/bin/osascript -e ${q script} >/dev/null";
 
-	jxa = script: "/usr/bin/osascript -l JavaScript -e ${q script} >/dev/null";
+	jxa = script: "${jxaOutput script} >/dev/null";
+
+	jxaOutput = script: "/usr/bin/osascript -l JavaScript -e ${q script}";
 
 	skyLight = function: signature: argument: jxa (lib.concatStrings [
 		"ObjC.import('Foundation');"
@@ -38,14 +40,14 @@ rec {
 		"  if (isKeyboard(source) && wanted.indexOf(id(source)) < 0) $.TISDisableInputSource(source); }"
 	]);
 
-	enabledInputSources = "/usr/bin/osascript -l JavaScript -e ${q (lib.concatStrings [
+	enabledInputSources = jxaOutput (lib.concatStrings [
 		"ObjC.import('Carbon');"
 		"var list = ObjC.castRefToObject($.TISCreateInputSourceList($(), false)); var ids = [];"
 		"for (var i = 0; i < list.count; i++) { var source = list.objectAtIndex(i);"
 		"  if (ObjC.castRefToObject($.TISGetInputSourceProperty(source, $.kTISPropertyInputSourceCategory)).js == 'TISCategoryKeyboardInputSource')"
 		"    ids.push(ObjC.castRefToObject($.TISGetInputSourceProperty(source, $.kTISPropertyInputSourceID)).js); }"
 		"JSON.stringify(ids)"
-	])}";
+	]);
 
 	pmsetValue = source: key:
 		"/usr/bin/pmset -g custom | /usr/bin/awk ${q "$0 == \"${source}:\" { found = 1; next } /^[^ ]/ { found = 0 } found && $1 == \"${key}\" { print $2 }"}";

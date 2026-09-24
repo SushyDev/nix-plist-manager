@@ -31,6 +31,11 @@ let
 			else
 				[ (ops.write keys.font { fontName = font; fontSize = baseSize; }) ]
 				++ lib.optional (keys ? style) (ops.write keys.style 2);
+		decode = keys: get:
+			let
+				stored = get keys.font;
+			in
+			if stored == null then "Default" else stored.fontName or null;
 	};
 
 	rgba = {
@@ -179,6 +184,11 @@ let
 		examples = [ "Use System Language" "en" ];
 		encode = keys: language: text.encode keys
 			(if language == "Use System Language" then "__com.apple.AXSettingRecord.nilSentinel__" else language);
+		decode = keys: get:
+			let
+				language = text.decode keys get;
+			in
+			if language == "__com.apple.AXSettingRecord.nilSentinel__" then "Use System Language" else language;
 	};
 in
 {
@@ -1208,6 +1218,7 @@ in
 				storage = universalAccess "virtualKeyboardHideUITransparencyLevel";
 				value = number { min = 0.0; max = 1.0; } // {
 					encode = keys: amount: [ (ops.write keys.value (1.0 - amount)) ];
+					decode = keys: get: let stored = get keys.value; in if stored == null then null else 1.0 - stored;
 				};
 			};
 

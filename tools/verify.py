@@ -160,9 +160,8 @@ def run_script(script: str, root: bool = False, check: bool = True):
 
 
 def storage_of(entry: dict, root: bool) -> list[tuple]:
-	keys = entry["storage"] + [op["key"] for c in entry["candidates"] for op in c["ops"] if isinstance(op.get("key"), dict)]
 	result = []
-	for key in keys:
+	for key in entry["storage"]:
 		system = key.get("scope") == "system"
 		if not key.get("key") or (system and not root):
 			continue

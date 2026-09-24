@@ -397,10 +397,10 @@
 			"no mouse connected to observe them with": ["Mission Control", "Natural scrolling", "Secondary click", "Smart zoom", "Swipe between full-screen applications", "Swipe between pages", "Tracking speed"]
 		},
 		"News": {
-			"News isn't offered in this region, so it can't be observed on this Mac": ["Automatic Downloads", "Automatically Download Audio Stories", "Automatically Download Magazine Issues", "Automatically Download Puzzles", "Automatically Download Recipes", "Automatically Download Saved Stories", "Automatically Download Stories In Feeds", "Game Center", "Optimize Storage", "Restrict Stories in Today"]
+			"News isn't offered in the tested Mac's region, so where these are stored couldn't be observed": ["Automatic Downloads", "Automatically Download Audio Stories", "Automatically Download Magazine Issues", "Automatically Download Puzzles", "Automatically Download Recipes", "Automatically Download Saved Stories", "Automatically Download Stories In Feeds", "Game Center", "Optimize Storage", "Restrict Stories in Today"]
 		},
 		"Privacy & Security": {
-			"asks for an administrator; not probed": ["Developer Tools › Enable Processor Trace"]
+			"asks for an administrator, so it hasn't been tried yet": ["Developer Tools › Enable Processor Trace"]
 		},
 		"Trackpad": {
 			"the key that turns off only the Apps gesture isn't known; it's tied to the five-finger pinch Show Desktop shares": ["Launchpad"]
@@ -408,19 +408,19 @@
 	},
 	"notCovered": {
 		"Accessibility": {
-			"not shown on this Mac: System Settings hides it here, so what it stores can't be observed": ["Show generated subtitles", "In-App Live Captions", "Play system sounds", "Siri › Type to Siri", "Set range for rapid zooming in and out"],
 			"synced through iCloud, not stored in preferences": ["Share across devices"],
 			"for touch screens; macOS shows it only with a touch-enabled device": ["Touch Accommodations"],
 			"per-headphone settings kept for the connected AirPods or Beats, not in preferences": ["Press and hold duration", "Noise Cancellation", "Press speed", "Tone volume", "Audio › Spatial audio follows head movements", "Headphones › Headphones, AirPods, Beats"],
 			"stored as liveSpeechPreferredLanguage, but writing it doesn't change what System Settings shows; picking one can download a voice": ["System speech language (Live Speech)"],
 			"shown only with a mouse connected": ["Use inertia when scrolling (Mouse)", "Pointer Control › Use mouse for scrolling", "Pointer Control › Use inertia when scrolling with mouse"],
 			"Headphone Accommodations keeps an archived audio profile per audio route (com.apple.PersonalAudio), not declarable as values": ["Amplification", "Conversation Boost", "Optimization", "Media", "Ambient Noise Reduction", "Own Voice Amplification", "Phone", "Tune audio for", "Headphone Accommodations", "Tone", "Transparency Mode"],
-			"the field doesn't accept a value on this Mac (RTT needs a paired iPhone)": ["RTT Relay number"],
 			"asks for an administrator and stores its state outside readable preferences": ["Allow platform switching to control your computer"],
 			"for Macs with a Touch Bar": ["Zoom › Touch Bar zoom"],
 			"consent to share data with Apple; never operated": ["Improve Assistive Voice Features"],
 			"picks one of the connected displays; per-display state": ["Choose Display"],
-			"shown only in picture-in-picture zoom": ["Zoom Appearance › Appearance (Zoom)"]
+			"shown only in picture-in-picture zoom": ["Zoom Appearance › Appearance (Zoom)"],
+			"not shown on the tested Mac, so where it's stored couldn't be observed": ["Show generated subtitles", "In-App Live Captions", "Play system sounds", "Siri › Type to Siri", "Set range for rapid zooming in and out"],
+			"the field doesn't accept a value without a paired iPhone, which the tested Mac didn't have": ["RTT Relay number"]
 		},
 		"Apple Account": {
 			"Apple Account state, kept on Apple's servers": ["Apple Account › Apple ID", "Com.apple.Apple Media Services UI.Spyglass Purchases › Media and Purchases", "ICloud › iCloud"]
@@ -463,15 +463,15 @@
 		"Journal": {
 			"asks for permission to use location": ["Add Current Location"],
 			"asks for permission to use Photos": ["Save To Photos"],
-			"not shown in Journal's settings on this Mac (needs Journaling Suggestions)": ["Show Suggested Moments"]
+			"only shown with Journaling Suggestions, which the tested Mac didn't have": ["Show Suggested Moments"]
 		},
 		"Keyboard": {
-			"only shown with an input source that isn't Latin; not on this Mac": ["Caps Lock Input Sources › Use Caps Lock to switch input sources"],
 			"kept per connected keyboard": ["Customize Modifier Keys › Customize modifier keys", "Modifier Keys › Reset modifier keys"],
 			"turning Dictation on asks for consent to send audio to Apple": ["Dictation"],
 			"keyboard brightness changes often and belongs to the keyboard": ["Illuminate keyboard", "Keyboard sensitivity"],
 			"kept in the KeyboardServices database and synced through iCloud, not in a preference file": ["Text Replacements › Text replacements"],
-			"only on Macs with a Touch Bar; not shown on this Mac": ["Touch Bar Settings › Customize Touch Bar or Control Strip", "Touch Bar Settings › Touch Bar typing suggestions"]
+			"only shown with an input source that isn't Latin, which the tested Mac didn't have": ["Caps Lock Input Sources › Use Caps Lock to switch input sources"],
+			"only on Macs with a Touch Bar, which the tested Mac didn't have": ["Touch Bar Settings › Customize Touch Bar or Control Strip", "Touch Bar Settings › Touch Bar typing suggestions"]
 		},
 		"Lock Screen": {
 			"the delay is kept in the keybag and changing it needs the user's password (sysadminctl -screenLock … -password)": ["Password › Require password to wake computer"]
@@ -497,13 +497,13 @@
 			"kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead": ["Path=always-allowed › Choose always allowed apps in Screen Time", "Path=app-limits › Choose app limits in Screen Time", "Path=app-usage › Show app usage report in Screen Time", "Path=communication-limits › Change communication limits in Screen Time", "Path=communication-limits › Set communication limits in Screen Time", "Path=content-and-privacy › Choose Screen Time content and privacy settings", "Path=content-and-privacy › Restrict explicit content", "Path=downtime › Schedule downtime in Screen Time", "Path=notifications › Show notifications report in Screen Time", "Path=pickups › Show device pickups report in Screen Time", "Path=requests › Show Screen Time requests", "Path=screen-distance › Configure Screen Distance in Screen Time"]
 		},
 		"Spotlight": {
-			"kept in /System/Volumes/Data/.Spotlight-V100 (root-only) by mds; not verified with root yet": ["Privacy › Block search of private files"]
+			"kept by mds in /System/Volumes/Data/.Spotlight-V100, which only root can read": ["Privacy › Block search of private files"]
 		},
 		"Touch ID & Password": {
 			"changing it asks for the user's password (bioutil), so it can't be applied unattended": ["Use Touch ID for Apple Pay", "Use Touch ID for autofilling passwords", "Use Touch ID for fast user switching", "Use Touch ID for purchases in iTunes Store, App Store, and Apple Books", "Use Touch ID to unlock your Mac"]
 		},
 		"Trackpad": {
-			"not shown in the Trackpad pane on this Mac": ["Quiet click"]
+			"not shown in the Trackpad pane on the tested Mac": ["Quiet click"]
 		},
 		"Users & Groups": {
 			"needs the user's password": ["Automatically log in as", "Login Options Pref › Log in automatically"],

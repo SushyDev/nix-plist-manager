@@ -31,6 +31,10 @@ let
 	bitSum = lib.foldl' builtins.bitOr 0;
 
 	writeSingle = keys: value: [ (ops.write (single keys) value) ];
+
+	readSingle = keys: get: if lib.attrNames keys == [ "value" ] then get keys.value else null;
+
+	withoutDecode = codec: removeAttrs codec [ "decode" ];
 in
 rec {
 	absent = { _type = "absent"; };
@@ -44,21 +48,21 @@ rec {
 		fromName = name: name == "true";
 	};
 
-	inverted = codec: codec // {
+	inverted = codec: withoutDecode codec // {
 		encode = keys: value: codec.encode keys (!value);
 	};
 
-	storedAs = stored: codec: codec // {
+	storedAs = stored: codec: withoutDecode codec // {
 		encode = keys: value: writeStored keys stored.${builtins.toJSON value};
 	};
 
-	inDict = entry: codec: codec // {
+	inDict = entry: codec: withoutDecode codec // {
 		encode = keys: value: [ (ops.mergeDict (single keys) { ${entry} = storedValue codec value; }) ];
 	};
 
 	text = {
 		kind = "string";
-		read = { direct = true; };
+		decode = readSingle;
 		type = lib.types.str;
 		choices = [];
 		examples = [ "…" ];
@@ -68,7 +72,7 @@ rec {
 
 	strings = {
 		kind = "list";
-		read = { direct = true; };
+		decode = readSingle;
 		type = lib.types.listOf lib.types.str;
 		choices = [];
 		examples = [ [ "…" ] ];
@@ -82,7 +86,11 @@ rec {
 		in
 		{
 			kind = "number";
-			read = { direct = true; };
+			decode = keys: get:
+				let
+					value = readSingle keys get;
+				in
+				if !float && lib.isFloat value && value == builtins.floor value then builtins.floor value else value;
 			inherit min max unit;
 			type = if float then lib.types.numbers.between min max else lib.types.ints.between min max;
 			choices = [];
@@ -107,7 +115,6 @@ rec {
 
 	snapshot = {
 		kind = "snapshot";
-		read = { snapshot = true; };
 		type = lib.types.path;
 		choices = [];
 		examples = [ "/path/to/snapshot" ];
@@ -117,7 +124,12 @@ rec {
 
 	dictSwitches = entries: {
 		kind = "switches";
-		read = { dict = entries; };
+		decode = keys: get:
+			let
+				stored = readSingle keys get;
+			in
+			if lib.isAttrs stored then lib.mapAttrs (_: entry: stored.${entry} != false && stored.${entry} != 0) (lib.filterAttrs (_: entry: stored ? ${entry}) entries)
+			else null;
 		type = switchesType entries;
 		choices = lib.attrNames entries;
 		examples = [ (lib.mapAttrs (_: _: true) entries) ];
@@ -132,7 +144,12 @@ rec {
 
 	members = { items, listedWhen ? true }: {
 		kind = "switches";
-		read = { members = items; inherit listedWhen; };
+		decode = keys: get:
+			let
+				stored = readSingle keys get;
+				listed = if lib.isList stored then stored else [];
+			in
+			lib.mapAttrs (_: item: lib.elem item listed == listedWhen) items;
 		type = switchesType items;
 		choices = lib.attrNames items;
 		examples = [ (lib.mapAttrs (_: _: true) items) ];
@@ -154,7 +171,12 @@ rec {
 
 	flagsWhenAbsent = absentValue: bits: {
 		kind = "flags";
-		read = { flags = bits; absent = absentValue; };
+		decode = keys: get:
+			let
+				stored = readSingle keys get;
+				value = if stored == null then absentValue else stored;
+			in
+			lib.mapAttrs (_: bit: builtins.bitAnd value bit != 0) bits;
 		type = switchesType bits;
 		choices = lib.attrNames bits;
 		examples = [ (lib.mapAttrs (_: _: true) bits) ];
@@ -170,7 +192,17 @@ rec {
 
 	hotKey = id: {
 		kind = "shortcut";
-		read = { hotKey = id; inherit (shortcuts) names; };
+		decode = keys: get:
+			let
+				stored = readSingle keys get;
+				entry = if lib.isAttrs stored then stored.${toString id} or null else null;
+				parameters = entry.value.parameters or null;
+				keysShown = if parameters == null then null else shortcuts.fromHotKey parameters;
+			in
+			if entry == null then null
+			else if !(entry.enabled or false) then false
+			else if keysShown == null then true
+			else keysShown;
 		type = lib.types.either lib.types.bool shortcuts.type;
 		choices = [];
 		examples = [ false "⌘⇧S" ];

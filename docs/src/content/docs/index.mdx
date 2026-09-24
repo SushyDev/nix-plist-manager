@@ -119,7 +119,7 @@ Each line goes inside `programs.nix-plist-manager.options.applications.systemSet
 	</Card>
 	<Card title="Start from the Mac you have" icon="laptop">
 		`nix run github:sushydev/nix-plist-manager#current` reads your Mac and writes its
-		settings out as Nix. Paste it in and you're declarative.
+		settings out as a Nix file to import. Change something later and `--against` shows just that.
 	</Card>
 	<Card title="Checked against the real thing" icon="approve-check">
 		Every setting was worked out from what macOS itself writes, and {stats.verified} of
