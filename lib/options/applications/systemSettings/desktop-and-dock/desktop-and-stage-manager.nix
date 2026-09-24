@@ -5,7 +5,6 @@ let
 	pane = "com.apple.settings.desktopAndDock";
 	windowManager = name: user "com.apple.WindowManager" name;
 
-	# a WindowManager switch, many of which store the opposite ("hide …")
 	switch = { ui, key, control, value ? bool, operate ? true }: setting {
 		inherit ui value;
 		storage = windowManager key;
@@ -51,7 +50,7 @@ in
 		ui = [ "System Settings" "Desktop & Dock" "Desktop & Stage Manager" "Stage Manager" ];
 		key = "GloballyEnabled";
 		control = "stage-manager-on";
-		# turning it on in System Settings asks for confirmation in a separate dialog first
+		# Turning it on in System Settings asks for confirmation in a separate dialog first.
 		operate = false;
 	};
 

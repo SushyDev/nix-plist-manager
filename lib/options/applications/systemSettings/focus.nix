@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# The Focus modes themselves, their schedules and Focus status are kept in donotdisturbd's
-# database (~/Library/DoNotDisturb/DB) and synced through iCloud; they aren't covered.
 let
 	inherit (settingsLib) setting user bool inverted restarts;
 in

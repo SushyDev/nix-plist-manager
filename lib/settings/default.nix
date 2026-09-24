@@ -1,6 +1,4 @@
 { lib }:
-# The settings library. Option files take what they need from here:
-#   let inherit (settingsLib) setting global enum restarts; in { … }
 let
 	ops = import ./ops.nix { inherit lib; };
 	storage = import ./storage.nix { inherit lib; };

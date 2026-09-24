@@ -1,10 +1,4 @@
 { lib, ops, storage, shortcuts }:
-# A codec turns an option value into key writes. It supplies the option type (without the
-# null and "unset" every setting accepts), the values documentation shows, and how verify
-# specs name values.
-#
-# Codecs encode into `keys`: the setting's storage as an attrset, where a single key is
-# called `value`.
 let
 	single = keys:
 		if keys ? value && lib.length (lib.attrNames keys) == 1 then keys.value
@@ -14,20 +8,17 @@ let
 
 	writeOrDelete = key: value: if isAbsent value then ops.delete key else ops.write key value;
 
-	# what one choice stores (see enum): a plain value, absent, or a record of storage name -> value
 	writeStored = keys: stored:
 		if lib.isAttrs stored && !(isAbsent stored) then
 			lib.mapAttrsToList (name: value: writeOrDelete keys.${name} value) stored
 		else [ (writeOrDelete (single keys) stored) ];
 
-	# the value a codec stores in its single key, for codecs that nest it somewhere (inDict)
 	storedValue = codec: value:
 		if codec ? table then
 			let stored = codec.table.${value}; in
 			if lib.isAttrs stored && stored ? value then stored.value else stored
 		else value;
 
-	# for codecs made of named on/off switches: an option per switch, null leaving it as it is
 	switchesType = names: lib.types.submodule {
 		options = lib.mapAttrs (_: _: lib.mkOption {
 			type = lib.types.nullOr lib.types.bool;
@@ -35,13 +26,11 @@ let
 		}) names;
 	};
 
-	# the switches of a value that are set (not null)
 	setSwitches = names: value: lib.filterAttrs (_: v: v != null) (lib.mapAttrs (name: _: value.${name} or null) names);
 
 	bitSum = lib.foldl' builtins.bitOr 0;
 in
 rec {
-	# the key is deleted, e.g. Multicolor is the absence of AppleAccentColor
 	absent = { _type = "absent"; };
 
 	bool = {
@@ -53,20 +42,14 @@ rec {
 		fromName = name: name == "true";
 	};
 
-	# for keys that mean the opposite of the control, e.g. AppleReduceDesktopTinting
 	inverted = codec: codec // {
 		encode = keys: value: codec.encode keys (!value);
 	};
 
-	# keep a codec's option type but store other values, e.g. a switch kept as 1 and 2:
-	#   storedAs { true = 1; false = 2; } bool
-	# or, for settings stored in several keys, { <storage name> = …; } per value, like enum
 	storedAs = stored: codec: codec // {
 		encode = keys: value: writeStored keys stored.${builtins.toJSON value};
 	};
 
-	# a codec's value kept as one entry of a dictionary, the rest of which is left alone:
-	#   inDict "RTTWildcardContext" bool
 	inDict = entry: codec: codec // {
 		encode = keys: value: [ (ops.mergeDict (single keys) { ${entry} = storedValue codec value; }) ];
 	};
@@ -81,7 +64,6 @@ rec {
 		fromName = name: name;
 	};
 
-	# an ordered list of strings, stored as an array, e.g. preferred languages
 	strings = {
 		kind = "list";
 		read = { direct = true; };
@@ -92,7 +74,6 @@ rec {
 		fromName = builtins.fromJSON;
 	};
 
-	# numbers stay strict: out of range fails evaluation
 	number = { min, max, stored ? null, unit ? null }:
 		let
 			float = stored == "float" || lib.isFloat min || lib.isFloat max;
@@ -112,10 +93,6 @@ rec {
 			fromName = builtins.fromJSON;
 		};
 
-	# labels as System Settings shows them, each mapped to what is stored:
-	#   a plain value            written to the single key
-	#   absent                   the key is deleted
-	#   { <storage name> = …; }  for settings stored in several keys; keys left out are untouched
 	enum = table: {
 		kind = "enum";
 		inherit table;
@@ -126,9 +103,6 @@ rec {
 		fromName = name: name;
 	};
 
-	# State that's arranged in System Settings rather than typed, like the menu bar layout: a
-	# directory made by `nix run .#capture -- <option> <directory>`, with one plist per storage
-	# entry. Each entry, a whole domain or one key, is replaced by what was captured.
 	snapshot = {
 		kind = "snapshot";
 		read = { snapshot = true; };
@@ -139,8 +113,6 @@ rec {
 		fromName = name: name;
 	};
 
-	# named switches kept as entries of one dictionary, e.g. which features the Accessibility
-	# Shortcut offers: { <switch> = <dictionary entry>; }
 	dictSwitches = entries: {
 		kind = "switches";
 		read = { dict = entries; };
@@ -156,9 +128,6 @@ rec {
 		fromName = builtins.fromJSON;
 	};
 
-	# named switches kept as membership of an array of strings, e.g. the Spotlight categories
-	# that are turned off: { <switch> = <array item>; }. `listedWhen` is the switch value that
-	# puts an item in the array.
 	members = { items, listedWhen ? true }: {
 		kind = "switches";
 		read = { members = items; inherit listedWhen; };
@@ -174,16 +143,13 @@ rec {
 		fromName = builtins.fromJSON;
 	};
 
-	# one switch kept as membership of an array of strings
 	member = { item, listedWhen ? true }: bool // {
 		encode = keys: value: [ (ops.setMembers (single keys) { ${item} = value == listedWhen; }) ];
 	};
 
-	# an integer bitmask set through named flags: { <switch> = <bit>; }. Flags left null keep
-	# their current bit: the key is read and modified at activation instead of overwritten.
+	# Flags left null keep their current bit, since the key is modified at activation rather than overwritten.
 	flags = flagsWhenAbsent 0;
 
-	# the same, for a key whose absence means some flags are set
 	flagsWhenAbsent = absentValue: bits: {
 		kind = "flags";
 		read = { flags = bits; absent = absentValue; };
@@ -200,8 +166,6 @@ rec {
 		fromName = builtins.fromJSON;
 	};
 
-	# one keyboard shortcut of com.apple.symbolichotkeys AppleSymbolicHotKeys, by its id: false
-	# (off), true (on, with its default keys) or keys such as "⌘⇧S" (shortcuts.nix)
 	hotKey = id: {
 		kind = "shortcut";
 		read = { hotKey = id; inherit (shortcuts) names; };

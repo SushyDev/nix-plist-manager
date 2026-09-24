@@ -1,25 +1,19 @@
 { lib, settingsLib, ... }:
-# All of these are in NSGlobalDomain. Running apps pick changes up when they relaunch.
-#
-# System Settings deletes a key when the choice matches the region's default; these options
-# always write it, so the result doesn't depend on the region.
+# System Settings deletes a key when the choice matches the region's default; these options always write it so the result doesn't depend on the region.
 let
 	inherit (settingsLib) setting global bool text strings enum ops;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.languageAndRegion" ];
 
-	# enum values that are dictionaries, written whole to the single key
 	dictionaries = lib.mapAttrs (_: dictionary: { value = dictionary; });
 
 	shows = control: labels: lib.genAttrs labels (label: { ${control} = label; });
 
-	# U+202F NARROW NO-BREAK SPACE: System Settings stores and shows it for a space as group
-	# separator; labels here use a plain space
+	# System Settings stores U+202F NARROW NO-BREAK SPACE for a space group separator; labels here use a plain space.
 	space = " ";
 
-	# apps keep their preferences in their container when they're sandboxed
-	# by the app's domain: cfprefsd puts a sandboxed app's preferences in its container
+	# cfprefsd puts a sandboxed app's preferences in its container.
 	appLanguages = id: languages:
 		let
 			q = lib.escapeShellArg;
@@ -28,7 +22,6 @@ let
 		if languages == [] then "/usr/bin/defaults delete ${domain} AppleLanguages 2>/dev/null || true"
 		else "/usr/bin/defaults write ${domain} AppleLanguages -array ${lib.concatMapStringsSep " " (l: "-string ${q l}") languages}";
 
-	# 0 decimal separator, 1 group separator, 10 and 17 the same for currency
 	numberSymbols = decimal: group: { "0" = decimal; "1" = group; "10" = decimal; "17" = group; };
 in
 {
@@ -91,7 +84,6 @@ in
 		};
 	};
 
-	# labels show 19 August 2026, as System Settings does
 	dateFormat = setting {
 		ui = [ "System Settings" "General" "Language & Region" "Date format" ];
 		storage = global "AppleICUDateFormatStrings";
@@ -140,7 +132,6 @@ in
 		};
 	};
 
-	# the Applications list: languages for single apps, by bundle identifier
 	applications = setting {
 		ui = [ "System Settings" "General" "Language & Region" "Applications" ];
 		description = ''
@@ -158,7 +149,6 @@ in
 			fromName = builtins.fromJSON;
 			read = { appLanguages = true; };
 		};
-		# unset has no single key to delete
 		canUnset = false;
 	};
 }

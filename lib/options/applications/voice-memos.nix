@@ -1,5 +1,4 @@
 { lib, settingsLib, ... }:
-# Voice Memos keeps its settings in the preferences of its app group.
 let
 	inherit (settingsLib) setting user bool enum;
 

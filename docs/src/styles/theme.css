@@ -1,4 +1,3 @@
-/* nix-plist-manager: a calm, macOS-flavored Starlight theme with Nix blue as the accent. */
 
 :root {
 	--sl-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
@@ -7,7 +6,6 @@
 	--npm-radius: 0.9rem;
 }
 
-/* dark (Starlight's default) */
 :root {
 	--sl-color-accent-low: #1a2744;
 	--sl-color-accent: #7ea3ff;
@@ -25,8 +23,6 @@
 	--npm-card-border: #e3e8f0;
 	--npm-glow: rgba(61, 99, 201, 0.12);
 }
-
-/* --- landing page ------------------------------------------------------------------------ */
 
 .hero {
 	padding-block: 3.5rem 2rem;
@@ -124,8 +120,6 @@
 	align-items: baseline;
 	gap: 1rem;
 }
-
-/* --- settings reference ------------------------------------------------------------------ */
 
 .pane-summary {
 	border: 1px solid var(--npm-card-border);
@@ -270,7 +264,6 @@
 	margin-bottom: 0.3rem !important;
 }
 
-/* keep long option paths on one scrollable line rather than wrapped mid-name */
 .option .expressive-code pre {
 	white-space: pre;
 }

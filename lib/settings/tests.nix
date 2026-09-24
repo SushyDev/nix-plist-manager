@@ -1,5 +1,4 @@
 { lib }:
-# `nix flake check` runs these; `nix eval .#checks.<system>.settings` shows failures.
 let
 	s = import ./. { inherit lib; };
 	inherit (s) setting global user system byHost stored bool inverted number enum flags absent

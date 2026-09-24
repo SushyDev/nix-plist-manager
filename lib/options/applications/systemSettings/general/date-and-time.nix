@@ -1,20 +1,16 @@
 { lib, settingsLib, ... }:
-# 24-hour time is a user preference. The rest asks for an administrator in System Settings and
-# is applied by nix-darwin as root, through systemsetup.
 let
 	inherit (settingsLib) setting global system file bool text storedAs appliesThrough onlyWhen;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.dateAndTime" ];
 
-	# systemsetup logs internal errors (e.g. "Error:-99 … InternetServices.m") even when the change
-	# goes through, so only its exit status is reported
+	# systemsetup logs internal errors even when the change goes through, so only its exit status is reported.
 	systemsetup = args: "/usr/sbin/systemsetup ${args} >/dev/null 2>&1 || echo ${lib.escapeShellArg "nix-plist-manager: failed: systemsetup ${args}"} >&2";
 	onOff = enabled: if enabled then "on" else "off";
 	option = name: "applications.systemSettings.general.dateAndTime.${name}";
 in
 {
-	# "true" and "false" both override the region's default
 	"24HourTime" = setting {
 		ui = [ "System Settings" "General" "Date & Time" "24-hour time" ];
 		storage = {
@@ -34,7 +30,7 @@ in
 		};
 	};
 
-	# timed keeps this in /var/db/timed, readable only by root
+	# timed keeps this in /var/db/timed, readable only by root.
 	setTimeAndDateAutomatically = setting {
 		ui = [ "System Settings" "General" "Date & Time" "Set time and date automatically" ];
 		storage = system "com.apple.timed" "TMAutomaticTimeOnlyEnabled";

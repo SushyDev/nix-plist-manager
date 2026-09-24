@@ -1,20 +1,12 @@
 { lib }:
-# Turns a plan into shell. This is the only place commands are built and quoted. Writes and
-# deletes run in plan order, then each notification once, then each restart once, then each
-# `afterwards` command once.
-#
-# A failing step is reported and activation continues, so one setting macOS refuses doesn't
-# stop the rest.
 let
 	q = lib.escapeShellArg;
 
-	# the domain argument, quoted; "~/…" domains are paths in the home directory
 	domain = key:
 		if key.scope == "system" then q (if lib.hasPrefix "/" key.domain then key.domain else "/Library/Preferences/${key.domain}")
 		else if lib.hasPrefix "~/" key.domain then ''"$HOME"/${q (lib.removePrefix "~/" key.domain)}''
 		else q key.domain;
 
-	# `defaults [-currentHost] <verb> <domain> [<key>] …`, quoted
 	defaultsFor = verb: key: rest:
 		lib.optional key.byHost "-currentHost"
 		++ [ verb (domain key) ]
@@ -34,8 +26,6 @@ let
 		if lib.isBool value then lib.boolToString value
 		else toString value;
 
-	# a scalar inside an array or dictionary, with its own type flag; a nested array or
-	# dictionary as a property list fragment, which defaults parses
 	typed = value:
 		if lib.isList value || lib.isAttrs value then [ (xml value) ]
 		else [ "-${plistType { type = null; domain = "?"; name = "?"; } value}" (scalar value) ];
@@ -48,7 +38,6 @@ let
 		else if lib.isList value then "<array>${lib.concatMapStrings xml value}</array>"
 		else "<dict>${lib.concatStrings (lib.mapAttrsToList (k: v: "<key>${lib.escapeXML k}</key>${xml v}") value)}</dict>";
 
-	# the arguments after the type flag
 	plistValues = value:
 		if lib.isList value then lib.concatMap typed value
 		else if lib.isAttrs value then lib.concatLists (lib.mapAttrsToList (k: v: [ k ] ++ typed v) value)
@@ -56,6 +45,7 @@ let
 
 	defaults = args: "/usr/bin/defaults ${lib.concatStringsSep " " args}";
 
+	# A refused step is reported without stopping the rest of the activation.
 	orReport = command: "${command} || echo ${q "nix-plist-manager: failed: ${command}"} >&2";
 
 	step = s:
@@ -63,7 +53,6 @@ let
 			orReport (defaults (defaultsFor "write" s.key ([ "-${plistType s.key s.value}" ] ++ plistValues s.value)))
 
 		else if s.op == "delete" then
-			# deleting a key that isn't there is fine
 			"${defaults (defaultsFor "delete" s.key [])} 2>/dev/null || true"
 
 		else if s.op == "writeFlags" then
@@ -79,8 +68,8 @@ let
 		else if s.op == "mergeDict" then
 			orReport (defaults (defaultsFor "write" s.key ([ "-dict-add" ] ++ plistValues s.entries)))
 
+		# defaults can't edit an array in place
 		else if s.op == "setMembers" then
-			# defaults can't edit an array in place; NSUserDefaults can read and write it whole
 			if s.key.byHost || s.key.scope != "user" || lib.hasPrefix "~/" s.key.domain
 			then throw "setMembers only supports plain user domains, not ${s.key.domain}"
 			else
@@ -103,8 +92,8 @@ let
 				orReport "/usr/bin/osascript -l JavaScript -e ${q script} >/dev/null"
 
 		else if s.op == "restore" then
-			# clear the domain or key first: importing only adds and replaces keys
 			lib.concatStringsSep "\n" [
+				# import only adds and replaces keys
 				"${defaults (defaultsFor "delete" s.key [])} 2>/dev/null || true"
 				(orReport (defaults (lib.optional s.key.byHost "-currentHost" ++ [ "import" (domain s.key) (q s.file) ])))
 			]

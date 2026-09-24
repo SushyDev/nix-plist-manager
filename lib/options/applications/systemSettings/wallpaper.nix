@@ -1,8 +1,4 @@
 { lib, settingsLib, ... }:
-# WallpaperAgent keeps the choice for every display and Space, and its options (Automatic, Light
-# or Dark, Show on all Spaces), as archived values in one store; they can only be captured and
-# restored whole, and so is the screen saver, which is kept there too. Clock Appearance… opens
-# an editor of its own and isn't here.
 let
 	inherit (settingsLib) setting domain snapshot restarts user byHost enum;
 

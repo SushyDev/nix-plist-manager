@@ -1,5 +1,3 @@
-# Options both modules declare; `scope` picks which settings they manage: "user" settings
-# are applied by home-manager, "system" settings by nix-darwin.
 { lib, scope }:
 let
 	settingsLib = import ../lib/settings { inherit lib; };

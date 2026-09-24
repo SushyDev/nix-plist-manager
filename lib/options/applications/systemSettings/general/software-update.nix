@@ -1,7 +1,4 @@
 { lib, settingsLib, ... }:
-# The toggles behind Automatic Updates (i). They ask for an administrator, so they are
-# system settings, applied by nix-darwin as root. Beta Updates is tied to the Apple Account
-# and isn't covered.
 let
 	inherit (settingsLib) setting system bool storedAs;
 
@@ -46,7 +43,6 @@ in
 		control = "AdvancedOptionsView.InstallSecurityResponsesToggle";
 	};
 
-	# moved to the App Store's own settings; kept here where it has always been
 	automaticallyInstallApplicationUpdatesFromTheAppStore = setting {
 		ui = [ "App Store" "Settings" "Automatic Updates" ];
 		storage = system "com.apple.commerce" "AutoUpdate";

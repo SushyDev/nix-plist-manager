@@ -4,14 +4,10 @@ let
 
 	pane = "com.apple.settings.desktopAndDock";
 
-	# Keyboard & Mouse Shortcuts…: each shortcut is a key (with modifiers) or a modifier key on
-	# its own, kept as entries of com.apple.symbolichotkeys AppleSymbolicHotKeys. Each has a
-	# second entry for the same shortcut with Shift, which System Settings writes too.
 	hotKeys = user "com.apple.symbolichotkeys" "AppleSymbolicHotKeys";
 
 	shift = 131072;
 	modifierMasks = { "⌃" = 262144; "⌥" = 524288; "⇧" = shift; "⌘" = 1048576; };
-	# arrow keys carry the function-key flag
 	functionKey = 8388608;
 	keyCodes = {
 		F1 = 122; F2 = 120; F3 = 99; F4 = 118; F5 = 96; F6 = 97; F7 = 98; F8 = 100; F9 = 101;
@@ -19,13 +15,11 @@ let
 		"←" = 123; "→" = 124; "↓" = 125; "↑" = 126;
 	};
 	arrows = [ "←" "→" "↓" "↑" ];
-	# a modifier key pressed on its own, by the device bit of that key
 	modifierKeys = {
 		"Left Control" = 1; "Left Shift" = 2; "Right Shift" = 4; "Left Command" = 8; "Right Command" = 16;
 		"Left Option" = 32; "Right Option" = 64; "Right Control" = 8192; fn = functionKey;
 	};
 
-	# every combination of ⌃⌥⇧⌘, in the order System Settings shows them
 	modifierCombinations = lib.foldr (glyph: rest: rest ++ map (combination: [ glyph ] ++ combination) rest) [ [] ]
 		(lib.reverseList (lib.attrNames modifierMasks));
 	sum = lib.foldl' builtins.bitOr 0;
@@ -35,7 +29,6 @@ let
 	standard = parameters: { enabled = true; value = { type = "standard"; inherit parameters; }; };
 	modifier = mask: { enabled = true; value = { type = "modifier"; parameters = [ mask mask ]; }; };
 
-	# the dictionary entries for one choice; ids = { key; keyShifted; modifier; modifierShifted; }
 	entries = ids: choice:
 		let
 			keyEntries = key: shifted: { ${toString ids.key} = key; ${toString ids.keyShifted} = shifted; };
@@ -52,7 +45,7 @@ let
 			// modifierEntries off off
 		else
 			let
-				# the modifier glyphs in front of the key; glyphs are several bytes, so strip them as strings
+				# Glyphs are several bytes, so they're stripped as strings.
 				split = text:
 					let
 						glyph = lib.findFirst (glyph: lib.hasPrefix glyph text) null (lib.attrNames modifierMasks);
@@ -67,8 +60,7 @@ let
 
 	functionKeys = lib.filter (key: lib.hasPrefix "F" key) (lib.attrNames keyCodes);
 
-	# "fn F11" is an F-key with the function-key flag, as macOS sets Show Desktop by default;
-	# System Settings shows it as plain "F11"
+	# macOS sets Show Desktop to fn F11, which System Settings shows as F11.
 	choices = [ "-" ] ++ lib.attrNames modifierKeys ++ map (key: "fn ${key}") functionKeys
 		++ lib.concatMap (key: map (combination: lib.concatStrings (ordered combination) + key) modifierCombinations)
 			(lib.attrNames keyCodes);
@@ -84,13 +76,12 @@ let
 		value = enum (lib.genAttrs choices (choice: { value = entries ids choice; })) // {
 			encode = keys: choice: [ (ops.mergeDict keys.value (entries ids choice)) ];
 		};
-		# unset would delete every keyboard shortcut on the Mac
+		# unset would delete every keyboard shortcut on the Mac.
 		canUnset = false;
 		behaviors = [ activatesShortcuts ];
 		verify = {
 			inherit pane;
 			open = [ "Shortcuts…" ];
-			# the pop-up puts a space between the modifiers and an F-key
 			expect = { "⌥F1" = { "AXPopUpButton:${ui}" = "⌥ F1"; }; "⌃F2" = { "AXPopUpButton:${ui}" = "⌃ F2"; }; };
 		};
 	};
@@ -107,7 +98,6 @@ let
 		};
 	};
 
-	# Mission Control is part of the Dock, which reads these at launch
 	dockSwitch = { ui, key, control }: switch {
 		inherit ui control;
 		storage = user "com.apple.dock" key;
@@ -153,8 +143,7 @@ in
 			ids = { key = 32; keyShifted = 34; modifier = 44; modifierShifted = 46; };
 		};
 
-		# System Settings writes this one's Shift entries over Mission Control's (34 and 46); these
-		# are the ones macOS itself uses for Application windows
+		# System Settings writes this one's Shift entries over Mission Control's (34 and 46), so these are the ones macOS uses.
 		applicationWindows = shortcut {
 			ui = "Application windows";
 			ids = { key = 33; keyShifted = 35; modifier = 45; modifierShifted = 47; };

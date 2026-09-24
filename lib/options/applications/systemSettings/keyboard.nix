@@ -1,7 +1,4 @@
 { lib, settingsLib, ... }:
-# Keyboard brightness and backlight belong to the keyboard and change often, modifier keys are
-# per keyboard, and the microphone follows what's connected, so none of them are here. The Input
-# menu is in Menu Bar.
 let
 	inherit (settingsLib) setting global user bool storedAs enum number inDict hotKey activatesShortcuts shortcuts ops live appliesThrough strings;
 
@@ -19,24 +16,14 @@ let
 		};
 	};
 
-	# Text Input > Input Sources > Edit…
 	textInput = ui: storage: switch {
 		inherit storage;
 		ui = [ "Text Input" "Input Sources" "Edit…" ui ];
 		open = [ "Edit…" ];
 	};
-	# Keyboard Shortcuts…: entries of com.apple.symbolichotkeys AppleSymbolicHotKeys by id, each
-	# { enabled; value = { type = "standard"; parameters = [ character keyCode modifiers ]; }; }.
-	# Mission Control's shortcuts are in Desktop & Dock and Zoom's in Accessibility.
 	hotKeys = user "com.apple.symbolichotkeys" "AppleSymbolicHotKeys";
 
-	# one row of Keyboard Shortcuts…. Rows inside a collapsible group (Zoom, Halves, …) take
-	# `group = { name; position; switches ? true; }`: its name is part of the path, and verify
-	# expands it (the position-th group of the category). In groups without `switches` only the
-	# group has a checkbox.
-	#
-	# `testKeys` are the keys verify sets: a different combination per row, so a category's rows
-	# can be checked together.
+	# testKeys differ per row so a category's rows can be verified together.
 	shortcut = { category, sidebar, ui, id, testKeys, group ? null, verifiable ? true }: let
 		rowSwitch = group == null || group.switches or true;
 	in setting {
@@ -49,14 +36,14 @@ let
 		'';
 		storage = hotKeys;
 		value = hotKey id;
-		# unset would delete every keyboard shortcut on the Mac
+		# unset would delete every keyboard shortcut on the Mac.
 		canUnset = false;
 		behaviors = [ activatesShortcuts ];
 		verify = if !verifiable then null else {
 			inherit pane;
 			open = [ "AXButton:Keyboard Shortcuts…" "click:${sidebar}" ]
 				++ lib.optional (group != null) "AXDisclosureTriangle:NSOutlineViewDisclosureButtonKey#${toString group.position}";
-			# the row shows its keys on a button, between directional isolates
+			# The row shows its keys on a button, between directional isolates.
 			expect = let keys = { "AXButton:⁦${testKeys}⁩" = { }; }; in
 				if rowSwitch then {
 					false = { "AXCheckBox:${ui}" = 0; };
@@ -66,23 +53,19 @@ let
 		};
 	};
 
-	# App Shortcuts are kept per app, as NSUserKeyEquivalents: menu title -> key equivalent, with
-	# a submenu's title starting with an escape per menu, "\u001bFormat\u001bMake Plain Text"
 	domainOf = app: if app == "All Applications" then "NSGlobalDomain" else app;
 	menuKeys = app: items:
 		let
 			escape = builtins.fromJSON ''"\u001b"'';
 			title = path: let menus = lib.splitString "->" path; in
 				if lib.length menus == 1 then path else lib.concatMapStrings (menu: escape + menu) menus;
-			# cfprefsd puts a sandboxed app's preferences in its container
+			# cfprefsd puts a sandboxed app's preferences in its container.
 			domain = lib.escapeShellArg (domainOf app);
 		in
 		"/usr/bin/defaults write ${domain} NSUserKeyEquivalents -dict "
 		+ lib.concatStringsSep " " (lib.mapAttrsToList (path: keys:
 			"${lib.escapeShellArg (title path)} ${lib.escapeShellArg (shortcuts.keyEquivalent keys)}") items);
 
-	# the rows of one sidebar category: { <option> = [ "<row>" <id> ]; }. Test keys are ⌃⌥⇧⌘ and
-	# a letter or digit picked by the id, unique within a category.
 	rowsOf = { category, sidebar, group ? null, verifiable ? true }: rows: lib.mapAttrs (_: row: shortcut {
 		inherit category sidebar group verifiable;
 		ui = lib.elemAt row 0;
@@ -221,7 +204,6 @@ in
 			increaseDisplayBrightness = [ "Increase display brightness" 54 ];
 		};
 
-		# Mission Control, Application windows and Show Desktop are in Desktop & Dock
 		missionControl = rowsOf missionControl {
 			showNotificationCenter = [ "Show Notification Center" 163 ];
 			turnDoNotDisturbOnOff = [ "Turn Do Not Disturb on/off" 175 ];
@@ -232,7 +214,6 @@ in
 			moveLeftASpace = [ "Move left a Space" 79 ];
 			moveRightASpace = [ "Move right a Space" 81 ];
 			switchToDesktop1 = [ "Switch to Desktop 1" 118 ];
-		# System Settings lists a row per desktop that exists
 		} // rowsOf (inGroup missionControl 1 "Mission Control" // { verifiable = false; })
 			(lib.listToAttrs (lib.genList (n: lib.nameValuePair "switchToDesktop${toString (n + 2)}"
 				[ "Switch to Desktop ${toString (n + 2)}" (119 + n) ]) 15));
@@ -326,9 +307,9 @@ in
 				) services));
 				fromName = builtins.fromJSON;
 			};
-			# unset would reset every service
+			# unset would reset every service.
 			canUnset = false;
-			# the pasteboard server keeps the services; restarting it would lose the clipboard
+			# Restarting pbs would lose the clipboard, so it's only told to update.
 			behaviors = [ (_: plan: plan ++ [ (ops.afterwards "/System/Library/CoreServices/pbs -update") ]) ];
 			verify = {
 				inherit pane;
@@ -369,12 +350,10 @@ in
 					examples = [ { "com.apple.TextEdit" = { "Make Plain Text" = "⌘⇧T"; }; } ];
 					encode = keys: apps: lib.optionals (apps != { }) (
 						lib.mapAttrsToList (app: items: ops.run (menuKeys app items)) apps
-						# System Settings lists the apps that have some
 						++ [ (ops.setMembers keys.apps (lib.mapAttrs' (app: _: lib.nameValuePair (domainOf app) true) apps)) ]
 					);
 					fromName = builtins.fromJSON;
 				};
-				# unset has no single key to delete
 				canUnset = false;
 				verify = {
 					inherit pane;
@@ -389,7 +368,6 @@ in
 			};
 		};
 
-		# Zoom's shortcuts are in Accessibility > Zoom
 		accessibility = rowsOf accessibility {
 			invertColors = [ "Invert colors" 21 ];
 			showAccessibilityControls = [ "Show Accessibility controls" 162 ];

@@ -1,12 +1,4 @@
-// watch — print every preference key that changes, as it changes.
-//
-//   nix run .#watch                         everything
-//   nix run .#watch -- com.apple.dock -g    only domains containing one of these words
-//                                           (-g is the global domain)
-//
-// Flip a setting in System Settings and it prints the domain, key and new value, which is what a
-// setting's `storage` needs. Watches the user's preferences (and their current-host copies),
-// sandboxed apps' containers and /Library/Preferences.
+// nix run .#watch [-- <domain part>…]: print each preference key that changes; -g is the global domain.
 
 import CoreServices
 import Foundation
@@ -20,7 +12,6 @@ let roots = [
 ]
 let filters = CommandLine.arguments.dropFirst().map { $0 == "-g" ? ".GlobalPreferences" : $0 }
 
-// what apps and background services write all the time, which would drown out a setting
 let noisyKeys = try! NSRegularExpression(
 	pattern: "LastUpdate|Timestamp|LastSeen|lastUsed|LaunchCount|WindowFrame|NSWindow|NSSplitView|NSNavPanel|NSToolbar|"
 		+ "NSStatusItem Preferred Position|MRU|Recent|History|Session|LastReloaded|Workaround_",
@@ -45,7 +36,7 @@ func isPreferenceFile(_ path: String) -> Bool {
 		&& (filters.isEmpty || filters.contains { path.contains($0) })
 }
 
-// what `defaults` calls it: the file name, without a current-host copy's hardware UUID
+// current-host copies end in the Mac's hardware UUID
 func domain(of path: String) -> String {
 	let name = (path as NSString).lastPathComponent.replacingOccurrences(of: ".plist", with: "")
 	return name.replacingOccurrences(of: #"\.[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}$"#, with: "", options: .regularExpression)
@@ -77,7 +68,6 @@ func show(_ value: Any?) -> String {
 	}
 }
 
-// the keys that changed, with dictionaries followed into, e.g. "AppleSymbolicHotKeys.64.enabled"
 func changes(_ old: Any?, _ new: Any?, _ key: String = "") -> [(String, Any?, Any?)] {
 	if let old = old as? [String: Any], let new = new as? [String: Any] {
 		return Set(old.keys).union(new.keys).sorted().flatMap {

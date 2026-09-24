@@ -1,17 +1,9 @@
-# Apply settings without a home-manager or nix-darwin configuration, for testing.
+# Apply settings without a home-manager or nix-darwin configuration.
 #
 #   nix run .#apply -- set <option path> <nix value> [--dry-run]
 #   nix run .#apply -- config <file.nix> [--dry-run]
 #
 #   nix run .#apply -- set applications.systemSettings.appearance.accentColor '"Graphite"'
-#   nix run .#apply -- set applications.systemSettings.desktopAndDock.dock.size 48 --dry-run
-#
-# The file holds the same attrset as programs.nix-plist-manager.options:
-#   { applications.systemSettings.appearance.accentColor = "Graphite"; }
-#
-# Values are type-checked and relations evaluated as in a system configuration: failed
-# assertions stop here, warnings are printed. User settings run as you, system settings
-# (nix-darwin's) through sudo. --dry-run prints the script instead.
 set -euo pipefail
 
 usage() { sed -n '/^# Apply settings/,/^set -euo/p' "$0" | grep '^#' | sed 's/^# \{0,1\}//' >&2; exit 2; }

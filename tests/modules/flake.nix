@@ -19,14 +19,12 @@
 			system = "aarch64-darwin";
 			pkgs = nixpkgs.legacyPackages.${system};
 
-			# user settings are home-manager's, system settings nix-darwin's
 			userSettings = {
 				applications.systemSettings.appearance = {
 					accentColor = "Graphite";
 					textHighlightColor = "Blue";
 				};
 				applications.systemSettings.desktopAndDock.dock.size = 48;
-				# renamed in modules/deprecations.nix: forwards with a warning
 				applications.systemSettings.desktopAndDock.windows.tiledWindowsHaveMargin = false;
 			};
 			systemSettings = {
@@ -57,7 +55,6 @@
 			};
 		in
 		{
-			# nix eval --raw ./tests/modules#home   /   #darwin
 			home = home.config.home.activation."nix-plist-manager".data;
 			homeWarnings = home.config.warnings;
 			darwin = darwin.config.system.activationScripts.defaults.text;

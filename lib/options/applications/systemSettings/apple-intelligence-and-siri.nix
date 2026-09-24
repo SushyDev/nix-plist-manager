@@ -1,7 +1,4 @@
 { lib, settingsLib, ... }:
-# Not covered: listening for "Siri" / "Hey Siri" (it needs voice training on the Mac), Language and
-# Voice (they download assets), App Access (per app), and Opens To, Keep Conversations and
-# Preview, which aren't kept in preferences.
 let
 	inherit (settingsLib) setting user global bool enum;
 

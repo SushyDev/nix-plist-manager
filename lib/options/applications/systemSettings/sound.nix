@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# Output and input devices, volume, mute and balance change with what's connected and aren't
-# covered.
 let
 	inherit (settingsLib) setting global file bool enum number storedAs appliesThrough;
 
@@ -43,7 +41,6 @@ in
 			value = number { min = 0.0; max = 1.0; };
 		};
 
-		# a firmware variable, set as root
 		playSoundOnStartup = setting {
 			ui = [ "System Settings" "Sound" "Play sound on startup" ];
 			storage = file "nvram StartupMute";
@@ -59,8 +56,7 @@ in
 			};
 		};
 
-		# the key System Settings writes, but its switch doesn't follow it (and ignores clicks on
-		# this Mac), so this isn't verified
+		# System Settings' switch doesn't follow this key and ignores clicks, so it can't be verified.
 		playUserInterfaceSoundEffects = switch {
 			ui = "Play user interface sound effects";
 			storage = global "com.apple.sound.uiaudio.enabled";

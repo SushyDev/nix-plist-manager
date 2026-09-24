@@ -18,8 +18,6 @@
 				home-manager = self.homeManagerModules.default;
 			};
 
-			# The scripts for a set of option values, outside a system configuration, checked as one
-			# would be: failed assertions stop evaluation and warnings are printed.
 			lib.standalone = values:
 				let
 					lib = nixpkgs.lib;
@@ -34,8 +32,6 @@
 				else lib.foldr lib.warn { user = result.user.script; system = result.system.script; }
 					(result.user.warnings ++ result.system.warnings);
 
-			# The script that applies one option value, with the writes of settings it implies. Used
-			# by tools/verify.py, which runs it as root when the option is nix-darwin's.
 			lib.commandFor = optionPath: value:
 				let
 					lib = nixpkgs.lib;
@@ -43,7 +39,6 @@
 				in
 				lib.concatStringsSep "\n" (lib.filter (script: script != "") [ scripts.user scripts.system ]);
 
-			# What `nix run .#apply` runs: user settings as you, system settings through sudo.
 			lib.applyScript = values:
 				let
 					lib = nixpkgs.lib;
@@ -61,8 +56,6 @@
 				in
 				import ./lib/optionIndex.nix { inherit lib; } options;
 
-			# what the website is generated from: every option (optionIndex) and coverage.json, which
-			# says what's verified and what isn't covered. docs/scripts/generate.mjs turns it into pages.
 			documentation = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
@@ -100,14 +93,10 @@
 				let
 					pkgs = import nixpkgs { inherit system; };
 					failures = import ./lib/settings/tests.nix { inherit (nixpkgs) lib; };
-					# every option's UI path starts at the app it's found in, so the docs say where the
-					# setting is: "System Settings > Accessibility > Zoom > Advanced… > Smooth images"
 					apps = [ "System Settings" "Finder" "Dock" "Menu bar" "App Store" "Voice Memos" "News" "Journal" ];
 					unrooted = builtins.filter (entry: !(builtins.elem (builtins.head entry.path) apps)) self.optionIndex;
-					# each option has its own path, so the docs can tell them apart
 					paths = map (entry: builtins.concatStringsSep " > " entry.path) self.optionIndex;
 					duplicates = nixpkgs.lib.unique (builtins.filter (path: nixpkgs.lib.count (p: p == path) paths > 1) paths);
-					# coverage.json only lists options that exist
 					known = map (entry: entry.option) self.optionIndex;
 					verified = builtins.concatLists (builtins.attrValues (builtins.fromJSON (builtins.readFile ./coverage.json)).verified);
 					stale = builtins.filter (option: !(builtins.elem option known)) verified;
@@ -134,12 +123,10 @@
 			apps = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
-					# needs Accessibility permission and the system swiftc, so macOS only
 					verify = pkgs.writeShellScript "verify" ''
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
 						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify.py" "$@"
 					'';
-					# compiled with the system's swiftc on first use, once per version of the source
 					watch = pkgs.writeShellScript "watch" ''
 						cache="''${XDG_CACHE_HOME:-$HOME/.cache}/nix-plist-manager"
 						binary="$cache/$(basename ${./tools/watch.swift} .swift)"
@@ -149,8 +136,7 @@
 						fi
 						exec "$binary" "$@"
 					'';
-					# used from users' own configurations, so they read this flake's source, not the
-					# repository they're run in
+					# Users run these from their own configurations, so they use this flake's source.
 					apply = pkgs.writeShellScript "apply" (
 						"export NIX_PLIST_MANAGER_ROOT=\"\${NIX_PLIST_MANAGER_ROOT:-${self}}\"\n"
 						+ builtins.readFile ./tools/apply.sh

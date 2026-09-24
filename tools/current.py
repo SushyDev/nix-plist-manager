@@ -1,21 +1,11 @@
 #!/usr/bin/env python3
 """
-current — write this Mac's current settings as nix-plist-manager options.
+current — print this Mac's settings as nix-plist-manager options.
 
     nix run .#current -- [--ui] [--snapshots <directory>] [--only <prefix>]
     nix run .#capture -- <option> <directory>
 
-Prints two Nix attribute sets, one for home-manager and one for nix-darwin, with every option
-whose value could be read: from the command a setting reads through, from the preferences it
-writes (for a fixed set of values, the one whose writes all match what is stored now), or with
---ui from System Settings, using the setting's verify spec. Options that couldn't be read are
-listed on stderr and left out, which leaves them unmanaged.
-
---snapshots D   Capture snapshot options (menu bar layout, wallpaper) into D/<option name>.
---only P        Only options whose path starts with P.
-
-capture saves the state arranged in System Settings for one snapshot option, one XML plist per
-storage entry, and prints the line to put in your configuration.
+--ui reads what preferences don't say from System Settings; unread options are listed on stderr.
 """
 
 from __future__ import annotations
@@ -60,8 +50,6 @@ def stored(key: dict):
 	return export(key["domain"], key.get("byHost", False), key.get("scope") == "system").get(key["key"])
 
 
-# --- a fixed set of values: the one whose writes all match -----------------------------------
-
 def same(actual, expected) -> bool:
 	if actual is None:
 		return False
@@ -98,12 +86,9 @@ def op_matches(op: dict) -> bool:
 
 def read_candidates(entry: dict):
 	matching = [c for c in entry["candidates"] if c["ops"] and all(op_matches(op) for op in c["ops"])]
-	# prefer the choice that writes something over one that only deletes
 	matching.sort(key=lambda c: -sum(op["op"] != "delete" for op in c["ops"]))
 	return matching[0]["value"] if matching else UNREAD
 
-
-# --- a setting's own command ----------------------------------------------------------------
 
 def read_command(entry: dict):
 	reads = entry["reads"]
@@ -123,10 +108,7 @@ def read_command(entry: dict):
 		return output
 
 
-# --- the codec's reader ---------------------------------------------------------------------
-
 def glyphs(equivalent: str, names: dict) -> str:
-	"""NSUserKeyEquivalents' "@$s" as the options write it, "⇧⌘S"."""
 	modifiers = ""
 	while equivalent[:1] in names["equivalentModifiers"] and len(equivalent) > 1:
 		modifiers += names["equivalentModifiers"][equivalent[0]]
@@ -135,7 +117,6 @@ def glyphs(equivalent: str, names: dict) -> str:
 
 
 def hot_key(entries, reader: dict):
-	"""A symbolic hotkey as the option takes it: false, true (default keys) or "⌘⇧S"."""
 	entry = (entries or {}).get(str(reader["hotKey"]))
 	if entry is None:
 		return UNREAD
@@ -150,7 +131,6 @@ def hot_key(entries, reader: dict):
 
 
 def services(entries, names: dict):
-	"""Services changed in System Settings: false, true, or their keys."""
 	if not isinstance(entries, dict):
 		return UNREAD
 	result = {}
@@ -163,7 +143,6 @@ def services(entries, names: dict):
 
 
 def app_shortcuts(names: dict) -> dict:
-	"""App Shortcuts as the option takes them: { app: { "Menu->Item": "⌘⇧S" } }."""
 	result = {}
 	for app in export("com.apple.universalaccess").get("com.apple.custommenu.apps") or []:
 		items = export(app).get("NSUserKeyEquivalents") or {}
@@ -174,8 +153,7 @@ def app_shortcuts(names: dict) -> dict:
 
 
 def app_languages() -> dict:
-	"""Installed apps with their own AppleLanguages; some system services keep a copy of the
-	global list, which Language & Region doesn't show."""
+	# system services keep copies of the global list, which Language & Region doesn't show
 	home = Path.home()
 	files = list((home / "Library/Preferences").glob("*.plist"))
 	files += [p for p in home.glob("Library/Containers/*/Data/Library/Preferences/*.plist") if p.stem == p.parts[-5]]
@@ -260,8 +238,6 @@ def read(entry: dict, use_ui: bool):
 	return UNREAD
 
 
-# --- snapshots ------------------------------------------------------------------------------
-
 def capture(entry: dict, directory: Path):
 	directory.mkdir(parents=True, exist_ok=True)
 	export.cache_clear()
@@ -285,8 +261,6 @@ def cmd_capture(option: str, directory: Path):
 	path = f"./{relative}" if not relative.startswith("..") else str(directory.resolve())
 	print(f"programs.nix-plist-manager.options.{option} = {path};")
 
-
-# --- Nix output -----------------------------------------------------------------------------
 
 def nix_value(value, indent: str = "") -> str:
 	if isinstance(value, bool):

@@ -8,8 +8,6 @@ let
 	clock = name: user "com.apple.menuextra.clock" name;
 	groupContainer = group: "~/Library/Group Containers/${group}/Library/Preferences/${group}";
 
-	# the menu bar clock is drawn by Control Center, which reads these at launch
-	# `control` null: System Settings only shows the switch in some cases, so it isn't verified
 	clockSwitch = { ui, key, control, relations ? [] }: setting {
 		inherit relations;
 		ui = [ "System Settings" "Menu Bar" "Clock Options…" ui ];
@@ -29,14 +27,12 @@ let
 
 	digitalOnly = onlyWhen (option "clock.style") (style: style == "Digital") "an analog clock doesn't show it";
 
-	# Control Center keeps each module's menu bar state as a bitmask in its current-host
-	# domain: 2 shown, 8 hidden, 16 "Always Show" (as opposed to only while active)
+	# Control Center keeps each module's menu bar state as a bitmask: 2 shown, 8 hidden, 16 Always Show.
 	controlCenter = name: byHost (user "com.apple.controlcenter" name);
 
 	checkbox = id: "AXCheckBox:controlcenter-${id}-id";
 	popup = id: "AXPopUpButton:controlcenter-${id}-id";
 
-	# a module with a Show When Active / Always Show menu
 	moduleWithMenu = { ui, key, id }: setting {
 		ui = [ "System Settings" "Menu Bar" "Menu Bar Controls" ui ];
 		storage = controlCenter key;
@@ -52,7 +48,6 @@ let
 		};
 	};
 
-	# a module that's shown or not; `shown` and `hidden` are how it's stored
 	module = { ui, key, id, shown, hidden }: setting {
 		ui = [ "System Settings" "Menu Bar" "Menu Bar Controls" ui ];
 		storage = controlCenter key;
@@ -98,7 +93,7 @@ in
 		value = bool;
 		verify = {
 			inherit pane;
-			# the switch sits under the window's title bar, where a click doesn't reach it
+			# The switch sits under the window's title bar, where a click doesn't reach it.
 			operate = [ "press" "Show menu bar background" ];
 			expect = {
 				true = { "Show menu bar background" = 1; };
@@ -160,16 +155,12 @@ in
 			relations = [ digitalOnly ];
 		};
 
-		# offered with 12-hour time only
-		# only shown with the 12-hour clock
 		showAmPm = clockSwitch {
 			ui = "Show AM/PM";
 			key = "ShowAMPM";
 			control = null;
 		};
 
-		# entries of one dictionary in com.apple.speech.synthesis.general.prefs; other entries (the
-		# voice, the phrase) are left as they are
 		announceTheTime = let
 			timeAnnouncements = user "com.apple.speech.synthesis.general.prefs" "TimeAnnouncementPrefs";
 			entry = ui: control: value: setting {
@@ -199,7 +190,6 @@ in
 	bluetooth = module { ui = "Bluetooth"; key = "Bluetooth"; id = "bluetooth"; shown = 18; hidden = 24; };
 	airdrop = module { ui = "AirDrop"; key = "AirDrop"; id = "airdrop"; shown = 18; hidden = 24; };
 	battery = module { ui = "Battery"; key = "Battery"; id = "battery"; shown = 2; hidden = 8; };
-	# an older menu extra, listed by SystemUIServer
 	timeMachine = setting {
 		ui = [ "System Settings" "Menu Bar" "Menu Bar Controls" "Time Machine" ];
 		storage = user "com.apple.systemuiserver" "menuExtras";
@@ -207,7 +197,6 @@ in
 		behaviors = [ (restarts "SystemUIServer") ];
 		verify = {
 			inherit pane;
-			# SystemUIServer takes a moment to come back
 			settle = 5;
 			expect = {
 				true = { ${checkbox "timeMachine"} = 1; };
@@ -321,7 +310,7 @@ in
 		amounts = { None = 0; "5" = 5; "10" = 10; "15" = 15; "20" = 20; "30" = 30; "50" = 50; };
 	in setting {
 		ui = [ "System Settings" "Menu Bar" "Recent documents, applications, and servers" ];
-		# NumberOfRecents only mirrors the limit, which belongs to the shared file lists
+		# NumberOfRecents only mirrors the limit, which the shared file lists keep.
 		storage = user "com.apple.controlcenter" "NumberOfRecents";
 		value = enum amounts;
 		behaviors = [
@@ -340,13 +329,6 @@ in
 		};
 	};
 
-	# Which apps' items show in the menu bar and in what order, plus the Siri and Spotlight
-	# items: arranged by hand rather than set with a control, so captured.
-	#
-	# Control Center's own contents can't be declared: removing or adding a control is kept by a
-	# store that isn't the grid plist (ByHost com.apple.controlcenter.bentoboxes) or chronod's
-	# database, and restoring those is undone when Control Center restarts. The menu bar modules
-	# above do work.
 	layout = setting {
 		ui = [ "Menu bar" ];
 		description = ''

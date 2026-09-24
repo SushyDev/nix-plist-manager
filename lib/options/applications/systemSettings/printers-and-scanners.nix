@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# Printers and scanners themselves are added per device and aren't here, and the default printer
-# only offers a choice once some are added.
 let
 	inherit (settingsLib) setting user enum;
 in
