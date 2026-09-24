@@ -149,7 +149,27 @@ def read_with(entry: dict):
 		return folders
 	if reader.get("appLanguages"):
 		return app_languages()
+	if "hotKey" in reader:
+		return hot_key(stored(key), reader)
 	return UNREAD
+
+
+def hot_key(entries, reader: dict):
+	"""A symbolic hotkey as the option takes it: false, true (default keys) or "⌘⇧S"."""
+	entry = (entries or {}).get(str(reader["hotKey"]))
+	if entry is None:
+		return UNREAD
+	if not entry.get("enabled"):
+		return False
+	parameters = entry.get("value", {}).get("parameters")
+	if not parameters:
+		return True
+	_, code, flags = parameters
+	key = reader["names"]["keys"].get(str(code))
+	if key is None:
+		return True
+	glyphs = [glyph for flag, glyph in sorted(reader["names"]["modifiers"].items(), key=lambda item: "⌃⌥⇧⌘".index(item[1])) if flags & int(flag)]
+	return "".join(glyphs) + key
 
 
 def app_languages() -> dict:

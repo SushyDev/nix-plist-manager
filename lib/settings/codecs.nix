@@ -1,4 +1,4 @@
-{ lib, ops, storage }:
+{ lib, ops, storage, shortcuts }:
 # A codec turns an option value into key writes. It supplies the option type (without the
 # null and "unset" every setting accepts), the values documentation shows, and how verify
 # specs name values.
@@ -198,5 +198,23 @@ rec {
 			in
 			lib.optional (mask != 0) (ops.writeFlags (single keys) mask set // { absent = absentValue; });
 		fromName = builtins.fromJSON;
+	};
+
+	# one keyboard shortcut of com.apple.symbolichotkeys AppleSymbolicHotKeys, by its id: false
+	# (off), true (on, with its default keys) or keys such as "⌘⇧S" (shortcuts.nix)
+	hotKey = id: {
+		kind = "shortcut";
+		read = { hotKey = id; inherit (shortcuts) names; };
+		type = lib.types.either lib.types.bool shortcuts.type;
+		choices = [];
+		examples = [ false "⌘⇧S" ];
+		encode = keys: choice: [
+			(ops.mergeDict (single keys) {
+				${toString id} =
+					if lib.isBool choice then { enabled = choice; }
+					else { enabled = true; value = { type = "standard"; parameters = shortcuts.hotKeyParameters choice; }; };
+			})
+		];
+		fromName = name: if name == "true" || name == "false" then builtins.fromJSON name else name;
 	};
 }

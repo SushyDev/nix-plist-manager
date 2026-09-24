@@ -163,6 +163,506 @@
 			],
 			"title": "Keyboard sensitivity"
 		},
+		"keyboard-shortcuts-accessibility-contrast-decrease-contrast": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.decreaseContrast",
+			"section": "Keyboard Shortcuts… > Accessibility > Contrast",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.decreaseContrast"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Decrease contrast",
+			"verified": {
+				"build": "26A428",
+				"commands": "a5a9f1e73579",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-contrast-increase-contrast": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.increaseContrast",
+			"section": "Keyboard Shortcuts… > Accessibility > Contrast",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.increaseContrast"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Increase contrast",
+			"verified": {
+				"build": "26A428",
+				"commands": "0e65de6057a1",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-invert-colors": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.invertColors",
+			"section": "Keyboard Shortcuts… > Accessibility",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.invertColors"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Invert colors",
+			"verified": {
+				"build": "26A428",
+				"commands": "ac10f8049b97",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-captions-pause-or-resume-transcription": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.pauseOrResumeTranscription",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Captions",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.pauseOrResumeTranscription"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Pause or resume transcription",
+			"verified": {
+				"build": "26A428",
+				"commands": "dffe62a7a7f7",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-captions-switch-between-transcribing-computer-audio-and-microphone": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.switchBetweenTranscribingComputerAudioAndMicrophone",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Captions",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.switchBetweenTranscribingComputerAudioAndMicrophone"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch between transcribing computer audio and microphone",
+			"verified": {
+				"build": "26A428",
+				"commands": "df3351ac72b7",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-captions-turn-keep-onscreen-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnKeepOnscreenOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Captions",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnKeepOnscreenOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn keep onscreen on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "3a2a001e2c20",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-captions-turn-live-captions-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnLiveCaptionsOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Captions",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnLiveCaptionsOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn Live Captions on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "594fb88aa64e",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-captions-turn-type-to-speak-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnTypeToSpeakOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Captions",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnTypeToSpeakOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn type to speak on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "1262f4a68c60",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-speech-cancel-speech": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.cancelSpeech",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Speech",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.cancelSpeech"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Cancel speech",
+			"verified": {
+				"build": "26A428",
+				"commands": "f203d18026f2",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-speech-hide-or-show-phrases": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.hideOrShowPhrases",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Speech",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.hideOrShowPhrases"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Hide or show phrases",
+			"verified": {
+				"build": "26A428",
+				"commands": "39fb20c450d0",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-speech-pause-or-resume-speech": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.pauseOrResumeSpeech",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Speech",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.pauseOrResumeSpeech"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Pause or resume speech",
+			"verified": {
+				"build": "26A428",
+				"commands": "2cfd8ba5117b",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-speech-toggle-visibility": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.toggleVisibility",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Speech",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.toggleVisibility"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Toggle visibility",
+			"verified": {
+				"build": "26A428",
+				"commands": "a61626cfe24f",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-live-speech-turn-live-speech-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnLiveSpeechOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility > Live Speech",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnLiveSpeechOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn Live Speech on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "97239f507522",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-show-accessibility-controls": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.showAccessibilityControls",
+			"section": "Keyboard Shortcuts… > Accessibility",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.showAccessibilityControls"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show Accessibility controls",
+			"verified": {
+				"build": "26A428",
+				"commands": "2693348c9850",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-turn-speak-item-under-the-pointer-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnSpeakItemUnderThePointerOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnSpeakItemUnderThePointerOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn speak item under the pointer on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "0478f88ea9dd",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-turn-speak-selection-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnSpeakSelectionOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnSpeakSelectionOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn speak selection on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "a73870defb81",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-turn-typing-feedback-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnTypingFeedbackOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnTypingFeedbackOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn typing feedback on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "f78ce8978ee7",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-accessibility-turn-voiceover-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnVoiceOverOnOrOff",
+			"section": "Keyboard Shortcuts… > Accessibility",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.accessibility.turnVoiceOverOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn VoiceOver on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "8194568f1990",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-display-decrease-display-brightness": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.display.decreaseDisplayBrightness",
+			"section": "Keyboard Shortcuts… > Display",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.display.decreaseDisplayBrightness"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Decrease display brightness",
+			"verified": {
+				"build": "26A428",
+				"commands": "81867e8b5c04",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-display-increase-display-brightness": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.display.increaseDisplayBrightness",
+			"section": "Keyboard Shortcuts… > Display",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.display.increaseDisplayBrightness"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Increase display brightness",
+			"verified": {
+				"build": "26A428",
+				"commands": "c4f0e02cd774",
+				"date": "2026-09-24"
+			}
+		},
 		"keyboard-shortcuts-function-keys-use-f1-f2-etc-keys-as-standard-function-keys": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
@@ -183,6 +683,1581 @@
 				}
 			],
 			"title": "Use F1, F2, etc. keys as standard function keys"
+		},
+		"keyboard-shortcuts-input-sources-select-next-source-in-input-menu": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.inputSources.selectNextSourceInInputMenu",
+			"section": "Keyboard Shortcuts… > Input Sources",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.inputSources.selectNextSourceInInputMenu"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Select next source in Input menu",
+			"verified": {
+				"build": "26A428",
+				"commands": "2f0c20e08f34",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-input-sources-select-the-previous-input-source": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.inputSources.selectThePreviousInputSource",
+			"section": "Keyboard Shortcuts… > Input Sources",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.inputSources.selectThePreviousInputSource"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Select the previous input source",
+			"verified": {
+				"build": "26A428",
+				"commands": "255e79309a8c",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-change-the-way-tab-moves-focus": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.changeTheWayTabMovesFocus",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.changeTheWayTabMovesFocus"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Change the way Tab moves focus",
+			"verified": {
+				"build": "26A428",
+				"commands": "229399735b15",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-move-focus-to-active-or-next-window": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToActiveOrNextWindow",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToActiveOrNextWindow"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move focus to active or next window",
+			"verified": {
+				"build": "26A428",
+				"commands": "158b01714719",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-move-focus-to-next-window": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToNextWindow",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToNextWindow"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move focus to next window",
+			"verified": {
+				"build": "26A428",
+				"commands": "2c754d119102",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-move-focus-to-status-menus": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToStatusMenus",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToStatusMenus"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move focus to status menus",
+			"verified": {
+				"build": "26A428",
+				"commands": "c583fc2d8156",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-move-focus-to-the-dock": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheDock",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheDock"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move focus to the Dock",
+			"verified": {
+				"build": "26A428",
+				"commands": "507ac1320995",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-move-focus-to-the-floating-window": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheFloatingWindow",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheFloatingWindow"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move focus to the floating window",
+			"verified": {
+				"build": "26A428",
+				"commands": "be0e723176af",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-move-focus-to-the-menu-bar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheMenuBar",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheMenuBar"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move focus to the menu bar",
+			"verified": {
+				"build": "26A428",
+				"commands": "219b77305b97",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-move-focus-to-the-window-toolbar": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheWindowToolbar",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.moveFocusToTheWindowToolbar"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move focus to the window toolbar",
+			"verified": {
+				"build": "26A428",
+				"commands": "a74f710cf5b5",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-show-contextual-menu": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.showContextualMenu",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.showContextualMenu"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show contextual menu",
+			"verified": {
+				"build": "26A428",
+				"commands": "7436a9885108",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-keyboard-turn-keyboard-access-on-or-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.keyboard.turnKeyboardAccessOnOrOff",
+			"section": "Keyboard Shortcuts… > Keyboard",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.keyboard.turnKeyboardAccessOnOrOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn keyboard access on or off",
+			"verified": {
+				"build": "26A428",
+				"commands": "bc95dbd279e7",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-launchpad-and-dock-turn-dock-hiding-on-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.launchpadAndDock.turnDockHidingOnOff",
+			"section": "Keyboard Shortcuts… > Launchpad & Dock",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.launchpadAndDock.turnDockHidingOnOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn Dock hiding on/off",
+			"verified": {
+				"build": "26A428",
+				"commands": "e4c4ca2c36a6",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-game-overlay": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.gameOverlay",
+			"section": "Keyboard Shortcuts… > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.gameOverlay"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Game Overlay",
+			"verified": {
+				"build": "26A428",
+				"commands": "756313ca8a78",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-mission-control-move-left-a-space": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.moveLeftASpace",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.moveLeftASpace"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move left a Space",
+			"verified": {
+				"build": "26A428",
+				"commands": "74019299f404",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-mission-control-move-right-a-space": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.moveRightASpace",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.moveRightASpace"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Move right a Space",
+			"verified": {
+				"build": "26A428",
+				"commands": "1578d0652dd4",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-1": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop1",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop1"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 1",
+			"verified": {
+				"build": "26A428",
+				"commands": "8ac6f20207db",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-10": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop10",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop10"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 10"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-11": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop11",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop11"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 11"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-12": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop12",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop12"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 12"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-13": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop13",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop13"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 13"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-14": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop14",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop14"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 14"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-15": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop15",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop15"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 15"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-16": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop16",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop16"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 16"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-2": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop2",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop2"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 2"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-3": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop3",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop3"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 3"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-4": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop4",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop4"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 4"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-5": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop5",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop5"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 5"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-6": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop6",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop6"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 6"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-7": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop7",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop7"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 7"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-8": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop8",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop8"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 8"
+		},
+		"keyboard-shortcuts-mission-control-mission-control-switch-to-desktop-9": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop9",
+			"section": "Keyboard Shortcuts… > Mission Control > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.switchToDesktop9"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Switch to Desktop 9"
+		},
+		"keyboard-shortcuts-mission-control-quick-note": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.quickNote",
+			"section": "Keyboard Shortcuts… > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.quickNote"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Quick Note",
+			"verified": {
+				"build": "26A428",
+				"commands": "ea39557433e9",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-show-notification-center": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.showNotificationCenter",
+			"section": "Keyboard Shortcuts… > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.showNotificationCenter"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show Notification Center",
+			"verified": {
+				"build": "26A428",
+				"commands": "327634ff4b39",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-turn-do-not-disturb-on-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.turnDoNotDisturbOnOff",
+			"section": "Keyboard Shortcuts… > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.turnDoNotDisturbOnOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn Do Not Disturb on/off",
+			"verified": {
+				"build": "26A428",
+				"commands": "5c815ed53c91",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-mission-control-turn-stage-manager-on-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.missionControl.turnStageManagerOnOff",
+			"section": "Keyboard Shortcuts… > Mission Control",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.missionControl.turnStageManagerOnOff"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Turn Stage Manager on/off",
+			"verified": {
+				"build": "26A428",
+				"commands": "d4b97ec5d971",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-screenshots-ask-siri-about-active-window": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.screenshots.askSiriAboutActiveWindow",
+			"section": "Keyboard Shortcuts… > Screenshots",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.screenshots.askSiriAboutActiveWindow"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Ask Siri about active window",
+			"verified": {
+				"build": "26A428",
+				"commands": "e2e14e3f9809",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-screenshots-ask-siri-about-selected-area": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.screenshots.askSiriAboutSelectedArea",
+			"section": "Keyboard Shortcuts… > Screenshots",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.screenshots.askSiriAboutSelectedArea"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Ask Siri about selected area",
+			"verified": {
+				"build": "26A428",
+				"commands": "1009b376ca4a",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-screenshots-copy-picture-of-screen-to-the-clipboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.screenshots.copyPictureOfScreenToTheClipboard",
+			"section": "Keyboard Shortcuts… > Screenshots",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.screenshots.copyPictureOfScreenToTheClipboard"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Copy picture of screen to the clipboard",
+			"verified": {
+				"build": "26A428",
+				"commands": "adacec790156",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-screenshots-copy-picture-of-selected-area-to-the-clipboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.screenshots.copyPictureOfSelectedAreaToTheClipboard",
+			"section": "Keyboard Shortcuts… > Screenshots",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.screenshots.copyPictureOfSelectedAreaToTheClipboard"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Copy picture of selected area to the clipboard",
+			"verified": {
+				"build": "26A428",
+				"commands": "cfc9cd811f81",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-screenshots-save-picture-of-screen-as-a-file": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.screenshots.savePictureOfScreenAsAFile",
+			"section": "Keyboard Shortcuts… > Screenshots",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.screenshots.savePictureOfScreenAsAFile"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Save picture of screen as a file",
+			"verified": {
+				"build": "26A428",
+				"commands": "e86ee3e1ac34",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-screenshots-save-picture-of-selected-area-as-a-file": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.screenshots.savePictureOfSelectedAreaAsAFile",
+			"section": "Keyboard Shortcuts… > Screenshots",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.screenshots.savePictureOfSelectedAreaAsAFile"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Save picture of selected area as a file",
+			"verified": {
+				"build": "26A428",
+				"commands": "6a6936aef257",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-screenshots-screenshot-and-recording-options": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.screenshots.screenshotAndRecordingOptions",
+			"section": "Keyboard Shortcuts… > Screenshots",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.screenshots.screenshotAndRecordingOptions"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Screenshot and recording options",
+			"verified": {
+				"build": "26A428",
+				"commands": "a67ad626a8af",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-spotlight-show-apps": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.spotlight.showApps",
+			"section": "Keyboard Shortcuts… > Spotlight",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.spotlight.showApps"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show Apps",
+			"verified": {
+				"build": "26A428",
+				"commands": "db7f568554fc",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-spotlight-show-finder-search-window": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.spotlight.showFinderSearchWindow",
+			"section": "Keyboard Shortcuts… > Spotlight",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.spotlight.showFinderSearchWindow"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show Finder search window",
+			"verified": {
+				"build": "26A428",
+				"commands": "ffe1a91cdcdb",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-spotlight-show-spotlight-search": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.spotlight.showSpotlightSearch",
+			"section": "Keyboard Shortcuts… > Spotlight",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.spotlight.showSpotlightSearch"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show Spotlight search",
+			"verified": {
+				"build": "26A428",
+				"commands": "f08e329fa38e",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-arrange-arrange-bottom-and-top": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeBottomAndTop",
+			"section": "Keyboard Shortcuts… > Windows > Arrange",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeBottomAndTop"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Arrange Bottom and Top",
+			"verified": {
+				"build": "26A428",
+				"commands": "81ac569a6e67",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-arrange-arrange-in-quarters": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeInQuarters",
+			"section": "Keyboard Shortcuts… > Windows > Arrange",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeInQuarters"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Arrange in Quarters",
+			"verified": {
+				"build": "26A428",
+				"commands": "0de460cd17df",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-arrange-arrange-left-and-right": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeLeftAndRight",
+			"section": "Keyboard Shortcuts… > Windows > Arrange",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeLeftAndRight"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Arrange Left and Right",
+			"verified": {
+				"build": "26A428",
+				"commands": "9fa696da23f9",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-arrange-arrange-right-and-left": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeRightAndLeft",
+			"section": "Keyboard Shortcuts… > Windows > Arrange",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeRightAndLeft"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Arrange Right and Left",
+			"verified": {
+				"build": "26A428",
+				"commands": "44aecd9fd493",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-arrange-arrange-top-and-bottom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeTopAndBottom",
+			"section": "Keyboard Shortcuts… > Windows > Arrange",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.arrangeTopAndBottom"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Arrange Top and Bottom",
+			"verified": {
+				"build": "26A428",
+				"commands": "cfb8206c669b",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-full-screen-tile-full-screen-tile-left": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.fullScreenTileLeft",
+			"section": "Keyboard Shortcuts… > Windows > Full Screen Tile",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.fullScreenTileLeft"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Full Screen Tile Left",
+			"verified": {
+				"build": "26A428",
+				"commands": "a1215e13e555",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-full-screen-tile-full-screen-tile-right": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.fullScreenTileRight",
+			"section": "Keyboard Shortcuts… > Windows > Full Screen Tile",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.fullScreenTileRight"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Full Screen Tile Right",
+			"verified": {
+				"build": "26A428",
+				"commands": "b866659c8bb2",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-general-center": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.center",
+			"section": "Keyboard Shortcuts… > Windows > General",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.center"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Center",
+			"verified": {
+				"build": "26A428",
+				"commands": "a724da279d8f",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-general-fill": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.fill",
+			"section": "Keyboard Shortcuts… > Windows > General",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.fill"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Fill",
+			"verified": {
+				"build": "26A428",
+				"commands": "897526d0bf2d",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-general-minimize": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.minimize",
+			"section": "Keyboard Shortcuts… > Windows > General",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.minimize"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Minimize",
+			"verified": {
+				"build": "26A428",
+				"commands": "0d6892fdea83",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-general-return-to-previous-size": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.returnToPreviousSize",
+			"section": "Keyboard Shortcuts… > Windows > General",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.returnToPreviousSize"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Return to Previous Size",
+			"verified": {
+				"build": "26A428",
+				"commands": "76c41fc965fa",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-general-zoom": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.zoom",
+			"section": "Keyboard Shortcuts… > Windows > General",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.zoom"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "5fe6b6bebd30",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-halves-tile-bottom-half": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileBottomHalf",
+			"section": "Keyboard Shortcuts… > Windows > Halves",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileBottomHalf"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Bottom Half",
+			"verified": {
+				"build": "26A428",
+				"commands": "96ce608e630d",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-halves-tile-left-half": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileLeftHalf",
+			"section": "Keyboard Shortcuts… > Windows > Halves",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileLeftHalf"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Left Half",
+			"verified": {
+				"build": "26A428",
+				"commands": "d11eb7898970",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-halves-tile-right-half": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileRightHalf",
+			"section": "Keyboard Shortcuts… > Windows > Halves",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileRightHalf"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Right Half",
+			"verified": {
+				"build": "26A428",
+				"commands": "77a09ba1a5b9",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-halves-tile-top-half": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileTopHalf",
+			"section": "Keyboard Shortcuts… > Windows > Halves",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileTopHalf"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Top Half",
+			"verified": {
+				"build": "26A428",
+				"commands": "d94eab32f47a",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-quarters-tile-bottom-left-quarter": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileBottomLeftQuarter",
+			"section": "Keyboard Shortcuts… > Windows > Quarters",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileBottomLeftQuarter"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Bottom Left Quarter",
+			"verified": {
+				"build": "26A428",
+				"commands": "a6a3772da3df",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-quarters-tile-bottom-right-quarter": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileBottomRightQuarter",
+			"section": "Keyboard Shortcuts… > Windows > Quarters",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileBottomRightQuarter"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Bottom Right Quarter",
+			"verified": {
+				"build": "26A428",
+				"commands": "31076cf7b02b",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-quarters-tile-top-left-quarter": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileTopLeftQuarter",
+			"section": "Keyboard Shortcuts… > Windows > Quarters",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileTopLeftQuarter"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Top Left Quarter",
+			"verified": {
+				"build": "26A428",
+				"commands": "5e4ecf176a1f",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-windows-quarters-tile-top-right-quarter": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.windows.tileTopRightQuarter",
+			"section": "Keyboard Shortcuts… > Windows > Quarters",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.windows.tileTopRightQuarter"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Tile Top Right Quarter",
+			"verified": {
+				"build": "26A428",
+				"commands": "be77e7850af4",
+				"date": "2026-09-24"
+			}
 		},
 		"language-input-methods-language-input-methods": {
 			"firstSeen": "26A428",
