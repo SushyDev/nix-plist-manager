@@ -92,7 +92,7 @@ function valuesOf(option) {
 		case "snapshot": return { text: "A directory captured with `nix run …#capture` — see [Snapshots](/nix-plist-manager/guides/snapshots/)" };
 		case "switches": return { text: "An attribute set of switches, each `true`, `false` or left out:", choices };
 		case "flags": return { text: "An attribute set of flags, each `true`, `false` or left out:", choices };
-		case "color": return { text: "`\"Default\"`, or a colour as `{ red; green; blue; alpha; }`, each from 0 to 1" };
+		case "color": return { text: "`\"Default\"`, or a color as `{ red; green; blue; alpha; }`, each from 0 to 1" };
 		case "modifiers": return { text: "The modifier keys to hold, each `true` or `false`:", choices };
 		case "apps": return { text: "A size per app, by bundle identifier, one of:", choices };
 		case "applications": return { text: "Per app, by bundle identifier (see the example)" };
