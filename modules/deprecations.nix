@@ -26,5 +26,16 @@ in
 		(renamed "user"
 			[ "applications" "systemSettings" "desktopAndDock" "windows" "tiledWindowsHaveMargin" ]
 			[ "applications" "systemSettings" "desktopAndDock" "windows" "tiledWindowsHaveMargins" ])
-	];
+	]
+	# not menu bar controls on macOS 27: add them to Control Center and capture the layout
+	++ lib.concatMap (module:
+		removed "user" [ "applications" "systemSettings" "menuBar" module ] ''
+			This is a Control Center control on macOS 27. Add it to Control Center, capture the layout with
+			`nix run github:sushydev/nix-plist-manager#capture -- applications.systemSettings.menuBar.layout <directory>`
+			and set applications.systemSettings.menuBar.layout to that directory.
+		''
+	) [ "stageManager" "accessibilityShortcuts" "musicRecognition" "hearing" ]
+	++ renamed "user"
+		[ "applications" "systemSettings" "menuBar" "batteryShowPercentage" ]
+		[ "applications" "systemSettings" "menuBar" "batteryOptions" "showPercentage" ];
 }
