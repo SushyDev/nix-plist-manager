@@ -5,31 +5,126 @@
 		"Privacy & Security"
 	],
 	"settings": {
-		"advanced-lock-system-settings": {
+		"advanced-log-out-automatically-after-inactivity": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"section": "Advanced",
+			"option": "applications.systemSettings.privacyAndSecurity.advanced.logOutAutomaticallyAfterInactivity",
+			"section": "Advanced…",
 			"sources": [
-				"search:SecurityPrivacyExtension.appex/Advanced/Lock System Settings"
-			],
-			"title": "Lock System Settings"
-		},
-		"advanced-log-out-when-idle": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Advanced",
-			"sources": [
+				"option:applications.systemSettings.privacyAndSecurity.advanced.logOutAutomaticallyAfterInactivity",
 				"search:SecurityPrivacyExtension.appex/Advanced/Log out when idle"
 			],
-			"title": "Log out when idle"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": ".GlobalPreferences",
+					"key": "com.apple.autologout.AutoLogOutDelay",
+					"scope": "system"
+				}
+			],
+			"title": "Log out automatically after inactivity",
+			"verified": {
+				"build": "26A428",
+				"commands": "b4fd98ef9398",
+				"date": "2026-09-24"
+			}
+		},
+		"advanced-require-an-administrator-password-to-access-system-wide-settings": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.privacyAndSecurity.advanced.requireAnAdministratorPasswordToAccessSystemWideSettings",
+			"section": "Advanced…",
+			"sources": [
+				"option:applications.systemSettings.privacyAndSecurity.advanced.requireAnAdministratorPasswordToAccessSystemWideSettings",
+				"search:SecurityPrivacyExtension.appex/Advanced/Lock System Settings"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "security authorizationdb system.preferences",
+					"key": null,
+					"scope": "system"
+				}
+			],
+			"title": "Require an administrator password to access system-wide settings",
+			"verified": {
+				"build": "26A428",
+				"commands": "a212e377d344",
+				"date": "2026-09-24"
+			}
+		},
+		"analytics-and-improvements-share-mac-analytics": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.privacyAndSecurity.analyticsAndImprovements.shareMacAnalytics",
+			"section": "Analytics & Improvements",
+			"sources": [
+				"option:applications.systemSettings.privacyAndSecurity.analyticsAndImprovements.shareMacAnalytics",
+				"search:SecurityPrivacyExtension.appex/Privacy_Analytics/Diagnostic & usage data"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory",
+					"key": "AutoSubmit",
+					"scope": "system"
+				}
+			],
+			"title": "Share Mac Analytics"
+		},
+		"analytics-and-improvements-share-with-app-developers": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.privacyAndSecurity.analyticsAndImprovements.shareWithAppDevelopers",
+			"section": "Analytics & Improvements",
+			"sources": [
+				"option:applications.systemSettings.privacyAndSecurity.analyticsAndImprovements.shareWithAppDevelopers"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory",
+					"key": "ThirdPartyDataSubmit",
+					"scope": "system"
+				}
+			],
+			"title": "Share with app developers"
+		},
+		"apple-advertising-personalized-ads": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.privacyAndSecurity.appleAdvertising.personalizedAds",
+			"section": "Apple Advertising",
+			"sources": [
+				"option:applications.systemSettings.privacyAndSecurity.appleAdvertising.personalizedAds",
+				"search:SecurityPrivacyExtension.appex/Privacy_Advertising/Apple Advertising"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.AdLib",
+					"key": "allowApplePersonalizedAdvertising",
+					"scope": "user"
+				}
+			],
+			"title": "Personalized Ads"
 		},
 		"file-vault-filevault": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "File Vault",
+			"skip": "turning FileVault on or off needs a user's password and a recovery key",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/FileVault/FileVault"
 			],
@@ -51,6 +146,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Lockdown Mode",
+			"skip": "needs a restart and the user's confirmation",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/LockdownMode/Lockdown Mode"
 			],
@@ -67,16 +163,6 @@
 			],
 			"title": "Allow assistive applications to control the computer"
 		},
-		"privacy-advertising-apple-advertising": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Privacy_Advertising",
-			"sources": [
-				"search:SecurityPrivacyExtension.appex/Privacy_Advertising/Apple Advertising"
-			],
-			"title": "Apple Advertising"
-		},
 		"privacy-all-files-allow-applications-to-access-all-user-files": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
@@ -87,16 +173,6 @@
 				"search:SecurityPrivacyExtension.appex/Privacy_AllFiles/Allow applications to access all user files"
 			],
 			"title": "Allow applications to access all user files"
-		},
-		"privacy-analytics-diagnostic-and-usage-data": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Privacy_Analytics",
-			"sources": [
-				"search:SecurityPrivacyExtension.appex/Privacy_Analytics/Diagnostic & usage data"
-			],
-			"title": "Diagnostic & usage data"
 		},
 		"privacy-app-bundles-allow-applications-to-update-or-delete-other-apps": {
 			"firstSeen": "26A428",
@@ -190,6 +266,7 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"notes": "asks for an administrator; not probed",
 			"section": "Privacy_Dev Tools",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Privacy_DevTools/Enable Processor Trace"
@@ -376,7 +453,9 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"notes": "changing it asks for an administrator; no preference file changes when it does (Always ask, Ask for new accessories, Automatically allow when unlocked, Always allow)",
 			"section": "Security",
+			"skip": "not kept in a preference file; changing it needs an administrator in System Settings",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Security/Allow accessories to connect"
 			],
@@ -386,7 +465,9 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"notes": "Allow applications from: changing it asks for an administrator in System Settings, spctl no longer sets it, and it's kept in /var/db/SystemPolicyConfiguration rather than a preference file",
 			"section": "Security",
+			"skip": "not kept in a preference file; changing it needs an administrator in System Settings",
 			"sources": [
 				"search:SecurityPrivacyExtension.appex/Security/Gatekeeper"
 			],

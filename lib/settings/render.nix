@@ -10,7 +10,7 @@ let
 
 	# the domain argument, quoted; "~/…" domains are paths in the home directory
 	domain = key:
-		if key.scope == "system" then q "/Library/Preferences/${key.domain}"
+		if key.scope == "system" then q (if lib.hasPrefix "/" key.domain then key.domain else "/Library/Preferences/${key.domain}")
 		else if lib.hasPrefix "~/" key.domain then ''"$HOME"/${q (lib.removePrefix "~/" key.domain)}''
 		else q key.domain;
 
