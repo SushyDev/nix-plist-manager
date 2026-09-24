@@ -126,7 +126,7 @@ function notCoveredMarkdown(title) {
 	const items = notCovered[title] ?? [];
 	if (!items.length) return "";
 	const list = items.map(({ title, reason }) => `- **${title}** — ${reason}`).join("\n");
-	return `\n## Not covered\n\nWhat this pane shows that can't be declared, and why:\n\n<details>\n<summary>${items.length} settings</summary>\n\n${list}\n\n</details>\n`;
+	return `\n## Not covered\n\nWhat this pane shows that can't be declared, and why:\n\n<details>\n<summary>${items.length} ${items.length === 1 ? "setting" : "settings"}</summary>\n\n${list}\n\n</details>\n`;
 }
 
 function write(file, frontmatter, body) {

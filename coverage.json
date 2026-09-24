@@ -408,17 +408,12 @@
 	},
 	"notCovered": {
 		"Accessibility": {
-			"a page or section heading, not a setting": ["Alternate Control Methods", "Background sounds timer options", "Select Background Sound", "Audio", "Vocal Shortcuts", "Subtitles and Captioning", "Audio Descriptions", "Hearing Devices", "Keyboard", "Pointer Control", "Siri", "Read & Speak", "Zoom", "Mouse Options", "Trackpad Options", "Display", "Full Keyboard Access Options", "Hover Text Colors › Colors (Hover Text)", "Hover Text Settings", "Hover Typing Colors › Colors (Hover Typing)", "Hover Typing Settings", "Mouse And Trackpad › Mouse & Trackpad", "Pointer", "Switch Control Navigation › Navigation", "Switch Control Switches › Switches", "Switch Control Typing › Typing", "Text", "Virtual Keyboard Dwell › Dwell", "Virtual Keyboard Hot Corners › Dwell Corners", "Zoom Controls › Controls", "Zoom Follow Focus › Follow Focus", "Zoom Hotkey Config › Shortcuts", "Zoom Temp Modifiers Config › Modifiers for Temporary Actions"],
-			"an action or editor in System Settings, not a setting": ["Set Up (Vocal Shortcuts)", "Camera Options (Alternate pointer actions)", "Restore Defaults", "Camera Options (Head pointer)", "Set Up (Name Recognition)", "Play Sample", "Customize Audio", "Reset Colors", "Play Sample (Announcements)", "Edit pronunciations", "Panel Editor (Switch Control)", "Panel Editor (Keyboard)", "Open VoiceOver Tutorial", "Open VoiceOver Utility", "Voice Control Tutorial", "Delete All Custom Commands", "Export Custom Commands", "Import Custom Commands", "Delete All Vocabulary", "Export Vocabulary", "Import Vocabulary", "Size and Location (Zoom)", "Restore shortcuts and modifiers"],
 			"not shown on this Mac: System Settings hides it here, so what it stores can't be observed": ["Show generated subtitles", "In-App Live Captions", "Play system sounds", "Siri › Type to Siri", "Set range for rapid zooming in and out"],
-			"a setup flow or recorded content, not a value": ["Personal Voice", "Name Recognition", "Vocal Shortcuts › Enable Vocal Shortcuts"],
 			"synced through iCloud, not stored in preferences": ["Share across devices"],
 			"for touch screens; macOS shows it only with a touch-enabled device": ["Touch Accommodations"],
 			"per-headphone settings kept for the connected AirPods or Beats, not in preferences": ["Press and hold duration", "Noise Cancellation", "Press speed", "Tone volume", "Audio › Spatial audio follows head movements", "Headphones › Headphones, AirPods, Beats"],
-			"user content (phrases and categories typed in), not a setting": ["Add Category", "Categories", "Recent", "Saved", "Saved Phrases", "Commands", "Vocabulary"],
 			"stored as liveSpeechPreferredLanguage, but writing it doesn't change what System Settings shows; picking one can download a voice": ["System speech language (Live Speech)"],
 			"shown only with a mouse connected": ["Use inertia when scrolling (Mouse)", "Pointer Control › Use mouse for scrolling", "Pointer Control › Use inertia when scrolling with mouse"],
-			"a button that opens a sheet, not a setting": ["Navigation Timing", "Switch Timing"],
 			"Headphone Accommodations keeps an archived audio profile per audio route (com.apple.PersonalAudio), not declarable as values": ["Amplification", "Conversation Boost", "Optimization", "Media", "Ambient Noise Reduction", "Own Voice Amplification", "Phone", "Tune audio for", "Headphone Accommodations", "Tone", "Transparency Mode"],
 			"the field doesn't accept a value on this Mac (RTT needs a paired iPhone)": ["RTT Relay number"],
 			"asks for an administrator and stores its state outside readable preferences": ["Allow platform switching to control your computer"],
@@ -427,28 +422,17 @@
 			"picks one of the connected displays; per-display state": ["Choose Display"],
 			"shown only in picture-in-picture zoom": ["Zoom Appearance › Appearance (Zoom)"]
 		},
-		"Appearance": {
-			"search index entry for Liquid Glass": ["Button, menu, and window look"],
-			"search index entry covering Show scroll bars and Click in the scroll bar to": ["Scroll bar behavior"],
-			"search index entry for Sidebar icon size": ["Sidebar icons"],
-			"a link to another pane": ["More in Accessibility Settings…"]
-		},
 		"Apple Account": {
 			"Apple Account state, kept on Apple's servers": ["Apple Account › Apple ID", "Com.apple.Apple Media Services UI.Spyglass Purchases › Media and Purchases", "ICloud › iCloud"]
 		},
-		"Apple Intelligence & Siri": {
-			"a page, not a setting": ["Generative Assistant Settings View › Extended Apple Intelligence & Siri"]
-		},
 		"Battery": {
-			"information, not a setting": ["Batteryhealth › Battery Health", "Current Source › Battery"],
 			"only with a UPS attached": ["Current Source › UPS"],
 			"only on Intel Macs with two GPUs": ["Options › Automatic Graphics Switching"],
 			"not kept in a readable preference file; changing it writes none": ["Options… › Optimize video streaming while on battery"],
 			"not offered on Apple silicon (pmset powernap)": ["Options › Power Nap"]
 		},
 		"Bluetooth": {
-			"Bluetooth on or off changes in daily use": ["Bluetooth", "Bluetooth Power"],
-			"per paired device, not a setting": ["Bluetooth audio", "Bluetooth devices", "Bluetooth serial ports", "Bluetooth Setup Assistant"]
+			"Bluetooth on or off changes in daily use": ["Bluetooth", "Bluetooth Power"]
 		},
 		"Desktop & Dock": {
 			"set through LaunchServices, and macOS asks the user to confirm a new default browser": ["Default web browser"]
@@ -457,27 +441,21 @@
 			"changes often; a declared value would fight the user": ["Ambience Section › Display Brightness"],
 			"per display hardware state, kept by the display system rather than in preferences": ["Arrangement Section › Arrange multiple displays", "Arrangement Section › Relocate menu bar", "Characteristic Section › Overscan", "Characteristic Section › Screen Rotation", "Characteristic Section › Underscan", "Displays Section › Display Settings", "Miscellaneous Section › High Dynamic Range", "Miscellaneous Section › Refresh rate", "Profile Section › Display colors and calibration", "Profile Section › Display Presets", "Resolution Section › Display Options", "Resolution Section › Screen Resolution"],
 			"kept by CoreBrightness, not in preferences": ["Automatically adjust brightness on the main display"],
-			"no preference key found in the system libraries, and switching it changes no preference file": ["Advanced › Automatically reconnect to any nearby Mac or iPad"],
-			"action (connecting an iPad), not a setting": ["Sidecar Section › Sidecar"]
+			"no preference key found in the system libraries, and switching it changes no preference file": ["Advanced › Automatically reconnect to any nearby Mac or iPad"]
 		},
 		"Game Center": {
-			"kept with the Game Center account on Apple's servers": ["Activity Sharing", "Allow Request from Contacts Only", "Help Friends Find You", "Nearby Players", "Share Friends List"],
-			"a button, not a setting": ["ConnectWithFriendsDetailsButton"]
+			"kept with the Game Center account on Apple's servers": ["Activity Sharing", "Allow Request from Contacts Only", "Help Friends Find You", "Nearby Players", "Share Friends List"]
 		},
 		"General": {
-			"information about this Mac, not a setting": ["About › About Section › About", "About › General Section › AppleCare Coverage", "About › General Section › Graphics", "About › General Section › Memory", "About › General Section › PCI Cards", "About › General Section › Processor", "About › General Section › Serial Number", "About › Legal Section › Legal & Warranty", "About › Legal Section › System Report", "About › Software Section › Software"],
 			"use nix-darwin's networking.computerName": ["About › General Section › Name"],
 			"kept by the AirPlay receiver outside readable preferences; changing it writes no preference file": ["AirDrop & Continuity › Allow AirPlay for"],
-			"opens iPhone Mirroring; pairing is per device": ["AirDrop & Continuity › iPhone Mirroring"],
-			"the current date and time, not a preference": ["Date & Time › Date Time Pref › Set date and time"],
 			"app extensions are enabled per installed app (pluginkit), not a preference": ["Login Items › Extension Items › Actions", "Login Items › Extension Items › Extensions", "Login Items › Extension Items › Finder", "Login Items › Extension Items › Password AutoFill Extensions", "Login Items › Extension Items › Share menu items", "Login Items › Extension Items › Touch Bar"],
 			"allowed per app by backgroundtaskmanagementd, not a preference": ["Login Items › Startup Items Pref › App Background Activity"],
 			"login items are launchd agents; declare them with nix-darwin or home-manager launchd options": ["Login Items › Startup Items Pref › Open at Login"],
 			"use nix-darwin's networking.hostName and networking.localHostName": ["Sharing › Hostname"],
 			"needs a source and target interfaces configured first; switching it on can take down networking, so it isn't automated": ["Sharing › Internet › Internet sharing"],
 			"use nix-darwin's services.openssh.enable": ["Sharing › Remote login"],
-			"stores the account password for SMB; a password doesn't belong in a Nix configuration": ["Sharing › Windows file sharing"],
-			"an action, not a setting": ["Transfer or Reset › Primary › Erase all contents and settings", "Transfer or Reset › Primary › Transfer information from another Mac or PC"]
+			"stores the account password for SMB; a password doesn't belong in a Nix configuration": ["Sharing › Windows file sharing"]
 		},
 		"Headphones": {
 			"per paired headphones, kept with the device; only shown while they're connected": ["Connect to this Mac", "Find My", "Listening Mode", "Microphone", "Personalized Spatial Audio", "Press and Hold"]
@@ -488,53 +466,35 @@
 			"not shown in Journal's settings on this Mac (needs Journaling Suggestions)": ["Show Suggested Moments"]
 		},
 		"Keyboard": {
-			"the Accessibility category of Keyboard Shortcuts…; each shortcut is its own entry": ["Accessibility › Accessibility keyboard shortcuts"],
 			"only shown with an input source that isn't Latin; not on this Mac": ["Caps Lock Input Sources › Use Caps Lock to switch input sources"],
 			"kept per connected keyboard": ["Customize Modifier Keys › Customize modifier keys", "Modifier Keys › Reset modifier keys"],
 			"turning Dictation on asks for consent to send audio to Apple": ["Dictation"],
 			"keyboard brightness changes often and belongs to the keyboard": ["Illuminate keyboard", "Keyboard sensitivity"],
-			"the same switch as Menu Bar > Menu Bar Controls > Text Input (applications.systemSettings.menuBar.textInput)": ["Input Sources › Show input menu in menu bar"],
-			"no longer in System Settings on macOS 27": ["Input Sources › Show keyboard and emoji viewers in menu bar"],
-			"an action, not a setting": ["Set up Bluetooth keyboard"],
-			"Keyboard Shortcuts… itself; each shortcut is its own entry": ["Shortcuts › App and system keyboard shortcuts"],
-			"the Spotlight category of Keyboard Shortcuts…; each shortcut is its own entry": ["Spotlight › Spotlight keyboard shortcuts"],
 			"kept in the KeyboardServices database and synced through iCloud, not in a preference file": ["Text Replacements › Text replacements"],
 			"only on Macs with a Touch Bar; not shown on this Mac": ["Touch Bar Settings › Customize Touch Bar or Control Strip", "Touch Bar Settings › Touch Bar typing suggestions"]
 		},
 		"Lock Screen": {
-			"no longer in Lock Screen; the screen saver and clock moved to Wallpaper > Screen Saver… and Clock Appearance…": ["Large Clock › Large clock", "Screen Saver › Start Screen Saver when inactive", "Start Screen Saver"],
-			"the delay is kept in the keybag and changing it needs the user's password (sysadminctl -screenLock … -password)": ["Password › Require password to wake computer"],
-			"a link to Privacy & Security, not a setting": ["Password › Security settings"]
+			"the delay is kept in the keybag and changing it needs the user's password (sysadminctl -screenLock … -password)": ["Password › Require password to wake computer"]
 		},
 		"Menu Bar": {
-			"a Control Center control on macOS 27, not a menu bar control; part of menuBar.layout": ["Accessibility Shortcuts", "Hearing", "Music Recognition", "Stage Manager"],
-			"covered by the per-module options with a Show When Active / Always Show menu": ["Control Center Module › Always Show in Menu Bar"],
-			"covered by the per-module options (wifi, focusModes, …)": ["Control Center Module › Show in Menu Bar"],
 			"Weather's menu item is its own app, started through the login window's persistent apps rather than a preference": ["Menu Bar Controls › Weather"]
 		},
 		"Network": {
 			"per network service configuration, kept in SystemConfiguration's preferences as root and changed with networksetup; nix-darwin's networking options cover DNS, search domains and known services": ["6to4 › 6to4 address", "6to4 › Relay address", "802.1X", "802.1X authentication", "802.1X certificate", "EAP-FAST", "LEAP", "MD5", "PEAP", "TLS", "TTLS", "Advanced Ethernet › Duplex", "Advanced Ethernet › Ethernet ID", "Advanced Ethernet › Ethernet speed", "Advanced Ethernet › MTU", "Advanced Modem › Advanced modem options", "Advanced VPN › Advanced VPN options", "Advanced Wi-Fi › Wi-Fi MAC address", "Bluetooth › Bluetooth account and password", "Bluetooth › Bluetooth networking", "Bluetooth › Connect or disconnect Bluetooth", "Bond › Bond status", "Bond › Manage Link Aggregates", "DNS domains", "DNS servers", "Ethernet › Ethernet options", "Ethernet › Search domains", "Modem › Connect or disconnect modem", "Modem › Modem account and password", "Modem › Modem options", "Modem › Show modem status in menu bar", "Networking services", "PPP", "PPP disconnect settings", "PPPo E › PPPoE account and password", "PPPo E › PPPoE service", "PPPo E › PPPoE status", "Proxies", "TCP/IP › IPv4", "TCP/IP › IPv6", "TCP/IP", "Thunderbolt › Configure Thunderbolt networking", "Thunderbolt › IP Over Thunderbolt", "Virtual Interfaces › Manage virtual interfaces", "VLAN", "Connect or disconnect VPN", "VPN on Demand", "VPN options", "NetBIOS", "Windows networking", "WINS server", "Workgroup", "Connect or disconnect WWAN", "WWAN account and password", "WWAN status"]
 		},
 		"Printers & Scanners": {
-			"only offers a choice once printers are added; Last Printer Used otherwise": ["Default printer"],
-			"per printer or a help topic, not a setting": ["Fax › Fax settings", "Print › Setting up printers", "Scan › Setting up scanners", "Share › Sharing a printer"]
+			"only offers a choice once printers are added; Last Printer Used otherwise": ["Default printer"]
 		},
 		"Privacy & Security": {
 			"turning FileVault on or off needs a user's password and a recovery key": ["File Vault › FileVault"],
-			"a report of recent location use, not a setting": ["Location Access Report"],
 			"needs a restart and the user's confirmation": ["Lockdown Mode"],
 			"kept in the TCC database, which SIP protects; only an MDM privacy preferences profile can grant it": ["Allow assistive applications to control the computer", "Allow applications to access all user files", "Allow applications to update or delete other apps", "Allow applications to record your system audio", "Allow applications to automate your Mac", "Allow applications to access Bluetooth", "Allow applications to access Calendar", "Allow applications to access the camera", "Allow applications to access Contacts", "Developer Tools › Allow applications to use developer tools", "Allow applications to access user files", "Allow applications to access your Focus", "Allow applications to access Home data", "Allow applications to monitor keyboard input", "Allow applications to access your location", "Allow applications to access Media Library", "Allow applications to access the microphone", "Allow applications to access your motion and fitness activity", "Allow web browsers to use passkeys", "Allow applications to access Photos", "Allow applications to access Reminders", "Allow applications to access the contents of your screen and audio through Remote Desktop", "Allow applications to record your screen", "Allow applications to access speech recognition"],
 			"Sensitive Content Warning is kept by Screen Time's managed settings, not in a preference file": ["Allow applications to detect nudity"],
 			"kept by locationd in a root-only, SIP-protected store": ["System services can access your location"],
-			"not kept in a preference file; changing it needs an administrator in System Settings": ["Security › Allow accessories to connect", "Security › Gatekeeper"],
-			"shows install status only; there's nothing to set": ["Security Improvements › Background Security Improvements"],
-			"a link to the section, not a setting": ["Security › Security settings"]
+			"not kept in a preference file; changing it needs an administrator in System Settings": ["Security › Allow accessories to connect", "Security › Gatekeeper"]
 		},
 		"Screen Time": {
 			"kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead": ["Path=always-allowed › Choose always allowed apps in Screen Time", "Path=app-limits › Choose app limits in Screen Time", "Path=app-usage › Show app usage report in Screen Time", "Path=communication-limits › Change communication limits in Screen Time", "Path=communication-limits › Set communication limits in Screen Time", "Path=content-and-privacy › Choose Screen Time content and privacy settings", "Path=content-and-privacy › Restrict explicit content", "Path=downtime › Schedule downtime in Screen Time", "Path=notifications › Show notifications report in Screen Time", "Path=pickups › Show device pickups report in Screen Time", "Path=requests › Show Screen Time requests", "Path=screen-distance › Configure Screen Distance in Screen Time"]
-		},
-		"Sound": {
-			"changes with the connected devices and during use; not a configuration setting": ["Balance › Output balance", "Effects › Alerts and sound effects", "Input › Sound input", "Mute › Mute the sound", "Output › AirPlay audio streaming", "Output › Sound output", "Volume › Sound volume"]
 		},
 		"Spotlight": {
 			"kept in /System/Volumes/Data/.Spotlight-V100 (root-only) by mds; not verified with root yet": ["Privacy › Block search of private files"]
@@ -554,14 +514,80 @@
 		},
 		"Wallet & Apple Pay": {
 			"kept with the Apple Account": ["Add Orders to Wallet"],
-			"personal contact details for Apple Pay, kept with the Apple Account": ["Email", "Phone", "Phone > Transaction defaults", "Shipping Address"],
+			"personal contact details for Apple Pay, kept with the Apple Account": ["Email", "Phone", "Phone > Transaction defaults", "Shipping Address"]
+		},
+		"Wi‑Fi": {
+			"Wi-Fi on or off changes in daily use and belongs to the hardware": ["Wi‑Fi"]
+		}
+	},
+	"notSettings": {
+		"Accessibility": {
+			"a page or section heading, not a setting": ["Alternate Control Methods", "Background sounds timer options", "Select Background Sound", "Audio", "Vocal Shortcuts", "Subtitles and Captioning", "Audio Descriptions", "Hearing Devices", "Keyboard", "Pointer Control", "Siri", "Read & Speak", "Zoom", "Mouse Options", "Trackpad Options", "Display", "Full Keyboard Access Options", "Hover Text Colors › Colors (Hover Text)", "Hover Text Settings", "Hover Typing Colors › Colors (Hover Typing)", "Hover Typing Settings", "Mouse And Trackpad › Mouse & Trackpad", "Pointer", "Switch Control Navigation › Navigation", "Switch Control Switches › Switches", "Switch Control Typing › Typing", "Text", "Virtual Keyboard Dwell › Dwell", "Virtual Keyboard Hot Corners › Dwell Corners", "Zoom Controls › Controls", "Zoom Follow Focus › Follow Focus", "Zoom Hotkey Config › Shortcuts", "Zoom Temp Modifiers Config › Modifiers for Temporary Actions"],
+			"an action or editor in System Settings, not a setting": ["Set Up (Vocal Shortcuts)", "Camera Options (Alternate pointer actions)", "Restore Defaults", "Camera Options (Head pointer)", "Set Up (Name Recognition)", "Play Sample", "Customize Audio", "Reset Colors", "Play Sample (Announcements)", "Edit pronunciations", "Panel Editor (Switch Control)", "Panel Editor (Keyboard)", "Open VoiceOver Tutorial", "Open VoiceOver Utility", "Voice Control Tutorial", "Delete All Custom Commands", "Export Custom Commands", "Import Custom Commands", "Delete All Vocabulary", "Export Vocabulary", "Import Vocabulary", "Size and Location (Zoom)", "Restore shortcuts and modifiers"],
+			"a setup flow or recorded content, not a value": ["Personal Voice", "Name Recognition", "Vocal Shortcuts › Enable Vocal Shortcuts"],
+			"user content (phrases and categories typed in), not a setting": ["Add Category", "Categories", "Recent", "Saved", "Saved Phrases", "Commands", "Vocabulary"],
+			"a button that opens a sheet, not a setting": ["Navigation Timing", "Switch Timing"]
+		},
+		"Appearance": {
+			"search index entry for Liquid Glass": ["Button, menu, and window look"],
+			"search index entry covering Show scroll bars and Click in the scroll bar to": ["Scroll bar behavior"],
+			"search index entry for Sidebar icon size": ["Sidebar icons"],
+			"a link to another pane": ["More in Accessibility Settings…"]
+		},
+		"Apple Intelligence & Siri": {
+			"a page, not a setting": ["Generative Assistant Settings View › Extended Apple Intelligence & Siri"]
+		},
+		"Battery": {
+			"information, not a setting": ["Batteryhealth › Battery Health", "Current Source › Battery"]
+		},
+		"Bluetooth": {
+			"per paired device, not a setting": ["Bluetooth audio", "Bluetooth devices", "Bluetooth serial ports", "Bluetooth Setup Assistant"]
+		},
+		"Displays": {
+			"action (connecting an iPad), not a setting": ["Sidecar Section › Sidecar"]
+		},
+		"Game Center": {
+			"a button, not a setting": ["ConnectWithFriendsDetailsButton"]
+		},
+		"General": {
+			"information about this Mac, not a setting": ["About › About Section › About", "About › General Section › AppleCare Coverage", "About › General Section › Graphics", "About › General Section › Memory", "About › General Section › PCI Cards", "About › General Section › Processor", "About › General Section › Serial Number", "About › Legal Section › Legal & Warranty", "About › Legal Section › System Report", "About › Software Section › Software"],
+			"opens iPhone Mirroring; pairing is per device": ["AirDrop & Continuity › iPhone Mirroring"],
+			"the current date and time, not a preference": ["Date & Time › Date Time Pref › Set date and time"],
+			"an action, not a setting": ["Transfer or Reset › Primary › Erase all contents and settings", "Transfer or Reset › Primary › Transfer information from another Mac or PC"]
+		},
+		"Keyboard": {
+			"the Accessibility category of Keyboard Shortcuts…; each shortcut is its own entry": ["Accessibility › Accessibility keyboard shortcuts"],
+			"the same switch as Menu Bar > Menu Bar Controls > Text Input (applications.systemSettings.menuBar.textInput)": ["Input Sources › Show input menu in menu bar"],
+			"no longer in System Settings on macOS 27": ["Input Sources › Show keyboard and emoji viewers in menu bar"],
+			"an action, not a setting": ["Set up Bluetooth keyboard"],
+			"Keyboard Shortcuts… itself; each shortcut is its own entry": ["Shortcuts › App and system keyboard shortcuts"],
+			"the Spotlight category of Keyboard Shortcuts…; each shortcut is its own entry": ["Spotlight › Spotlight keyboard shortcuts"]
+		},
+		"Lock Screen": {
+			"no longer in Lock Screen; the screen saver and clock moved to Wallpaper > Screen Saver… and Clock Appearance…": ["Large Clock › Large clock", "Screen Saver › Start Screen Saver when inactive", "Start Screen Saver"],
+			"a link to Privacy & Security, not a setting": ["Password › Security settings"]
+		},
+		"Menu Bar": {
+			"a Control Center control on macOS 27, not a menu bar control; part of menuBar.layout": ["Accessibility Shortcuts", "Hearing", "Music Recognition", "Stage Manager"],
+			"covered by the per-module options with a Show When Active / Always Show menu": ["Control Center Module › Always Show in Menu Bar"],
+			"covered by the per-module options (wifi, focusModes, …)": ["Control Center Module › Show in Menu Bar"]
+		},
+		"Printers & Scanners": {
+			"per printer or a help topic, not a setting": ["Fax › Fax settings", "Print › Setting up printers", "Scan › Setting up scanners", "Share › Sharing a printer"]
+		},
+		"Privacy & Security": {
+			"a report of recent location use, not a setting": ["Location Access Report"],
+			"shows install status only; there's nothing to set": ["Security Improvements › Background Security Improvements"],
+			"a link to the section, not a setting": ["Security › Security settings"]
+		},
+		"Sound": {
+			"changes with the connected devices and during use; not a configuration setting": ["Balance › Output balance", "Effects › Alerts and sound effects", "Input › Sound input", "Mute › Mute the sound", "Output › AirPlay audio streaming", "Output › Sound output", "Volume › Sound volume"]
+		},
+		"Wallet & Apple Pay": {
 			"the pane itself": ["Wallet › Wallet & Apple Pay"]
 		},
 		"Wallpaper": {
 			"kept in WallpaperAgent's store with the wallpaper; captured and restored by applications.systemSettings.wallpaper.wallpaper": ["Show screen saver as wallpaper on main display", "Show screen saver on all Spaces", "Show wallpaper as screen saver on main display"]
-		},
-		"Wi‑Fi": {
-			"Wi-Fi on or off changes in daily use and belongs to the hardware": ["Wi‑Fi"]
 		}
 	}
 }

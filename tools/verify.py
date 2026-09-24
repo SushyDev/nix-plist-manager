@@ -143,7 +143,8 @@ def save_coverage(coverage: dict):
 	COVERAGE.write_text(
 		f'{{\n\t"verified": {{\n{verified}\n\t}},\n'
 		f'\t"todo": {{\n{grouped(coverage["todo"])}\n\t}},\n'
-		f'\t"notCovered": {{\n{grouped(coverage["notCovered"])}\n\t}}\n}}\n')
+		f'\t"notCovered": {{\n{grouped(coverage["notCovered"])}\n\t}},\n'
+		f'\t"notSettings": {{\n{grouped(coverage["notSettings"])}\n\t}}\n}}\n')
 
 
 def has_root() -> bool:
@@ -431,7 +432,7 @@ def cmd_gaps(args):
 			labels = [label for case in spec["expect"] for label in case["controls"]] + spec["open"]
 			parts = [re.sub(r"^\w+:|#\d+$", "", part) for label in labels for part in re.split(r" > | \+ ", label)]
 			known.setdefault(panes[spec["pane"]], set()).update(map(normalize, ui[1:] + parts))
-	for listed in (coverage["todo"], coverage["notCovered"]):
+	for listed in (coverage["todo"], coverage["notCovered"], coverage["notSettings"]):
 		for pane, reasons in listed.items():
 			known.setdefault(pane, set()).update(normalize(p) for titles in reasons.values() for t in titles for p in t.split(" › "))
 
