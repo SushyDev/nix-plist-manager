@@ -29,6 +29,8 @@ let
 	setSwitches = names: value: lib.filterAttrs (_: v: v != null) (lib.mapAttrs (name: _: value.${name} or null) names);
 
 	bitSum = lib.foldl' builtins.bitOr 0;
+
+	writeSingle = keys: value: [ (ops.write (single keys) value) ];
 in
 rec {
 	absent = { _type = "absent"; };
@@ -38,7 +40,7 @@ rec {
 		type = lib.types.bool;
 		choices = [];
 		examples = [ true false ];
-		encode = keys: value: [ (ops.write (single keys) value) ];
+		encode = writeSingle;
 		fromName = name: name == "true";
 	};
 
@@ -60,7 +62,7 @@ rec {
 		type = lib.types.str;
 		choices = [];
 		examples = [ "…" ];
-		encode = keys: value: [ (ops.write (single keys) value) ];
+		encode = writeSingle;
 		fromName = name: name;
 	};
 
@@ -70,7 +72,7 @@ rec {
 		type = lib.types.listOf lib.types.str;
 		choices = [];
 		examples = [ [ "…" ] ];
-		encode = keys: value: [ (ops.write (single keys) value) ];
+		encode = writeSingle;
 		fromName = builtins.fromJSON;
 	};
 
@@ -162,7 +164,7 @@ rec {
 				mask = bitSum (lib.attrValues managed);
 				set = bitSum (lib.attrValues (lib.filterAttrs (name: _: value.${name}) managed));
 			in
-			lib.optional (mask != 0) (ops.writeFlags (single keys) mask set // { absent = absentValue; });
+			lib.optional (mask != 0) (ops.writeFlags (single keys) mask set absentValue);
 		fromName = builtins.fromJSON;
 	};
 

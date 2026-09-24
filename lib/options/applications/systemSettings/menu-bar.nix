@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting global user byHost bool enum inDict member storedAs snapshot restarts onlyWhen appliesThrough live;
+	inherit (settingsLib) setting global user byHost bool enum inDict member storedAs snapshot restarts onlyWhen appliesThrough live shows;
 
 	pane = "com.apple.settings.controlCenter";
 	option = name: "applications.systemSettings.menuBar.${name}";
@@ -18,10 +18,7 @@ let
 			inherit pane;
 			open = [ "Clock Options…" ];
 			operate = [ "click" control ];
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 
@@ -55,10 +52,7 @@ let
 		behaviors = [ (restarts "ControlCenter") ];
 		verify = {
 			inherit pane;
-			expect = {
-				true = { ${checkbox id} = 1; };
-				false = { ${checkbox id} = 0; };
-			};
+			expect = shows.checkbox (checkbox id);
 		};
 	};
 in
@@ -78,12 +72,7 @@ in
 		};
 		verify = {
 			inherit pane;
-			expect = {
-				Always = { autohide-menubar = "Always"; };
-				"On Desktop Only" = { autohide-menubar = "On Desktop Only"; };
-				"In Full Screen Only" = { autohide-menubar = "In Full Screen Only"; };
-				Never = { autohide-menubar = "Never"; };
-			};
+			expect = shows.choice "autohide-menubar" [ "Always" "On Desktop Only" "In Full Screen Only" "Never" ];
 		};
 	};
 
@@ -95,10 +84,7 @@ in
 			inherit pane;
 			# The switch sits under the window's title bar, where a click doesn't reach it.
 			operate = [ "press" "Show menu bar background" ];
-			expect = {
-				true = { "Show menu bar background" = 1; };
-				false = { "Show menu bar background" = 0; };
-			};
+			expect = shows.checkbox "Show menu bar background";
 		};
 	};
 
@@ -112,10 +98,7 @@ in
 				inherit pane;
 				open = [ "Clock Options…" ];
 				operate = [ "click" "show-date" ];
-				expect = {
-					true = { show-date = 1; };
-					false = { show-date = 0; };
-				};
+				expect = shows.checkbox "show-date";
 			};
 		};
 
@@ -134,10 +117,7 @@ in
 				inherit pane;
 				open = [ "Clock Options…" ];
 				operate = [ [ "press" "AXRadioButton:Analog" ] [ "press" "AXRadioButton:Digital" ] ];
-				expect = {
-					Digital = { "AXRadioButton:Digital" = 1; };
-					Analog = { "AXRadioButton:Analog" = 1; };
-				};
+				expect = shows.radio [ "Digital" "Analog" ];
 			};
 		};
 
@@ -198,10 +178,7 @@ in
 		verify = {
 			inherit pane;
 			settle = 5;
-			expect = {
-				true = { ${checkbox "timeMachine"} = 1; };
-				false = { ${checkbox "timeMachine"} = 0; };
-			};
+			expect = shows.checkbox (checkbox "timeMachine");
 		};
 	};
 	keyboardBrightness = module { ui = "Keyboard Brightness"; key = "KeyboardBrightness"; id = "keyboardBrightness"; shown = 2; hidden = 8; };
@@ -226,10 +203,7 @@ in
 		behaviors = [ (restarts "ControlCenter") ];
 		verify = {
 			inherit pane;
-			expect = {
-				true = { ${checkbox "siri"} = 1; };
-				false = { ${checkbox "siri"} = 0; };
-			};
+			expect = shows.checkbox (checkbox "siri");
 		};
 	};
 
@@ -240,10 +214,7 @@ in
 		behaviors = [ (restarts "TextInputMenuAgent") ];
 		verify = {
 			inherit pane;
-			expect = {
-				true = { ${checkbox "textInput"} = 1; };
-				false = { ${checkbox "textInput"} = 0; };
-			};
+			expect = shows.checkbox (checkbox "textInput");
 		};
 	};
 
@@ -268,10 +239,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "Battery Options…" ];
-				expect = {
-					true = { show-battery-percentage-switch = 1; };
-					false = { show-battery-percentage-switch = 0; };
-				};
+				expect = shows.checkbox "show-battery-percentage-switch";
 			};
 		};
 
@@ -283,10 +251,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "Battery Options…" ];
-				expect = {
-					"When Active" = { "Show Energy Mode" = "When Active"; };
-					Always = { "Show Energy Mode" = "Always"; };
-				};
+				expect = shows.choice "Show Energy Mode" [ "When Active" "Always" ];
 			};
 		};
 	};
@@ -299,10 +264,7 @@ in
 		verify = {
 			inherit pane;
 			operate = [ "click" "Show suggestions in Control Gallery" ];
-			expect = {
-				true = { "Show suggestions in Control Gallery" = 1; };
-				false = { "Show suggestions in Control Gallery" = 0; };
-			};
+			expect = shows.checkbox "Show suggestions in Control Gallery";
 		};
 	};
 
@@ -321,11 +283,7 @@ in
 		];
 		verify = {
 			inherit pane;
-			expect = {
-				None = { recents = "None"; };
-				"5" = { recents = "5"; };
-				"10" = { recents = "10"; };
-			};
+			expect = shows.choice "recents" [ "None" "5" "10" ];
 		};
 	};
 

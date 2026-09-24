@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting global user bool storedAs enum number inDict hotKey activatesShortcuts shortcuts ops live appliesThrough strings;
+	inherit (settingsLib) setting global user bool storedAs enum number inDict hotKey activatesShortcuts shortcuts ops live appliesThrough strings shows;
 
 	pane = "com.apple.settings.keyboard";
 
@@ -9,10 +9,7 @@ let
 		ui = [ "System Settings" "Keyboard" ] ++ ui;
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:${control}" = 1; };
-				false = { "AXCheckBox:${control}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${control}";
 		};
 	};
 
@@ -100,10 +97,7 @@ in
 		};
 		verify = {
 			inherit pane;
-			expect = {
-				"Show Emoji & Symbols" = { "AXPopUpButton:Press 🌐︎ key to" = "Show Emoji & Symbols"; };
-				"Change Input Source" = { "AXPopUpButton:Press 🌐︎ key to" = "Change Input Source"; };
-			};
+			expect = shows.choice "AXPopUpButton:Press 🌐︎ key to" [ "Show Emoji & Symbols" "Change Input Source" ];
 		};
 	};
 
@@ -151,10 +145,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "Edit…" ];
-				expect = {
-					true = { "AXCheckBox:Correct spelling automatically" = 1; };
-					false = { "AXCheckBox:Correct spelling automatically" = 0; };
-				};
+				expect = shows.checkbox "AXCheckBox:Correct spelling automatically";
 			};
 		};
 
@@ -173,10 +164,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "Edit…" ];
-				expect = {
-					true = { "AXCheckBox:Use smart quotes and dashes" = 1; };
-					false = { "AXCheckBox:Use smart quotes and dashes" = 0; };
-				};
+				expect = shows.checkbox "AXCheckBox:Use smart quotes and dashes";
 			};
 		};
 	};

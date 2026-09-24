@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user system file byHost bool enum storedAs restarts appliesThrough;
+	inherit (settingsLib) setting user system file byHost bool enum storedAs restarts appliesThrough shows;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.sharing" ];
@@ -28,10 +28,7 @@ let
 		reads.command = "${reads} && echo true || echo false";
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:${ui}Toggle" = 1; };
-				false = { "AXCheckBox:${ui}Toggle" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${ui}Toggle";
 		};
 	};
 
@@ -55,10 +52,7 @@ let
 		verify = {
 			inherit pane;
 			open = open ++ [ "${name}Toggle.infoButton" ];
-			expect = {
-				"All users" = { "AXPopUpButton:Allow access for" = "All users"; };
-				"Only these users" = { "AXPopUpButton:Allow access for" = "Only these users"; };
-			};
+			expect = shows.choice "AXPopUpButton:Allow access for" [ "All users" "Only these users" ];
 		};
 	};
 
@@ -82,10 +76,7 @@ in
 			behaviors = [ (restarts "sharingd") ];
 			verify = {
 				inherit pane open;
-				expect = {
-					true = { "AXCheckBox:Bluetooth SharingToggle" = 1; };
-					false = { "AXCheckBox:Bluetooth SharingToggle" = 0; };
-				};
+				expect = shows.checkbox "AXCheckBox:Bluetooth SharingToggle";
 			};
 		};
 
@@ -105,10 +96,7 @@ in
 			verify = {
 				inherit pane;
 				open = open ++ [ "Bluetooth SharingToggle.infoButton" ];
-				expect = {
-					"Accept and Save" = { "AXPopUpButton:When receiving items" = "Accept and Save"; };
-					"Ask What to Do" = { "AXPopUpButton:When receiving items" = "Ask What to Do"; };
-				};
+				expect = shows.choice "AXPopUpButton:When receiving items" [ "Accept and Save" "Ask What to Do" ];
 			};
 		};
 
@@ -120,10 +108,7 @@ in
 			verify = {
 				inherit pane;
 				open = open ++ [ "Bluetooth SharingToggle.infoButton" ];
-				expect = {
-					"Accept and Save" = { "AXPopUpButton:When other devices browse" = "Accept and Save"; };
-					"Never Allow" = { "AXPopUpButton:When other devices browse" = "Never Allow"; };
-				};
+				expect = shows.choice "AXPopUpButton:When other devices browse" [ "Accept and Save" "Never Allow" ];
 			};
 		};
 	};
@@ -178,10 +163,7 @@ in
 		verify = {
 			inherit pane;
 			open = open ++ [ "Remote ManagementToggle.infoButton" ];
-			expect = {
-				"All users" = { "AXPopUpButton:Allow access for" = "All users"; };
-				"Only these users" = { "AXPopUpButton:Allow access for" = "Only these users"; };
-			};
+			expect = shows.choice "AXPopUpButton:Allow access for" [ "All users" "Only these users" ];
 		};
 	};
 
@@ -208,10 +190,7 @@ in
 			verify = {
 				inherit pane;
 				open = open ++ [ "Content CachingToggle.infoButton" ];
-				expect = {
-					true = { "AXCheckBox:Internet Connection" = 1; };
-					false = { "AXCheckBox:Internet Connection" = 0; };
-				};
+				expect = shows.checkbox "AXCheckBox:Internet Connection";
 			};
 		};
 	};

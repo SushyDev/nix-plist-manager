@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user bool enum snapshot restarts appliesThrough;
+	inherit (settingsLib) setting user bool enum snapshot restarts appliesThrough shows;
 
 	pane = "com.apple.settings.notifications";
 	domain = "~/Library/Group Containers/group.com.apple.usernoted/Library/Preferences/group.com.apple.usernoted";
@@ -23,10 +23,7 @@ let
 		behaviors = [ (appliesThrough (dndPreference entry)) restartsUsernoted ];
 		verify = {
 			inherit pane;
-			expect = {
-				true = { "AXCheckBox:${control}" = 1; };
-				false = { "AXCheckBox:${control}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${control}";
 		};
 	};
 in
@@ -39,10 +36,7 @@ in
 			behaviors = [ restartsUsernoted ];
 			verify = {
 				inherit pane;
-				expect = {
-					Always = { "AXPopUpButton:show-previews" = "Always"; };
-					"When Unlocked" = { "AXPopUpButton:show-previews" = "When Unlocked"; };
-				};
+				expect = shows.choice "AXPopUpButton:show-previews" [ "Always" "When Unlocked" ];
 			};
 		};
 
@@ -66,10 +60,7 @@ in
 			behaviors = [ (appliesThrough (choice: dndPreference "dndMirrored" (choice == "Allow Notifications"))) restartsUsernoted ];
 			verify = {
 				inherit pane;
-				expect = {
-					"Allow Notifications" = { "AXPopUpButton:allow-when-sharing" = "Allow Notifications"; };
-					"Notifications Off" = { "AXPopUpButton:allow-when-sharing" = "Notifications Off"; };
-				};
+				expect = shows.choice "AXPopUpButton:allow-when-sharing" [ "Allow Notifications" "Notifications Off" ];
 			};
 		};
 	};

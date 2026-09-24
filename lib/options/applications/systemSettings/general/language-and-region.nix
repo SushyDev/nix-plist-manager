@@ -1,14 +1,13 @@
 { lib, settingsLib, ... }:
 # System Settings deletes a key when the choice matches the region's default; these options always write it so the result doesn't depend on the region.
 let
-	inherit (settingsLib) setting global bool text strings enum ops;
+	inherit (settingsLib) setting global bool text strings enum ops shows;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.languageAndRegion" ];
 
 	dictionaries = lib.mapAttrs (_: dictionary: { value = dictionary; });
 
-	shows = control: labels: lib.genAttrs labels (label: { ${control} = label; });
 
 	# System Settings stores U+202F NARROW NO-BREAK SPACE for a space group separator; labels here use a plain space.
 	space = " ";
@@ -80,7 +79,7 @@ in
 			[ "Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" ])));
 		verify = {
 			inherit pane open;
-			expect = shows "AXPopUpButton:first-weekday" [ "Monday" "Sunday" ];
+			expect = shows.choice "AXPopUpButton:first-weekday" [ "Monday" "Sunday" ];
 		};
 	};
 
@@ -100,7 +99,7 @@ in
 		}));
 		verify = {
 			inherit pane open;
-			expect = shows "AXPopUpButton:date-format" [ "19/08/2026" "2026-08-19" ];
+			expect = shows.choice "AXPopUpButton:date-format" [ "19/08/2026" "2026-08-19" ];
 		};
 	};
 
@@ -115,7 +114,7 @@ in
 		});
 		verify = {
 			inherit pane open;
-			expect = shows "AXPopUpButton:number-format" [ "1,234,567.89" "1.234.567,89" ];
+			expect = shows.choice "AXPopUpButton:number-format" [ "1,234,567.89" "1.234.567,89" ];
 		};
 	};
 
@@ -125,10 +124,7 @@ in
 		value = bool;
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:live-text" = 1; };
-				false = { "AXCheckBox:live-text" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:live-text";
 		};
 	};
 

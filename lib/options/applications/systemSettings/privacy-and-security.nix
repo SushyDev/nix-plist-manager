@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user system file mkKey bool number appliesThrough ops;
+	inherit (settingsLib) setting user system file mkKey bool number appliesThrough ops shows;
 
 	pane = "com.apple.settings.privacyAndSecurity";
 
@@ -50,10 +50,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "AXButton:Advanced…" ];
-				expect = {
-					true = { "AXCheckBox:PreferenceLock_Toggle" = 1; };
-					false = { "AXCheckBox:PreferenceLock_Toggle" = 0; };
-				};
+				expect = shows.checkbox "AXCheckBox:PreferenceLock_Toggle";
 			};
 		};
 

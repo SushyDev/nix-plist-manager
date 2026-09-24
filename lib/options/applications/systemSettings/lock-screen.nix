@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting system bool inverted storedAs text enum appliesThrough live;
+	inherit (settingsLib) setting system bool inverted storedAs text enum appliesThrough live shows;
 
 	pane = "com.apple.settings.lockScreen";
 	loginWindow = system "com.apple.loginwindow";
@@ -21,10 +21,7 @@ let
 		reads = { command = live.pmsetValue dictionary "displaysleep"; values = displayTimes; };
 		verify = {
 			inherit pane;
-			expect = {
-				"For 10 minutes" = { "AXPopUpButton:${ui}" = "For 10 minutes"; };
-				Never = { "AXPopUpButton:${ui}" = "Never"; };
-			};
+			expect = shows.choice "AXPopUpButton:${ui}" [ "For 10 minutes" "Never" ];
 		};
 	};
 
@@ -33,10 +30,7 @@ let
 		ui = [ "System Settings" "Lock Screen" ui ];
 		verify = {
 			inherit pane;
-			expect = {
-				true = { "AXCheckBox:${ui}" = 1; };
-				false = { "AXCheckBox:${ui}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${ui}";
 		};
 	};
 in
@@ -78,10 +72,7 @@ in
 		value = enum { "List of users" = false; "Name and password" = true; };
 		verify = {
 			inherit pane;
-			expect = {
-				"List of users" = { "AXRadioButton:List of users" = 1; };
-				"Name and password" = { "AXRadioButton:Name and password" = 1; };
-			};
+			expect = shows.radio [ "List of users" "Name and password" ];
 		};
 	};
 

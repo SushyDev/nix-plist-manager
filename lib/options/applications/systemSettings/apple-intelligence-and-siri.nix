@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user global bool enum;
+	inherit (settingsLib) setting user global bool enum shows;
 
 	pane = "com.apple.settings.siri";
 in
@@ -25,10 +25,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "Responses" ];
-				expect = {
-					"Spoken Response" = { "AXRadioButton:Spoken Response" = 1; };
-					"Silent Response" = { "AXRadioButton:Silent Response" = 1; };
-				};
+				expect = shows.radio [ "Spoken Response" "Silent Response" ];
 			};
 		};
 	};
@@ -39,10 +36,7 @@ in
 		value = bool;
 		verify = {
 			inherit pane;
-			expect = {
-				true = { "AXCheckBox:Automatic Visual Look Up" = 1; };
-				false = { "AXCheckBox:Automatic Visual Look Up" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:Automatic Visual Look Up";
 		};
 	};
 
@@ -53,10 +47,7 @@ in
 		verify = {
 			inherit pane;
 			open = [ "ChatGPT" ];
-			expect = {
-				true = { "AXCheckBox:Use Extension" = 1; };
-				false = { "AXCheckBox:Use Extension" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:Use Extension";
 		};
 	};
 }

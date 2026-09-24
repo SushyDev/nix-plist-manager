@@ -12,15 +12,14 @@ let
 		++ [ verb (domain key) ]
 		++ map q (lib.optional (key.name != null) key.name ++ rest);
 
-	plistType = key: value:
-		if key.type != null then key.type
-		else if lib.isBool value then "bool"
+	plistType = value:
+		if lib.isBool value then "bool"
 		else if lib.isInt value then "int"
 		else if lib.isFloat value then "float"
 		else if lib.isString value then "string"
 		else if lib.isList value then "array"
 		else if lib.isAttrs value then "dict"
-		else throw "can't store ${builtins.toJSON value} in ${key.domain} ${key.name}";
+		else throw "can't store ${builtins.toJSON value} in a preference";
 
 	scalar = value:
 		if lib.isBool value then lib.boolToString value
@@ -28,7 +27,7 @@ let
 
 	typed = value:
 		if lib.isList value || lib.isAttrs value then [ (xml value) ]
-		else [ "-${plistType { type = null; domain = "?"; name = "?"; } value}" (scalar value) ];
+		else [ "-${plistType value}" (scalar value) ];
 
 	xml = value:
 		if lib.isBool value then (if value then "<true/>" else "<false/>")
@@ -50,7 +49,7 @@ let
 
 	step = s:
 		if s.op == "write" then
-			orReport (defaults (defaultsFor "write" s.key ([ "-${plistType s.key s.value}" ] ++ plistValues s.value)))
+			orReport (defaults (defaultsFor "write" s.key ([ "-${if s.key.type != null then s.key.type else plistType s.value}" ] ++ plistValues s.value)))
 
 		else if s.op == "delete" then
 			"${defaults (defaultsFor "delete" s.key [])} 2>/dev/null || true"
@@ -61,7 +60,7 @@ let
 				write = defaults (defaultsFor "write" s.key [ "-int" ]);
 			in
 			''
-				current=$(${read} 2>/dev/null || echo ${toString (s.absent or 0)})
+				current=$(${read} 2>/dev/null || echo ${toString s.absent})
 				case "$current" in ""|*[!0-9-]*) current=0 ;; esac
 				${orReport "${write} \"$(( (current & ~${toString s.mask}) | ${toString s.bits} ))\""}''
 
@@ -74,10 +73,9 @@ let
 			then throw "setMembers only supports plain user domains, not ${s.key.domain}"
 			else
 				let
-					domainName = if s.key.domain == "NSGlobalDomain" then "NSGlobalDomain" else s.key.domain;
 					script = lib.concatStrings [
 						"ObjC.import('Foundation');"
-						"var d = $.NSUserDefaults.alloc.initWithSuiteName(${builtins.toJSON domainName});"
+						"var d = $.NSUserDefaults.alloc.initWithSuiteName(${builtins.toJSON s.key.domain});"
 						"var items = ObjC.deepUnwrap(d.arrayForKey(${builtins.toJSON s.key.name})) || [];"
 						"var members = ${builtins.toJSON s.members};"
 						"Object.keys(members).forEach(function (item) {"
@@ -102,19 +100,19 @@ let
 
 		else throw "unknown plan step ${s.op}";
 
-	named = op: plan: lib.unique (map (s: s.${if op == "notify" then "name" else "process"}) (lib.filter (s: s.op == op) plan));
 in
 {
 	script = plan:
+		let
+			ofOp = op: lib.filter (s: s.op == op) plan;
+			restarts = ofOp "restart";
+			discarded = process: lib.any (s: s.process == process && s.discard) restarts;
+		in
 		lib.concatStringsSep "\n" (
 			map step (lib.filter (s: !(lib.elem s.op [ "notify" "restart" "afterwards" ])) plan)
-			++ map (name: "/usr/bin/notifyutil -p ${q name} 2>/dev/null || true") (named "notify" plan)
-			++ map (process:
-				let
-					discard = lib.any (s: s.op == "restart" && s.process == process && (s.discard or false)) plan;
-				in
-				"/usr/bin/killall ${lib.optionalString discard "-KILL "}${q process} 2>/dev/null || true"
-			) (named "restart" plan)
-			++ lib.unique (map (s: s.command) (lib.filter (s: s.op == "afterwards") plan))
+			++ map (name: "/usr/bin/notifyutil -p ${q name} 2>/dev/null || true") (lib.unique (map (s: s.name) (ofOp "notify")))
+			++ map (process: "/usr/bin/killall ${lib.optionalString (discarded process) "-KILL "}${q process} 2>/dev/null || true")
+				(lib.unique (map (s: s.process) restarts))
+			++ lib.unique (map (s: s.command) (ofOp "afterwards"))
 		);
 }

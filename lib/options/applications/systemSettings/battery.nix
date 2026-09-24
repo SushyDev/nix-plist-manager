@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting system bool enum appliesThrough live;
+	inherit (settingsLib) setting system bool enum appliesThrough live shows;
 
 	pane = "com.apple.settings.battery";
 	sections = { b = "Battery Power"; c = "AC Power"; };
@@ -21,11 +21,7 @@ let
 		reads = { command = live.pmsetValue sections.${source} "powermode"; values = modes; };
 		verify = {
 			inherit pane;
-			expect = {
-				Automatic = { "AXPopUpButton:energy_mode + ${lib.last ui}" = "Automatic"; };
-				"Low Power" = { "AXPopUpButton:energy_mode + ${lib.last ui}" = "Low Power"; };
-				"High Power" = { "AXPopUpButton:energy_mode + ${lib.last ui}" = "High Power"; };
-			};
+			expect = shows.choice "AXPopUpButton:energy_mode + ${lib.last ui}" [ "Automatic" "Low Power" "High Power" ];
 		};
 	};
 
@@ -39,10 +35,7 @@ let
 		verify = {
 			inherit pane;
 			open = [ "Options…" ];
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 in
@@ -94,11 +87,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "Options…" ];
-				expect = {
-					Always = { "Wake for network access" = "Always"; };
-					"Only on Power Adapter" = { "Wake for network access" = "Only on Power Adapter"; };
-					Never = { "Wake for network access" = "Never"; };
-				};
+				expect = shows.choice "Wake for network access" [ "Always" "Only on Power Adapter" "Never" ];
 			};
 		};
 	};

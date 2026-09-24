@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting system bool enum;
+	inherit (settingsLib) setting system bool enum shows;
 
 	pane = "com.apple.settings.wifi";
 	airport = system "SystemConfiguration/com.apple.airport.preferences";
@@ -12,10 +12,7 @@ let
 		verify = {
 			inherit pane;
 			open = [ "Advanced…" ];
-			expect = {
-				true = { "AXCheckBox:${control}" = 1; };
-				false = { "AXCheckBox:${control}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${control}";
 		};
 	};
 in
@@ -26,10 +23,7 @@ in
 		value = enum { Off = [ "DoNothing" ]; Notify = [ "Notify" ]; Ask = [ "Prompt" ]; };
 		verify = {
 			inherit pane;
-			expect = {
-				Ask = { "AXPopUpButton:Ask to join networks" = "Ask"; };
-				Notify = { "AXPopUpButton:Ask to join networks" = "Notify"; };
-			};
+			expect = shows.choice "AXPopUpButton:Ask to join networks" [ "Ask" "Notify" ];
 		};
 	};
 
@@ -39,10 +33,7 @@ in
 		value = enum { Never = "Never"; "Ask To Join" = "AskToJoin"; Automatic = "Automatic"; };
 		verify = {
 			inherit pane;
-			expect = {
-				Never = { "AXPopUpButton:Ask to join hotspots" = "Never"; };
-				"Ask To Join" = { "AXPopUpButton:Ask to join hotspots" = "Ask To Join"; };
-			};
+			expect = shows.choice "AXPopUpButton:Ask to join hotspots" [ "Never" "Ask To Join" ];
 		};
 	};
 

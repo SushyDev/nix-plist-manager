@@ -4,8 +4,6 @@ let
 	tree = import ../lib/options.nix { inherit lib; };
 in
 {
-	inherit settingsLib tree;
-
 	options.programs.nix-plist-manager = {
 		enable = lib.mkEnableOption "nix-plist-manager";
 

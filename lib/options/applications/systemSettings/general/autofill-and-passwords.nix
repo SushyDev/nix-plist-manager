@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user bool storedAs;
+	inherit (settingsLib) setting user bool storedAs shows;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.passwords" ];
@@ -12,10 +12,7 @@ in
 		value = bool;
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:AutoFillToggle + AutoFill Passwords and Passkeys" = 1; };
-				false = { "AXCheckBox:AutoFillToggle + AutoFill Passwords and Passkeys" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:AutoFillToggle + AutoFill Passwords and Passkeys";
 		};
 	};
 
@@ -25,10 +22,7 @@ in
 		value = bool;
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:AutoFillFromPasswordsToggle" = 1; };
-				false = { "AXCheckBox:AutoFillFromPasswordsToggle" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:AutoFillFromPasswordsToggle";
 		};
 	};
 

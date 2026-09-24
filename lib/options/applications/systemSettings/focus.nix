@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user bool inverted restarts;
+	inherit (settingsLib) setting user bool inverted restarts shows;
 in
 {
 	shareAcrossDevices = setting {
@@ -10,10 +10,7 @@ in
 		behaviors = [ (restarts "donotdisturbd") ];
 		verify = {
 			pane = "com.apple.settings.focus";
-			expect = {
-				true = { "AXCheckBox:Share across devices" = 1; };
-				false = { "AXCheckBox:Share across devices" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:Share across devices";
 		};
 	};
 }

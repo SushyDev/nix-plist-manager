@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting system bool storedAs;
+	inherit (settingsLib) setting system bool storedAs shows;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.softwareUpdate" "AdvancedView.LabeledContent.infoButton" ];
@@ -10,10 +10,7 @@ let
 		ui = [ "System Settings" "General" "Software Update" "Automatic Updates (i)" ui ];
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:${control}" = 1; };
-				false = { "AXCheckBox:${control}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${control}";
 		};
 	};
 in

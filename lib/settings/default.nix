@@ -8,10 +8,11 @@ let
 	relations = import ./relations.nix { inherit lib; };
 	core = import ./setting.nix { inherit lib ops behaviorsLib; };
 	render = import ./render.nix { inherit lib; };
-	module = import ./module.nix { inherit lib ops render; inherit (core) isSetting; };
-	describe = import ./describe.nix { inherit lib render; inherit (core) isSetting; };
+	module = import ./module.nix { inherit lib render; inherit (core) isSetting; };
+	describe = import ./describe.nix { inherit lib render; };
 	live = import ./live.nix { inherit lib; };
+	shows = import ./shows.nix { inherit lib; };
 in
 storage // codecs // behaviorsLib // relations // core // describe // {
-	inherit ops render module live shortcuts;
+	inherit ops render module live shortcuts shows;
 }

@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user bool inverted enum;
+	inherit (settingsLib) setting user bool inverted enum shows;
 
 	pane = "com.apple.settings.desktopAndDock";
 
@@ -11,10 +11,7 @@ let
 		verify = {
 			inherit pane;
 			operate = [ "click" control ];
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 in
@@ -38,11 +35,7 @@ in
 		value = enum { Always = 0; Never = 1; Automatically = 2; };
 		verify = {
 			inherit pane;
-			expect = {
-				Always = { widget-style = "Always"; };
-				Never = { widget-style = "Never"; };
-				Automatically = { widget-style = "Automatically"; };
-			};
+			expect = shows.choice "widget-style" [ "Always" "Never" "Automatically" ];
 		};
 	};
 

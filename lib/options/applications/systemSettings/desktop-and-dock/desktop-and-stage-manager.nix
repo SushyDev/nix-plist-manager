@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user bool inverted enum;
+	inherit (settingsLib) setting user bool inverted enum shows;
 
 	pane = "com.apple.settings.desktopAndDock";
 	windowManager = name: user "com.apple.WindowManager" name;
@@ -10,10 +10,7 @@ let
 		storage = windowManager key;
 		verify = {
 			inherit pane;
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		} // lib.optionalAttrs operate { operate = [ "click" control ]; };
 	};
 in
@@ -39,10 +36,7 @@ in
 		value = enum { Always = true; "Only in Stage Manager" = false; };
 		verify = {
 			inherit pane;
-			expect = {
-				Always = { click-wallpaper-to-reveal-desktop = "Always"; };
-				"Only in Stage Manager" = { click-wallpaper-to-reveal-desktop = "Only in Stage Manager"; };
-			};
+			expect = shows.choice "click-wallpaper-to-reveal-desktop" [ "Always" "Only in Stage Manager" ];
 		};
 	};
 
@@ -67,10 +61,7 @@ in
 		value = enum { "All at Once" = 1; "One at a Time" = 0; };
 		verify = {
 			inherit pane;
-			expect = {
-				"All at Once" = { show-windows-from-application = "All at Once"; };
-				"One at a Time" = { show-windows-from-application = "One at a Time"; };
-			};
+			expect = shows.choice "show-windows-from-application" [ "All at Once" "One at a Time" ];
 		};
 	};
 }

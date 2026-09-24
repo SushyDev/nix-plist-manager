@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user enum flags restarts family onlyWhen;
+	inherit (settingsLib) setting user enum flags restarts family onlyWhen shows;
 
 	pane = "com.apple.settings.desktopAndDock";
 in
@@ -30,11 +30,7 @@ family {
 		verify = {
 			inherit pane;
 			open = [ "Hot Corners…" ];
-			expect = {
-				"-" = { "${label} Hot Corner" = "-"; };
-				"Mission Control" = { "${label} Hot Corner" = "Mission Control"; };
-				"Quick Note" = { "${label} Hot Corner" = "Quick Note"; };
-			};
+			expect = shows.choice "${label} Hot Corner" [ "-" "Mission Control" "Quick Note" ];
 		};
 	};
 
