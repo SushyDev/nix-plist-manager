@@ -7,6 +7,7 @@ Every option lives in `lib/options/`, one file per System Settings pane or app. 
 - `verified`: per macOS build, the options that `nix run .#verify -- check` confirmed in System Settings. `check` keeps it up to date.
 - `todo`: per pane, settings that should get an option but don't have one yet, grouped by what's in the way.
 - `notCovered`: per pane, settings that can't or shouldn't be declared (privacy permissions, account state, actions, per-device hardware), grouped by the reason. The website lists them on each pane's page so nobody investigates them again.
+- `notSettings`: per pane, what System Settings shows that isn't a setting (headings, buttons, links, information) or is covered by another option. `gaps` skips these; the website doesn't list them.
 
 `nix flake check` fails when `verified` names an option that doesn't exist.
 
