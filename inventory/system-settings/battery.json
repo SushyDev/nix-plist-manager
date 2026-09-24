@@ -10,6 +10,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Batteryhealth",
+			"skip": "information, not a setting",
 			"sources": [
 				"search:PowerPreferences.appex/batteryhealth/Battery Health"
 			],
@@ -20,56 +21,102 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Current Source",
+			"skip": "information, not a setting",
 			"sources": [
 				"search:PowerPreferences.appex/currentSource/Battery"
 			],
 			"title": "Battery"
-		},
-		"current-source-low-power-mode": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Current Source",
-			"sources": [
-				"search:PowerPreferences.appex/currentSource/Low Power Mode"
-			],
-			"title": "Low Power Mode"
 		},
 		"current-source-ups": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Current Source",
+			"skip": "only with a UPS attached",
 			"sources": [
 				"search:PowerPreferences.appex/currentSource/UPS"
 			],
 			"title": "UPS"
+		},
+		"energy-mode-on-battery": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.battery.energyMode.onBattery",
+			"section": "Energy Mode",
+			"sources": [
+				"option:applications.systemSettings.battery.energyMode.onBattery",
+				"search:PowerPreferences.appex/currentSource/Low Power Mode"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "Battery Power",
+					"scope": "system"
+				}
+			],
+			"title": "On battery"
+		},
+		"energy-mode-on-power-adapter": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.battery.energyMode.onPowerAdapter",
+			"section": "Energy Mode",
+			"sources": [
+				"option:applications.systemSettings.battery.energyMode.onPowerAdapter"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "AC Power",
+					"scope": "system"
+				}
+			],
+			"title": "On power adapter"
 		},
 		"options-automatic-graphics-switching": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Options",
+			"skip": "only on Intel Macs with two GPUs",
 			"sources": [
 				"search:PowerPreferences.appex/options/Automatic Graphics Switching"
 			],
 			"title": "Automatic Graphics Switching"
 		},
-		"options-optimize-video-streaming": {
+		"options-optimize-video-streaming-while-on-battery": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"section": "Options",
+			"option": "applications.systemSettings.battery.options.optimizeVideoStreamingWhileOnBattery",
+			"section": "Options…",
 			"sources": [
+				"option:applications.systemSettings.battery.options.optimizeVideoStreamingWhileOnBattery",
 				"search:PowerPreferences.appex/options/Optimize video streaming"
 			],
-			"title": "Optimize video streaming"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "com.apple.coremedia.optimizeVideoStreamingOnBattery",
+					"scope": "user"
+				}
+			],
+			"title": "Optimize video streaming while on battery"
 		},
 		"options-power-nap": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Options",
+			"skip": "not offered on Apple silicon (pmset powernap)",
 			"sources": [
 				"search:PowerPreferences.appex/options/Power Nap"
 			],
@@ -79,9 +126,20 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.battery.options.preventAutomaticSleepingOnPowerAdapterWhenTheDisplayIsOff",
 			"section": "Options",
 			"sources": [
+				"option:applications.systemSettings.battery.options.preventAutomaticSleepingOnPowerAdapterWhenTheDisplayIsOff",
 				"search:PowerPreferences.appex/options/Prevent automatic sleeping on power adapter when the display is off"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "AC Power",
+					"scope": "system"
+				}
 			],
 			"title": "Prevent automatic sleeping on power adapter when the display is off"
 		},
@@ -89,9 +147,20 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.battery.options.slightlyDimTheDisplayOnBattery",
 			"section": "Options",
 			"sources": [
+				"option:applications.systemSettings.battery.options.slightlyDimTheDisplayOnBattery",
 				"search:PowerPreferences.appex/options/Slightly dim the display on battery"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "Battery Power",
+					"scope": "system"
+				}
 			],
 			"title": "Slightly dim the display on battery"
 		},
@@ -99,9 +168,27 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.battery.options.wakeForNetworkAccess",
 			"section": "Options",
 			"sources": [
+				"option:applications.systemSettings.battery.options.wakeForNetworkAccess",
 				"search:PowerPreferences.appex/options/Wake for network access"
+			],
+			"storage": [
+				{
+					"as": "adapter",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "AC Power",
+					"scope": "system"
+				},
+				{
+					"as": "battery",
+					"byHost": false,
+					"domain": "com.apple.PowerManagement",
+					"key": "Battery Power",
+					"scope": "system"
+				}
 			],
 			"title": "Wake for network access"
 		}
