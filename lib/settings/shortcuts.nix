@@ -98,5 +98,8 @@ rec {
 		keys = lib.mapAttrs' (key: code: lib.nameValuePair (toString code) (lib.toUpper key)) characterKeyCodes
 			// lib.mapAttrs' (name: key: lib.nameValuePair (toString key.code) name) namedKeys;
 		modifiers = lib.mapAttrs' (glyph: modifier: lib.nameValuePair (toString modifier.flag) glyph) modifiers;
+		# key equivalents: modifier character -> glyph, and a named key's character -> its name
+		equivalentModifiers = lib.mapAttrs' (glyph: modifier: lib.nameValuePair modifier.equivalent glyph) modifiers;
+		equivalentKeys = lib.mapAttrs' (name: key: lib.nameValuePair key.equivalent name) namedKeys;
 	};
 }

@@ -10,6 +10,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Accessibility",
+			"skip": "the Accessibility category of Keyboard Shortcuts…; each shortcut is its own entry",
 			"sources": [
 				"search:KeyboardSettings.appex/Accessibility/Accessibility keyboard shortcuts"
 			],
@@ -20,6 +21,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Caps Lock Input Sources",
+			"skip": "only shown with an input source that isn't Latin; not on this Mac",
 			"sources": [
 				"search:KeyboardSettings.appex/CapsLockInputSources/Use Caps Lock to switch input sources"
 			],
@@ -77,16 +79,6 @@
 			],
 			"title": "Illuminate keyboard"
 		},
-		"input-sources-keyboard-layouts": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Input Sources",
-			"sources": [
-				"search:KeyboardSettings.appex/InputSources/Keyboard layouts"
-			],
-			"title": "Keyboard layouts"
-		},
 		"input-sources-show-input-menu-in-menu-bar": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
@@ -103,6 +95,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Input Sources",
+			"skip": "no longer in System Settings on macOS 27",
 			"sources": [
 				"search:KeyboardSettings.appex/InputSources/Show keyboard and emoji viewers in menu bar"
 			],
@@ -610,6 +603,63 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "8194568f1990",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-app-shortcuts": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.appShortcuts.menuItems",
+			"section": "Keyboard Shortcuts…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.appShortcuts.menuItems"
+			],
+			"storage": [
+				{
+					"as": "apps",
+					"byHost": false,
+					"domain": "com.apple.universalaccess",
+					"key": "com.apple.custommenu.apps",
+					"scope": "user"
+				},
+				{
+					"as": "keys",
+					"byHost": false,
+					"domain": "~/Library/Preferences/<application>",
+					"key": "NSUserKeyEquivalents",
+					"scope": "user"
+				}
+			],
+			"title": "App Shortcuts",
+			"verified": {
+				"build": "26A428",
+				"commands": "d31d68f9f288",
+				"date": "2026-09-24"
+			}
+		},
+		"keyboard-shortcuts-app-shortcuts-all-applications-show-help-menu": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.appShortcuts.showHelpMenu",
+			"section": "Keyboard Shortcuts… > App Shortcuts > All Applications",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.appShortcuts.showHelpMenu"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.symbolichotkeys",
+					"key": "AppleSymbolicHotKeys",
+					"scope": "user"
+				}
+			],
+			"title": "Show Help menu",
+			"verified": {
+				"build": "26A428",
+				"commands": "6a02fe0288dc",
 				"date": "2026-09-24"
 			}
 		},
@@ -2259,16 +2309,6 @@
 				"date": "2026-09-24"
 			}
 		},
-		"language-input-methods-language-input-methods": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Language Input Methods",
-			"sources": [
-				"search:KeyboardSettings.appex/LanguageInputMethods/Language input methods"
-			],
-			"title": "Language input methods"
-		},
 		"modifier-keys-reset-modifier-keys": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
@@ -2330,6 +2370,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Shortcuts",
+			"skip": "Keyboard Shortcuts… itself; each shortcut is its own entry",
 			"sources": [
 				"search:KeyboardSettings.appex/Shortcuts/App and system keyboard shortcuts"
 			],
@@ -2340,6 +2381,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Spotlight",
+			"skip": "the Spotlight category of Keyboard Shortcuts…; each shortcut is its own entry",
 			"sources": [
 				"search:KeyboardSettings.appex/Spotlight/Spotlight keyboard shortcuts"
 			],
@@ -2369,6 +2411,28 @@
 				"commands": "9020b3a315e0",
 				"date": "2026-09-24"
 			}
+		},
+		"text-input-input-sources-edit-all-input-sources": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.textInput.inputSources",
+			"section": "Text Input > Input Sources > Edit…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.textInput.inputSources",
+				"search:KeyboardSettings.appex/InputSources/Keyboard layouts",
+				"search:KeyboardSettings.appex/LanguageInputMethods/Language input methods"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.HIToolbox",
+					"key": "AppleEnabledInputSources",
+					"scope": "user"
+				}
+			],
+			"title": "All Input Sources"
 		},
 		"text-input-input-sources-edit-automatically-switch-to-a-documents-input-source": {
 			"firstSeen": "26A428",
@@ -2505,6 +2569,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Text Replacements",
+			"skip": "kept in the KeyboardServices database and synced through iCloud, not in a preference file",
 			"sources": [
 				"search:KeyboardSettings.appex/TextReplacements/Text replacements"
 			],
