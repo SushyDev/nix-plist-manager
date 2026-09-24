@@ -1,0 +1,89 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Spotlight"
+	],
+	"settings": {
+		"clipboard-history-is-available-in-spotlight": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.spotlight.clipboardHistoryIsAvailableInSpotlight",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.spotlight.clipboardHistoryIsAvailableInSpotlight"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.Spotlight.plist",
+					"key": "PasteboardHistoryTimeout",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Clipboard history is available in Spotlight"
+		},
+		"help-apple-improve-spotlight-and-suggestions": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.spotlight.helpAppleImproveSearch",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.spotlight.helpAppleImproveSearch"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.assistant.support.plist",
+					"key": "Search Queries Data Sharing Status",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Help Apple improve Spotlight and Suggestions"
+		},
+		"privacy-block-search-of-private-files": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Privacy",
+			"sources": [
+				"search:SpotlightPreferenceExtension.appex/privacy/Block search of private files"
+			],
+			"title": "Block search of private files"
+		},
+		"results-from-clipboard": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.spotlight.resultsFromClipboard",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.spotlight.resultsFromClipboard"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.Spotlight.plist",
+					"key": "PasteboardHistoryEnabled",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Results from Clipboard"
+		},
+		"search-results-spotlight-search-categories": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Search Results",
+			"sources": [
+				"search:SpotlightPreferenceExtension.appex/searchResults/Spotlight search categories"
+			],
+			"title": "Spotlight search categories"
+		}
+	}
+}

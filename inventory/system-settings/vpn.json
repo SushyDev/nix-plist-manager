@@ -1,0 +1,19 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"VPN"
+	],
+	"settings": {
+		"vpn-configuration-connect-on-demand": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "VPN Configuration",
+			"sources": [
+				"intent:VPNAppIntentWidgetExtension.appex/VPNConfigurationEntity.connectOnDemand"
+			],
+			"title": "Connect On Demand"
+		}
+	}
+}

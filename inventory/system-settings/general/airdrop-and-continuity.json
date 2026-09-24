@@ -1,0 +1,67 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"General",
+		"AirDrop & Continuity"
+	],
+	"settings": {
+		"air-drop-handoff-airdrop": {
+			"choices": [
+				"No One",
+				"Contacts Only",
+				"Everyone"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"section": "Air Drop_Handoff",
+			"sources": [
+				"intent:AirDropHandoffIntentsExtension.appex/AirDropEntity.value",
+				"search:AirDropHandoffExtension.appex/AirDrop_Handoff/AirDrop"
+			],
+			"title": "AirDrop"
+		},
+		"air-drop-handoff-allow-handoff": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Air Drop_Handoff",
+			"sources": [
+				"search:AirDropHandoffExtension.appex/AirDrop_Handoff/Allow Handoff"
+			],
+			"title": "Allow Handoff"
+		},
+		"air-play-receiver-airplay-receiver": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Air Play_Receiver",
+			"sources": [
+				"search:AirDropHandoffExtension.appex/AirPlay_Receiver/AirPlay Receiver"
+			],
+			"title": "AirPlay Receiver"
+		},
+		"iphone-mirroring-iphone-mirroring": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "IPhone_Mirroring",
+			"sources": [
+				"search:AirDropHandoffExtension.appex/iPhone_Mirroring/iPhone Mirroring"
+			],
+			"title": "iPhone Mirroring"
+		},
+		"widgets-iphone-widgets": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"section": "Widgets",
+			"sources": [
+				"intent:AirDropHandoffIntentsExtension.appex/WidgetsAndOnenessEntity.useiPhoneWidgets",
+				"search:AirDropHandoffExtension.appex/Widgets/iPhone Widgets"
+			],
+			"title": "iPhone Widgets"
+		}
+	}
+}

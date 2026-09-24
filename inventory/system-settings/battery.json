@@ -1,0 +1,109 @@
+{
+	"coverage": "search-terms",
+	"group": "system-settings",
+	"pane": [
+		"Battery"
+	],
+	"settings": {
+		"batteryhealth-battery-health": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Batteryhealth",
+			"sources": [
+				"search:PowerPreferences.appex/batteryhealth/Battery Health"
+			],
+			"title": "Battery Health"
+		},
+		"current-source-battery": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Current Source",
+			"sources": [
+				"search:PowerPreferences.appex/currentSource/Battery"
+			],
+			"title": "Battery"
+		},
+		"current-source-low-power-mode": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Current Source",
+			"sources": [
+				"search:PowerPreferences.appex/currentSource/Low Power Mode"
+			],
+			"title": "Low Power Mode"
+		},
+		"current-source-ups": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Current Source",
+			"sources": [
+				"search:PowerPreferences.appex/currentSource/UPS"
+			],
+			"title": "UPS"
+		},
+		"options-automatic-graphics-switching": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Options",
+			"sources": [
+				"search:PowerPreferences.appex/options/Automatic Graphics Switching"
+			],
+			"title": "Automatic Graphics Switching"
+		},
+		"options-optimize-video-streaming": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Options",
+			"sources": [
+				"search:PowerPreferences.appex/options/Optimize video streaming"
+			],
+			"title": "Optimize video streaming"
+		},
+		"options-power-nap": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Options",
+			"sources": [
+				"search:PowerPreferences.appex/options/Power Nap"
+			],
+			"title": "Power Nap"
+		},
+		"options-prevent-automatic-sleeping-on-power-adapter-when-the-display-is-off": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Options",
+			"sources": [
+				"search:PowerPreferences.appex/options/Prevent automatic sleeping on power adapter when the display is off"
+			],
+			"title": "Prevent automatic sleeping on power adapter when the display is off"
+		},
+		"options-slightly-dim-the-display-on-battery": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Options",
+			"sources": [
+				"search:PowerPreferences.appex/options/Slightly dim the display on battery"
+			],
+			"title": "Slightly dim the display on battery"
+		},
+		"options-wake-for-network-access": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Options",
+			"sources": [
+				"search:PowerPreferences.appex/options/Wake for network access"
+			],
+			"title": "Wake for network access"
+		}
+	}
+}

@@ -1,0 +1,54 @@
+{
+	"coverage": "",
+	"group": "applications",
+	"pane": [
+		"Journal"
+	],
+	"settings": {
+		"add-current-location": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:JournalWidgets.appex/AddCurrentLocationEntity.value"
+			],
+			"title": "Add Current Location"
+		},
+		"always-use-moment-date": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:JournalWidgets.appex/AlwaysUseMomentDateEntity.value"
+			],
+			"title": "Always Use Moment Date"
+		},
+		"save-to-photos": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:JournalWidgets.appex/SaveToPhotosEntity.value"
+			],
+			"title": "Save To Photos"
+		},
+		"show-suggested-moments": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:JournalWidgets.appex/SkipJournalingSuggestionsEntity.value"
+			],
+			"title": "Show Suggested Moments"
+		},
+		"show-writing-prompts": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:JournalWidgets.appex/ShowWritingPromptsEntity.value"
+			],
+			"title": "Show Writing Prompts"
+		}
+	}
+}

@@ -1,0 +1,211 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Trackpad"
+	],
+	"settings": {
+		"app-expose": {
+			"choices": [
+				"Off",
+				"Swipe Down with Three Fingers",
+				"Swipe Down with Four Fingers"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadAppExposeEntity.value"
+			],
+			"title": "App Exposé"
+		},
+		"click-pressure": {
+			"choices": [
+				"Light",
+				"Medium",
+				"Firm"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadClickPressureEntity.value"
+			],
+			"title": "Click pressure"
+		},
+		"force-click-and-haptic-feedback": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadForceClickEntity.value"
+			],
+			"title": "Force click and haptic feedback"
+		},
+		"force-click-and-haptic-feedback-2": {
+			"choices": [
+				"Off",
+				"Force Click with One Finger",
+				"Tap with Three Fingers"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadLookUpAndDataDetectorsEntity.value"
+			],
+			"title": "Force Click and haptic feedback"
+		},
+		"launchpad": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadLaunchpadEntity.value"
+			],
+			"title": "Launchpad"
+		},
+		"mission-control": {
+			"choices": [
+				"Off",
+				"Swipe Up with Three Fingers",
+				"Swipe Up with Four Fingers"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadMissionControlEntity.value"
+			],
+			"title": "Mission Control"
+		},
+		"notification-center": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadNotificiationCenterEntity.value"
+			],
+			"title": "Notification Center"
+		},
+		"quiet-click": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadQuietClickEntity.value"
+			],
+			"title": "Quiet click"
+		},
+		"rotate": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadRotateEntity.value"
+			],
+			"title": "Rotate"
+		},
+		"show-desktop": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadShowDesktopEntity.value"
+			],
+			"title": "Show Desktop"
+		},
+		"smart-zoom": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadSmartZoomEntity.value"
+			],
+			"title": "Smart zoom"
+		},
+		"swipe-between-pages": {
+			"choices": [
+				"Off",
+				"Swipe Left or Right with Three Fingers",
+				"Swipe Left or Right with Four Fingers"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadSwipeBetweenAppsEntity.value"
+			],
+			"title": "Swipe between pages"
+		},
+		"swipe-between-pages-2": {
+			"choices": [
+				"Off",
+				"Scroll Left or Right with Two Fingers",
+				"Swipe with Three Fingers",
+				"Swipe with Two or Three Fingers"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadSwipeBetweenPagesEntity.value"
+			],
+			"title": "Swipe between pages"
+		},
+		"tap-to-click": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadTapToClickEntity.value"
+			],
+			"title": "Tap to click"
+		},
+		"trackpad-secondary-click": {
+			"choices": [
+				"Off",
+				"Click with Two Fingers",
+				"Click in Bottom Right Corner",
+				"Click in Bottom Left Corner"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadSecondaryClickEntity.value"
+			],
+			"title": "Trackpad secondary click"
+		},
+		"trackpad-tracking-speed": {
+			"choices": [
+				"0.0",
+				"0.125",
+				"0.5",
+				"0.6875",
+				"0.875",
+				"1.0",
+				"1.5",
+				"2.0",
+				"2.5",
+				"3.0"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadTrackingSpeedEntity.value"
+			],
+			"title": "Trackpad tracking speed"
+		},
+		"zoom-in-or-out": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:TrackpadIntentsExtension.appex/TrackpadZoomInOutEntity.value"
+			],
+			"title": "Zoom in or out"
+		}
+	}
+}

@@ -1,0 +1,278 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Appearance"
+	],
+	"settings": {
+		"click-in-the-scroll-bar-to": {
+			"choices": [
+				"Jump to the next page",
+				"Jump to the spot that’s clicked"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.clickInTheScrollBarTo",
+			"sources": [
+				"intent:AppearanceIntentsExtension.appex/ClickScrollBarToEntity.value",
+				"option:applications.systemSettings.appearance.clickInTheScrollBarTo"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleScrollerPagingBehavior",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Click in the scroll bar to"
+		},
+		"main-accent-color": {
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.accentColor",
+			"section": "Main",
+			"sources": [
+				"intent:AppearanceIntentsExtension.appex/AccentColorEntity.value",
+				"option:applications.systemSettings.appearance.accentColor",
+				"search:Appearance.appex/Main/Accent color"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleAccentColor",
+					"scope": "user",
+					"type": "int"
+				},
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleAquaColorVariant",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Accent color"
+		},
+		"main-appearance": {
+			"choices": [
+				"Light",
+				"Dark",
+				"Auto"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.appearance",
+			"section": "Main",
+			"sources": [
+				"intent:AppearanceIntentsExtension.appex/AppearanceEntity.value",
+				"option:applications.systemSettings.appearance.appearance",
+				"search:Appearance.appex/Main/Appearance"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleInterfaceStyle",
+					"scope": "user"
+				},
+				{
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "AppleInterfaceStyleSwitchesAutomatically",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Appearance"
+		},
+		"main-button-menu-and-window-look": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Main",
+			"sources": [
+				"search:Appearance.appex/Main/Button, menu, and window look"
+			],
+			"title": "Button, menu, and window look"
+		},
+		"main-highlight-color": {
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.textHighlightColor",
+			"section": "Main",
+			"sources": [
+				"intent:AppearanceIntentsExtension.appex/HighlightColorEntity.value",
+				"option:applications.systemSettings.appearance.textHighlightColor",
+				"search:Appearance.appex/Main/Highlight color"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleHighlightColor",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Highlight color"
+		},
+		"main-liquid-glass": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.liquidGlass",
+			"section": "Main",
+			"sources": [
+				"option:applications.systemSettings.appearance.liquidGlass",
+				"search:Appearance.appex/Main/Liquid Glass"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "NSGlassDiffusionSetting",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Liquid Glass"
+		},
+		"main-scroll-bar-behavior": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Main",
+			"sources": [
+				"search:Appearance.appex/Main/Scroll bar behavior"
+			],
+			"title": "Scroll bar behavior"
+		},
+		"main-sidebar-icons": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Main",
+			"sources": [
+				"search:Appearance.appex/Main/Sidebar icons"
+			],
+			"title": "Sidebar icons"
+		},
+		"show-scroll-bars": {
+			"choices": [
+				"Automatically based on mouse or trackpad",
+				"When scrolling",
+				"Always"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.showScrollBars",
+			"sources": [
+				"intent:AppearanceIntentsExtension.appex/ShowScrollBarsEntity.value",
+				"option:applications.systemSettings.appearance.showScrollBars"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleShowScrollBars",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Show scroll bars"
+		},
+		"sidebar-icon-size": {
+			"choices": [
+				"Small",
+				"Medium",
+				"Large"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.sidebarIconSize",
+			"sources": [
+				"intent:AppearanceIntentsExtension.appex/SidebarIconSizeEntity.value",
+				"option:applications.systemSettings.appearance.sidebarIconSize"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "NSTableViewDefaultSizeMode",
+					"scope": "user",
+					"type": "int"
+				}
+			],
+			"title": "Sidebar icon size"
+		},
+		"theme-icon-and-widget-style": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.iconAndWidgetStyle",
+			"section": "Theme",
+			"sources": [
+				"option:applications.systemSettings.appearance.iconAndWidgetStyle"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleIconAppearanceTheme",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Icon & widget style"
+		},
+		"theme-icon-widget-and-folder-color": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.iconWidgetAndFolderColor",
+			"section": "Theme",
+			"sources": [
+				"option:applications.systemSettings.appearance.iconWidgetAndFolderColor"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleIconAppearanceTintColor",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Icon, widget & folder color"
+		},
+		"tint-window-background-with-wallpaper-color": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appearance.allowWallpaperTintingInWindows",
+			"sources": [
+				"intent:AppearanceIntentsExtension.appex/AllowWallPaperTintingEntity.value",
+				"option:applications.systemSettings.appearance.allowWallpaperTintingInWindows"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": ".GlobalPreferences",
+					"key": "AppleReduceDesktopTinting",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Tint window background with wallpaper color"
+		}
+	}
+}

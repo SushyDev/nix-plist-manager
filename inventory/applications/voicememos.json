@@ -1,0 +1,47 @@
+{
+	"coverage": "",
+	"group": "applications",
+	"pane": [
+		"VoiceMemos"
+	],
+	"settings": {
+		"audio-quality": {
+			"choices": [
+				"Lossy",
+				"Lossless"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:VoiceMemosSettingsWidgetExtension.appex/AudioQualityEntity.value"
+			],
+			"title": "Audio Quality"
+		},
+		"clear-deleted": {
+			"choices": [
+				"Immediately",
+				"After 1 Day",
+				"After 7 Days",
+				"After 30 Days",
+				"Never"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:VoiceMemosSettingsWidgetExtension.appex/ClearDeletedEntity.value"
+			],
+			"title": "Clear Deleted"
+		},
+		"location-based-naming": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:VoiceMemosSettingsWidgetExtension.appex/LocationBasedNamingEntity.value"
+			],
+			"title": "Location-based Naming"
+		}
+	}
+}

@@ -10,3 +10,7 @@ A Nix module for managing macOS system settings through plist files.
 ## Documentation
 
 See [sushydev.github.io/nix-plist-manager](https://sushydev.github.io/nix-plist-manager/) for documentation.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Progress on covering every macOS setting is tracked in [inventory/COVERAGE.md](inventory/COVERAGE.md).

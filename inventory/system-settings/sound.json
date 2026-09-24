@@ -1,0 +1,168 @@
+{
+	"coverage": "intents",
+	"group": "system-settings",
+	"pane": [
+		"Sound"
+	],
+	"settings": {
+		"balance-output-balance": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Balance",
+			"sources": [
+				"search:Sound.appex/balance/Output balance"
+			],
+			"title": "Output balance"
+		},
+		"effects-alerts-and-sound-effects": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Effects",
+			"sources": [
+				"search:Sound.appex/effects/Alerts and sound effects"
+			],
+			"title": "Alerts and sound effects"
+		},
+		"feedback-sound": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.sound.soundEffects.playFeedbackWhenVolumeIsChanged",
+			"sources": [
+				"intent:SoundIntentsExtension.appex/SoundSettingsFeedbackSoundEntity.value",
+				"option:applications.systemSettings.sound.soundEffects.playFeedbackWhenVolumeIsChanged"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": ".GlobalPreferences",
+					"key": "com.apple.sound.beep.feedback",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "Feedback Sound"
+		},
+		"input-sound-input": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Input",
+			"sources": [
+				"search:Sound.appex/input/Sound input"
+			],
+			"title": "Sound input"
+		},
+		"mute-mute-the-sound": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Mute",
+			"sources": [
+				"search:Sound.appex/mute/Mute the sound"
+			],
+			"title": "Mute the sound"
+		},
+		"output-airplay-audio-streaming": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Output",
+			"sources": [
+				"search:Sound.appex/output/AirPlay audio streaming"
+			],
+			"title": "AirPlay audio streaming"
+		},
+		"output-sound-output": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Output",
+			"sources": [
+				"search:Sound.appex/output/Sound output"
+			],
+			"title": "Sound output"
+		},
+		"sound-effects-alert-sound": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.sound.soundEffects.alertSound",
+			"section": "Sound Effects",
+			"sources": [
+				"option:applications.systemSettings.sound.soundEffects.alertSound"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": ".GlobalPreferences",
+					"key": "com.apple.sound.beep.sound",
+					"scope": "user",
+					"type": "string"
+				}
+			],
+			"title": "Alert sound"
+		},
+		"sound-effects-alert-volume": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.sound.soundEffects.alertVolume",
+			"section": "Sound Effects",
+			"sources": [
+				"option:applications.systemSettings.sound.soundEffects.alertVolume"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": ".GlobalPreferences",
+					"key": "com.apple.sound.beep.volume",
+					"scope": "user",
+					"type": "float"
+				}
+			],
+			"title": "Alert volume"
+		},
+		"startup-sound": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"sources": [
+				"intent:SoundIntentsExtension.appex/SoundSettingsStartupSoundEntity.value"
+			],
+			"title": "Startup Sound"
+		},
+		"user-interface-sound-effects": {
+			"firstSeen": "26A428",
+			"kind": "bool",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.sound.soundEffects.playUserInterfaceSoundEffects",
+			"sources": [
+				"intent:SoundIntentsExtension.appex/SoundSettingsInterfaceEffectsEntity.value",
+				"option:applications.systemSettings.sound.soundEffects.playUserInterfaceSoundEffects"
+			],
+			"storage": [
+				{
+					"byHost": false,
+					"domain": ".GlobalPreferences",
+					"key": "com.apple.sound.uiaudio.enabled",
+					"scope": "user",
+					"type": "bool"
+				}
+			],
+			"title": "User Interface Sound Effects"
+		},
+		"volume-sound-volume": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"section": "Volume",
+			"sources": [
+				"search:Sound.appex/volume/Sound volume"
+			],
+			"title": "Sound volume"
+		}
+	}
+}
