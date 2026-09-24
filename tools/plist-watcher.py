@@ -11,7 +11,7 @@ Options:
                           Can be specified multiple times.
                           Example: --filter com.apple.finder --filter NSGlobal
     --output <file>       Tee output to a file in addition to stdout
-    --no-color            Disable ANSI colour output
+    --no-color            Disable ANSI color output
 
 Run with nix:
     nix shell nixpkgs#fswatch --command python3 tools/plist-watcher.py
@@ -37,7 +37,7 @@ from pathlib import Path
 
 
 # ---------------------------------------------------------------------------
-# ANSI colours
+# ANSI colors
 # ---------------------------------------------------------------------------
 
 class C:
@@ -172,9 +172,9 @@ class Logger:
         if self.file:
             self.file.close()
 
-    def c(self, colour: str, text: str) -> str:
+    def c(self, color: str, text: str) -> str:
         if self.use_color:
-            return f"{colour}{text}{C.RESET}"
+            return f"{color}{text}{C.RESET}"
         return text
 
     def log_change(self, path: Path, changes: list):
@@ -393,7 +393,7 @@ def main():
     parser.add_argument(
         "--no-color",
         action="store_true",
-        help="Disable ANSI colour output",
+        help="Disable ANSI color output",
     )
     args = parser.parse_args()
 

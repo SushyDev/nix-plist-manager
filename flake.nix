@@ -56,48 +56,35 @@
 				in
 				import ./lib/optionIndex.nix { inherit lib; } options;
 
+			# what the website is generated from: every option (optionIndex) and the inventory, which
+			# says what's verified and what isn't covered. docs/scripts/generate.mjs turns it into pages.
 			documentation = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
-					lib = nixpkgs.lib;
-					options = import ./lib/options.nix { inherit lib; };
-					generateMarkdown = import ./lib/generateMarkdown.nix { inherit lib; };
-
-					data = lib.mapAttrs  (name: value:
-						pkgs.writeTextFile {
-							name = "";
-							text = value;
-							destination = name;
-						}
-					) (lib.listToAttrs (generateMarkdown options));
 				in
-				pkgs.symlinkJoin {
-					name = "documentation";
-					paths = lib.attrValues data;
-				}
+				pkgs.runCommand "documentation" { } ''
+					mkdir -p $out
+					cp ${pkgs.writeText "options.json" (builtins.toJSON self.optionIndex)} $out/options.json
+					cp -R ${./inventory} $out/inventory
+				''
 			);
 
 			packages = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
-					files = documentation.${system};
 				in
 				{
-					website = pkgs.buildNpmPackage rec {
+					website = pkgs.buildNpmPackage {
 						pname = "nix-plist-manager-website";
 						version = "1.0.0";
 						src = ./docs;
 						npmDepsHash = "sha256-w91qtncYEcZR80lzOpTo7QOsY3sUNzaP2vHM2O1n4Sg=";
 						nativeBuildInputs = [ pkgs.cacert ];
-						preBuild = ''
-							cp -R ${files}/. src/content/docs/reference
-						'';
+						DOCS_DATA = documentation.${system};
 						installPhase = ''
 							runHook preInstall
-
 							mkdir -p $out
 							cp -r dist/* $out/
-
 							runHook postInstall
 						'';
 					};

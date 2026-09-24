@@ -1,11 +1,12 @@
 {
-  "name": "",
+  "name": "nix-plist-manager-website",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "generate": "node scripts/generate.mjs",
+    "dev": "node scripts/generate.mjs && astro dev",
+    "start": "node scripts/generate.mjs && astro dev",
+    "build": "node scripts/generate.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

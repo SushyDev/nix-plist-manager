@@ -1,0 +1,23 @@
+---
+// The line at the top of a settings page: how many options, how many verified, which module.
+interface Props {
+	count: number;
+	verified: number;
+	where: string;
+	modules: string[];
+}
+
+const { count, verified, where, modules } = Astro.props;
+const moduleNames = modules.map((m) => (m === "darwin" ? "nix-darwin" : "home-manager")).join(" and ");
+---
+
+<div class="pane-summary">
+	<p>
+		Everything under <strong>{where}</strong>, as Nix options. Each one is named after the control
+		you'd click, and set under <code>programs.nix-plist-manager.options</code> in {moduleNames}.
+	</p>
+	<div class="pane-stats">
+		<span><strong>{count}</strong> {count === 1 ? "option" : "options"}</span>
+		<span><strong>{verified}</strong> verified against System Settings</span>
+	</div>
+</div>

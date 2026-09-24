@@ -1,13 +1,13 @@
 // ax — read and operate System Settings through the Accessibility API.
 //
 // Every element is addressed by the labels of its ancestors, so scripts can say
-// "the switch labelled Magnification" instead of relying on positions.
+// "the switch labeled Magnification" instead of relying on positions.
 //
 // Usage:
 //   ax dump [--depth N] [--sheet]        print the window's (or open sheet's) element tree as JSON lines
 //   ax get <label>                       print the element's value as JSON
 //   ax press <label>                     AXPress the element (buttons, checkboxes, radio buttons)
-//   ax click <label>                     click the element's centre (for switches that ignore AXPress)
+//   ax click <label>                     click the element's center (for switches that ignore AXPress)
 //   ax set <label> <value>               set AXValue (sliders, text fields)
 //   ax items <label>                     list a pop-up button's menu items
 //   ax pick <label> <item>               open a pop-up button and choose a menu item
@@ -16,7 +16,7 @@
 // the second pop-up button, for controls without a label.
 //
 // <label> matches an element's title, description, label or identifier (case-insensitive,
-// whole string). "A > B" matches B inside an element labelled A, "B + C" an element labelled
+// whole string). "A > B" matches B inside an element labeled A, "B + C" an element labeled
 // both B and C, and "AXRadioButton:B" only elements with that role.
 //
 // Requires Accessibility permission for the terminal that runs it.
@@ -53,7 +53,7 @@ func labels(_ element: AXUIElement) -> [String] {
 	if let titleElement = attribute(element, kAXTitleUIElementAttribute) {
 		result += [string(titleElement as! AXUIElement, kAXValueAttribute)].compactMap { $0 }
 	}
-	// and list rows (e.g. Keyboard Shortcuts…) put an unlabelled checkbox next to the row's text
+	// and list rows (e.g. Keyboard Shortcuts…) put an unlabeled checkbox next to the row's text
 	if result.isEmpty, string(element, kAXRoleAttribute) == kAXCheckBoxRole,
 	   let cell = attribute(element, kAXParentAttribute) {
 		result += children(cell as! AXUIElement)
@@ -168,7 +168,7 @@ struct Selector {
 
 	func matches(_ element: AXUIElement) -> Bool {
 		if let role = role, string(element, kAXRoleAttribute) != role { return false }
-		// "AXPopUpButton:" with no label matches by role alone, for unlabelled controls ("…#2")
+		// "AXPopUpButton:" with no label matches by role alone, for unlabeled controls ("…#2")
 		if role != nil && wanted == [""] { return true }
 		let own = labels(element).map { $0.lowercased() }
 		return wanted.allSatisfy(own.contains)
@@ -200,12 +200,12 @@ func find(_ fullQuery: String, in root: AXUIElement) throws -> AXUIElement {
 	// prefer an actual control over the static text that labels it
 	let controls = matches.filter { string($0, kAXRoleAttribute) != kAXStaticTextRole }
 	if let nth = nth {
-		guard nth <= controls.count else { throw Failure(description: "only \(controls.count) elements labelled '\(query)'") }
+		guard nth <= controls.count else { throw Failure(description: "only \(controls.count) elements labeled '\(query)'") }
 		return controls[nth - 1]
 	}
-	guard let match = controls.first ?? matches.first else { throw Failure(description: "no element labelled '\(query)'") }
+	guard let match = controls.first ?? matches.first else { throw Failure(description: "no element labeled '\(query)'") }
 	if controls.count > 1 {
-		FileHandle.standardError.write("warning: \(controls.count) elements labelled '\(query)', using the first\n".data(using: .utf8)!)
+		FileHandle.standardError.write("warning: \(controls.count) elements labeled '\(query)', using the first\n".data(using: .utf8)!)
 	}
 	return match
 }
