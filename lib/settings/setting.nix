@@ -1,6 +1,6 @@
 { lib, ops, behaviorsLib }:
 {
-	# Register a setting. Everything else, the option, the commands, the docs, the inventory's
+	# Register a setting. Everything else, the option, the commands, the docs, the
 	# storage and the verify spec, is derived from this.
 	#
 	#   ui          the full path to the control, in the UI's own words, starting at the app:

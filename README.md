@@ -13,4 +13,4 @@ See [sushydev.github.io/nix-plist-manager](https://sushydev.github.io/nix-plist-
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Progress on covering every macOS setting is tracked in [inventory/COVERAGE.md](inventory/COVERAGE.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md). What's verified, still to do, and deliberately not covered is recorded in [coverage.json](coverage.json).

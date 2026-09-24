@@ -6,16 +6,15 @@ Commands:
     controls <pane>                 List the labeled controls a pane shows, with their values.
     observe <pane> <ax command…>    Operate a control through Accessibility and print which
                                     preferences changed, e.g. `observe <pane> press "Magnification"`.
-    discover <pane> <inventory file>
-                                    Add the settings a pane shows to the inventory (`ui:` sources).
+    discover <pane>                 List the settings a pane shows: switches, sliders, pop-ups.
     probe <pane> [--open …] [--skip regex] [--out file]
                                     Operate every checkbox, pop-up and radio button in a pane and
                                     record which preferences each choice writes, putting it back.
     apply <option> <json value>     Run the command an option generates for a value.
-    check [--pane P] [--setting S]  For every inventory setting whose option has a `verify` spec:
-                                    back up the keys it stores, apply each value in the spec,
-                                    reopen System Settings and compare the controls against the
-                                    spec, then restore the backup. Passing settings get `verified`.
+    check [--pane P] [--option O]   For every option with a `verify` spec: back up the keys it
+                                    stores, apply each value in the spec, reopen System Settings
+                                    and compare the controls against the spec, then restore the
+                                    backup. Passing options are listed in coverage.json.
 
 <pane> is the identifier of the pane's sidebar item, e.g. com.apple.settings.appearance
 (`ax dump` lists them).
@@ -61,8 +60,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = Path(os.environ.get("NIX_PLIST_MANAGER_ROOT") or HERE.parents[1])
-sys.path.insert(0, str(ROOT / "tools" / "inventory"))
-import inventory  # noqa: E402
+COVERAGE = ROOT / "coverage.json"
 
 CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "nix-plist-manager"
 AX_BINARY = CACHE / "ax"
@@ -285,6 +283,42 @@ def observe(action) -> list[tuple[str, str, object, object]]:
 # Options
 # ---------------------------------------------------------------------------
 
+def load_options() -> list[dict]:
+	result = subprocess.run(["nix", "eval", "--json", f"path:{ROOT}#optionIndex"], capture_output=True, text=True)
+	if result.returncode != 0:
+		sys.exit(f"nix eval .#optionIndex failed:\n{result.stderr}")
+	return json.loads(result.stdout)
+
+
+def label_of(entry: dict) -> str:
+	return " > ".join(entry["path"])
+
+
+def load_coverage() -> dict:
+	with open(COVERAGE, encoding="utf-8") as f:
+		return json.load(f)
+
+
+def save_coverage(coverage: dict):
+	"""Verified options per macOS build, one per line, and each reason's settings on one line, so
+	the file stays short and its diffs say what changed."""
+	line = lambda value: json.dumps(value, ensure_ascii=False)
+	lines = lambda values: "[\n" + ",\n".join(f"\t\t\t{line(value)}" for value in sorted(values)) + "\n\t\t]"
+	grouped = lambda groups: ",\n".join(
+		f"\t\t{line(pane)}: {{\n" + ",\n".join(f"\t\t\t{line(reason)}: {line(titles)}" for reason, titles in reasons.items()) + "\n\t\t}"
+		for pane, reasons in sorted(groups.items()))
+	with open(COVERAGE, "w", encoding="utf-8") as f:
+		f.write("{\n")
+		f.write("\t\"verified\": {\n" + ",\n".join(f"\t\t{line(build)}: {lines(options)}" for build, options in sorted(coverage["verified"].items()) if options) + "\n\t},\n")
+		f.write("\t\"todo\": {\n" + grouped(coverage["todo"]) + "\n\t},\n")
+		f.write("\t\"notCovered\": {\n" + grouped(coverage["notCovered"]) + "\n\t}\n")
+		f.write("}\n")
+
+
+def current_build() -> str:
+	return subprocess.run(["sw_vers", "-buildVersion"], capture_output=True, text=True).stdout.strip()
+
+
 def command_for(option: str, value) -> str:
 	expr = f'f: f {json.dumps(option)} (builtins.fromJSON {json.dumps(json.dumps(value))})'
 	result = subprocess.run(
@@ -431,22 +465,23 @@ def current_value(spec: dict):
 	return NOTHING
 
 
-def storage_of(entry: dict) -> list[dict]:
-	"""Where an option keeps its value: declared for settings, parsed from commands otherwise."""
-	return entry.get("storage") or inventory.storage_from_commands(entry["commands"])
+def storage_of(entry: dict, root: bool) -> list[dict]:
+	"""The keys to back up for an option: where it keeps its value, and what its values write
+	besides (settings they imply). System keys only when running as root."""
+	keys = []
+	for key in entry["storage"] + [op["key"] for c in entry["candidates"] for op in c["ops"] if isinstance(op.get("key"), dict)]:
+		key = {k: key.get(k) for k in ("domain", "key", "byHost", "scope")}
+		if (key["scope"] != "system" or root) and key not in keys:
+			keys.append(key)
+	return keys
 
 
-def check_setting(data: dict, setting: dict, build: str, entry: dict) -> bool:
-	spec, option = entry["verify"], setting["option"]
-	label = f"{inventory.pane_label(data)} :: {setting['title']}"
+def check_setting(entry: dict) -> bool:
+	spec, option = entry["verify"], entry["option"]
 	# nix-darwin's settings are applied as root
 	root = entry.get("module") == "darwin"
 	commands = {json.dumps(case["value"]): command_for(option, case["value"]) for case in spec["expect"]}
-	# back up what the option stores, and what the values write besides (settings they imply)
-	storage = []
-	for key in storage_of(entry) + inventory.storage_from_commands(commands):
-		if (key.get("scope") != "system" or root) and key not in storage:
-			storage.append(key)
+	storage = storage_of(entry, root)
 	before = storage_values(storage)
 	original = current_value(spec)
 	failures, command = [], ""
@@ -472,19 +507,17 @@ def check_setting(data: dict, setting: dict, build: str, entry: dict) -> bool:
 			if after.get(key) != value:
 				print(f"RESTORE MISMATCH {key[0]} {key[1]}: was {value!r}, now {after.get(key)!r}")
 
-	if failures:
-		setting.pop("verified", None)
-		print(f"FAIL {label}")
-		for failure in failures:
-			print(f"     {failure}")
-		return False
-	print(f"ok   {label}")
-	setting["verified"] = {
-		"build": build,
-		"date": datetime.date.today().isoformat(),
-		"commands": inventory.commands_digest(entry),
-	}
-	return True
+	report(entry, failures)
+	return not failures
+
+
+def report(entry: dict, failures: list[str]):
+	if not failures:
+		print(f"ok   {label_of(entry)}")
+		return
+	print(f"FAIL {label_of(entry)}")
+	for failure in failures:
+		print(f"     {failure}")
 
 
 # ---------------------------------------------------------------------------
@@ -508,7 +541,7 @@ def human_label(labels: list[str]) -> str:
 
 
 def discover(pane: str, steps: list[str] = ()) -> list[dict]:
-	"""Settings a pane shows, as inventory candidates: switches and checkboxes become bools,
+	"""Settings a pane shows: switches and checkboxes become bools,
 	sliders numbers, pop-ups and groups of selectable buttons enums."""
 	open_pane(pane, steps=steps)
 	time.sleep(1)
@@ -793,20 +826,8 @@ def cmd_apply(args):
 
 
 def cmd_discover(args):
-	candidates = discover(args.pane, args.open or [])
-	files = inventory.load_all()
-	path = (ROOT / args.inventory).resolve()
-	if path not in files:
-		sys.exit(f"no inventory file {args.inventory}")
-	build = inventory.current_build()
-	for candidate in candidates:
+	for candidate in discover(args.pane, args.open or []):
 		print(f"{candidate['kind']:7} {candidate['title']}" + (f"  {candidate['choices']}" if candidate["choices"] else ""))
-		inventory.merge_candidate(files[path], {
-			"source": f"ui:{args.pane}/{' > '.join(args.open or [])}{'/' if args.open else ''}{candidate['title']}",
-			"section": args.section,
-			**candidate,
-		}, build)
-	inventory.save_all(files)
 
 
 ACTIVATE_SETTINGS = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings"
@@ -833,37 +854,34 @@ def run_once_at_the_end(script: str) -> str:
 	return "\n".join(line for index, line in enumerate(lines) if last[line] == index)
 
 
-def check_batch(data: dict, group: list[tuple[dict, dict]], build: str) -> tuple[int, int]:
+def check_batch(group: list[dict]) -> list[str]:
 	"""Check settings that are shown on the same page together: apply case n of every one of
 	them, open the page once and read all their controls. They need the same number of cases,
 	and expectations that don't depend on each other: each its own controls, and values that
 	don't collide (e.g. a different test shortcut per row)."""
-	spec = group[0][1]["verify"]
-	root = any(entry.get("module") == "darwin" for _, entry in group)
-	commands = {setting["option"]: {json.dumps(case["value"]): command_for(setting["option"], case["value"])
-		for case in entry["verify"]["expect"]} for setting, entry in group}
-	storage = []
-	for setting, entry in group:
-		for key in storage_of(entry) + inventory.storage_from_commands(commands[setting["option"]]):
-			if (key.get("scope") != "system" or root) and key not in storage:
-				storage.append(key)
+	spec = group[0]["verify"]
+	root = any(entry.get("module") == "darwin" for entry in group)
+	commands = {entry["option"]: {json.dumps(case["value"]): command_for(entry["option"], case["value"])
+		for case in entry["verify"]["expect"]} for entry in group}
+	storage = [key for entry in group for key in storage_of(entry, root)]
+	storage = [key for index, key in enumerate(storage) if key not in storage[:index]]
 	before = storage_values(storage)
-	failures = {setting["option"]: [] for setting, _ in group}
+	failures = {entry["option"]: [] for entry in group}
 	try:
 		for index in range(len(spec["expect"])):
 			value_of_case = lambda entry: json.dumps(entry["verify"]["expect"][index]["value"])
-			script = run_once_at_the_end("\n".join(commands[setting["option"]][value_of_case(entry)] for setting, entry in group))
+			script = run_once_at_the_end("\n".join(commands[entry["option"]][value_of_case(entry)] for entry in group))
 			# System Settings writes back what it has open when it quits, so it goes first
 			subprocess.run(["killall", "System Settings"], capture_output=True)
 			time.sleep(1)
 			run_script(script, root)
 			time.sleep(spec.get("settle", 1.5))
-			first = next(iter(group[0][1]["verify"]["expect"][index]["controls"]))
+			first = next(iter(spec["expect"][index]["controls"]))
 			open_pane(spec["pane"], fresh=True, wait_for=None if spec["open"] else first, steps=spec["open"])
 			time.sleep(1)
-			for setting, entry in group:
+			for entry in group:
 				expectations = entry["verify"]["expect"][index]["controls"]
-				failures[setting["option"]] += [f"{value_of_case(entry)}: {failure}" for failure in expectations_met(expectations)]
+				failures[entry["option"]] += [f"{value_of_case(entry)}: {failure}" for failure in expectations_met(expectations)]
 	finally:
 		every = "\n".join(c for per in commands.values() for c in per.values())
 		restore_after_restarting(before, sorted(set(re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", every))) + ["System Settings"])
@@ -877,66 +895,61 @@ def check_batch(data: dict, group: list[tuple[dict, dict]], build: str) -> tuple
 		for key, value in before.items():
 			if after.get(key) != value:
 				print(f"RESTORE MISMATCH {key[0]} {key[1]}: was {value!r}, now {after.get(key)!r}")
-	passed = failed = 0
-	for setting, entry in group:
-		label = f"{inventory.pane_label(data)} :: {setting['title']}"
-		if failures[setting["option"]]:
-			setting.pop("verified", None)
-			print(f"FAIL {label}")
-			for failure in failures[setting["option"]]:
-				print(f"     {failure}")
-			failed += 1
-		else:
-			print(f"ok   {label}")
-			setting["verified"] = {"build": build, "date": datetime.date.today().isoformat(), "commands": inventory.commands_digest(entry)}
-			passed += 1
-	return passed, failed
+	for entry in group:
+		report(entry, failures[entry["option"]])
+	return [entry["option"] for entry in group if not failures[entry["option"]]]
+
+
+def in_pane(entry: dict, pane: str) -> bool:
+	normalize = lambda text: re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+	return normalize(pane) in normalize(label_of(entry))
 
 
 def cmd_check(args):
 	root_available = has_root()
-	files = inventory.load_all()
-	build = inventory.current_build()
-	index = {o["option"]: o for o in inventory.load_option_index(None)}
-	passed = failed = 0
-	for path, data in files.items():
-		if args.pane and inventory.normalize(args.pane) not in inventory.normalize(inventory.pane_label(data)):
+	coverage = load_coverage()
+	build = current_build()
+	verified = {option for options in coverage["verified"].values() for option in options}
+	passed, failed = set(), set()
+	batches: dict[tuple, list] = {}
+	for entry in load_options():
+		spec = entry.get("verify")
+		if not spec:
 			continue
-		batches: dict[tuple, list] = {}
-		for setting_id, setting in data["settings"].items():
-			if args.setting and args.setting != setting_id:
-				continue
-			if args.skip and re.search(args.skip, setting["title"]):
-				continue
-			if args.only_unverified and setting.get("verified"):
-				continue
-			entry = index.get(setting.get("option"))
-			if not (entry and entry.get("verify")):
-				continue
-			# nix-darwin's settings are applied as root
-			if entry.get("module") == "darwin" and not root_available:
-				continue
-			if args.batch:
-				spec = entry["verify"]
-				page = (spec["pane"], tuple(spec["open"]), len(spec["expect"]))
-				batches.setdefault(page, []).append((setting, entry))
-				continue
-			try:
-				ok = check_setting(data, setting, build, entry)
-			except Exception as error:  # one broken spec shouldn't stop the others
-				print(f"FAIL {inventory.pane_label(data)} :: {setting['title']}\n     {error}")
-				ok = False
-			passed, failed = passed + ok, failed + (not ok)
-		for group in batches.values():
-			try:
-				ok, bad = check_batch(data, group, build)
-			except Exception as error:
-				print(f"FAIL {inventory.pane_label(data)} :: {', '.join(s['title'] for s, _ in group)}\n     {error}")
-				ok, bad = 0, len(group)
-			passed, failed = passed + ok, failed + bad
-		inventory.save_all(files)
-	inventory.save_all(files)
-	print(f"{passed} passed, {failed} failed")
+		if args.option and args.option != entry["option"]:
+			continue
+		if args.pane and not in_pane(entry, args.pane):
+			continue
+		if args.skip and re.search(args.skip, label_of(entry)):
+			continue
+		if args.only_unverified and entry["option"] in verified:
+			continue
+		# nix-darwin's settings are applied as root
+		if entry.get("module") == "darwin" and not root_available:
+			continue
+		if args.batch:
+			batches.setdefault((spec["pane"], tuple(spec["open"]), len(spec["expect"])), []).append(entry)
+			continue
+		try:
+			ok = check_setting(entry)
+		except Exception as error:  # one broken spec shouldn't stop the others
+			report(entry, [str(error)])
+			ok = False
+		(passed if ok else failed).add(entry["option"])
+	for group in batches.values():
+		try:
+			ok = set(check_batch(group))
+		except Exception as error:
+			print(f"FAIL {', '.join(label_of(entry) for entry in group)}\n     {error}")
+			ok = set()
+		passed |= ok
+		failed |= {entry["option"] for entry in group} - ok
+
+	# an option counts as verified on the build it last passed on
+	coverage["verified"] = {b: sorted(set(options) - passed - failed) for b, options in coverage["verified"].items()}
+	coverage["verified"][build] = sorted(set(coverage["verified"].get(build, [])) | passed)
+	save_coverage(coverage)
+	print(f"{len(passed)} passed, {len(failed)} failed")
 	sys.exit(1 if failed else 0)
 
 
@@ -956,11 +969,9 @@ def main():
 	p.add_argument("option")
 	p.add_argument("value", help="JSON, e.g. true, 48, '\"dark\"'")
 
-	p = sub.add_parser("discover", help="add the settings a pane shows to an inventory file")
+	p = sub.add_parser("discover", help="list the settings a pane shows")
 	p.add_argument("pane")
-	p.add_argument("inventory", help="inventory file, e.g. inventory/system-settings/appearance.json")
 	p.add_argument("--open", action="append", help="control to press first (a sheet or sub-page), repeatable")
-	p.add_argument("--section", help="section to file the settings under")
 
 	p = sub.add_parser("probe", help="operate every control in a pane and record what it writes")
 	p.add_argument("pane")
@@ -972,8 +983,8 @@ def main():
 
 	p = sub.add_parser("check")
 	p.add_argument("--pane")
-	p.add_argument("--setting")
-	p.add_argument("--skip", help="regex of setting titles to leave out, e.g. ones that play sound or speak")
+	p.add_argument("--option", help="one option, e.g. applications.systemSettings.appearance.appearance")
+	p.add_argument("--skip", help="regex of UI paths to leave out, e.g. ones that play sound or speak")
 	p.add_argument("--only-unverified", action="store_true", help="leave out settings that are verified already")
 	p.add_argument("--batch", action="store_true", help="check the settings of one page together (much faster; see check_batch)")
 

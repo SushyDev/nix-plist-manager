@@ -20,7 +20,7 @@ rec {
 
 	# replace the key writes with commands that apply the value live, for state that is owned
 	# by a system service rather than read from the plist. `apply` gets the value and returns
-	# shell commands. Storage stays declared so docs, the inventory and verify know where the
+	# shell commands. Storage stays declared so the docs and verify know where the
 	# value ends up.
 	appliesThrough = apply: context: plan:
 		if context.value == "unset" then plan

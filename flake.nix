@@ -56,7 +56,7 @@
 				in
 				import ./lib/optionIndex.nix { inherit lib; } options;
 
-			# what the website is generated from: every option (optionIndex) and the inventory, which
+			# what the website is generated from: every option (optionIndex) and coverage.json, which
 			# says what's verified and what isn't covered. docs/scripts/generate.mjs turns it into pages.
 			documentation = forAllSystems (system:
 				let
@@ -65,7 +65,7 @@
 				pkgs.runCommand "documentation" { } ''
 					mkdir -p $out
 					cp ${pkgs.writeText "options.json" (builtins.toJSON self.optionIndex)} $out/options.json
-					cp -R ${./inventory} $out/inventory
+					cp ${./coverage.json} $out/coverage.json
 				''
 			);
 
@@ -99,15 +99,24 @@
 					# setting is: "System Settings > Accessibility > Zoom > Advanced… > Smooth images"
 					apps = [ "System Settings" "Finder" "Dock" "Menu bar" "App Store" "Voice Memos" "News" "Journal" ];
 					unrooted = builtins.filter (entry: !(builtins.elem (builtins.head entry.path) apps)) self.optionIndex;
-					# each option has its own path: the inventory links options to settings by it
+					# each option has its own path, so the docs can tell them apart
 					paths = map (entry: builtins.concatStringsSep " > " entry.path) self.optionIndex;
 					duplicates = nixpkgs.lib.unique (builtins.filter (path: nixpkgs.lib.count (p: p == path) paths > 1) paths);
+					# coverage.json only lists options that exist
+					known = map (entry: entry.option) self.optionIndex;
+					verified = builtins.concatLists (builtins.attrValues (builtins.fromJSON (builtins.readFile ./coverage.json)).verified);
+					stale = builtins.filter (option: !(builtins.elem option known)) verified;
 				in
 				{
 					ui-paths = pkgs.runCommand "ui-paths" {} (
 						if duplicates != [] then throw "these UI paths belong to more than one option:\n${builtins.concatStringsSep "\n" duplicates}"
 						else if unrooted == [] then "touch $out"
 						else throw "these options' UI paths don't start at an app (${builtins.concatStringsSep ", " apps}):\n${builtins.concatStringsSep "\n" (map (entry: entry.option) unrooted)}"
+					);
+
+					coverage = pkgs.runCommand "coverage" {} (
+						if stale == [] then "touch $out"
+						else throw "coverage.json lists options that don't exist:\n${builtins.concatStringsSep "\n" stale}"
 					);
 
 					settings = pkgs.runCommand "settings-tests" {} (
@@ -120,10 +129,6 @@
 			apps = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
-					inventory = pkgs.writeShellScript "inventory" ''
-						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
-						exec ${pkgs.python3}/bin/python3 ${./tools/inventory/inventory.py} "$@"
-					'';
 					# needs Accessibility permission and the system swiftc, so macOS only
 					verify = pkgs.writeShellScript "verify" ''
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
@@ -156,10 +161,6 @@
 					current = {
 						type = "app";
 						program = "${current}";
-					};
-					inventory = {
-						type = "app";
-						program = "${inventory}";
 					};
 					verify = {
 						type = "app";
