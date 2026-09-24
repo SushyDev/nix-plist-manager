@@ -342,10 +342,9 @@ def read_firewall(entry: dict):
 
 
 def read_ui(entry: dict):
-	sys.path.insert(0, str(ROOT / "tools" / "verify"))
+	sys.path.insert(0, str(HERE))
 	import verify  # noqa: E402
-	value = verify.current_value(entry["verify"])
-	return UNREAD if value is verify.NOTHING else value
+	return verify.shown_values([entry]).get(entry["option"], UNREAD)
 
 
 def read(entry: dict, use_ui: bool):

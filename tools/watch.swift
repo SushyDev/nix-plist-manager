@@ -20,6 +20,26 @@ let roots = [
 ]
 let filters = CommandLine.arguments.dropFirst().map { $0 == "-g" ? ".GlobalPreferences" : $0 }
 
+// what apps and background services write all the time, which would drown out a setting
+let noisyKeys = try! NSRegularExpression(
+	pattern: "LastUpdate|Timestamp|LastSeen|lastUsed|LaunchCount|WindowFrame|NSWindow|NSSplitView|NSNavPanel|NSToolbar|"
+		+ "NSStatusItem Preferred Position|MRU|Recent|History|Session|LastReloaded|Workaround_",
+	options: .caseInsensitive)
+let noisyDomains: Set<String> = [
+	"com.apple.systempreferences", "com.apple.Settings", "com.apple.cfprefsd.daemon", "com.apple.systemsettings.extensions",
+	"com.apple.spaces", "com.apple.CloudKit", "com.apple.xpc.activity2", "ContextStoreAgent", "com.apple.knowledge-agent",
+	"com.apple.suggestions", "com.apple.appleaccount", "com.apple.ncprefs.cache", "com.apple.configurationprofiles.user",
+	"com.apple.siri.shortcuts", "com.apple.spotlightknowledged.pipeline", "com.apple.lighthouse.pnr.PnROnDeviceWorker",
+	"com.apple.siri.analytics.assistant", "com.apple.siri.ODDI.MetricsWorker", "com.apple.unilog.MacMailSearch",
+	"com.apple.biometrickitd", "com.apple.icloud.searchpartyuseragent", "com.apple.powerlogd", "com.apple.analyticsagent",
+	"com.apple.systemsettingsagent", "com.apple.routined", "com.apple.bird.containers.notifications", "com.apple.fileproviderd",
+	"com.apple.campo", "com.apple.photolibraryd",
+]
+
+func isNoise(_ key: String) -> Bool {
+	noisyKeys.firstMatch(in: key, range: NSRange(key.startIndex..., in: key)) != nil
+}
+
 func isPreferenceFile(_ path: String) -> Bool {
 	path.hasSuffix(".plist") && path.contains("/Preferences/")
 		&& (filters.isEmpty || filters.contains { path.contains($0) })
@@ -28,7 +48,11 @@ func isPreferenceFile(_ path: String) -> Bool {
 // what `defaults` calls it: the file name, without a current-host copy's hardware UUID
 func domain(of path: String) -> String {
 	let name = (path as NSString).lastPathComponent.replacingOccurrences(of: ".plist", with: "")
-	let domain = name.replacingOccurrences(of: #"\.[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}$"#, with: "", options: .regularExpression)
+	return name.replacingOccurrences(of: #"\.[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}$"#, with: "", options: .regularExpression)
+}
+
+func describe(_ path: String) -> String {
+	let domain = domain(of: path)
 	var notes: [String] = []
 	if path.contains("/ByHost/") { notes.append("current host") }
 	if path.hasPrefix("/Library/") { notes.append("system") }
@@ -77,12 +101,12 @@ time.dateFormat = "HH:mm:ss"
 
 let callback: FSEventStreamCallback = { _, _, count, paths, _, _ in
 	let paths = unsafeBitCast(paths, to: NSArray.self) as! [String]
-	for path in Set(paths.prefix(count)) where isPreferenceFile(path) {
+	for path in Set(paths.prefix(count)) where isPreferenceFile(path) && !noisyDomains.contains(domain(of: path)) {
 		let contents = read(path)
-		let found = changes(known[path] ?? [:], contents ?? [:])
+		let found = changes(known[path] ?? [:], contents ?? [:]).filter { !isNoise($0.0) }
 		known[path] = contents
 		guard !found.isEmpty else { continue }
-		print("\(time.string(from: Date())) \(domain(of: path))")
+		print("\(time.string(from: Date())) \(describe(path))")
 		for (key, old, new) in found {
 			print("  \(key): \(show(old)) → \(show(new))")
 		}

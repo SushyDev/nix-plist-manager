@@ -13,7 +13,7 @@
 	#   relations   rules against other settings (relations.nix)
 	#   verify      what System Settings shows per value, for `nix run .#verify -- check`:
 	#               { pane; open ? []; operate ? null; expect = { <value> = { <control> = <expected>; }; }; }
-	#               see tools/verify/verify.py for the control syntax
+	#               see tools/verify.py and tools/ax.swift for the control syntax
 	setting = {
 		ui,
 		storage,

@@ -11,7 +11,7 @@
 #
 # Values are type-checked and relations evaluated as in a system configuration: failed
 # assertions stop here, warnings are printed. User settings run as you, system settings
-# (nix-darwin's) through sudo.
+# (nix-darwin's) through sudo. --dry-run prints the script instead.
 set -euo pipefail
 
 usage() { sed -n '/^# Apply settings/,/^set -euo/p' "$0" | grep '^#' | sed 's/^# \{0,1\}//' >&2; exit 2; }
@@ -39,32 +39,9 @@ case "${args[0]:-}" in
 	*) usage ;;
 esac
 
-result=$(nix eval --json --impure "path:$root#lib.standalone" --apply "f: f $values")
-
-report() {
-	printf '%s' "$result" | /usr/bin/python3 -c '
-import json, sys
-result = json.load(sys.stdin)
-failed = [a for scope in result.values() for a in scope["assertions"]]
-for scope in result.values():
-	for warning in scope["warnings"]:
-		print("warning: " + warning, file=sys.stderr)
-for assertion in failed:
-	print("error: " + assertion, file=sys.stderr)
-sys.exit(1 if failed else 0)
-'
-}
-report
-
-user=$(printf '%s' "$result" | /usr/bin/python3 -c 'import json,sys; print(json.load(sys.stdin)["user"]["script"])')
-system=$(printf '%s' "$result" | /usr/bin/python3 -c 'import json,sys; print(json.load(sys.stdin)["system"]["script"])')
-
+script=$(nix eval --raw --impure "path:$root#lib.applyScript" --apply "f: f $values")
 if $dry_run; then
-	[ -n "$user" ] && printf '# user\n%s\n' "$user"
-	[ -n "$system" ] && printf '# system (sudo)\n%s\n' "$system"
-	exit 0
+	printf '%s\n' "$script"
+else
+	/bin/bash -c "$script"
 fi
-
-[ -n "$user" ] && /bin/bash -c "$user"
-[ -n "$system" ] && sudo /bin/bash -c "$system"
-exit 0

@@ -80,24 +80,24 @@ The value is a Nix expression, so strings need their quotes. `--dry-run` prints 
 
 ### Verify against the real UI
 
-`tools/verify` drives System Settings through the Accessibility API, so the terminal running it needs Accessibility permission (Privacy & Security → Accessibility). It moves the mouse and quits and reopens System Settings while it runs.
+`tools/verify.py` drives System Settings through the Accessibility API, so the terminal running it needs Accessibility permission (Privacy & Security → Accessibility). It moves the mouse and quits and reopens System Settings while it runs.
 
 ```sh
-nix run .#verify -- controls com.apple.settings.appearance         # labeled controls and their values
 nix run .#verify -- discover com.apple.settings.appearance        # the settings the pane shows
+nix run .#verify -- gaps --pane Appearance                         # what no option or coverage.json entry accounts for
 nix run .#verify -- observe com.apple.settings.appearance click "TintWindowBackgroundToggle"
                                                                     # which preference keys a control writes
 nix run .#verify -- check --pane Appearance                        # round-trip every setting with a `verify` spec
 nix run .#verify -- check --pane Keyboard --batch --skip 'Speak'    # a page's settings together; leave some out
 ```
 
-Panes are addressed by their sidebar identifier; `ax dump` lists them. Operate a control with `press` (buttons, radio buttons), `click` (SwiftUI switches ignore `press`), `pick` (pop-up menus) or `set` (sliders). Labels that appear more than once can be narrowed down: `AXRadioButton:Dark` matches only radio buttons, `Dark + Icon & widget style` matches only an element that carries both labels, and `…#2` picks the second match (e.g. the second of a list's disclosure triangles). An unlabeled checkbox in a list row goes by the row's text. In a spec's `open` steps, `click:<label>` clicks instead of pressing, for list rows that ignore `press` (Keyboard Shortcuts…'s categories).
+Panes are addressed by their sidebar identifier; `gaps` walks all of them, and `ax dump` lists them. Operate a control with `press` (buttons, radio buttons), `click` (SwiftUI switches ignore `press`), `pick` (pop-up menus) or `set` (sliders). Labels that appear more than once can be narrowed down: `AXRadioButton:Dark` matches only radio buttons, `Dark + Icon & widget style` matches only an element that carries both labels, and `…#2` picks the second match (e.g. the second of a list's disclosure triangles). An unlabeled checkbox in a list row goes by the row's text. In a spec's `open` steps, `click:<label>` clicks instead of pressing, for list rows that ignore `press` (Keyboard Shortcuts…'s categories).
 
 `check --batch` applies the same case of every setting that has the same `open` steps, opens that page once and reads all of their controls, which is many times faster. Give the settings of one page values that can't be mistaken for each other (the keyboard shortcuts each use their own test keys); a setting that fails in a batch can be checked on its own with `--option`. `--skip <regex>` leaves settings out by UI path, e.g. ones that would speak or play sound.
 
-`discover` lists the switches, sliders and pop-ups a pane shows, to compare against the options. Use `--open "Hot Corners…"` to reach sheets and sub-pages.
+`discover` lists the switches, sliders, pop-ups and sheets a pane shows. Use `--open "Hot Corners…"` to reach sheets and sub-pages; `ax items <pop-up>` lists a pop-up's choices.
 
-`check` needs a `verify` spec on the setting that says what System Settings should show for each value. Its format is described at the top of `tools/verify/verify.py`. `check` backs up the setting's preference keys, applies each value with the option's own generated command, reopens the pane and compares, then restores the backup. Options that pass are added to `verified` under the current build; options that fail are removed.
+`check` needs a `verify` spec on the setting that says what System Settings should show for each value. Its format is described at the top of `tools/verify.py`. `check` backs up the setting's preference keys, applies each value with the option's own generated command, reopens the pane and compares, then restores the backup. Options that pass are added to `verified` under the current build; options that fail are removed.
 
 Write the setting's `storage` from what `observe` reports. Don't take it from an existing option: an option that writes the wrong domain (for example `ByHost` when System Settings writes the global domain) still "works" in one direction, but it silently overrides whatever the user picks in the UI.
 

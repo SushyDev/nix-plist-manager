@@ -18,19 +18,8 @@
 				home-manager = self.homeManagerModules.default;
 			};
 
-			# The script that applies one option value, as a configuration with only that value would:
-			# type-checked, with the writes of settings it implies. Used by tools/verify.
-			lib.commandFor = optionPath: value:
-				let
-					lib = nixpkgs.lib;
-					result = self.lib.standalone (lib.setAttrByPath (lib.splitString "." optionPath) value);
-					failed = result.user.assertions ++ result.system.assertions;
-				in
-				if failed != [] then throw (lib.concatStringsSep "\n" failed)
-				else lib.concatStringsSep "\n" (lib.filter (script: script != "") [ result.user.script result.system.script ]);
-
-			# `nix run .#apply` evaluates this: the scripts, warnings and failed assertions for a
-			# set of option values, outside a system configuration
+			# The scripts for a set of option values, outside a system configuration, checked as one
+			# would be: failed assertions stop evaluation and warnings are printed.
 			lib.standalone = values:
 				let
 					lib = nixpkgs.lib;
@@ -39,15 +28,31 @@
 						tree = import ./lib/options.nix { inherit lib; };
 						inherit values;
 					};
-					scope = build: {
-						inherit (build) script warnings;
-						assertions = map (assertion: assertion.message) build.assertions;
-					};
+					failed = map (assertion: assertion.message) (result.user.assertions ++ result.system.assertions);
 				in
-				{
-					user = scope result.user;
-					system = scope result.system;
-				};
+				if failed != [] then throw (lib.concatStringsSep "\n" failed)
+				else lib.foldr lib.warn { user = result.user.script; system = result.system.script; }
+					(result.user.warnings ++ result.system.warnings);
+
+			# The script that applies one option value, with the writes of settings it implies. Used
+			# by tools/verify.py, which runs it as root when the option is nix-darwin's.
+			lib.commandFor = optionPath: value:
+				let
+					lib = nixpkgs.lib;
+					scripts = self.lib.standalone (lib.setAttrByPath (lib.splitString "." optionPath) value);
+				in
+				lib.concatStringsSep "\n" (lib.filter (script: script != "") [ scripts.user scripts.system ]);
+
+			# What `nix run .#apply` runs: user settings as you, system settings through sudo.
+			lib.applyScript = values:
+				let
+					lib = nixpkgs.lib;
+					scripts = self.lib.standalone values;
+				in
+				lib.concatStringsSep "\n" (lib.filter (script: script != "") [
+					scripts.user
+					(lib.optionalString (scripts.system != "") "sudo /bin/bash -c ${lib.escapeShellArg scripts.system}")
+				]);
 
 			optionIndex =
 				let
@@ -132,7 +137,7 @@
 					# needs Accessibility permission and the system swiftc, so macOS only
 					verify = pkgs.writeShellScript "verify" ''
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
-						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify/verify.py" "$@"
+						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify.py" "$@"
 					'';
 					# compiled with the system's swiftc on first use, once per version of the source
 					watch = pkgs.writeShellScript "watch" ''
