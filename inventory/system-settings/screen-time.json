@@ -10,6 +10,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=always-allowed",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=always-allowed/Choose always allowed apps in Screen Time"
 			],
@@ -20,6 +21,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=app-limits",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=app-limits/Choose app limits in Screen Time"
 			],
@@ -30,6 +32,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=app-usage",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=app-usage/Show app usage report in Screen Time"
 			],
@@ -40,6 +43,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=communication-limits",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=communication-limits/Change communication limits in Screen Time"
 			],
@@ -50,6 +54,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=communication-limits",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=communication-limits/Set communication limits in Screen Time"
 			],
@@ -60,6 +65,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=content-and-privacy",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=content-and-privacy/Choose Screen Time content and privacy settings"
 			],
@@ -70,6 +76,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=content-and-privacy",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=content-and-privacy/Restrict explicit content"
 			],
@@ -80,6 +87,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=downtime",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=downtime/Schedule downtime in Screen Time"
 			],
@@ -90,6 +98,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=notifications",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=notifications/Show notifications report in Screen Time"
 			],
@@ -100,6 +109,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=pickups",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=pickups/Show device pickups report in Screen Time"
 			],
@@ -110,6 +120,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=requests",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=requests/Show Screen Time requests"
 			],
@@ -120,6 +131,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Path=screen-distance",
+			"skip": "kept in Screen Time's own database and synced through iCloud and Family Sharing, not in preferences; content restrictions can be set with a configuration profile instead",
 			"sources": [
 				"search:ScreenTimePreferencesExtension.appex/path=screen-distance/Configure Screen Distance in Screen Time"
 			],
