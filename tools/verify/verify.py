@@ -301,28 +301,57 @@ def apply(option: str, value):
 	subprocess.run(["/bin/bash", "-c", command], check=True)
 
 
+def has_root() -> bool:
+	"""Running as root, or allowed to run sudo without a password (e.g. a temporary sudoers
+	rule), so nix-darwin's settings can be applied and restored."""
+	return os.geteuid() == 0 or subprocess.run(["sudo", "-n", "true"], capture_output=True).returncode == 0
+
+
+def as_root(argv: list[str]) -> list[str]:
+	return argv if os.geteuid() == 0 else ["sudo", "-n", *argv]
+
+
+def run_script(script: str, root: bool = False, check: bool = True):
+	subprocess.run(as_root(["/bin/bash", "-c", script]) if root else ["/bin/bash", "-c", script], check=check)
+
+
+def domain_argument(entry: dict) -> str:
+	"""The domain as `defaults` takes it: nix-darwin's are files in /Library/Preferences."""
+	domain = entry["domain"]
+	if entry.get("scope") == "system" and not domain.startswith("/"):
+		return f"/Library/Preferences/{domain}"
+	return domain
+
+
 def storage_values(storage: list[dict]) -> dict:
 	values = {}
 	for entry in storage:
+		# a file or command (`file` storage) rather than a preference key: the option puts it back
+		if not entry.get("key"):
+			continue
 		host = ["-currentHost"] if entry.get("byHost") else []
-		result = subprocess.run(["defaults", *host, "export", entry["domain"], "-"], capture_output=True)
-		domain = plistlib.loads(result.stdout) if result.returncode == 0 and result.stdout else {}
-		values[(entry["domain"], entry["key"], bool(entry.get("byHost")))] = domain.get(entry["key"])
+		domain = domain_argument(entry)
+		argv = ["defaults", *host, "export", domain, "-"]
+		result = subprocess.run(as_root(argv) if entry.get("scope") == "system" else argv, capture_output=True)
+		exported = plistlib.loads(result.stdout) if result.returncode == 0 and result.stdout else {}
+		values[(domain, entry["key"], bool(entry.get("byHost")), entry.get("scope") == "system")] = exported.get(entry["key"])
 	return values
 
 
 def restore_values(values: dict):
 	"""Put each key back exactly as it was, leaving the rest of its domain alone.
 	`defaults import` merges, so importing a one-key plist restores just that key."""
-	for (domain, key, by_host), value in values.items():
+	for (domain, key, by_host, system), value in values.items():
 		host = ["-currentHost"] if by_host else []
+		wrap = as_root if system else (lambda argv: argv)
 		if value is None:
-			subprocess.run(["defaults", *host, "delete", domain, key], capture_output=True)
+			subprocess.run(wrap(["defaults", *host, "delete", domain, key]), capture_output=True)
 			continue
 		fd, path = tempfile.mkstemp(suffix=".plist")
 		with os.fdopen(fd, "wb") as f:
 			plistlib.dump({key: value}, f)
-		subprocess.run(["defaults", *host, "import", domain, path], check=True)
+		os.chmod(path, 0o644)
+		subprocess.run(wrap(["defaults", *host, "import", domain, path]), check=True)
 		os.unlink(path)
 
 
@@ -410,11 +439,13 @@ def storage_of(entry: dict) -> list[dict]:
 def check_setting(data: dict, setting: dict, build: str, entry: dict) -> bool:
 	spec, option = entry["verify"], setting["option"]
 	label = f"{inventory.pane_label(data)} :: {setting['title']}"
+	# nix-darwin's settings are applied as root
+	root = entry.get("module") == "darwin"
 	commands = {json.dumps(case["value"]): command_for(option, case["value"]) for case in spec["expect"]}
 	# back up what the option stores, and what the values write besides (settings they imply)
 	storage = []
 	for key in storage_of(entry) + inventory.storage_from_commands(commands):
-		if key.get("scope") != "system" and key not in storage:  # system keys need root
+		if (key.get("scope") != "system" or root) and key not in storage:
 			storage.append(key)
 	before = storage_values(storage)
 	original = current_value(spec)
@@ -423,7 +454,7 @@ def check_setting(data: dict, setting: dict, build: str, entry: dict) -> bool:
 		for case in spec["expect"]:
 			value, expectations = case["value"], case["controls"]
 			command = commands[json.dumps(value)]
-			subprocess.run(["/bin/bash", "-c", command], check=True)
+			run_script(command, root)
 			time.sleep(spec.get("settle", 1.5))
 			first = next(iter(expectations))
 			open_pane(spec["pane"], fresh=True, wait_for=None if spec["open"] else first, steps=spec["open"])
@@ -434,7 +465,7 @@ def check_setting(data: dict, setting: dict, build: str, entry: dict) -> bool:
 		# some options change live state (e.g. dark mode) that restoring preference keys alone
 		# doesn't undo, so put the original value back through the option first
 		if original is not NOTHING:
-			subprocess.run(["/bin/bash", "-c", command_for(option, original)], check=False)
+			run_script(command_for(option, original), root, check=False)
 		restore_after_restarting(before, re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", command) + ["System Settings"])
 		after = storage_values(storage)
 		for key, value in before.items():
@@ -808,12 +839,13 @@ def check_batch(data: dict, group: list[tuple[dict, dict]], build: str) -> tuple
 	and expectations that don't depend on each other: each its own controls, and values that
 	don't collide (e.g. a different test shortcut per row)."""
 	spec = group[0][1]["verify"]
+	root = any(entry.get("module") == "darwin" for _, entry in group)
 	commands = {setting["option"]: {json.dumps(case["value"]): command_for(setting["option"], case["value"])
 		for case in entry["verify"]["expect"]} for setting, entry in group}
 	storage = []
 	for setting, entry in group:
 		for key in storage_of(entry) + inventory.storage_from_commands(commands[setting["option"]]):
-			if key.get("scope") != "system" and key not in storage:
+			if (key.get("scope") != "system" or root) and key not in storage:
 				storage.append(key)
 	before = storage_values(storage)
 	failures = {setting["option"]: [] for setting, _ in group}
@@ -824,7 +856,7 @@ def check_batch(data: dict, group: list[tuple[dict, dict]], build: str) -> tuple
 			# System Settings writes back what it has open when it quits, so it goes first
 			subprocess.run(["killall", "System Settings"], capture_output=True)
 			time.sleep(1)
-			subprocess.run(["/bin/bash", "-c", script], check=True)
+			run_script(script, root)
 			time.sleep(spec.get("settle", 1.5))
 			first = next(iter(group[0][1]["verify"]["expect"][index]["controls"]))
 			open_pane(spec["pane"], fresh=True, wait_for=None if spec["open"] else first, steps=spec["open"])
@@ -862,6 +894,7 @@ def check_batch(data: dict, group: list[tuple[dict, dict]], build: str) -> tuple
 
 
 def cmd_check(args):
+	root_available = has_root()
 	files = inventory.load_all()
 	build = inventory.current_build()
 	index = {o["option"]: o for o in inventory.load_option_index(None)}
@@ -881,7 +914,7 @@ def cmd_check(args):
 			if not (entry and entry.get("verify")):
 				continue
 			# nix-darwin's settings are applied as root
-			if entry.get("module") == "darwin" and os.geteuid() != 0:
+			if entry.get("module") == "darwin" and not root_available:
 				continue
 			if args.batch:
 				spec = entry["verify"]

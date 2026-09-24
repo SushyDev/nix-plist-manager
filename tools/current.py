@@ -315,10 +315,29 @@ def read_special(entry: dict):
 		return target.split("zoneinfo/", 1)[1] if "zoneinfo/" in target else UNREAD
 	if ".general.sharing." in option:
 		return read_sharing(option)
+	if ".network.firewall." in option:
+		return read_firewall(entry)
 	if option.endswith("dateAndTime.source"):
 		for line in Path("/etc/ntp.conf").read_text().splitlines():
 			if line.startswith("server "):
 				return line.split()[1]
+	return UNREAD
+
+
+def read_firewall(entry: dict):
+	"""The application firewall's switches, from socketfilterfw (readable without root)."""
+	command = entry["storage"][0]["domain"]
+	output = subprocess.run(command.split(), capture_output=True, text=True).stdout.lower()
+	if "--getglobalstate" in command:
+		return "enabled" in output and "disabled" not in output
+	if "--getallowsigned" in command:
+		# one flag reports both
+		kind = "downloaded" if "Downloaded" in entry["option"] else "built-in"
+		return f"{kind} signed software enabled" in output
+	if "--getblockall" in command:
+		return "block all state set to enabled" in output or "blocking all" in output
+	if "--getstealthmode" in command:
+		return "stealth mode is on" in output
 	return UNREAD
 
 

@@ -22,6 +22,9 @@ in
 			keyboard = import ./options/applications/systemSettings/keyboard.nix { inherit lib settingsLib; };
 			trackpad = import ./options/applications/systemSettings/trackpad.nix { inherit lib settingsLib; };
 			printersAndScanners = import ./options/applications/systemSettings/printers-and-scanners.nix { inherit lib settingsLib; };
+			privacyAndSecurity = import ./options/applications/systemSettings/privacy-and-security.nix { inherit lib settingsLib; };
+			network = import ./options/applications/systemSettings/network.nix { inherit lib settingsLib; };
+			wiFi = import ./options/applications/systemSettings/wi-fi.nix { inherit lib settingsLib; };
 		};
 		voiceMemos = import ./options/applications/voice-memos.nix { inherit lib settingsLib; };
 		journal = import ./options/applications/journal.nix { inherit lib settingsLib; };
