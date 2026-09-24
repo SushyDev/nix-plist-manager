@@ -1,15 +1,9 @@
 { lib, settingsLib, ... }:
-# Each network service's configuration (addresses, DNS, proxies, VPN) is kept in
-# SystemConfiguration's preferences and belongs to nix-darwin's networking options, so only the
-# firewall is here. The application firewall keeps its own state and is changed through
-# socketfilterfw, as root.
 let
 	inherit (settingsLib) setting file bool appliesThrough;
 
 	socketfilterfw = "/usr/libexec/ApplicationFirewall/socketfilterfw";
 
-	# `readFlag`: the --get flag that reports it, when it isn't named like the --set flag; `on`:
-	# what that prints while it's on
 	firewall = { ui, flag, readFlag ? flag, on }: setting {
 		ui = [ "System Settings" "Network" "Firewall" ] ++ ui;
 		storage = file "${socketfilterfw} --get${readFlag}";

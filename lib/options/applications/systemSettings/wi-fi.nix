@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# Wi-Fi on or off, and each network's settings, change in daily use or belong to that network.
-# The rest is kept in the system's airport preferences, as root.
 let
 	inherit (settingsLib) setting system bool enum;
 

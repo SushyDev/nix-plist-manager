@@ -3,7 +3,6 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import { readFileSync } from "node:fs";
 
-// written by scripts/generate.mjs: the settings pages, in System Settings' order
 const generated = JSON.parse(readFileSync(new URL("./src/generated/sidebar.json", import.meta.url), "utf8"));
 
 export default defineConfig({

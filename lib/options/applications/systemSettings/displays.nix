@@ -1,15 +1,11 @@
 { lib, settingsLib, ... }:
-# Resolution, brightness, presets, refresh rate and arrangement are per display and change
-# often and aren't here. True Tone and Night Shift are kept by corebrightnessd and set through
-# its client API, the way System Settings does.
 let
 	inherit (settingsLib) setting user byHost mkKey bool inverted enum number appliesThrough onlyWhen live;
 
 	pane = "com.apple.settings.displayAndBrightness";
 	option = name: "applications.systemSettings.displays.${name}";
 
-	# corebrightnessd's state for this user (root-only on disk); read and written through the
-	# CoreBrightness client classes
+	# corebrightnessd's state is root-only on disk, so it's changed through the CoreBrightness client classes.
 	coreBrightness = mkKey { domain = "/var/root/Library/Preferences/com.apple.CoreBrightness"; name = null; };
 	coreBrightnessCall = class: call: live.jxa (lib.concatStrings [
 		"ObjC.import('Foundation');"
@@ -43,7 +39,6 @@ in
 	};
 
 	nightShift = {
-		# a custom schedule's times aren't covered
 		schedule = setting {
 			ui = [ "System Settings" "Displays" "Night Shift…" "Schedule" ];
 			storage = coreBrightness;

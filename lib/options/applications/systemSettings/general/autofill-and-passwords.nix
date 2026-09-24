@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# Providers from other apps (1Password, …) are app extensions enabled with pluginkit, and
-# "Set Up Codes In" lists installed apps; neither is covered here.
 let
 	inherit (settingsLib) setting user bool storedAs;
 
@@ -34,8 +32,7 @@ in
 		};
 	};
 
-	# System Settings writes these keys, but shows the switch from elsewhere (it doesn't follow
-	# them), so this isn't verified
+	# System Settings shows this switch from elsewhere, so it can't be verified.
 	deleteVerificationCodesAfterUse = setting {
 		ui = [ "System Settings" "General" "AutoFill & Passwords" "Verification Codes" "Delete After Use" ];
 		storage = {

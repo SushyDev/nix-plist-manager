@@ -6,11 +6,8 @@ let
 	open = [ "com.apple.systempreferences.general.sharing" ];
 	bluetooth = name: byHost (user "com.apple.Bluetooth" name);
 
-	# Services that ask for an administrator in System Settings; nix-darwin applies them as root,
-	# the way System Settings does (observed by switching each on and off there).
 	launchdOverrides = file "/var/db/com.apple.xpc.launchd/disabled.plist";
 
-	# a system launch daemon that System Settings enables or disables, and loads or unloads
 	launchDaemon = label: {
 		apply = enabled: if enabled then [
 			"/bin/launchctl enable system/${label}"
@@ -22,7 +19,6 @@ let
 		reads = "/bin/launchctl print-disabled system | /usr/bin/grep -qF ${lib.escapeShellArg "\"${label}\" => enabled"}";
 	};
 
-	# `reads`: a command that succeeds while the service is on
 	service = { ui, storage ? launchdOverrides, apply, reads }: setting {
 		inherit storage;
 		ui = [ "System Settings" "General" "Sharing" ui ];
@@ -41,8 +37,7 @@ let
 
 	kickstart = "/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart";
 
-	# "Allow access for": "Only these users" is an access group holding Administrators (group 80)
-	# unless users are added by hand; "All users" is the group being gone
+	# "Only these users" is the access group existing, and "All users" is it being gone.
 	accessGroup = { group, id, name }: setting {
 		ui = [ "System Settings" "General" "Sharing" "${name} (i)" "Allow access for" ];
 		storage = file "/var/db/dslocal/nodes/Default/groups/${group}.plist";
@@ -68,13 +63,10 @@ let
 	};
 
 	assetCache = system "com.apple.AssetCache";
-	# the caching service rereads its preferences on request
 	reloadsAssetCache = _: plan: plan ++ [ (settingsLib.ops.afterwards "/usr/bin/AssetCacheManagerUtil reloadSettings >/dev/null 2>&1 || true") ];
 in
 {
-	# what System Settings writes; it shows the switch from the running media sharing service,
-	# which doesn't pick the key up when it's written, so this isn't verified. Home Sharing needs
-	# an Apple Account and isn't covered.
+	# System Settings shows this switch from the running media sharing service, which doesn't pick up the key, so it can't be verified.
 	mediaSharing.shareMediaWithGuests = setting {
 		ui = [ "System Settings" "General" "Sharing" "Media Sharing (i)" "Share media with guests" ];
 		storage = user "com.apple.amp.mediasharingd" "public-sharing-enabled";
@@ -152,13 +144,12 @@ in
 	contentCaching = service {
 		ui = "Content Caching";
 		storage = system "com.apple.AssetCache" "Activated";
-		# the running cache keeps reporting itself active until it's restarted
+		# The running cache keeps reporting itself active until it's restarted.
 		apply = enabled: "/usr/bin/AssetCacheManagerUtil ${if enabled then "activate" else "deactivate"} >/dev/null 2>&1 || true; /usr/bin/killall AssetCache 2>/dev/null || true";
 		reads = "[ \"$(/usr/bin/defaults read /Library/Preferences/com.apple.AssetCache Activated 2>/dev/null)\" = 1 ]";
 	};
 
-	# on: the Remote Management agent for all users with all privileges, as System Settings' OK
-	# does by default; it also enables Screen Sharing
+	# Turning it on also enables Screen Sharing.
 	remoteManagement = service {
 		ui = "Remote Management";
 		storage = system "com.apple.RemoteManagement" "allowInsecureDH";
@@ -225,8 +216,6 @@ in
 		};
 	};
 
-	# shared folders by path, each with the name it's shared under; folders shared now but not
-	# listed stop being shared. Per-user access isn't covered.
 	fileSharingOptions.sharedFolders = setting {
 		ui = [ "System Settings" "General" "Sharing" "File Sharing (i)" "Shared Folders" ];
 		description = ''
@@ -251,7 +240,6 @@ in
 					q = lib.escapeShellArg;
 				in
 				[
-					# stop sharing what isn't listed
 					''/usr/sbin/sharing -l | /usr/bin/sed -n 's/^path:[[:space:]]*//p' | while IFS= read -r path; do case "$path" in ${if folders == {} then "''" else lib.concatMapStringsSep "|" q (lib.attrNames folders)}) ;; *) /usr/sbin/sharing -r "$(/usr/sbin/sharing -l | /usr/bin/awk -v p="$path" '/^name:/{sub(/^name:[[:space:]]*/,"");n=$0} /^path:/{sub(/^path:[[:space:]]*/,""); if($0==p) print n}')" ;; esac; done''
 				]
 				++ lib.mapAttrsToList (path: name:

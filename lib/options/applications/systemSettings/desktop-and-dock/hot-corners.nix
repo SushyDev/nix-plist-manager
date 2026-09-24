@@ -38,8 +38,6 @@ family {
 		};
 	};
 
-	# keys to hold for the corner to trigger, picked in System Settings by holding them while
-	# opening the menu
 	modifiers = setting {
 		ui = [ "System Settings" "Desktop & Dock" "Hot Corners…" "${label} Hot Corner" "Modifier keys" ];
 		storage = user "com.apple.dock" "wvous-${corner}-modifier";

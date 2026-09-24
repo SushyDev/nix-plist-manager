@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# Journal keeps its settings in the preferences of its app group. Add Current Location and Save
-# to Photos ask for permission, and Lock Journal for the user's password, so they aren't here.
 let
 	inherit (settingsLib) setting user bool enum;
 

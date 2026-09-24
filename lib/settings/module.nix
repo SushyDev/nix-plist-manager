@@ -1,8 +1,5 @@
 { lib, ops, render, isSetting }:
-# What the home-manager and nix-darwin modules share: collect the plan of every managed
-# setting in their scope, evaluate relations, and render one script.
 let
-	# [ { path = [ … ]; entry = <setting>; } ]
 	leaves = tree: prefix:
 		lib.concatLists (lib.mapAttrsToList (name: value:
 			let
@@ -13,12 +10,10 @@ let
 			else []
 		) tree);
 
-	# scope null: both
 	inScope = scope: entry:
 		scope == null || entry.scope == scope;
 in
 {
-	# the option declarations for one scope, same shape as `tree`, without empty branches
 	optionTree = { tree, scope }:
 		let
 			walk = node: lib.filterAttrs (_: value: value != {}) (lib.mapAttrs (_: value:
@@ -29,8 +24,6 @@ in
 		in
 		walk tree;
 
-	# Outside home-manager and nix-darwin (`nix run .#apply`): type-check `values` with the module
-	# system, like the modules would, and build both scopes.
 	standalone = { tree, values, ignoreWarnings ? [] }:
 		let
 			self = import ./module.nix { inherit lib ops render isSetting; };
@@ -47,7 +40,6 @@ in
 			system = build "system";
 		};
 
-	# tree: lib/options.nix; values: the configured option values, same shape; scope: "user" or "system"
 	build = { tree, values, scope, ignoreWarnings ? [] }:
 		let
 			get = path: lib.attrByPath path null values;

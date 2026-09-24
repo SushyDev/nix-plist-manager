@@ -1,19 +1,16 @@
 { lib, settingsLib, ... }:
-# App permissions are kept in the TCC database, which SIP protects, and aren't here.
 let
 	inherit (settingsLib) setting user system file mkKey bool number appliesThrough ops;
 
 	pane = "com.apple.settings.privacyAndSecurity";
 
-	# Mac analytics consent, kept by the diagnostics submission service, as root
 	diagnostics = name: mkKey {
 		domain = "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory";
 		inherit name;
 		scope = "system";
 	};
 
-	# the authorization rule for System Settings' system-wide panes: shared means any user can
-	# unlock them, otherwise only an administrator
+	# A shared rule lets any user unlock the system-wide panes; otherwise only an administrator can.
 	systemPreferencesRight = shared: lib.concatStringsSep "; " [
 		"rule=$(/usr/bin/mktemp)"
 		"/usr/bin/security authorizationdb read system.preferences > \"$rule\" 2>/dev/null"
@@ -60,7 +57,6 @@ in
 			};
 		};
 
-		# kept in seconds; 0 turns it off
 		logOutAutomaticallyAfterInactivity = setting {
 			ui = [ "System Settings" "Privacy & Security" "Advanced…" "Log out automatically after inactivity" ];
 			description = "Minutes of inactivity before logging out; 0 doesn't log out.";

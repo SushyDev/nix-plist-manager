@@ -1,31 +1,10 @@
-// ax — read and operate System Settings through the Accessibility API.
-//
-// Every element is addressed by the labels of its ancestors, so scripts can say
-// "the switch labeled Magnification" instead of relying on positions.
-//
-// Usage:
-//   ax dump [--depth N] [--sheet]        print the window's (or open sheet's) element tree as JSON lines
-//   ax get <label>                       print the element's value as JSON
-//   ax press <label>                     AXPress the element (buttons, checkboxes, radio buttons)
-//   ax click <label>                     click the element's center (for switches that ignore AXPress)
-//   ax set <label> <value>               set AXValue (sliders, text fields)
-//   ax items <label>                     list a pop-up button's menu items
-//   ax pick <label> <item>               open a pop-up button and choose a menu item
-//
-// A trailing "#N" picks the Nth of several elements with the same label; "AXPopUpButton:#2" is
-// the second pop-up button, for controls without a label.
-//
-// <label> matches an element's title, description, label or identifier (case-insensitive,
-// whole string). "A > B" matches B inside an element labeled A, "B + C" an element labeled
-// both B and C, and "AXRadioButton:B" only elements with that role.
-//
-// Requires Accessibility permission for the terminal that runs it.
+// ax dump [--depth N] [--sheet] | get|press|click|items <label> | set <label> <value> | pick <label> <item>
+// Labels: "A > B" (B inside A), "B + C" (both labels), "AXRole:B" (by role), "B#2" (second match).
 
 import ApplicationServices
 import AppKit
 import Foundation
 
-// AX_APP targets another app, e.g. com.apple.controlcenter to edit Control Center itself
 let settingsBundleID = ProcessInfo.processInfo.environment["AX_APP"] ?? "com.apple.systempreferences"
 
 struct Failure: Error, CustomStringConvertible {
@@ -49,11 +28,11 @@ func children(_ element: AXUIElement) -> [AXUIElement] {
 func labels(_ element: AXUIElement) -> [String] {
 	var result = [kAXTitleAttribute, kAXDescriptionAttribute, kAXIdentifierAttribute, "AXLabel"]
 		.compactMap { string(element, $0) }
-	// SwiftUI rows often carry their label on a static text child instead of the control
+	// SwiftUI rows often label a control through a static text child
 	if let titleElement = attribute(element, kAXTitleUIElementAttribute) {
 		result += [string(titleElement as! AXUIElement, kAXValueAttribute)].compactMap { $0 }
 	}
-	// and list rows (e.g. Keyboard Shortcuts…) put an unlabeled checkbox next to the row's text
+	// list rows put an unlabeled checkbox next to the row's text
 	if result.isEmpty, string(element, kAXRoleAttribute) == kAXCheckBoxRole,
 	   let cell = attribute(element, kAXParentAttribute) {
 		result += children(cell as! AXUIElement)
@@ -90,8 +69,7 @@ func menus() throws -> [AXUIElement] {
 	return found
 }
 
-/// Press a pop-up button and return the menu it opens. Menus appear asynchronously, and a
-/// menu from an earlier press can linger in the tree, so wait for one that wasn't there before.
+// a menu from an earlier press can linger in the tree
 func openMenu(for popup: AXUIElement) throws -> AXUIElement {
 	let before = try menus()
 	guard AXUIElementPerformAction(popup, kAXPressAction as CFString) == .success else {
@@ -107,7 +85,7 @@ func openMenu(for popup: AXUIElement) throws -> AXUIElement {
 }
 
 func closeMenus() {
-	// Escape goes to the frontmost app, so make sure that's System Settings
+	// Escape goes to the frontmost app
 	guard (try? bringToFront()) != nil else { return }
 	for down in [true, false] {
 		CGEvent(keyboardEventSource: nil, virtualKey: 53, keyDown: down)?.post(tap: .cghidEventTap)  // Escape
@@ -115,9 +93,7 @@ func closeMenus() {
 	Thread.sleep(forTimeInterval: 0.2)
 }
 
-/// Bring System Settings to the front, so synthetic clicks and keys reach it. A background
-/// process's `activate()` and setting AXFrontmost are both ignored while another app holds
-/// focus; opening it through LaunchServices isn't.
+// activate() and AXFrontmost are ignored while another app has focus; LaunchServices isn't
 func bringToFront() throws {
 	let isFront = { NSWorkspace.shared.frontmostApplication?.bundleIdentifier == settingsBundleID }
 	if isFront() { return }
@@ -142,7 +118,6 @@ func settingsWindow() throws -> AXUIElement {
 	return window
 }
 
-/// Depth-first walk that yields each element with the labels of its ancestors.
 func walk(_ element: AXUIElement, path: [String] = [], depth: Int = 0, maxDepth: Int = 60,
           visit: (AXUIElement, [String], Int) -> Bool) {
 	if !visit(element, path, depth) || depth >= maxDepth { return }
@@ -152,7 +127,6 @@ func walk(_ element: AXUIElement, path: [String] = [], depth: Int = 0, maxDepth:
 	}
 }
 
-/// The last part of a query: "[Role:]label[ + label…]", e.g. "AXRadioButton:Dark" or "Dark + Icon & widget style".
 struct Selector {
 	var role: String?
 	var wanted: [String]
@@ -168,7 +142,6 @@ struct Selector {
 
 	func matches(_ element: AXUIElement) -> Bool {
 		if let role = role, string(element, kAXRoleAttribute) != role { return false }
-		// "AXPopUpButton:" with no label matches by role alone, for unlabeled controls ("…#2")
 		if role != nil && wanted == [""] { return true }
 		let own = labels(element).map { $0.lowercased() }
 		return wanted.allSatisfy(own.contains)
@@ -176,7 +149,6 @@ struct Selector {
 }
 
 func find(_ fullQuery: String, in root: AXUIElement) throws -> AXUIElement {
-	// "label#3" picks the third element with that label, for rows that repeat one (disclosure triangles)
 	var query = fullQuery, nth: Int? = nil
 	if let hash = fullQuery.lastIndex(of: "#"), let n = Int(fullQuery[fullQuery.index(after: hash)...]), n > 0 {
 		query = String(fullQuery[..<hash])
@@ -188,7 +160,6 @@ func find(_ fullQuery: String, in root: AXUIElement) throws -> AXUIElement {
 	var matches: [AXUIElement] = []
 	walk(root) { element, path, _ in
 		guard selector.matches(element) else { return true }
-		// every earlier part has to appear, in order, among the ancestors
 		var ancestors = path.map { $0.lowercased() }[...]
 		for part in ancestorsWanted {
 			guard let index = ancestors.firstIndex(of: part) else { return true }
@@ -197,7 +168,6 @@ func find(_ fullQuery: String, in root: AXUIElement) throws -> AXUIElement {
 		matches.append(element)
 		return true
 	}
-	// prefer an actual control over the static text that labels it
 	let controls = matches.filter { string($0, kAXRoleAttribute) != kAXStaticTextRole }
 	if let nth = nth {
 		guard nth <= controls.count else { throw Failure(description: "only \(controls.count) elements labeled '\(query)'") }
@@ -246,7 +216,6 @@ func run(_ args: [String]) throws {
 	switch command {
 	case "dump":
 		let maxDepth = args.count > 2 && args[1] == "--depth" ? Int(args[2]) ?? 60 : 60
-		// with a sheet open (e.g. Hot Corners…), only its contents are of interest
 		var root = window
 		if args.contains("--sheet") {
 			guard let sheet = children(window).first(where: { string($0, kAXRoleAttribute) == kAXSheetRole }) else {
@@ -274,23 +243,21 @@ func run(_ args: [String]) throws {
 		guard result == .success else { throw Failure(description: "AXPress failed: \(result.rawValue)") }
 
 	case "click":
-		// some SwiftUI controls (switches) ignore AXPress, so click them like a person would
+		// SwiftUI switches ignore AXPress
 		guard args.count == 2 else { throw Failure(description: "usage: ax click <label>") }
 		let element = try find(args[1], in: window)
 		try bringToFront()
 		AXUIElementPerformAction(window, kAXRaiseAction as CFString)
-		// long panes put controls below the fold, and a click there would land on whatever is
-		// on screen at that point (the Dock), so scroll the pane until the control is inside the window
+		// a click below the fold would land on whatever is on screen there, such as the Dock
 		guard let windowBox = frame(of: window) else { throw Failure(description: "the window has no frame") }
 		let visible = windowBox.intersection(NSScreen.screens.first.map { CGRect(origin: .zero, size: $0.frame.size) } ?? windowBox)
 		var box = frame(of: element)
-		// scroll events go to what's under the pointer: the column the control is in (the pane,
-		// or the sidebar for sidebar items)
+		// scroll events go to the column under the pointer
 		let column = box.map { min(max($0.midX, visible.minX + 10), visible.maxX - 10) } ?? (visible.minX + visible.width * 0.7)
 		let paneCenter = CGPoint(x: column, y: visible.midY)
 		CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: paneCenter, mouseButton: .left)?
 			.post(tap: .cghidEventTap)
-		// a sidebar row that isn't built yet has no frame: scroll the sidebar until it exists
+		// a sidebar row that isn't built yet has no frame
 		if box == nil {
 			CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: CGPoint(x: visible.minX + 110, y: visible.midY), mouseButton: .left)?
 				.post(tap: .cghidEventTap)
@@ -330,7 +297,7 @@ func run(_ args: [String]) throws {
 		let menu = try openMenu(for: try find(args[1], in: window))
 		var items: [String] = []
 		walk(menu) { element, _, _ in
-			// skip the variants a menu offers while a modifier key is held, e.g. "⌥⌘ Desktop"
+			// skip the variants shown while a modifier key is held, e.g. "⌥⌘ Desktop"
 			if string(element, kAXRoleAttribute) == kAXMenuItemRole, let title = labels(element).first,
 			   !title.hasPrefix("⌘"), !title.hasPrefix("⌥"), !title.hasPrefix("⌃"), !title.hasPrefix("⇧") {
 				items.append(title.trimmingCharacters(in: .whitespaces))

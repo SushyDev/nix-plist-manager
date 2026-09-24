@@ -1,7 +1,4 @@
 { lib, settingsLib, ... }:
-# Power settings are kept by powerd (/Library/Preferences/com.apple.PowerManagement.*.plist)
-# and changed through pmset, as root. Optimized Battery Charging lives in powerd's archived
-# charging policy and isn't here.
 let
 	inherit (settingsLib) setting system bool enum appliesThrough live;
 
@@ -74,7 +71,7 @@ in
 			ui = "Prevent automatic sleeping on power adapter when the display is off";
 			control = "AXCheckBox:Prevent automatic sleeping on power adapter when the display is off";
 			source = "c";
-			# System Settings sets the sleep timer to 0 (never) or back to 1
+			# System Settings sets the sleep timer to 0 (never) or back to 1.
 			apply = prevent: pmset "c" "sleep" (if prevent then 0 else 1);
 			reads.command = "${live.pmsetValue sections.c "sleep"} | /usr/bin/awk '{ print ($1 == 0 ? \"true\" : \"false\") }'";
 		};

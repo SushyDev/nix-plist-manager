@@ -1,7 +1,5 @@
 { lib, settingsLib, ... }:
-# Spotlight lists what is turned off in com.apple.Spotlight EnabledPreferenceRules (despite the
-# name): the categories under Search results, and Custom.relatedContents for Show Related
-# Content. Categories left unset here keep what System Settings has.
+# EnabledPreferenceRules lists what's turned off, despite its name.
 let
 	inherit (settingsLib) setting user bool enum storedAs member members;
 
@@ -34,7 +32,6 @@ in
 		value = storedAs { true = 1; false = 2; } bool;
 	};
 
-	# true shows the category in results
 	searchResults = setting {
 		ui = [ "System Settings" "Spotlight" "Search results" ];
 		storage = rules;

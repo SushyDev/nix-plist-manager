@@ -1,14 +1,10 @@
 { lib, settingsLib, ... }:
-# Trackpad gestures are kept three times: for the built-in trackpad, for Bluetooth trackpads,
-# and in the current-host global domain. System Settings writes all three and so does every
-# option here. The Apps gesture (pinch with thumb and three fingers) isn't here.
 let
 	inherit (settingsLib) setting global user byHost bool enum number storedAs restarts allowedWhen conflictsWith;
 
 	pane = "com.apple.settings.trackpad";
 	option = name: "applications.systemSettings.trackpad.${name}";
 
-	# { driver, bluetooth, host } for one gesture
 	gesture = name: hostName: {
 		driver = user "com.apple.AppleMultitouchTrackpad" name;
 		bluetooth = user "com.apple.driver.AppleBluetoothMultitouch.trackpad" name;
@@ -50,7 +46,6 @@ let
 
 	prefixed = prefix: attrs: lib.mapAttrs' (name: lib.nameValuePair "${prefix}${name}") attrs;
 
-	# Mission Control and App Exposé swipe with the same number of fingers
 	verticalSwipe = { ui, direction, enabled, other }: control {
 		tab = "More Gestures";
 		inherit ui;
@@ -189,9 +184,7 @@ in
 		};
 	};
 
-	# Swipe between pages and between full-screen applications share the three-finger swipe:
-	# full-screen applications is applied first (in option order), so a three-finger page swipe
-	# wins where both are set.
+	# Full-screen applications is applied first, so a three-finger page swipe wins where both are set.
 	moreGestures = {
 		swipeBetweenFullScreenApplications = control {
 			tab = "More Gestures";

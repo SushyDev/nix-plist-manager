@@ -1,11 +1,3 @@
-// Generates the settings reference from the flake's `documentation` output: every option
-// (options.json, from optionIndex) and coverage.json (what's verified, and what isn't covered).
-//
-//   DOCS_DATA=$(nix build --no-link --print-out-paths ..#documentation) node scripts/generate.mjs
-//
-// Writes one page per System Settings pane (and per app) to src/content/docs/settings/, and the
-// sidebar for them to src/generated/sidebar.json. Big panes (Accessibility, Keyboard) get a page
-// per section.
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -19,7 +11,6 @@ const options = JSON.parse(readFileSync(join(data, "options.json"), "utf8"));
 const outDir = "src/content/docs/settings";
 const generatedDir = "src/generated";
 
-// System Settings' sidebar order, then the apps
 const paneOrder = [
 	"Wi‑Fi", "Network", "Battery", "General", "Accessibility", "Appearance", "Apple Intelligence & Siri",
 	"Desktop & Dock", "Displays", "Menu Bar", "Spotlight", "Wallpaper", "Notifications", "Sound", "Focus",
@@ -27,28 +18,21 @@ const paneOrder = [
 ];
 const apps = ["Finder", "Journal", "Voice Memos"];
 
-// panes with this many options get a page per section
 const splitAt = 60;
 
 const slug = (text) => text.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-// --- coverage.json: which options are verified, and what each pane doesn't cover --------------
-
 const coverage = JSON.parse(readFileSync(join(data, "coverage.json"), "utf8"));
 const verified = new Set(Object.values(coverage.verified).flat());
-const notCovered = {}; // page title -> [{ title, reason }]
+const notCovered = {};
 for (const [pane, reasons] of Object.entries(coverage.notCovered))
 	for (const [reason, titles] of Object.entries(reasons))
 		for (const title of titles) (notCovered[pane] ??= []).push({ title, reason });
 
-// --- options grouped into pages --------------------------------------------------------------
-
-// the page an option belongs to: its pane in System Settings, or its app
 function pageOf(option) {
 	const [root, pane] = option.path;
 	if (option.option.startsWith("applications.systemSettings.")) {
-		// a few settings are found outside System Settings (the Dock's contents, the menu bar's
-		// layout, App Store updates); they're documented with the pane their option is under
+		// Settings found outside System Settings (Dock contents, menu bar layout, App Store updates) are documented with the pane their option is under.
 		if (root === "System Settings") return pane;
 		const segment = option.option.split(".")[2];
 		const match = options.find((o) => o.option.split(".")[2] === segment && o.path[0] === "System Settings");
@@ -60,11 +44,8 @@ function pageOf(option) {
 const pages = {};
 for (const option of options) (pages[pageOf(option)] ??= []).push(option);
 
-// --- how an option reads in the docs ---------------------------------------------------------
-
 const clean = (text) => (text ?? "").replace(/\s+/g, " ").trim();
 
-// what values an option takes, in plain words
 function valuesOf(option) {
 	const { kind, choices, range } = option;
 	switch (kind) {
@@ -88,7 +69,6 @@ function valuesOf(option) {
 	}
 }
 
-// the processes an option restarts, from the script it renders to
 function restartsOf(option) {
 	const names = new Set();
 	for (const script of Object.values(option.commands ?? {}))
@@ -120,13 +100,8 @@ function optionProps(option) {
 	};
 }
 
-// JSX props from plain data; MDX evaluates them as JavaScript
 const props = (object) => Object.entries(object).map(([key, value]) => `${key}={${JSON.stringify(value)}}`).join(" ");
 
-// --- writing pages ---------------------------------------------------------------------------
-
-// sections of a page: the part of the UI path after the pane (or app); options directly in the
-// pane come first
 function sections(pageOptions, depth) {
 	const groups = new Map();
 	for (const option of pageOptions) {
@@ -138,7 +113,6 @@ function sections(pageOptions, depth) {
 	return [...groups.entries()].sort(([a], [b]) => (a === "" ? -1 : b === "" ? 1 : 0));
 }
 
-// an option's heading: its path inside the section, so "Magnification › Size" isn't just "Size"
 const headingOf = (option, depth, inSection) => option.path.slice(depth + (inSection ? 1 : 0)).join(" › ") || option.path.at(-1);
 
 function optionsMarkdown(pageOptions, depth) {
@@ -190,7 +164,6 @@ for (const title of [...ordered, ...apps]) {
 		continue;
 	}
 
-	// a page per section, in a sidebar group of its own
 	mkdirSync(join(outDir, slug(title)), { recursive: true });
 	const items = [];
 	const sectionList = sections(pageOptions, depth);

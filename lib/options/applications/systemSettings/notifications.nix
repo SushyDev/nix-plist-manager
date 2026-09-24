@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# usernoted keeps notification settings in its group container and reads them at launch.
-# The older com.apple.ncprefs keys aren't read on macOS 27.
 let
 	inherit (settingsLib) setting user bool enum snapshot restarts appliesThrough;
 
@@ -9,8 +7,7 @@ let
 	usernoted = user domain;
 	restartsUsernoted = restarts "usernoted";
 
-	# "Allow notifications" switches are entries of dnd_prefs, a property list stored as data,
-	# kept the other way around (dndDisplaySleep is true when notifications are not allowed)
+	# dnd_prefs is stored inverted: dndDisplaySleep is true when notifications aren't allowed.
 	dndPreference = entry: allowed:
 		let
 			q = lib.escapeShellArg;
@@ -77,9 +74,6 @@ in
 		};
 	};
 
-	# Application Notifications: every app's switches and alert style, as arranged in System
-	# Settings. Save them with
-	# `nix run github:sushydev/nix-plist-manager#capture -- applications.systemSettings.notifications.applications <directory>`
 	applications = setting {
 		ui = [ "System Settings" "Notifications" "Application Notifications" ];
 		storage.apps = usernoted "apps";

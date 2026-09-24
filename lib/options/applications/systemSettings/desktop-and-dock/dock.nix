@@ -5,11 +5,9 @@ let
 	pane = "com.apple.settings.desktopAndDock";
 	option = name: "applications.systemSettings.desktopAndDock.dock.${name}";
 
-	# the Dock reads its preferences at launch
 	dock = name: user "com.apple.dock" name;
 	restartsDock = restarts "Dock";
 
-	# a Dock switch: the setting, its verify spec and the Dock restart
 	dockSwitch = { ui, key, control }: setting {
 		inherit ui;
 		storage = dock key;
@@ -25,7 +23,6 @@ let
 		};
 	};
 
-	# the size sliders run from 16 to 128 points
 	slider = size: (size - 16) / 112.0;
 in
 {
@@ -46,7 +43,7 @@ in
 	};
 
 	magnification = {
-		# System Settings has no switch for this since macOS 27: the magnification slider at "Off"
+		# System Settings has no switch for this since macOS 27.
 		enabled = setting {
 			ui = [ "System Settings" "Desktop & Dock" "Dock" "Magnification" ];
 			storage = dock "magnification";
@@ -134,7 +131,6 @@ in
 			control = "auto-hide-dock";
 		};
 
-		# not in System Settings
 		delay = setting {
 			ui = [ "System Settings" "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Delay" ];
 			description = "Seconds before a hidden Dock appears when the pointer reaches it.";
@@ -143,7 +139,6 @@ in
 			behaviors = [ restartsDock ];
 		};
 
-		# not in System Settings
 		duration = setting {
 			ui = [ "System Settings" "Desktop & Dock" "Dock" "Automatically hide and show the Dock" "Animation duration" ];
 			description = "How long the Dock takes to slide in and out, in seconds; 0 turns the animation off.";
@@ -171,7 +166,6 @@ in
 		control = "show-recents";
 	};
 
-	# the apps, folders and stacks in the Dock, arranged by hand
 	contents = setting {
 		ui = [ "Dock" ];
 		description = ''
@@ -185,7 +179,7 @@ in
 			others = dock "persistent-others";
 		};
 		value = snapshot;
-		# the Dock saves its contents when it quits
+		# The Dock saves its contents when it quits, which would overwrite what was just restored.
 		behaviors = [ (restartsDiscardingItsState "Dock") ];
 	};
 }

@@ -1,6 +1,4 @@
 { lib, settingsLib, ... }:
-# Finder reads its settings at launch, so it's restarted after they're written. New Finder
-# windows show, the tags and the sidebar's items aren't covered.
 let
 	inherit (settingsLib) setting user global bool storedAs enum restarts;
 
@@ -35,7 +33,6 @@ in
 			showAllFilenameExtensions = settings "Advanced" [ "Show all filename extensions" ] (global "AppleShowAllExtensions");
 			showWarningBeforeChangingAnExtension = settings "Advanced" [ "Show warning before changing an extension" ] (finder "FXEnableExtensionChangeWarning");
 
-			# iCloud Drive keeps it, as the warning being suppressed
 			showWarningBeforeRemovingFromiCloudDrive = switch {
 				ui = [ "Settings…" "Advanced" "Show warning before removing from iCloud Drive" ];
 				storage = user "com.apple.bird" "com.apple.clouddocs.unshared.moveOut.suppress";

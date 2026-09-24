@@ -1,8 +1,4 @@
 { lib, settingsLib, ... }:
-# The login window keys are in /Library/Preferences/com.apple.loginwindow and the display timers
-# are powerd's, so everything here is set as root. The password delay is kept in the keybag and
-# can only be changed with the user's password, and the login window's Accessibility Options
-# aren't covered.
 let
 	inherit (settingsLib) setting system bool inverted storedAs text enum appliesThrough live;
 

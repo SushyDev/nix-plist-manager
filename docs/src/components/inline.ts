@@ -1,5 +1,3 @@
-// Inline Markdown in generated strings (descriptions, value hints): `code` and [links](url),
-// with everything else escaped.
 const escape = (text: string) =>
 	text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 

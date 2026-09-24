@@ -1,41 +1,23 @@
 #!/usr/bin/env python3
 """
-verify — check options against the real System Settings UI.
+verify — check options against System Settings; needs Accessibility permission.
 
     check [--pane P] [--option O] [--batch] [--skip regex] [--only-unverified]
-        For every option with a `verify` spec: back up the keys it stores, apply each value in the
-        spec, reopen System Settings and compare its controls against the spec, then put
-        everything back. Passing options are recorded in coverage.json under the macOS build.
     discover <pane> [--open control…]
-        List the settings a page shows: switches, sliders, pop-ups, pickers and "…" sheets.
     gaps [--pane name]
-        List what System Settings shows that no option and no coverage.json entry accounts for.
     observe <pane> [--open control…] <ax command…>
-        Operate a control, e.g. `observe <pane> click "Magnification"`, and print which
-        preference keys it changed.
 
-<pane> is the identifier of the pane's sidebar item, e.g. com.apple.settings.appearance
-(`gaps` and `ax dump` list them).
-
-A spec, on the setting in Nix:
+<pane> is a sidebar identifier such as com.apple.settings.appearance. A setting's spec:
 
     verify = {
       pane = "com.apple.settings.appearance";
-      open = [ "Hot Corners…" ];                     # optional: controls to press first
-      operate = [ "click" "TintWindowBackgroundToggle" ];  # optional, see below
+      open = [ "Hot Corners…" ];
+      operate = [ "click" "TintWindowBackgroundToggle" ];
       expect = {
         true = { TintWindowBackgroundToggle = 1; };
         false = { TintWindowBackgroundToggle = 0; };
       };
     };
-
-`expect` maps each value to control labels (in ax.swift's label syntax) and the AXValue they
-should show, or { selected = true; } for buttons that only show selection. `operate` flips the
-control in the UI there and back (a toggle twice; otherwise [ [ "press" "A" ] [ "press" "B" ] ])
-and fails unless that changes the keys the option writes, which catches options that write
-somewhere System Settings doesn't read.
-
-Requires Accessibility permission. The Swift tools are compiled on first use.
 """
 
 from __future__ import annotations
@@ -57,8 +39,6 @@ COVERAGE = ROOT / "coverage.json"
 CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "nix-plist-manager"
 ACTIVATE_SETTINGS = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings"
 
-
-# --- System Settings, through ax.swift ------------------------------------------------------
 
 def tool(name: str) -> str:
 	source, binary = HERE / f"{name}.swift", CACHE / name
@@ -100,8 +80,7 @@ def quit_settings():
 
 
 def open_pane(pane: str, fresh: bool = False, wait_for: str | None = None, steps: list[str] = ()):
-	"""Show a pane by pressing its sidebar item. `fresh` quits System Settings first, so it
-	rereads every preference. (x-apple.systempreferences: URLs sometimes land on the wrong pane.)"""
+	# x-apple.systempreferences: URLs sometimes land on the wrong pane
 	if fresh:
 		quit_settings()
 	subprocess.run(["open", "-b", "com.apple.systempreferences"], check=True)
@@ -113,27 +92,23 @@ def open_pane(pane: str, fresh: bool = False, wait_for: str | None = None, steps
 		try:
 			return ax("press", pane)
 		except RuntimeError as error:
-			# once its window is closed, opening System Settings again doesn't bring one back;
-			# a restart does, but it takes a moment to show the window
+			# reopening doesn't bring back a closed window, but a restart does
 			if "no window" in str(error) and not restarted:
 				restarted = True
 				quit_settings()
 				subprocess.run(["open", "-b", "com.apple.systempreferences"], check=True)
 				raise
-			# rows further down the sidebar only exist once scrolled to, which a click does
+			# sidebar rows only exist once scrolled to, which a click does
 			return ax("click", pane)
 
 	wait_until(show, f"sidebar item {pane}")
 	for step in steps:
-		# "click:<label>" clicks instead, for list rows that ignore AXPress
 		action, target = ("click", step.removeprefix("click:")) if step.startswith("click:") else ("press", step)
 		wait_until(lambda: ax(action, target), step)
 		time.sleep(0.5)
 	if wait_for:
 		wait_until(lambda: ax("get", wait_for), wait_for)
 
-
-# --- options and coverage.json --------------------------------------------------------------
 
 def load_options() -> list[dict]:
 	result = subprocess.run(["nix", "eval", "--json", f"path:{ROOT}#optionIndex"], capture_output=True, text=True)
@@ -159,8 +134,6 @@ def load_coverage() -> dict:
 
 
 def save_coverage(coverage: dict):
-	"""Verified options one per line, and each reason's settings on one line, so the file stays
-	short and its diffs say what changed."""
 	line = lambda value: json.dumps(value, ensure_ascii=False)
 	lines = lambda values: "[\n" + ",\n".join(f"\t\t\t{line(v)}" for v in sorted(values)) + "\n\t\t]"
 	grouped = lambda groups: ",\n".join(
@@ -173,11 +146,7 @@ def save_coverage(coverage: dict):
 		f'\t"notCovered": {{\n{grouped(coverage["notCovered"])}\n\t}}\n}}\n')
 
 
-# --- preference keys: back up and restore ---------------------------------------------------
-
 def has_root() -> bool:
-	"""Running as root, or allowed to sudo without a password, so nix-darwin's settings can be
-	applied and restored."""
 	return os.geteuid() == 0 or subprocess.run(["sudo", "-n", "true"], capture_output=True).returncode == 0
 
 
@@ -190,13 +159,10 @@ def run_script(script: str, root: bool = False, check: bool = True):
 
 
 def storage_of(entry: dict, root: bool) -> list[tuple]:
-	"""The keys to back up for an option: where it keeps its value, and what its values write
-	besides (settings they imply), as (domain, key, byHost, system). System keys need root."""
 	keys = entry["storage"] + [op["key"] for c in entry["candidates"] for op in c["ops"] if isinstance(op.get("key"), dict)]
 	result = []
 	for key in keys:
 		system = key.get("scope") == "system"
-		# a file or command rather than a preference key: the option puts that back itself
 		if not key.get("key") or (system and not root):
 			continue
 		domain = f"/Library/Preferences/{key['domain']}" if system and not key["domain"].startswith("/") else key["domain"]
@@ -215,8 +181,7 @@ def storage_values(keys: list[tuple]) -> dict:
 
 
 def restore_values(values: dict):
-	"""Put each key back as it was. `defaults import` merges, so a one-key plist restores just
-	that key and leaves the rest of the domain alone."""
+	# `defaults import` merges, so a one-key plist restores only that key
 	for (domain, key, by_host, system), value in values.items():
 		host = ["-currentHost"] if by_host else []
 		if value is None:
@@ -230,8 +195,7 @@ def restore_values(values: dict):
 
 
 def restore_after_restarting(values: dict, processes: list[str]):
-	"""Put keys back, restarting the processes the options restart so they read them. Some (the
-	Dock, SystemUIServer) write what they have loaded when they quit, so they're quit first too."""
+	# the Dock and SystemUIServer write what they have loaded when they quit
 	for process in processes:
 		subprocess.run(["killall", process], capture_output=True)
 	time.sleep(2)
@@ -240,8 +204,6 @@ def restore_after_restarting(values: dict, processes: list[str]):
 		subprocess.run(["killall", process], capture_output=True)
 	time.sleep(1)
 
-
-# --- check ----------------------------------------------------------------------------------
 
 def matches(actual: dict, expected) -> bool:
 	if isinstance(expected, dict):
@@ -269,8 +231,7 @@ def expectations_met(expectations: dict) -> list[str]:
 
 
 def shown_values(group: list[dict]) -> dict:
-	"""The spec value System Settings shows now for each option, to apply again at the end:
-	restoring keys alone doesn't undo live state (e.g. dark mode)."""
+	# restoring keys alone doesn't undo live state such as dark mode
 	spec = group[0]["verify"]
 	try:
 		open_pane(spec["pane"], fresh=True, steps=spec["open"])
@@ -286,9 +247,7 @@ def shown_values(group: list[dict]) -> dict:
 
 
 def operating_writes(entry: dict, root: bool) -> list[str]:
-	"""Operate the control in System Settings there and back: the keys the option writes have to
-	change. If they don't, the option writes somewhere System Settings doesn't read (e.g. a ByHost
-	copy that shadows the one it uses) or the spec operates the wrong control."""
+	# catches options that write somewhere System Settings doesn't read, such as a ByHost copy
 	spec, keys = entry["verify"], storage_of(entry, root)
 	there, back = spec["operate"] if isinstance(spec["operate"][0], list) else (spec["operate"], spec["operate"])
 	open_pane(spec["pane"], fresh=True, wait_for=there[1], steps=spec["open"])
@@ -296,7 +255,7 @@ def operating_writes(entry: dict, root: bool) -> list[str]:
 	if back != there:
 		ax(*back)  # start from the "back" state, whatever was applied last
 		time.sleep(1.5)
-	# read through cfprefsd rather than the files, which are written seconds later
+	# the files are written seconds after cfprefsd has the value
 	before = storage_values(keys)
 	ax(*there)
 	time.sleep(1.5)
@@ -304,23 +263,19 @@ def operating_writes(entry: dict, root: bool) -> list[str]:
 	ax(*back)
 	time.sleep(1.5)
 	after_back = storage_values(keys)
-	# the key has to move and move back; "back" may be an equivalent value (a deleted key for false)
+	# "back" may be an equivalent value, like a deleted key for false
 	if any(after_there[k] != before[k] and after_back[k] != after_there[k] for k in before):
 		return []
 	return [f"operating {there} in System Settings doesn't change what the option writes ({', '.join(k[1] for k in before)})"]
 
 
 def run_once_at_the_end(script: str) -> str:
-	"""Several options' scripts joined: lines they share (restarts, activateSettings) run once,
-	where the last of them was, as in one activation."""
 	lines = script.splitlines()
 	last = {line: index for index, line in enumerate(lines)}
 	return "\n".join(line for index, line in enumerate(lines) if last[line] == index)
 
 
 def check_group(group: list[dict]) -> set[str]:
-	"""Check options shown on the same page together: apply case n of each, open the page once
-	and read all their controls. A group of one is a plain check. Returns the options that pass."""
 	spec = group[0]["verify"]
 	root = any(entry["module"] == "darwin" for entry in group)
 	commands = {e["option"]: {json.dumps(c["value"]): command_for(e["option"], c["value"]) for c in e["verify"]["expect"]} for e in group}
@@ -331,7 +286,7 @@ def check_group(group: list[dict]) -> set[str]:
 	try:
 		for index in range(len(spec["expect"])):
 			value = lambda entry: json.dumps(entry["verify"]["expect"][index]["value"])
-			# System Settings writes back what it has open when it quits, so it goes first
+			# System Settings writes back what it has open when it quits
 			quit_settings()
 			run_script(run_once_at_the_end("\n".join(commands[e["option"]][value(e)] for e in group)), root)
 			time.sleep(spec.get("settle", 1.5))
@@ -347,7 +302,7 @@ def check_group(group: list[dict]) -> set[str]:
 		every = "\n".join(c for per in commands.values() for c in per.values())
 		run_script(run_once_at_the_end("\n".join(commands[o][json.dumps(v)] for o, v in shown.items())), root, check=False)
 		restore_after_restarting(before, sorted(set(re.findall(r"killall(?: -KILL)? '?([^' \n]+)'?", every))) + ["System Settings"])
-		# activateSettings writes keyboard shortcuts back a moment later, so restore once more after it
+		# activateSettings writes keyboard shortcuts back a moment later
 		if "activateSettings" in every:
 			subprocess.run([ACTIVATE_SETTINGS, "-u"], capture_output=True)
 			time.sleep(3)
@@ -389,7 +344,6 @@ def cmd_check(args):
 		passed |= ok
 		failed |= {entry["option"] for entry in group} - ok
 
-	# an option counts as verified on the build it last passed on
 	build = subprocess.run(["sw_vers", "-buildVersion"], capture_output=True, text=True).stdout.strip()
 	coverage["verified"] = {b: sorted(set(options) - passed - failed) for b, options in coverage["verified"].items()}
 	coverage["verified"][build] = sorted(set(coverage["verified"].get(build, [])) | passed)
@@ -398,16 +352,11 @@ def cmd_check(args):
 	sys.exit(1 if failed or errors else 0)
 
 
-# --- discover and gaps ----------------------------------------------------------------------
-
 def is_identifier(label: str) -> bool:
-	"""TintWindowBackgroundToggle, auto-hide-dock, position: names for code, not people."""
 	return " " not in label and (bool(re.search(r"[a-z][A-Z]|-|_|\.", label)) or label.islower())
 
 
 def human_label(labels: list[str]) -> str:
-	"""The label a person reads. Grouped controls carry their own label and the group's, e.g.
-	"On Desktop" in "Show items", which becomes "Show items > On Desktop"."""
 	readable = list(dict.fromkeys(l for l in labels if not is_identifier(l)))
 	if not readable:
 		return labels[0]
@@ -417,19 +366,15 @@ def human_label(labels: list[str]) -> str:
 
 
 def discover(pane: str, steps: list[str] = ()) -> list[dict]:
-	"""The settings a page shows: switches and checkboxes are bools, sliders numbers, pop-ups and
-	groups of selectable buttons enums, and "…" buttons open sheets."""
 	open_pane(pane, steps=steps)
 	time.sleep(1)
 	chrome = {"Go Back", "Go Forward", "Help", "Search"}
-	# `steps` open a sheet or a sub-page; only a sheet's contents are separate from the pane
 	entries = [e for e in dump(sheet=bool(steps)) if not chrome & set(e.get("labels", []))]
 	found, group, last_text = [], None, None
 
 	def flush():
 		nonlocal group
-		# a picker rather than a row of unrelated buttons: something in it is selected, or its
-		# members say which setting they belong to
+		# unlike a row of unrelated buttons, a picker has a selected or labeled member
 		if group and (group["labeled"] or any(m.get("selected") or m.get("value") == 1 for m in group["members"])):
 			choices = [human_label(m["labels"]) for m in group["members"]]
 			title = group["title"]
@@ -446,7 +391,6 @@ def discover(pane: str, steps: list[str] = ()) -> list[dict]:
 			flush()
 			found.append({"title": labels[0], "kind": "sheet", "choices": []})
 		elif role in ("AXButton", "AXRadioButton") and labels:
-			# members of one picker share a second label ("Blue | Color") or follow each other
 			title = labels[1] if len(labels) > 1 else last_text
 			if group is None or group["title"] != title or group["role"] != role:
 				flush()
@@ -471,9 +415,6 @@ def normalize(title: str) -> str:
 
 
 def cmd_gaps(args):
-	"""Every pane's top page, and every page a verify spec opens, compared against the words the
-	options' UI paths, their specs and coverage.json use for that pane. What's left is a setting
-	nobody has looked at yet, or a label that changed."""
 	options, coverage = load_options(), load_coverage()
 	open_pane("com.apple.settings.appearance")
 	panes = {  # sidebar identifier → name
@@ -486,7 +427,7 @@ def cmd_gaps(args):
 		if ui[0] == "System Settings":
 			known.setdefault(ui[1], set()).update(map(normalize, ui[2:]))
 		if spec and spec["pane"] in panes:
-			# the labels a spec reads controls by, which can differ from what the UI shows
+			# spec labels can differ from what the UI shows
 			labels = [label for case in spec["expect"] for label in case["controls"]] + spec["open"]
 			parts = [re.sub(r"^\w+:|#\d+$", "", part) for label in labels for part in re.split(r" > | \+ ", label)]
 			known.setdefault(panes[spec["pane"]], set()).update(map(normalize, ui[1:] + parts))
@@ -507,12 +448,10 @@ def cmd_gaps(args):
 			print(f"{' > '.join([name, *steps])}: couldn't open ({error})", flush=True)
 			continue
 		for f in found:
-			# discover tells apart controls with the same label by their choices: "Style (Light/Dark)"
+			# discover adds the choices to repeated labels: "Style (Light/Dark)"
 			if normalize(re.sub(r" \([^)]*\)$", "", f["title"])) not in known.get(name, set()):
 				print(f"{' > '.join([name, *steps, f['title']])}  ({f['kind']})", flush=True)
 
-
-# --- observe --------------------------------------------------------------------------------
 
 def cmd_observe(args):
 	open_pane(args.pane, fresh=bool(args.open), steps=args.open or [])

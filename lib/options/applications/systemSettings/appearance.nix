@@ -6,7 +6,6 @@ let
 	pane = "com.apple.settings.appearance";
 	option = name: "applications.systemSettings.appearance.${name}";
 
-	# like System Settings, so running apps redraw with the new colors
 	colorsChanged = notifies [ "AppleColorPreferencesChangedNotification" "AppleAquaColorVariantChanged" ];
 
 	selected = { selected = true; };
@@ -58,7 +57,6 @@ in
 		ui = [ "System Settings" "Appearance" "Theme" "Color" ];
 		storage = {
 			color = global "AppleAccentColor";
-			# legacy companion key: 6 for Graphite, 1 otherwise
 			variant = global "AppleAquaColorVariant";
 		};
 		value = enum {
@@ -130,7 +128,7 @@ in
 			inherit pane;
 			expect = {
 				ClearDark = { "Clear + Icon & widget style" = selected; "AXRadioButton:Dark" = 1; };
-				# the Default style in dark or automatic shows as the Dark style
+				# The Default style shows as Dark in dark or automatic appearance.
 				RegularAutomatic = { "Dark + Icon & widget style" = selected; "AXRadioButton:Auto" = 1; };
 				TintedLight = { "Tinted + Icon & widget style" = selected; "AXRadioButton:Light" = 1; };
 			};

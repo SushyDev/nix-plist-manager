@@ -1,17 +1,4 @@
 { lib, settingsLib, ... }:
-# Most toggles are written twice by System Settings: to com.apple.Accessibility (AXSettings, as
-# 1/0) and to the older com.apple.universalaccess (as a bool). Both are written here.
-#
-# Features are turned on and off the way System Settings stores them; System Settings also starts
-# or stops the process behind a feature (VoiceOver, Switch Control, …), which is left to macOS.
-#
-# Voices, the background sound and Live Speech voices point at downloaded assets, so they are
-# captured and restored as snapshots (nix run .#capture) rather than typed in.
-#
-# Not covered: Allow platform switching (asks for an administrator and stores its state outside
-# readable preferences), Personal Voice (a recording, and syncing it is an iCloud setting),
-# per-route audio profiles (Headphone Accommodations), and options System Settings only shows
-# with a mouse connected.
 let
 	inherit (settingsLib) setting user global bool inverted enum inDict storedAs absent text number strings snapshot byHost flagsWhenAbsent dictSwitches activatesShortcuts allowedWhen conflictsWith ops;
 
@@ -31,15 +18,11 @@ let
 		RTT = "AX_FEATURE_RTT";
 	};
 
-	# a feature turned on or off; System Settings also starts or stops the process behind it,
-	# which these options leave to macOS
 	feature = page: ui: key: control: switch {
 		inherit page ui control;
 		storage = universalAccess key;
 	};
 
-	# a font picked by name, or "Default": kept as { fontName; fontSize; } with the size the
-	# picker uses as a base, and for Hover Text a style key that says a custom font is set
 	fontCodec = baseSize: text // {
 		examples = [ "Default" "Helvetica" ];
 		encode = keys: font:
@@ -50,7 +33,6 @@ let
 				++ lib.optional (keys ? style) (ops.write keys.style 2);
 	};
 
-	# a color: "Default", or { red; green; blue; alpha ? 1.0; } from 0 to 1
 	rgba = {
 		kind = "color";
 		type = lib.types.either (lib.types.enum [ "Default" ]) (lib.types.submodule {
@@ -65,10 +47,8 @@ let
 		fromName = name: if name == "Default" then name else builtins.fromJSON name;
 	};
 
-	# modifier keys as a device-independent mask
 	modifierMask = { control = 262144; option = 524288; shift = 131072; command = 1048576; };
 
-	# how a sheet shows in a UI path: the button that opens it, "… (i)" for info buttons
 	sheetPath = sheet: if sheet ? open then sheet.open else "${sheet.ui} (i)";
 
 	accessibility = user "com.apple.Accessibility";
@@ -89,7 +69,6 @@ let
 		};
 	};
 
-	# a switch kept in both com.apple.Accessibility (1/0) and com.apple.universalaccess
 	both = { page, ui, accessibilityKey, universalAccessKey }: switch {
 		inherit page ui;
 		storage = {
@@ -102,7 +81,6 @@ let
 		} bool;
 	};
 
-	# a switch kept only in com.apple.Accessibility, as 1/0
 	axSwitch = { page, ui, key }: switch {
 		inherit page ui;
 		storage = accessibility key;
@@ -116,7 +94,6 @@ let
 
 	speech = user "com.apple.speech.synthesis.general.prefs";
 
-	# a Read & Speak control, some behind the (i) of the feature they belong to
 	spoken = { ui, storage, value, control, sheet ? null, expect }: setting {
 		inherit storage value;
 		ui = [ "System Settings" "Accessibility" "Read & Speak" ] ++ lib.optional (sheet != null) (sheetPath sheet) ++ [ ui ];
@@ -134,7 +111,6 @@ let
 
 	highlightColors = enum { Default = 0; Blue = 1; Yellow = 2; Green = 3; };
 
-	# Hover Text colors: absent for Default, else an RGBA dictionary
 	colors = enum ({ Default = absent; } // lib.mapAttrs (_: rgb: {
 		value = { red = lib.elemAt rgb 0; green = lib.elemAt rgb 1; blue = lib.elemAt rgb 2; alpha = 1.0; };
 	}) {
@@ -148,7 +124,6 @@ let
 		Yellow = [ 1.0 1.0 0.0 ];
 	});
 
-	# a Hover Text control; `sheet` is the feature whose (i) it's behind
 	hover = { ui, storage, value, control, sheet ? null, expect }: setting {
 		inherit storage value;
 		ui = [ "System Settings" "Accessibility" "Hover Text" ] ++ lib.optional (sheet != null) (sheetPath sheet) ++ [ ui ];
@@ -172,7 +147,6 @@ let
 	hoverColorSheet = { ui = "Hover Color"; id = "AX_HOVER_COLOR_ENABLE"; };
 	hoverTypingSheet = { ui = "Hover Typing"; id = "AX_HOVER_TYPING_ENABLE"; };
 
-	# a control on a page, or behind the (i) of one of its features
 	control = { page, pageId, ui, storage, value, control, sheet ? null, expect, behaviors ? [], canUnset ? true }: setting {
 		inherit storage value behaviors canUnset;
 		ui = [ "System Settings" "Accessibility" page ] ++ lib.optional (sheet != null) (sheetPath sheet) ++ [ ui ];
@@ -185,31 +159,26 @@ let
 
 	controlSwitch = args: control ({ value = bool; expect = { true = 1; false = 0; }; } // args);
 
-	# verify specs for settings written out in full: what one control shows per value, and a
-	# radio group whose picked button is selected
 	shows = open: control: shown: { inherit pane open; expect = lib.mapAttrs (_: value: { ${control} = value; }) shown; };
 	radios = open: labels: { inherit pane open; expect = lib.genAttrs labels (label: { "AXRadioButton:${label}" = 1; }); };
 
 	keyboardSheet = [ "AX_FEATURE_KEYBOARD" "AX_VIRTUAL_KEYBOARD.infoButton" ];
 	switchControlPage = [ "AX_FEATURE_SWITCHCONTROL" ];
 
-	# a setting whose key is written the way System Settings writes it, but whose switch shows
-	# something else, e.g. whether the feature is running or what the universal access service
-	# has, which don't follow the key: it can't be verified by reading System Settings
+	# For settings whose switch shows the running feature rather than the key, so System Settings can't confirm them.
 	unverified = setting: setting // { verify = null; };
 
 	zoom = args: controlSwitch ({ page = "Zoom"; pageId = "AX_FEATURE_ZOOM"; } // args);
 	keyboard = args: controlSwitch ({ page = "Keyboard"; pageId = "AX_FEATURE_KEYBOARD"; } // args);
 	pointer = args: controlSwitch ({ page = "Pointer Control"; pageId = "AX_FEATURE_POINTERCONTROL"; } // args);
 
-	# both trackpad drivers keep a copy
 	trackpad = name: {
 		builtIn = user "com.apple.AppleMultitouchTrackpad" name;
 		bluetooth = user "com.apple.driver.AppleBluetoothMultitouch.trackpad" name;
 	};
 	bothTrackpads = values: lib.mapAttrs (_: value: { builtIn = value; bluetooth = value; }) values;
 
-	# SpeakSelection keeps "no override" as this string
+	# SpeakSelection stores "no override" as this string.
 	systemLanguage = text // {
 		examples = [ "Use System Language" "en" ];
 		encode = keys: language: text.encode keys
@@ -281,7 +250,6 @@ in
 			};
 		};
 
-		# Text size…: sizes from the smallest slider position to the largest
 		textSize = let
 			sizes = [ "XXXS" "XXS" "XS" "S" "DEFAULT" "M" "L" "XL" "XXL" "XXXL" "AX1" "AX2" "AX3" "AX4" ];
 			sizeFor = size: if size == "Use Preferred Reading Size" then "UseGlobal" else size;
@@ -290,11 +258,10 @@ in
 				ui = [ "System Settings" "Accessibility" "Display" "Text size" "Preferred reading size" ];
 				storage = universalAccess "FontSizeCategory";
 				value = inDict "global" (enum (lib.genAttrs sizes (size: size)));
-				# unset would reset every app's size too
+				# unset would reset every app's size too.
 				canUnset = false;
 			};
 
-			# by bundle identifier, e.g. { "com.apple.mail" = "XL"; }; apps left out keep their size
 			apps = setting {
 				ui = [ "System Settings" "Accessibility" "Display" "Text size" ];
 				description = "A size per app by bundle identifier, or \"Use Preferred Reading Size\".";
@@ -325,7 +292,7 @@ in
 			verify = shows [ "AX_FEATURE_DISPLAY" ] "AXSlider:AX_CURSOR_SIZE" { "1.0" = 1.0; "2.0" = 2.0; };
 		};
 
-		# picking either color marks the pointer as customized
+		# Picking either color marks the pointer as customized.
 		pointerOutlineColor = setting {
 			ui = [ "System Settings" "Accessibility" "Display" "Pointer outline color" ];
 			storage = universalAccess "cursorOutline";
@@ -356,8 +323,6 @@ in
 			value = storedAs { true = 1; false = 0; } bool;
 		});
 
-		# each filter type keeps its own intensity
-		# shown for the filter type that is picked
 		filterIntensity = lib.mapAttrs (_: filter: setting {
 			ui = [ "System Settings" "Accessibility" "Display" "Filter type: ${filter.type}" "Intensity" ];
 			description = "0 to 1.";
@@ -371,7 +336,6 @@ in
 			colorTint = { type = "Color Tint"; key = "MADisplayFilterSingleColorIntensity"; };
 		};
 
-		# the Color Tint filter's color, as a hue from 0 to 1
 		tintHue = setting {
 			ui = [ "System Settings" "Accessibility" "Display" "Filter type: Color Tint" "Tint" ];
 			storage = mediaAccessibility "MADisplayFilterSingleColorHue";
@@ -440,7 +404,6 @@ in
 			storage = user "com.apple.ComfortSounds" "stopsOnLock";
 		});
 
-		# which sound plays: a reference to a downloaded sound asset, captured with nix run .#capture
 		backgroundSound = setting {
 			ui = [ "System Settings" "Accessibility" "Audio" "Background sounds" "Choose…" ];
 			storage.sound = comfortSounds "ComfortSoundsSelectedSound";
@@ -453,7 +416,6 @@ in
 			value = number { min = 0.0; max = 1.0; };
 		};
 
-		# behind the Choose… buttons next to Background sounds
 		backgroundSoundsOptions = let
 			choose = ui: key: control: setting {
 				inherit ui;
@@ -469,7 +431,6 @@ in
 				};
 			};
 		in {
-			# only shown while Background sounds is on
 			equalizer = unverified (choose [ "System Settings" "Accessibility" "Audio" "Background sounds" "Choose…" "Equalizer" ]
 				"tinnitusFilterEnabled" "AX_BACKGROUND_SOUNDS_FILTER");
 
@@ -479,7 +440,6 @@ in
 				value = number { min = -1.0; max = 1.0; };
 			};
 
-			# only shown while Background sounds is on
 			timer = unverified (choose [ "System Settings" "Accessibility" "Audio" "Background sounds" "Choose…" "Timer" ]
 				"timerEnabled" "AX_BACKGROUND_SOUNDS_TIMER_TOGGLE");
 
@@ -504,7 +464,6 @@ in
 
 		showOnSkipBack = axSwitch (captions "Show on skip back" { key = "AXSAutomaticSubtitlesShowOnSkipBack"; });
 
-		# stored the other way around: 0 when it's on
 		applyAcrossApps = switch (captions "Apply across apps" {
 			storage = mediaAccessibility "MACaptionDisplayTypeStorage";
 			value = storedAs { true = 0; false = 1; } bool;
@@ -576,7 +535,6 @@ in
 			control = "AXCheckBox:AX_READER_AUTO_SPEAK";
 		};
 
-		# the system voice per language and the announcement voice, captured with nix run .#capture
 		voices = setting {
 			ui = [ "System Settings" "Accessibility" "Read & Speak" "System voice" ];
 			storage = {
@@ -587,7 +545,6 @@ in
 			value = snapshot;
 		};
 
-		# the key and modifiers that open Accessibility Reader, captured with nix run .#capture
 		accessibilityReader.shortcuts = setting {
 			ui = [ "System Settings" "Accessibility" "Read & Speak" "Accessibility Reader (i)" "Accessibility Reader shortcuts" ];
 			storage.hotKey = universalAccess "AccessibilityReaderHotkey";
@@ -603,7 +560,6 @@ in
 		};
 
 		speakSelectionOptions = {
-			# a Carbon key code plus modifiers: ⌘ 256, ⇧ 512, ⌥ 2048, ⌃ 4096, e.g. ⌥Esc = 2048 + 53
 			keyboardShortcut = setting {
 				ui = [ "System Settings" "Accessibility" "Read & Speak" "Speak selection (i)" "Keyboard shortcut" ];
 				description = "A key code plus modifier values (⌘ 256, ⇧ 512, ⌥ 2048, ⌃ 4096); the default ⌥Esc is 2101.";
@@ -725,12 +681,10 @@ in
 		typingFeedback = setting {
 			ui = [ "System Settings" "Accessibility" "Read & Speak" "Speak typing feedback (i)" ];
 			storage = universalAccess "typingEchoOptions";
-			# absent means characters and words
 			value = flagsWhenAbsent 5 { characters = 1; words = 4; selectionChanges = 8; modifierKeys = 16; };
 		};
 	};
 
-	# Hover Text and Hover Color share their text and colors
 	hoverText = {
 		hoverText = hoverSwitch {
 			ui = "Hover Text";
@@ -867,7 +821,6 @@ in
 			storage = {
 				enabled = universalAccess "closeViewScrollWheelToggle";
 			} // trackpad "HIDScrollZoomModifierMask";
-			# the modifier comes from modifierKeyForScrollGesture
 			value = storedAs {
 				true = { enabled = true; };
 				false = { enabled = false; builtIn = 0; bluetooth = 0; };
@@ -875,7 +828,7 @@ in
 			control = "AXCheckBox:AX_ZOOM_ENABLE_GESTURE";
 		};
 
-		# also turns on the Zoom shortcuts in Keyboard Shortcuts (com.apple.symbolichotkeys)
+		# Also turns on the Zoom shortcuts in Keyboard Shortcuts.
 		useKeyboardShortcutsToZoom = zoom {
 			ui = "Use keyboard shortcuts to zoom";
 			storage = {
@@ -890,7 +843,7 @@ in
 			};
 			control = "AXCheckBox:AX_ZOOM_ENABLE_HOTKEYS";
 			behaviors = [ activatesShortcuts ];
-			# unset would delete every keyboard shortcut on the Mac
+			# unset would delete every keyboard shortcut on the Mac.
 			canUnset = false;
 		};
 
@@ -983,7 +936,6 @@ in
 			control = "AXCheckBox:AX_ZOOM_RESIZE_SHORTCUTS";
 		};
 
-		# System Settings keeps the most zoomed-in factor as the "near point"
 		maximumZoom = zoomFactor "Maximum zoom" "closeViewNearPoint" "AXSlider:AX_ZOOM_MAX_FACTOR";
 		minimumZoom = zoomFactor "Minimum zoom" "closeViewFarPoint" "AXSlider:AX_ZOOM_MIN_FACTOR";
 
@@ -1010,7 +962,6 @@ in
 			verify = radios [ "AX_FEATURE_ZOOM" "Advanced…" ] [ "So focus item is centered" "Just enough to show focus item" ];
 		};
 
-		# the slider's delay between movements: lower is faster
 		movementDelay = setting {
 			ui = [ "System Settings" "Accessibility" "Zoom" "Advanced…" "Movement speed" ];
 			storage = universalAccess "closeViewZoomFocusMovementDelay";
@@ -1038,7 +989,6 @@ in
 			expect = { Off = "Off"; "Swipe with Three Fingers" = "Swipe with Three Fingers"; };
 		};
 
-		# shown while the zoom style is Picture-in-Picture
 		invertColorsInPictureInPicture = setting {
 			ui = [ "System Settings" "Accessibility" "Zoom" "Advanced…" "Invert colors" ];
 			storage = universalAccess "closeViewInvertColors";
@@ -1051,7 +1001,6 @@ in
 			value = bool;
 		};
 
-		# holding Control-Option
 		modifiersForTemporaryActions = {
 			toggleZoom = advancedSwitch {
 				ui = "Toggle zoom";
@@ -1080,7 +1029,6 @@ in
 			universalAccessKey = "keyboardAccessEnabled";
 		};
 
-		# the switches show whether the feature is on in the universal access service
 		stickyKeys = unverified (feature "Keyboard" "Sticky Keys" "stickyKey" "AX_STICKY_KEYS");
 		slowKeys = unverified (feature "Keyboard" "Slow Keys" "slowKey" "AX_SLOW_KEYS");
 		accessibilityKeyboard = feature "Keyboard" "Accessibility Keyboard" "virtualKeyboardOnOff" "AX_VIRTUAL_KEYBOARD";
@@ -1104,7 +1052,6 @@ in
 				control = "AXCheckBox:AX_FKA_HIGH_CONTRAST_CHECKBOX";
 			};
 
-			# Default is an empty dictionary rather than no key
 			color = control {
 				page = "Keyboard"; pageId = "AX_FEATURE_KEYBOARD"; inherit sheet;
 				ui = "Color";
@@ -1191,7 +1138,6 @@ in
 				control = "AXCheckBox:AX_KB_HIDE";
 			};
 
-			# the four dwell corners of the Accessibility Keyboard, entries of one dictionary
 			dwellCorners = let
 				actions = { "Hide / Show Home Panel" = 1; "Toggle Dwell Pause" = 2; "Left Click" = 3; "Right Click" = 4;
 					"Double Click" = 5; "Drag and Drop" = 6; "Scroll Menu" = 7; "Options Menu" = 8; };
@@ -1200,7 +1146,7 @@ in
 					storage = universalAccess "virtualKeyboardCornerActionType";
 					value = inDict entry (enum actions);
 					verify = shows keyboardSheet "AXPopUpButton:${ui}" { "Left Click" = "Left Click"; "Hide / Show Home Panel" = "Hide / Show Home Panel"; };
-					# unset would reset all four corners
+					# unset would reset all four corners.
 					canUnset = false;
 				};
 			in {
@@ -1273,7 +1219,6 @@ in
 				value = number { min = 1.0; max = 60.0; };
 			};
 
-			# stored as the opacity the panel fades to
 			fadeBy = setting {
 				ui = [ "System Settings" "Accessibility" "Keyboard" "Accessibility Keyboard (i)" "Fade by" ];
 				storage = universalAccess "virtualKeyboardHideUITransparencyLevel";
@@ -1308,14 +1253,14 @@ in
 				control = "AXCheckBox:AX_KB_RIGHT_CLICK";
 			};
 
-			# shared with Switch Control's keyboard
+			# Shared with Switch Control's keyboard.
 			insertAndRemoveSpacesAutomatically = keyboard {
 				ui = "Insert and remove spaces automatically"; inherit sheet;
 				storage = universalAccess "AssistiveControlAutomaticSpaceEnabled";
 				control = "AXCheckBox:AX_KB_AUTO_SPACING";
 			};
 
-			# shared with Switch Control's keyboard
+			# Shared with Switch Control's keyboard.
 			capitalizeSentencesAutomatically = keyboard {
 				ui = "Capitalize sentences automatically"; inherit sheet;
 				storage = universalAccess "AssistiveControlAutomaticShiftEnabled";
@@ -1438,14 +1383,10 @@ in
 				value = number { min = 0.0; max = 1.0; };
 			};
 
-			# Dragging style's choices, with Use trackpad for dragging as Off. Tap-and-drag is kept in the
-			# tap behavior too (1 tap to click, 2 tap-and-drag, 3 with drag lock), which Tap to click in
-			# Trackpad writes as well: it's written at the end, after Tap to click. Three Finger Drag
-			# takes the three-finger swipes, which System Settings turns off.
+			# Tap to click writes the tap behavior too, so this writes it afterwards; Three Finger Drag takes over the three-finger swipes.
 			dragging = let
 				host = name: byHost (global name);
 				tapBehavior = value: "/usr/bin/defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int ${toString value}";
-				# back to plain tap to click, if tap-and-drag was on
 				noTapDrag = "tap=$(/usr/bin/defaults -currentHost read NSGlobalDomain com.apple.mouse.tapBehavior 2>/dev/null); if [ \"$tap\" = 2 ] || [ \"$tap\" = 3 ]; then ${tapBehavior 1}; fi";
 				style = { dragging, lock, threeFinger }: {
 					draggingBuiltIn = dragging; draggingBluetooth = dragging;
@@ -1478,10 +1419,9 @@ in
 					verticalBuiltIn = (trackpad "TrackpadThreeFingerVertSwipeGesture").builtIn;
 					verticalBluetooth = (trackpad "TrackpadThreeFingerVertSwipeGesture").bluetooth;
 					verticalHost = host "com.apple.trackpad.threeFingerVertSwipeGesture";
-					# written at the end, see above
 					tapBehavior = host "com.apple.mouse.tapBehavior";
 				};
-				# unset would delete the three-finger swipes too
+				# unset would delete the three-finger swipes too.
 				canUnset = false;
 				value = let codec = enum styles; in codec // {
 					encode = keys: label: codec.encode keys label ++ [ (ops.afterwards afterwards.${label}) ];
@@ -1639,8 +1579,6 @@ in
 	};
 
 	shortcut = {
-		# features the Accessibility Shortcut (Option-Command-F5) offers; those left unset keep
-		# their current state
 		features = setting {
 			ui = [ "System Settings" "Accessibility" "Shortcut" ];
 			storage = universalAccess "axShortcutExposedFeatures";
@@ -1682,8 +1620,7 @@ in
 		voice = args: control ({ page = "Voice Control"; pageId = "AX_FEATURE_VOICECONTROL"; } // args);
 		voiceSwitch = args: voice ({ value = bool; expect = { true = 1; false = 0; }; } // args);
 	in {
-		# the first time, turning it on downloads the speech models for the language
-		# the switch shows whether Voice Control is running
+		# The first time, turning it on downloads the speech models for the language.
 		voiceControl = unverified (voiceSwitch {
 			ui = "Voice Control";
 			storage = speechRecognition "DictationIMMasterDictationEnabled";
@@ -1741,7 +1678,6 @@ in
 			value = number { min = 12.0; max = 120.0; };
 		};
 
-		# the voice picked per language, captured with nix run .#capture
 		voices = setting {
 			ui = [ "System Settings" "Accessibility" "Live Speech" "Voice" ];
 			storage.voices = universalAccess "liveSpeechLanguageVoiceSelections";
@@ -1749,7 +1685,6 @@ in
 		};
 	};
 
-	# the switch shows whether VoiceOver is running
 	voiceOver.voiceOver = unverified (feature "VoiceOver" "VoiceOver" "voiceOverOnOffKey" "AX_VOICEOVER_ENABLED");
 
 	switchControl = let
@@ -1778,7 +1713,7 @@ in
 			value = number { min = 1.0; max = 120.0; };
 		};
 
-		# the switch can only be changed while Switch Control is on
+		# The switch can only be changed while Switch Control is on.
 		autoScanning = unverified (switchSwitch {
 			ui = "Auto scanning";
 			storage = universalAccess "switchAutoScanEnabled";

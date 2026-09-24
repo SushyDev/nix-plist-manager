@@ -1,5 +1,4 @@
 { lib, render, isSetting }:
-# One description of a setting, for the docs, optionIndex and the verify tools.
 let
 	name = value:
 		if lib.isAttrs value then "{ ${lib.concatStringsSep "; " (lib.mapAttrsToList (k: v: "${k} = ${builtins.toJSON v}") value)}; }"
@@ -21,27 +20,20 @@ let
 		type = setting.option.type.description;
 		kind = setting.codec.kind;
 		choices = setting.codec.choices;
-		# `as` is the entry's name in the setting's storage, which `capture` names its files by
 		storage = lib.mapAttrsToList (as: key: storageKey key // { inherit as; }) setting.keys;
-		# the script each example value renders to
 		commands = lib.listToAttrs (map (value: lib.nameValuePair (name value) (render.script (setting.plan value)))
 			(setting.codec.examples ++ lib.optional (setting.option.type.check "unset") "unset"));
 		verify = setting.verify;
-		# for the docs: what the option is for, a value to show it with (as Nix), whether it
-		# accepts "unset", and a number's range
 		description = setting.option.description or "";
 		example = lib.generators.toPretty { } (lib.head setting.codec.examples);
 		canUnset = setting.option.type.check "unset";
 		range = if setting.codec ? min then { inherit (setting.codec) min max; unit = setting.codec.unit or null; } else null;
-		# how `nix run .#current` reads the value back: the codec's own reader, or, for values
-		# picked from a list, what each one writes
 		read = setting.codec.read or null;
 		inherit (setting) reads;
 		candidates =
 			if lib.elem setting.codec.kind [ "bool" "enum" ] && !(appliedThroughCommand setting) then
 				map (value: { inherit value; ops = map opJson (setting.codec.encode setting.keys value); }) setting.codec.examples
 			else null;
-		# applied through a command, so the keys may not say what is in effect
 		appliedThroughCommand = appliedThroughCommand setting;
 	};
 in
