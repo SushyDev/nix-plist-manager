@@ -16,44 +16,86 @@
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.CloudSubscriptionFeatures.optIn",
 					"key": "10334750688",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Apple Intelligence"
+		},
+		"automatic-visual-look-up": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appleIntelligenceAndSiri.automaticVisualLookUp",
+			"section": null,
+			"sources": [
+				"option:applications.systemSettings.appleIntelligenceAndSiri.automaticVisualLookUp"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "NSGlobalDomain",
+					"key": "SSPreferencesVisualLookUpInSSSEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Automatic Visual Look Up"
+		},
+		"chatgpt-use-extension": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.appleIntelligenceAndSiri.chatGpt.useExtension",
+			"section": "ChatGPT",
+			"sources": [
+				"option:applications.systemSettings.appleIntelligenceAndSiri.chatGpt.useExtension"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "com.apple.siri.generativeassistantsettings",
+					"key": "isEnabled",
+					"scope": "user"
+				}
+			],
+			"title": "Use Extension"
 		},
 		"generative-assistant-settings-view-extended-apple-intelligence-and-siri": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Generative Assistant Settings View",
+			"skip": "a page, not a setting",
 			"sources": [
 				"search:SiriPreferenceExtension.appex/GenerativeAssistantSettingsView/Extended Apple Intelligence & Siri"
 			],
 			"title": "Extended Apple Intelligence & Siri"
 		},
-		"siri-requests-siri-responses": {
+		"responses": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"option": "applications.systemSettings.appleIntelligenceAndSiri.siriResponses",
-			"section": "Siri Requests",
+			"option": "applications.systemSettings.appleIntelligenceAndSiri.siri.responses",
+			"section": null,
 			"sources": [
+				"option:applications.systemSettings.appleIntelligenceAndSiri.siri.responses",
 				"option:applications.systemSettings.appleIntelligenceAndSiri.siriResponses"
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.assistant.backedup",
 					"key": "Use device speaker for TTS",
-					"scope": "user",
-					"type": "int"
+					"scope": "user"
 				}
 			],
-			"title": "Siri Responses"
+			"title": "Responses"
 		},
 		"siri-siri": {
 			"firstSeen": "26A428",
@@ -63,28 +105,19 @@
 			"section": "Siri",
 			"sources": [
 				"option:applications.systemSettings.appleIntelligenceAndSiri.siri.enable",
-				"search:SiriPreferenceExtension.appex/Siri/Siri"
+				"search:SiriPreferenceExtension.appex/Siri/Siri",
+				"search:SiriPreferenceExtension.appex/Siri/Turn Siri on and off"
 			],
 			"storage": [
 				{
+					"as": "value",
 					"byHost": false,
 					"domain": "com.apple.assistant.support",
 					"key": "Assistant Enabled",
-					"scope": "user",
-					"type": "bool"
+					"scope": "user"
 				}
 			],
 			"title": "Siri"
-		},
-		"siri-turn-siri-on-and-off": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Siri",
-			"sources": [
-				"search:SiriPreferenceExtension.appex/Siri/Turn Siri on and off"
-			],
-			"title": "Turn Siri on and off"
 		}
 	}
 }
