@@ -18,6 +18,16 @@
 				home-manager = self.homeManagerModules.default;
 			};
 
+			# The shell command an option runs for a value, used by tools/verify
+			lib.commandFor = optionPath: value:
+				let
+					lib = nixpkgs.lib;
+					options = import ./lib/options.nix { inherit lib; };
+					option = lib.getAttrFromPath (lib.splitString "." optionPath) options;
+				in
+				if option.option.type.check value then option.config.command value
+				else throw "${builtins.toJSON value} is not a valid value for ${optionPath}";
+
 			optionIndex =
 				let
 					lib = nixpkgs.lib;
@@ -80,11 +90,20 @@
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
 						exec ${pkgs.python3}/bin/python3 ${./tools/inventory/inventory.py} "$@"
 					'';
+					# needs Accessibility permission and the system swiftc, so macOS only
+					verify = pkgs.writeShellScript "verify" ''
+						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
+						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify/verify.py" "$@"
+					'';
 				in
 				{
 					inventory = {
 						type = "app";
 						program = "${inventory}";
+					};
+					verify = {
+						type = "app";
+						program = "${verify}";
 					};
 				}
 			);

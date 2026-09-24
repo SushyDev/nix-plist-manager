@@ -416,7 +416,7 @@
 			"storage": [
 				{
 					"byHost": true,
-					"domain": ".GlobalPreferences",
+					"domain": "NSGlobalDomain",
 					"key": "AppleActionOnDoubleClick",
 					"scope": "user",
 					"type": "string"
@@ -601,7 +601,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": ".GlobalPreferences",
+					"domain": "NSGlobalDomain",
 					"key": "AppleSpacesSwitchOnActivate",
 					"scope": "user",
 					"type": "bool"

@@ -49,7 +49,7 @@ STATUSES = ["verified", "implemented", "mapped", "todo", "skipped"]
 KINDS = ["bool", "number", "string", "enum", "unknown"]
 SETTING_FIELDS = {
 	"title", "section", "kind", "choices", "sources", "firstSeen", "lastSeen",
-	"storage", "option", "verified", "skip", "notes",
+	"storage", "option", "verified", "skip", "notes", "ui",
 }
 STORAGE_FIELDS = {"domain", "key", "type", "byHost", "scope"}
 
@@ -374,8 +374,8 @@ def merge_candidate(data: dict, candidate: dict, build: str):
 		setting["sources"] = sorted(setting["sources"] + [source])
 	setting["lastSeen"] = build
 
-	# intents know more than search terms; never let a vaguer source overwrite
-	if source.startswith("intent:") or setting.get("kind", "unknown") == "unknown":
+	# intents and the UI know more than search terms; never let a vaguer source overwrite
+	if source.startswith(("intent:", "ui:")) or setting.get("kind", "unknown") == "unknown":
 		setting["title"] = candidate["title"]
 		if candidate["section"]:
 			setting["section"] = candidate["section"]
@@ -672,6 +672,9 @@ def cmd_check(args):
 			for storage in setting.get("storage", []):
 				if not {"domain", "key"} <= set(storage) or set(storage) - STORAGE_FIELDS:
 					errors.append(f"{label}: storage entries need domain and key, and only {sorted(STORAGE_FIELDS)}")
+			ui = setting.get("ui")
+			if ui is not None and not (isinstance(ui.get("pane"), str) and isinstance(ui.get("expect"), dict)):
+				errors.append(f"{label}: ui needs a pane and an expect table (see tools/verify/verify.py)")
 			if setting.get("verified") and not setting.get("option"):
 				errors.append(f"{label}: verified without an option")
 			if options is not None and setting.get("option") and setting["option"] not in options:

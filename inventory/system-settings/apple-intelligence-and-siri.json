@@ -19,7 +19,8 @@
 					"byHost": false,
 					"domain": "com.apple.CloudSubscriptionFeatures.optIn",
 					"key": "10334750688",
-					"scope": "user"
+					"scope": "user",
+					"type": "bool"
 				}
 			],
 			"title": "Apple Intelligence"
@@ -48,7 +49,8 @@
 					"byHost": false,
 					"domain": "com.apple.assistant.backedup",
 					"key": "Use device speaker for TTS",
-					"scope": "user"
+					"scope": "user",
+					"type": "int"
 				}
 			],
 			"title": "Siri Responses"
@@ -68,7 +70,8 @@
 					"byHost": false,
 					"domain": "com.apple.assistant.support",
 					"key": "Assistant Enabled",
-					"scope": "user"
+					"scope": "user",
+					"type": "bool"
 				}
 			],
 			"title": "Siri"

@@ -17,7 +17,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": "com.apple.Spotlight.plist",
+					"domain": "com.apple.Spotlight",
 					"key": "PasteboardHistoryTimeout",
 					"scope": "user",
 					"type": "int"
@@ -37,7 +37,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": "com.apple.assistant.support.plist",
+					"domain": "com.apple.assistant.support",
 					"key": "Search Queries Data Sharing Status",
 					"scope": "user",
 					"type": "int"
@@ -67,7 +67,7 @@
 			"storage": [
 				{
 					"byHost": false,
-					"domain": "com.apple.Spotlight.plist",
+					"domain": "com.apple.Spotlight",
 					"key": "PasteboardHistoryEnabled",
 					"scope": "user",
 					"type": "bool"
