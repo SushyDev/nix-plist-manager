@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting global user byHost bool enum number storedAs restarts allowedWhen conflictsWith;
+	inherit (settingsLib) setting global user byHost bool enum number storedAs restarts allowedWhen conflictsWith shows;
 
 	pane = "com.apple.settings.trackpad";
 	option = name: "applications.systemSettings.trackpad.${name}";
@@ -24,10 +24,7 @@ let
 
 	switch = { tab, ui, storage, value ? bool, behaviors ? [] }: control {
 		inherit tab ui storage value behaviors;
-		verify.expect = {
-			true = { "AXCheckBox:${ui}" = 1; };
-			false = { "AXCheckBox:${ui}" = 0; };
-		};
+		verify.expect = shows.checkbox "AXCheckBox:${ui}";
 	};
 
 	gestureSwitch = { tab, ui, name, hostName, on ? true, off ? false }: switch {

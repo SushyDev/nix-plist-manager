@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user global bool enum inverted restarts activatesShortcuts ops;
+	inherit (settingsLib) setting user global bool enum inverted restarts activatesShortcuts ops shows;
 
 	pane = "com.apple.settings.desktopAndDock";
 
@@ -91,10 +91,7 @@ let
 		verify = {
 			inherit pane;
 			operate = [ "click" control ];
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 

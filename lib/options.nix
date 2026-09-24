@@ -1,33 +1,34 @@
 { lib }:
 let
 	settingsLib = import ./settings { inherit lib; };
+	load = file: import file { inherit lib settingsLib; };
 in
 {
 	applications = {
 		systemSettings = {
-			general = import ./options/applications/systemSettings/general.nix { inherit lib settingsLib; };
-			accessibility = import ./options/applications/systemSettings/accessibility.nix { inherit lib settingsLib; };
-			appearance = import ./options/applications/systemSettings/appearance.nix { inherit lib settingsLib; };
-			appleIntelligenceAndSiri = import ./options/applications/systemSettings/apple-intelligence-and-siri.nix { inherit lib settingsLib; };
-			desktopAndDock = import ./options/applications/systemSettings/desktop-and-dock.nix { inherit lib settingsLib; };
-			displays = import ./options/applications/systemSettings/displays.nix { inherit lib settingsLib; };
-			battery = import ./options/applications/systemSettings/battery.nix { inherit lib settingsLib; };
-			menuBar = import ./options/applications/systemSettings/menu-bar.nix { inherit lib settingsLib; };
-			spotlight = import ./options/applications/systemSettings/spotlight.nix { inherit lib settingsLib; };
-			wallpaper = import ./options/applications/systemSettings/wallpaper.nix { inherit lib settingsLib; };
-			notifications = import ./options/applications/systemSettings/notifications.nix { inherit lib settingsLib; };
-			sound = import ./options/applications/systemSettings/sound.nix { inherit lib settingsLib; };
-			focus = import ./options/applications/systemSettings/focus.nix { inherit lib settingsLib; };
-			lockScreen = import ./options/applications/systemSettings/lock-screen.nix { inherit lib settingsLib; };
-			keyboard = import ./options/applications/systemSettings/keyboard.nix { inherit lib settingsLib; };
-			trackpad = import ./options/applications/systemSettings/trackpad.nix { inherit lib settingsLib; };
-			printersAndScanners = import ./options/applications/systemSettings/printers-and-scanners.nix { inherit lib settingsLib; };
-			privacyAndSecurity = import ./options/applications/systemSettings/privacy-and-security.nix { inherit lib settingsLib; };
-			network = import ./options/applications/systemSettings/network.nix { inherit lib settingsLib; };
-			wiFi = import ./options/applications/systemSettings/wi-fi.nix { inherit lib settingsLib; };
+			general = load ./options/applications/systemSettings/general.nix;
+			accessibility = load ./options/applications/systemSettings/accessibility.nix;
+			appearance = load ./options/applications/systemSettings/appearance.nix;
+			appleIntelligenceAndSiri = load ./options/applications/systemSettings/apple-intelligence-and-siri.nix;
+			desktopAndDock = load ./options/applications/systemSettings/desktop-and-dock.nix;
+			displays = load ./options/applications/systemSettings/displays.nix;
+			battery = load ./options/applications/systemSettings/battery.nix;
+			menuBar = load ./options/applications/systemSettings/menu-bar.nix;
+			spotlight = load ./options/applications/systemSettings/spotlight.nix;
+			wallpaper = load ./options/applications/systemSettings/wallpaper.nix;
+			notifications = load ./options/applications/systemSettings/notifications.nix;
+			sound = load ./options/applications/systemSettings/sound.nix;
+			focus = load ./options/applications/systemSettings/focus.nix;
+			lockScreen = load ./options/applications/systemSettings/lock-screen.nix;
+			keyboard = load ./options/applications/systemSettings/keyboard.nix;
+			trackpad = load ./options/applications/systemSettings/trackpad.nix;
+			printersAndScanners = load ./options/applications/systemSettings/printers-and-scanners.nix;
+			privacyAndSecurity = load ./options/applications/systemSettings/privacy-and-security.nix;
+			network = load ./options/applications/systemSettings/network.nix;
+			wiFi = load ./options/applications/systemSettings/wi-fi.nix;
 		};
-		voiceMemos = import ./options/applications/voice-memos.nix { inherit lib settingsLib; };
-		journal = import ./options/applications/journal.nix { inherit lib settingsLib; };
-		finder = import ./options/applications/finder.nix { inherit lib settingsLib; };
+		voiceMemos = load ./options/applications/voice-memos.nix;
+		journal = load ./options/applications/journal.nix;
+		finder = load ./options/applications/finder.nix;
 	};
 }

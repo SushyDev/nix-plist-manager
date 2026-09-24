@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user enum;
+	inherit (settingsLib) setting user enum shows;
 in
 {
 	defaultPaperSize = setting {
@@ -24,10 +24,7 @@ in
 		};
 		verify = {
 			pane = "com.apple.settings.printerAndScanner";
-			expect = {
-				"US Letter" = { "AXPopUpButton:DefaultPaperSizeOption" = "US Letter"; };
-				A3 = { "AXPopUpButton:DefaultPaperSizeOption" = "A3"; };
-			};
+			expect = shows.choice "AXPopUpButton:DefaultPaperSizeOption" [ "US Letter" "A3" ];
 		};
 	};
 }

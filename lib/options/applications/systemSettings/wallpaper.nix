@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting domain snapshot restarts user byHost enum;
+	inherit (settingsLib) setting domain snapshot restarts user byHost enum shows;
 
 	screenSaverDelays = {
 		"After 1 minute" = 60; "After 2 minutes" = 120; "After 3 minutes" = 180; "After 5 minutes" = 300;
@@ -31,10 +31,7 @@ in
 		verify = {
 			pane = "com.apple.settings.wallpaper";
 			open = [ "AXButton:Screen Saver…" ];
-			expect = {
-				"After 5 minutes" = { "AXPopUpButton:Start Screen Saver…" = "After 5 minutes"; };
-				Never = { "AXPopUpButton:Start Screen Saver…" = "Never"; };
-			};
+			expect = shows.choice "AXPopUpButton:Start Screen Saver…" [ "After 5 minutes" "Never" ];
 		};
 	};
 }

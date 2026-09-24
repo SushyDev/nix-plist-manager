@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user byHost bool enum storedAs restarts;
+	inherit (settingsLib) setting user byHost bool enum storedAs restarts shows;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.airDropAndHandoff" ];
@@ -10,10 +10,7 @@ let
 		ui = [ "System Settings" "General" "AirDrop & Continuity" ui ];
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 in
@@ -25,10 +22,7 @@ in
 		behaviors = [ (restarts "sharingd") ];
 		verify = {
 			inherit pane open;
-			expect = {
-				"No One" = { "AXPopUpButton:AirDrop" = "No One"; };
-				"Contacts Only" = { "AXPopUpButton:AirDrop" = "Contacts Only"; };
-			};
+			expect = shows.choice "AXPopUpButton:AirDrop" [ "No One" "Contacts Only" ];
 		};
 	};
 

@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user global bool inverted enum inDict storedAs absent text number strings snapshot byHost flagsWhenAbsent dictSwitches activatesShortcuts allowedWhen conflictsWith ops;
+	inherit (settingsLib) setting user global bool inverted enum inDict storedAs absent text number strings snapshot byHost flagsWhenAbsent dictSwitches activatesShortcuts allowedWhen conflictsWith ops shows;
 
 	pane = "com.apple.settings.accessibility";
 
@@ -62,10 +62,7 @@ let
 		verify = {
 			inherit pane;
 			open = [ pageIds.${page} ];
-			expect = {
-				true = { "AXCheckBox:${control}" = 1; };
-				false = { "AXCheckBox:${control}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${control}";
 		};
 	};
 
@@ -100,7 +97,7 @@ let
 		verify = {
 			inherit pane;
 			open = [ "AX_FEATURE_SPOKENCONTENT" ] ++ lib.optional (sheet != null) "${sheet.id}.infoButton";
-			expect = lib.mapAttrs (_: shown: { ${control} = shown; }) expect;
+			expect = shows.values control expect;
 		};
 	};
 
@@ -130,7 +127,7 @@ let
 		verify = {
 			inherit pane;
 			open = [ "AX_FEATURE_HOVERTEXT" ] ++ lib.optional (sheet != null) "${sheet.id}.infoButton";
-			expect = lib.mapAttrs (_: shown: { ${control} = shown; }) expect;
+			expect = shows.values control expect;
 		};
 	};
 
@@ -153,14 +150,13 @@ let
 		verify = {
 			inherit pane;
 			open = [ pageId ] ++ lib.optional (sheet != null) (sheet.open or "${sheet.id}.infoButton");
-			expect = lib.mapAttrs (_: shown: { ${control} = shown; }) expect;
+			expect = shows.values control expect;
 		};
 	};
 
 	controlSwitch = args: control ({ value = bool; expect = { true = 1; false = 0; }; } // args);
 
-	shows = open: control: shown: { inherit pane open; expect = lib.mapAttrs (_: value: { ${control} = value; }) shown; };
-	radios = open: labels: { inherit pane open; expect = lib.genAttrs labels (label: { "AXRadioButton:${label}" = 1; }); };
+	verifyOn = open: expect: { inherit pane open expect; };
 
 	keyboardSheet = [ "AX_FEATURE_KEYBOARD" "AX_VIRTUAL_KEYBOARD.infoButton" ];
 	switchControlPage = [ "AX_FEATURE_SWITCHCONTROL" ];
@@ -243,10 +239,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "AX_FEATURE_DISPLAY" ];
-				expect = {
-					Default = { "AXRadioButton:Default" = 1; };
-					Large = { "AXRadioButton:Large" = 1; };
-				};
+				expect = shows.radio [ "Default" "Large" ];
 			};
 		};
 
@@ -282,14 +275,14 @@ in
 			ui = [ "System Settings" "Accessibility" "Display" "Display contrast" ];
 			storage = universalAccess "contrast";
 			value = number { min = 0.0; max = 1.0; };
-			verify = shows [ "AX_FEATURE_DISPLAY" ] "AXSlider:AX_ENHANCE_CONTRAST" { "0.0" = 0.0; "0.5" = 0.5; };
+			verify = verifyOn [ "AX_FEATURE_DISPLAY" ] (shows.values "AXSlider:AX_ENHANCE_CONTRAST" { "0.0" = 0.0; "0.5" = 0.5; });
 		};
 
 		pointerSize = setting {
 			ui = [ "System Settings" "Accessibility" "Display" "Pointer size" ];
 			storage = universalAccess "mouseDriverCursorSize";
 			value = number { min = 1.0; max = 4.0; };
-			verify = shows [ "AX_FEATURE_DISPLAY" ] "AXSlider:AX_CURSOR_SIZE" { "1.0" = 1.0; "2.0" = 2.0; };
+			verify = verifyOn [ "AX_FEATURE_DISPLAY" ] (shows.values "AXSlider:AX_CURSOR_SIZE" { "1.0" = 1.0; "2.0" = 2.0; });
 		};
 
 		# Picking either color marks the pointer as customized.
@@ -355,10 +348,7 @@ in
 			verify = {
 				inherit pane;
 				open = [ "AX_FEATURE_DISPLAY" ];
-				expect = {
-					Grayscale = { "AXPopUpButton:Filter type" = "Grayscale"; };
-					"Color Tint" = { "AXPopUpButton:Filter type" = "Color Tint"; };
-				};
+				expect = shows.choice "AXPopUpButton:Filter type" [ "Grayscale" "Color Tint" ];
 			};
 		};
 	};
@@ -424,10 +414,7 @@ in
 				verify = {
 					inherit pane;
 					open = [ "AX_FEATURE_AUDIO" "Choose…" ];
-					expect = {
-						true = { "AXCheckBox:${control}" = 1; };
-						false = { "AXCheckBox:${control}" = 0; };
-					};
+					expect = shows.checkbox "AXCheckBox:${control}";
 				};
 			};
 		in {
@@ -891,7 +878,7 @@ in
 			ui = [ "System Settings" "Accessibility" "Zoom" "Advanced…" "Zoomed image moves" ];
 			storage = universalAccess "closeViewPanningMode";
 			value = enum { "Continuously with pointer" = 0; "When pointer reaches edge" = 1; "To keep pointer centered" = 2; };
-			verify = radios [ "AX_FEATURE_ZOOM" "Advanced…" ] [ "Continuously with pointer" "When pointer reaches edge" "To keep pointer centered" ];
+			verify = verifyOn [ "AX_FEATURE_ZOOM" "Advanced…" ] (shows.radio [ "Continuously with pointer" "When pointer reaches edge" "To keep pointer centered" ]);
 		};
 
 		restoreZoomFactorOnStartup = advancedSwitch {
@@ -959,14 +946,14 @@ in
 			ui = [ "System Settings" "Accessibility" "Zoom" "Advanced…" "Move screen image" ];
 			storage = universalAccess "closeViewZoomFocusMovement";
 			value = enum { "So focus item is centered" = 0; "Just enough to show focus item" = 1; };
-			verify = radios [ "AX_FEATURE_ZOOM" "Advanced…" ] [ "So focus item is centered" "Just enough to show focus item" ];
+			verify = verifyOn [ "AX_FEATURE_ZOOM" "Advanced…" ] (shows.radio [ "So focus item is centered" "Just enough to show focus item" ]);
 		};
 
 		movementDelay = setting {
 			ui = [ "System Settings" "Accessibility" "Zoom" "Advanced…" "Movement speed" ];
 			storage = universalAccess "closeViewZoomFocusMovementDelay";
 			value = number { min = 0.0; max = 1.0; };
-			verify = shows [ "AX_FEATURE_ZOOM" "Advanced…" ] "AXSlider:AX_ZOOM_FOCUS_MOVEMENT_DELAY" { "0.2" = 0.30000001192092896; "0.8" = 0.05000000074505806; };
+			verify = verifyOn [ "AX_FEATURE_ZOOM" "Advanced…" ] (shows.values "AXSlider:AX_ZOOM_FOCUS_MOVEMENT_DELAY" { "0.2" = 0.30000001192092896; "0.8" = 0.05000000074505806; });
 		};
 
 		toggleBetweenFullScreenAndPictureInPicture = advancedSwitch {
@@ -1113,7 +1100,7 @@ in
 				description = "In milliseconds.";
 				storage = universalAccess "slowKeyDelay";
 				value = number { min = 0; max = 5000; };
-				verify = shows [ "AX_FEATURE_KEYBOARD" "AX_SLOW_KEYS.infoButton" ] "AXSlider:AX_SLOW_KEYS_DELAY" { "250" = 250; "500" = 500; };
+				verify = verifyOn [ "AX_FEATURE_KEYBOARD" "AX_SLOW_KEYS.infoButton" ] (shows.values "AXSlider:AX_SLOW_KEYS_DELAY" { "250" = 250; "500" = 500; });
 			};
 		};
 
@@ -1125,10 +1112,7 @@ in
 				verify = {
 					inherit pane;
 					open = [ "AX_FEATURE_KEYBOARD" "AX_VIRTUAL_KEYBOARD.infoButton" ];
-					expect = {
-						Light = { "AXRadioButton:Light" = 1; };
-						Dark = { "AXRadioButton:Dark" = 1; };
-					};
+					expect = shows.radio [ "Light" "Dark" ];
 				};
 			};
 
@@ -1145,7 +1129,7 @@ in
 					ui = [ "System Settings" "Accessibility" "Keyboard" "Accessibility Keyboard (i)" ui ];
 					storage = universalAccess "virtualKeyboardCornerActionType";
 					value = inDict entry (enum actions);
-					verify = shows keyboardSheet "AXPopUpButton:${ui}" { "Left Click" = "Left Click"; "Hide / Show Home Panel" = "Hide / Show Home Panel"; };
+					verify = verifyOn keyboardSheet (shows.choice "AXPopUpButton:${ui}" [ "Left Click" "Hide / Show Home Panel" ]);
 					# unset would reset all four corners.
 					canUnset = false;
 				};
@@ -1185,7 +1169,7 @@ in
 				description = "In seconds.";
 				storage = universalAccess "dwellTimeDefaultAction";
 				value = number { min = 0.25; max = 10.0; };
-				verify = shows keyboardSheet "AXIncrementor:AX_DWELL_WAIT_TIME" { "1.5" = 1.5; "3.0" = 3.0; };
+				verify = verifyOn keyboardSheet (shows.values "AXIncrementor:AX_DWELL_WAIT_TIME" { "1.5" = 1.5; "3.0" = 3.0; });
 			};
 
 			panelDwellTime = setting {
@@ -1193,7 +1177,7 @@ in
 				description = "In seconds.";
 				storage = universalAccess "dwellTimeAssistiveControlUI";
 				value = number { min = 0.25; max = 10.0; };
-				verify = shows keyboardSheet "AXIncrementor:AX_DWELL_WAIT_TIME_HOME" { "1.5" = 1.5; "2.0" = 2.0; };
+				verify = verifyOn keyboardSheet (shows.values "AXIncrementor:AX_DWELL_WAIT_TIME_HOME" { "1.5" = 1.5; "2.0" = 2.0; });
 			};
 
 			dwellMovementTolerance = setting {
@@ -1201,7 +1185,7 @@ in
 				description = "In points.";
 				storage = universalAccess "dwellTolerance";
 				value = number { min = 0.0; max = 100.0; };
-				verify = shows keyboardSheet "AXIncrementor:AX_DWELL_TOLERANCE" { "10.0" = 10.0; "20.0" = 20.0; };
+				verify = verifyOn keyboardSheet (shows.values "AXIncrementor:AX_DWELL_TOLERANCE" { "10.0" = 10.0; "20.0" = 20.0; });
 			};
 
 			postActionMovementTolerance = setting {
@@ -1209,7 +1193,7 @@ in
 				description = "In points.";
 				storage = universalAccess "dwellRetriggerTolerance";
 				value = number { min = 0.0; max = 100.0; };
-				verify = shows keyboardSheet "AXIncrementor:AX_DWELL_RETRIGGER_TOLERANCE" { "10.0" = 10.0; "20.0" = 20.0; };
+				verify = verifyOn keyboardSheet (shows.values "AXIncrementor:AX_DWELL_RETRIGGER_TOLERANCE" { "10.0" = 10.0; "20.0" = 20.0; });
 			};
 
 			fadeAfter = setting {
@@ -1238,7 +1222,7 @@ in
 				ui = [ "System Settings" "Accessibility" "Keyboard" "Accessibility Keyboard (i)" "Keys should be entered on" ];
 				storage = universalAccess "virtualKeyboardMouseOption";
 				value = enum { "Mouse down" = 0; "Mouse up" = 1; };
-				verify = radios keyboardSheet [ "Mouse down" "Mouse up" ];
+				verify = verifyOn keyboardSheet (shows.radio [ "Mouse down" "Mouse up" ]);
 			};
 
 			playSoundsForKeysAndDwellActions = keyboard {
@@ -1347,7 +1331,7 @@ in
 			description = "The delay before a folder springs open, in seconds; the slider shows 1 minus the delay.";
 			storage = global "com.apple.springing.delay";
 			value = number { min = 0.0; max = 2.0; };
-			verify = shows [ "AX_FEATURE_POINTERCONTROL" ] "AXSlider:AX_SPRING_LOADING_DELAY" { "0.5" = 0.5; "1.0" = 0.0; };
+			verify = verifyOn [ "AX_FEATURE_POINTERCONTROL" ] (shows.values "AXSlider:AX_SPRING_LOADING_DELAY" { "0.5" = 0.5; "1.0" = 0.0; });
 		};
 
 		trackpadOptions = let
@@ -1433,10 +1417,7 @@ in
 						conflictsWith (swipes option) (choice: lib.hasInfix "Three" choice) "Three Finger Drag takes the three-finger swipes" context
 					) [ "swipeBetweenPages" "swipeBetweenFullScreenApplications" "missionControl" "appExpose" ]))
 				];
-				verify = shows [ "AX_FEATURE_POINTERCONTROL" "Trackpad Options…" ] "AXPopUpButton:AX_TRACKPAD_DRAGGING_BEHAVIOR" {
-					"Without Drag Lock" = "Without Drag Lock";
-					"With Drag Lock" = "With Drag Lock";
-				};
+				verify = verifyOn [ "AX_FEATURE_POINTERCONTROL" "Trackpad Options…" ] (shows.choice "AXPopUpButton:AX_TRACKPAD_DRAGGING_BEHAVIOR" [ "Without Drag Lock" "With Drag Lock" ]);
 			};
 		};
 
@@ -1697,7 +1678,7 @@ in
 			ui = [ "System Settings" "Accessibility" "Switch Control" "Appearance" ];
 			storage = universalAccess "switchControlTheme";
 			value = enum { Light = "DisplayThemeDarkOnLight"; Dark = "DisplayThemeLightOnDark"; };
-			verify = radios switchControlPage [ "Light" "Dark" ];
+			verify = verifyOn switchControlPage (shows.radio [ "Light" "Dark" ]);
 		};
 
 		fadePanelAfterInactivity = switchSwitch {
@@ -1775,7 +1756,7 @@ in
 				description = "In seconds.";
 				storage = universalAccess "switchMinimumPressDuration";
 				value = number { min = 0.0; max = 10.0; };
-				verify = shows (switchControlPage ++ [ "Switch Timing…" ]) "AXIncrementor:AX_SWITCH_MIN_DURATION" { "0.0" = 0.0; "0.5" = 0.5; };
+				verify = verifyOn (switchControlPage ++ [ "Switch Timing…" ]) (shows.values "AXIncrementor:AX_SWITCH_MIN_DURATION" { "0.0" = 0.0; "0.5" = 0.5; });
 			};
 
 			ignoreSwitchRepeats = setting {
@@ -1783,7 +1764,7 @@ in
 				description = "In seconds.";
 				storage = universalAccess "switchCoalescePressesDuration";
 				value = number { min = 0.0; max = 10.0; };
-				verify = shows (switchControlPage ++ [ "Switch Timing…" ]) "AXIncrementor:AX_SWITCH_COALESCE" { "0.0" = 0.0; "0.5" = 0.5; };
+				verify = verifyOn (switchControlPage ++ [ "Switch Timing…" ]) (shows.values "AXIncrementor:AX_SWITCH_COALESCE" { "0.0" = 0.0; "0.5" = 0.5; });
 			};
 
 			holdBeforeRepeatDuration = setting {
@@ -1791,7 +1772,7 @@ in
 				description = "In seconds.";
 				storage = universalAccess "switchHoldBeforeRepeatDuration";
 				value = number { min = 0.0; max = 10.0; };
-				verify = shows (switchControlPage ++ [ "Switch Timing…" ]) "AXIncrementor:AX_SWITCH_REPEAT_HOLD" { "1.0" = 1.0; "3.0" = 3.0; };
+				verify = verifyOn (switchControlPage ++ [ "Switch Timing…" ]) (shows.values "AXIncrementor:AX_SWITCH_REPEAT_HOLD" { "1.0" = 1.0; "3.0" = 3.0; });
 			};
 
 			glidingAndRotatingCursorSpeed = setting {
@@ -1799,7 +1780,7 @@ in
 				description = "";
 				storage = universalAccess "switchSweepingCursorSpeed";
 				value = number { min = 1.0; max = 60.0; };
-				verify = shows (switchControlPage ++ [ "Navigation Timing…" ]) "AXIncrementor:AX_SWITCH_CURSOR_SPEED" { "5.0" = 5.0; "10.0" = 10.0; };
+				verify = verifyOn (switchControlPage ++ [ "Navigation Timing…" ]) (shows.values "AXIncrementor:AX_SWITCH_CURSOR_SPEED" { "5.0" = 5.0; "10.0" = 10.0; });
 			};
 
 			autoScanningIntervalInPanels = setting {
@@ -1807,7 +1788,7 @@ in
 				description = "In seconds.";
 				storage = universalAccess "switchAutoScanPanelInterval";
 				value = number { min = 0.1; max = 10.0; };
-				verify = shows (switchControlPage ++ [ "Navigation Timing…" ]) "AXIncrementor:AX_SWITCH_SCAN_SPEED" { "0.5" = 0.5; "1.0" = 1.0; };
+				verify = verifyOn (switchControlPage ++ [ "Navigation Timing…" ]) (shows.values "AXIncrementor:AX_SWITCH_SCAN_SPEED" { "0.5" = 0.5; "1.0" = 1.0; });
 			};
 
 			autoScanningIntervalInInterface = setting {
@@ -1815,7 +1796,7 @@ in
 				description = "In seconds.";
 				storage = universalAccess "switchAutoScanElementInterval";
 				value = number { min = 0.1; max = 10.0; };
-				verify = shows (switchControlPage ++ [ "Navigation Timing…" ]) "AXIncrementor:AX_SWITCH_ELEMENT_SPEED" { "0.5" = 0.5; "1.0" = 1.0; };
+				verify = verifyOn (switchControlPage ++ [ "Navigation Timing…" ]) (shows.values "AXIncrementor:AX_SWITCH_ELEMENT_SPEED" { "0.5" = 0.5; "1.0" = 1.0; });
 			};
 
 			pauseOnFirstItem = setting {
@@ -1823,21 +1804,21 @@ in
 				description = "In seconds.";
 				storage = universalAccess "switchFirstElementDelay";
 				value = number { min = 0.0; max = 10.0; };
-				verify = shows (switchControlPage ++ [ "Navigation Timing…" ]) "AXIncrementor:AX_SWITCH_FIRST_ITEM_DELAY" { "0.0" = 0.0; "0.5" = 0.5; };
+				verify = verifyOn (switchControlPage ++ [ "Navigation Timing…" ]) (shows.values "AXIncrementor:AX_SWITCH_FIRST_ITEM_DELAY" { "0.0" = 0.0; "0.5" = 0.5; });
 			};
 
 		pointerPrecision = setting {
 			ui = [ "System Settings" "Accessibility" "Switch Control" "Pointer precision" ];
 			storage = universalAccess "switchMouseMoveStyle";
 			value = enum { Low = 101; High = 102; };
-			verify = radios switchControlPage [ "Low" "High" ];
+			verify = verifyOn switchControlPage (shows.radio [ "Low" "High" ]);
 		};
 
 		loops = setting {
 			ui = [ "System Settings" "Accessibility" "Switch Control" "Loops" ];
 			storage = universalAccess "switchScanCycleCount";
 			value = number { min = 1; max = 10; };
-			verify = shows switchControlPage "AXPopUpButton:AX_SWITCH_SCAN_CYCLE" { "2" = "2"; "4" = "4"; };
+			verify = verifyOn switchControlPage (shows.choice "AXPopUpButton:AX_SWITCH_SCAN_CYCLE" [ "2" "4" ]);
 		};
 	};
 

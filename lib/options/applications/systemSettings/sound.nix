@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting global file bool enum number storedAs appliesThrough;
+	inherit (settingsLib) setting global file bool enum number storedAs appliesThrough shows;
 
 	pane = "com.apple.settings.sounds";
 
@@ -9,10 +9,7 @@ let
 		ui = [ "System Settings" "Sound" ui ];
 		verify = {
 			inherit pane;
-			expect = {
-				true = { "AXCheckBox:${control}" = 1; };
-				false = { "AXCheckBox:${control}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${control}";
 		};
 	};
 in
@@ -28,10 +25,7 @@ in
 			});
 			verify = {
 				inherit pane;
-				expect = {
-					Sonar = { "AXPopUpButton:AlertSoundPicker" = "Sonar"; };
-					Boop = { "AXPopUpButton:AlertSoundPicker" = "Boop"; };
-				};
+				expect = shows.choice "AXPopUpButton:AlertSoundPicker" [ "Sonar" "Boop" ];
 			};
 		};
 
@@ -49,10 +43,7 @@ in
 			behaviors = [ (appliesThrough (play: "/usr/sbin/nvram StartupMute=${if play then "%00" else "%01"}")) ];
 			verify = {
 				inherit pane;
-				expect = {
-					true = { "AXCheckBox:BootChimeCheckbox" = 1; };
-					false = { "AXCheckBox:BootChimeCheckbox" = 0; };
-				};
+				expect = shows.checkbox "AXCheckBox:BootChimeCheckbox";
 			};
 		};
 

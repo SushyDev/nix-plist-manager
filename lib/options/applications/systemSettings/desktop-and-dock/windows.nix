@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user global bool inverted enum;
+	inherit (settingsLib) setting user global bool inverted enum shows;
 
 	pane = "com.apple.settings.desktopAndDock";
 
@@ -9,10 +9,7 @@ let
 		verify = {
 			inherit pane;
 			operate = [ "click" control ];
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 in
@@ -23,11 +20,7 @@ in
 		value = enum { Never = "manual"; Always = "always"; "In Full Screen" = "fullscreen"; };
 		verify = {
 			inherit pane;
-			expect = {
-				Never = { prefer-tabs = "Never"; };
-				Always = { prefer-tabs = "Always"; };
-				"In Full Screen" = { prefer-tabs = "In Full Screen"; };
-			};
+			expect = shows.choice "prefer-tabs" [ "Never" "Always" "In Full Screen" ];
 		};
 	};
 

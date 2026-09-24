@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting global system file bool text storedAs appliesThrough onlyWhen;
+	inherit (settingsLib) setting global system file bool text storedAs appliesThrough onlyWhen shows;
 
 	pane = "com.apple.settings.general";
 	open = [ "com.apple.systempreferences.general.dateAndTime" ];
@@ -23,10 +23,7 @@ in
 		} bool;
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:24-hour time" = 1; };
-				false = { "AXCheckBox:24-hour time" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:24-hour time";
 		};
 	};
 
@@ -39,10 +36,7 @@ in
 		behaviors = [ (appliesThrough (enabled: systemsetup "-setusingnetworktime ${onOff enabled}")) ];
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:Set time and date automatically" = 1; };
-				false = { "AXCheckBox:Set time and date automatically" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:Set time and date automatically";
 		};
 	};
 
@@ -66,10 +60,7 @@ in
 		value = bool;
 		verify = {
 			inherit pane open;
-			expect = {
-				true = { "AXCheckBox:Set time zone automatically using your current location" = 1; };
-				false = { "AXCheckBox:Set time zone automatically using your current location" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:Set time zone automatically using your current location";
 		};
 	};
 

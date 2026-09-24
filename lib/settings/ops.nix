@@ -5,7 +5,7 @@
 
 	delete = key: { op = "delete"; inherit key; };
 
-	writeFlags = key: mask: bits: { op = "writeFlags"; inherit key mask bits; absent = 0; };
+	writeFlags = key: mask: bits: absent: { op = "writeFlags"; inherit key mask bits absent; };
 
 	mergeDict = key: entries: { op = "mergeDict"; inherit key entries; };
 
@@ -18,6 +18,7 @@
 	afterwards = command: { op = "afterwards"; inherit command; };
 
 	notify = name: { op = "notify"; inherit name; };
+
 	restart = process: { op = "restart"; inherit process; discard = false; };
 
 	restartDiscarding = process: { op = "restart"; inherit process; discard = true; };

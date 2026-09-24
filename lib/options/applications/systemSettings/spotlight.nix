@@ -1,7 +1,7 @@
 { lib, settingsLib, ... }:
 # EnabledPreferenceRules lists what's turned off, despite its name.
 let
-	inherit (settingsLib) setting user bool enum storedAs member members;
+	inherit (settingsLib) setting user bool enum storedAs member members shows;
 
 	pane = "com.apple.settings.search";
 	rules = user "com.apple.Spotlight" "EnabledPreferenceRules";
@@ -12,10 +12,7 @@ let
 		ui = [ "System Settings" "Spotlight" ui ];
 		verify = {
 			inherit pane;
-			expect = {
-				true = { "AXCheckBox:${control}" = 1; };
-				false = { "AXCheckBox:${control}" = 0; };
-			};
+			expect = shows.checkbox "AXCheckBox:${control}";
 		};
 	};
 in
@@ -79,10 +76,7 @@ in
 		value = enum { "30 minutes" = 1800; "8 hours" = 28800; "7 days" = 604800; };
 		verify = {
 			inherit pane;
-			expect = {
-				"8 hours" = { "AXPopUpButton:Results from Clipboard" = "8 hours"; };
-				"7 days" = { "AXPopUpButton:Results from Clipboard" = "7 days"; };
-			};
+			expect = shows.choice "AXPopUpButton:Results from Clipboard" [ "8 hours" "7 days" ];
 		};
 	};
 }

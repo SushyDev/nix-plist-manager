@@ -19,12 +19,12 @@
 				else throw "setting ${lib.concatStringsSep " > " ui} mixes user and system storage";
 
 			encode = v:
-				if v == "unset" then map ops.delete (lib.attrValues keys)
+				if canUnset && v == "unset" then map ops.delete (lib.attrValues keys)
 				else value.encode keys v;
 		in
 		{
 			_type = "setting";
-			inherit ui keys scope relations description reads;
+			inherit ui keys scope relations description reads canUnset;
 			codec = value;
 
 			option = lib.mkOption {

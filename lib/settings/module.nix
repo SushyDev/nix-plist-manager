@@ -1,19 +1,17 @@
-{ lib, ops, render, isSetting }:
+{ lib, render, isSetting }:
 let
-	leaves = tree: prefix:
-		lib.concatLists (lib.mapAttrsToList (name: value:
-			let
-				path = prefix ++ [ name ];
-			in
-			if isSetting value then [ { inherit path; entry = value; } ]
-			else if lib.isAttrs value then leaves value path
-			else []
-		) tree);
+	settingsIn = tree:
+		let
+			walk = prefix: node: lib.concatLists (lib.mapAttrsToList (name: value:
+				if isSetting value then [ { path = prefix ++ [ name ]; entry = value; } ]
+				else if lib.isAttrs value then walk (prefix ++ [ name ]) value
+				else []
+			) node);
+		in
+		walk [] tree;
 
-	inScope = scope: entry:
-		scope == null || entry.scope == scope;
-in
-{
+	inScope = scope: entry: scope == null || entry.scope == scope;
+
 	optionTree = { tree, scope }:
 		let
 			walk = node: lib.filterAttrs (_: value: value != {}) (lib.mapAttrs (_: value:
@@ -24,59 +22,55 @@ in
 		in
 		walk tree;
 
-	standalone = { tree, values, ignoreWarnings ? [] }:
-		let
-			self = import ./module.nix { inherit lib ops render isSetting; };
-			evaluated = lib.evalModules {
-				modules = [
-					{ options.settings = self.optionTree { inherit tree; scope = null; }; }
-					{ config.settings = values; }
-				];
-			};
-			build = scope: self.build { inherit tree scope ignoreWarnings; values = evaluated.config.settings; };
-		in
-		{
-			user = build "user";
-			system = build "system";
-		};
-
 	build = { tree, values, scope, ignoreWarnings ? [] }:
 		let
 			get = path: lib.attrByPath path null values;
-			dotted = lib.concatStringsSep ".";
+			getDotted = path: get (lib.splitString "." path);
 
-			managed = lib.filter (leaf: inScope scope leaf.entry && get leaf.path != null) (leaves tree []);
+			managed = lib.filter (leaf: inScope scope leaf.entry && get leaf.path != null) (settingsIn tree);
 
-			planOf = leaf: leaf.entry.plan (get leaf.path);
+			planFor = path: value:
+				let
+					other = lib.attrByPath (lib.splitString "." path) null tree;
+				in
+				if isSetting other then other.plan value else throw "${path} isn't a setting";
 
 			results = lib.concatMap (leaf:
 				let
 					value = get leaf.path;
+					context = { inherit value planFor; path = lib.concatStringsSep "." leaf.path; get = getDotted; };
 				in
-				lib.optionals (value != "unset") (lib.concatMap (relation: relation {
-					inherit value;
-					path = dotted leaf.path;
-					get = path: get (lib.splitString "." path);
-					planFor = path: v:
-						let
-							other = lib.attrByPath (lib.splitString "." path) null tree;
-						in
-						if isSetting other then other.plan v else throw "${path} isn't a setting";
-				}) leaf.entry.relations)
+				lib.optionals (value != "unset") (lib.concatMap (relation: relation context) leaf.entry.relations)
 			) managed;
 
-			ignored = result: lib.any (pattern: pattern == result.id || pattern == lib.head (lib.splitString " -> " result.id)) ignoreWarnings;
+			ofKind = kind: lib.filter (result: result.kind == kind) results;
+			ignored = result: lib.elem result.id ignoreWarnings || lib.elem (lib.head (lib.splitString " -> " result.id)) ignoreWarnings;
 
-			plan = lib.concatMap planOf managed ++ lib.concatMap (result: result.plan or []) results;
+			plan = lib.concatMap (leaf: leaf.entry.plan (get leaf.path)) managed ++ lib.concatMap (result: result.plan or []) results;
 		in
 		{
 			inherit plan;
 			script = render.script plan;
-			assertions = map (result: {
-				assertion = false;
-				message = "nix-plist-manager: ${result.message}";
-			}) (lib.filter (result: result.kind == "assertion") results);
+			assertions = map (result: { assertion = false; message = "nix-plist-manager: ${result.message}"; }) (ofKind "assertion");
 			warnings = map (result: "nix-plist-manager: ${result.message} (silence with ignoreWarnings = [ \"${result.id}\" ])")
-				(lib.filter (result: result.kind == "warning" && !(ignored result)) results);
+				(lib.filter (result: !(ignored result)) (ofKind "warning"));
 		};
+
+	standalone = { tree, values, ignoreWarnings ? [] }:
+		let
+			evaluated = lib.evalModules {
+				modules = [
+					{ options.settings = optionTree { inherit tree; scope = null; }; }
+					{ config.settings = values; }
+				];
+			};
+			buildScope = scope: build { inherit tree scope ignoreWarnings; values = evaluated.config.settings; };
+		in
+		{
+			user = buildScope "user";
+			system = buildScope "system";
+		};
+in
+{
+	inherit settingsIn optionTree build standalone;
 }

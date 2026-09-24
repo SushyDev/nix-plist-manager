@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting global stored absent bool inverted number enum notifies appliesThrough live
+	inherit (settingsLib) shows setting global stored absent bool inverted number enum notifies appliesThrough live
 		allowedWhen onlyWhen;
 
 	pane = "com.apple.settings.appearance";
@@ -73,11 +73,7 @@ in
 		behaviors = [ colorsChanged ];
 		verify = {
 			inherit pane;
-			expect = {
-				Blue = { "AXStaticText:Color" = "Blue"; };
-				Multicolor = { "AXStaticText:Color" = "Multicolor"; };
-				Graphite = { "AXStaticText:Color" = "Graphite"; };
-			};
+			expect = shows.choice "AXStaticText:Color" [ "Blue" "Multicolor" "Graphite" ];
 		};
 	};
 
@@ -103,10 +99,7 @@ in
 		];
 		verify = {
 			inherit pane;
-			expect = {
-				Purple = { HighlightColorPicker = "Purple"; };
-				Blue = { HighlightColorPicker = "Blue"; };
-			};
+			expect = shows.choice "HighlightColorPicker" [ "Purple" "Blue" ];
 		};
 	};
 
@@ -156,10 +149,7 @@ in
 		];
 		verify = {
 			inherit pane;
-			expect = {
-				Red = { "Icon, widget & Folder color" = "Red"; };
-				Graphite = { "Icon, widget & Folder color" = "Graphite"; };
-			};
+			expect = shows.choice "Icon, widget & Folder color" [ "Red" "Graphite" ];
 		};
 	};
 
@@ -169,11 +159,7 @@ in
 		value = enum { Small = 1; Medium = 2; Large = 3; };
 		verify = {
 			inherit pane;
-			expect = {
-				Small = { SidebarIconSizePicker = "Small"; };
-				Medium = { SidebarIconSizePicker = "Medium"; };
-				Large = { SidebarIconSizePicker = "Large"; };
-			};
+			expect = shows.choice "SidebarIconSizePicker" [ "Small" "Medium" "Large" ];
 		};
 	};
 
@@ -184,10 +170,7 @@ in
 		verify = {
 			inherit pane;
 			operate = [ "click" "TintWindowBackgroundToggle" ];
-			expect = {
-				true = { TintWindowBackgroundToggle = 1; };
-				false = { TintWindowBackgroundToggle = 0; };
-			};
+			expect = shows.checkbox "TintWindowBackgroundToggle";
 		};
 	};
 
@@ -201,11 +184,7 @@ in
 		};
 		verify = {
 			inherit pane;
-			expect = {
-				"Always" = { "AXRadioButton:Always" = 1; };
-				"When scrolling" = { "AXRadioButton:When scrolling" = 1; };
-				"Automatically based on mouse or trackpad" = { "AXRadioButton:Automatically based on mouse or trackpad" = 1; };
-			};
+			expect = shows.radio [ "Always" "When scrolling" "Automatically based on mouse or trackpad" ];
 		};
 	};
 

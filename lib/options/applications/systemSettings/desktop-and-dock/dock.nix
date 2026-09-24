@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user global stored bool number enum snapshot restarts restartsDiscardingItsState implies;
+	inherit (settingsLib) setting user global stored bool number enum snapshot restarts restartsDiscardingItsState implies shows;
 
 	pane = "com.apple.settings.desktopAndDock";
 	option = name: "applications.systemSettings.desktopAndDock.dock.${name}";
@@ -16,10 +16,7 @@ let
 		verify = {
 			inherit pane;
 			operate = [ "click" control ];
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 
@@ -81,11 +78,7 @@ in
 		behaviors = [ restartsDock ];
 		verify = {
 			inherit pane;
-			expect = {
-				Left = { position = "Left"; };
-				Right = { position = "Right"; };
-				Bottom = { position = "Bottom"; };
-			};
+			expect = shows.choice "position" [ "Left" "Right" "Bottom" ];
 		};
 	};
 
@@ -96,10 +89,7 @@ in
 		behaviors = [ restartsDock ];
 		verify = {
 			inherit pane;
-			expect = {
-				"Scale Effect" = { minimize-windows = "Scale Effect"; };
-				"Genie Effect" = { minimize-windows = "Genie Effect"; };
-			};
+			expect = shows.choice "minimize-windows" [ "Scale Effect" "Genie Effect" ];
 		};
 	};
 
@@ -109,12 +99,7 @@ in
 		value = enum { Fill = "Fill"; Zoom = "Maximize"; Minimize = "Minimize"; "No Action" = "None"; };
 		verify = {
 			inherit pane;
-			expect = {
-				Zoom = { double-click = "Zoom"; };
-				Minimize = { double-click = "Minimize"; };
-				"No Action" = { double-click = "No Action"; };
-				Fill = { double-click = "Fill"; };
-			};
+			expect = shows.choice "double-click" [ "Zoom" "Minimize" "No Action" "Fill" ];
 		};
 	};
 

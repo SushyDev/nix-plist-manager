@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting user byHost mkKey bool inverted enum number appliesThrough onlyWhen live;
+	inherit (settingsLib) setting user byHost mkKey bool inverted enum number appliesThrough onlyWhen live shows;
 
 	pane = "com.apple.settings.displayAndBrightness";
 	option = name: "applications.systemSettings.displays.${name}";
@@ -20,10 +20,7 @@ let
 			inherit pane;
 			open = [ "Advanced…" ];
 			operate = [ "click" control ];
-			expect = {
-				true = { ${control} = 1; };
-				false = { ${control} = 0; };
-			};
+			expect = shows.checkbox control;
 		};
 	};
 
@@ -68,11 +65,7 @@ in
 		};
 		verify = {
 			inherit pane;
-			expect = {
-				"Ask What to Show" = { "When connected to TV" = "Ask What to Show"; };
-				"Mirror Entire Screen" = { "When connected to TV" = "Mirror Entire Screen"; };
-				"Use as Extended Display" = { "When connected to TV" = "Use as Extended Display"; };
-			};
+			expect = shows.choice "When connected to TV" [ "Ask What to Show" "Mirror Entire Screen" "Use as Extended Display" ];
 		};
 	};
 
