@@ -23,7 +23,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Clipboard history is available in Spotlight"
+			"title": "Clipboard history is available in Spotlight",
+			"verified": {
+				"build": "26A428",
+				"commands": "db80c4243701",
+				"date": "2026-09-24"
+			}
 		},
 		"help-apple-improve-spotlight-and-suggestions": {
 			"firstSeen": "26A428",
@@ -43,7 +48,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Help Apple improve Spotlight and Suggestions"
+			"title": "Help Apple improve Spotlight and Suggestions",
+			"verified": {
+				"build": "26A428",
+				"commands": "fa6b30954e4d",
+				"date": "2026-09-24"
+			}
 		},
 		"privacy-block-search-of-private-files": {
 			"firstSeen": "26A428",
@@ -74,7 +84,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Results from Clipboard"
+			"title": "Results from Clipboard",
+			"verified": {
+				"build": "26A428",
+				"commands": "f16c08499bbe",
+				"date": "2026-09-24"
+			}
 		},
 		"search-results": {
 			"firstSeen": "26A428",
@@ -115,7 +130,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show Related Content"
+			"title": "Show Related Content",
+			"verified": {
+				"build": "26A428",
+				"commands": "0c452dc23eb9",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

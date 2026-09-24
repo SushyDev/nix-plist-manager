@@ -44,7 +44,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Date format"
+			"title": "Date format",
+			"verified": {
+				"build": "26A428",
+				"commands": "272bf6ec7fb0",
+				"date": "2026-09-24"
+			}
 		},
 		"first-day-of-week": {
 			"firstSeen": "26A428",
@@ -64,7 +69,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "First day of week"
+			"title": "First day of week",
+			"verified": {
+				"build": "26A428",
+				"commands": "4de4d1739193",
+				"date": "2026-09-24"
+			}
 		},
 		"live-text": {
 			"firstSeen": "26A428",
@@ -84,7 +94,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Live Text"
+			"title": "Live Text",
+			"verified": {
+				"build": "26A428",
+				"commands": "63b04fe10285",
+				"date": "2026-09-24"
+			}
 		},
 		"measurement-system": {
 			"firstSeen": "26A428",
@@ -111,7 +126,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Measurement system"
+			"title": "Measurement system",
+			"verified": {
+				"build": "26A428",
+				"commands": "7d754be2a7b4",
+				"date": "2026-09-24"
+			}
 		},
 		"number-format": {
 			"firstSeen": "26A428",
@@ -131,7 +151,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Number format"
+			"title": "Number format",
+			"verified": {
+				"build": "26A428",
+				"commands": "9ea13edff86f",
+				"date": "2026-09-24"
+			}
 		},
 		"preferred-languages": {
 			"firstSeen": "26A428",
@@ -191,7 +216,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Temperature"
+			"title": "Temperature",
+			"verified": {
+				"build": "26A428",
+				"commands": "0d70d7512393",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

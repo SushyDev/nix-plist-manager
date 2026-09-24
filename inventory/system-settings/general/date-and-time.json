@@ -63,7 +63,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Set time and date automatically"
+			"title": "Set time and date automatically",
+			"verified": {
+				"build": "26A428",
+				"commands": "bddaf117ce65",
+				"date": "2026-09-24"
+			}
 		},
 		"set-time-zone-automatically-using-your-current-location": {
 			"firstSeen": "26A428",

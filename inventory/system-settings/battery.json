@@ -57,7 +57,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "On battery"
+			"title": "On battery",
+			"verified": {
+				"build": "26A428",
+				"commands": "3423c9e45174",
+				"date": "2026-09-24"
+			}
 		},
 		"energy-mode-on-power-adapter": {
 			"firstSeen": "26A428",
@@ -77,7 +82,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "On power adapter"
+			"title": "On power adapter",
+			"verified": {
+				"build": "26A428",
+				"commands": "8fe34b961b7a",
+				"date": "2026-09-24"
+			}
 		},
 		"options-automatic-graphics-switching": {
 			"firstSeen": "26A428",
@@ -94,20 +104,10 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"option": "applications.systemSettings.battery.options.optimizeVideoStreamingWhileOnBattery",
 			"section": "Options…",
+			"skip": "not kept in a readable preference file; changing it writes none",
 			"sources": [
-				"option:applications.systemSettings.battery.options.optimizeVideoStreamingWhileOnBattery",
 				"search:PowerPreferences.appex/options/Optimize video streaming"
-			],
-			"storage": [
-				{
-					"as": "value",
-					"byHost": false,
-					"domain": "NSGlobalDomain",
-					"key": "com.apple.coremedia.optimizeVideoStreamingOnBattery",
-					"scope": "user"
-				}
 			],
 			"title": "Optimize video streaming while on battery"
 		},
@@ -141,7 +141,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Prevent automatic sleeping on power adapter when the display is off"
+			"title": "Prevent automatic sleeping on power adapter when the display is off",
+			"verified": {
+				"build": "26A428",
+				"commands": "f46c9060bdf6",
+				"date": "2026-09-24"
+			}
 		},
 		"options-slightly-dim-the-display-on-battery": {
 			"firstSeen": "26A428",
@@ -162,7 +167,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Slightly dim the display on battery"
+			"title": "Slightly dim the display on battery",
+			"verified": {
+				"build": "26A428",
+				"commands": "e40a994ec8d7",
+				"date": "2026-09-24"
+			}
 		},
 		"options-wake-for-network-access": {
 			"firstSeen": "26A428",
@@ -190,7 +200,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Wake for network access"
+			"title": "Wake for network access",
+			"verified": {
+				"build": "26A428",
+				"commands": "135f338767a7",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

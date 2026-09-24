@@ -35,7 +35,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Login window shows"
+			"title": "Login window shows",
+			"verified": {
+				"build": "26A428",
+				"commands": "be01123c3268",
+				"date": "2026-09-24"
+			}
 		},
 		"password-require-password-to-wake-computer": {
 			"firstSeen": "26A428",
@@ -89,7 +94,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Set…"
+			"title": "Set…",
+			"verified": {
+				"build": "26A428",
+				"commands": "f4e71ef1df25",
+				"date": "2026-09-24"
+			}
 		},
 		"show-password-hints": {
 			"firstSeen": "26A428",
@@ -109,7 +119,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Show password hints"
+			"title": "Show password hints",
+			"verified": {
+				"build": "26A428",
+				"commands": "6111ef415c2d",
+				"date": "2026-09-24"
+			}
 		},
 		"show-the-sleep-restart-and-shut-down-buttons": {
 			"firstSeen": "26A428",
@@ -129,7 +144,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Show the Sleep, Restart, and Shut Down buttons"
+			"title": "Show the Sleep, Restart, and Shut Down buttons",
+			"verified": {
+				"build": "26A428",
+				"commands": "06c255d3c934",
+				"date": "2026-09-24"
+			}
 		},
 		"start-screen-saver": {
 			"firstSeen": "26A428",
@@ -160,7 +180,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Turn display off on battery when inactive"
+			"title": "Turn display off on battery when inactive",
+			"verified": {
+				"build": "26A428",
+				"commands": "d370fb2decef",
+				"date": "2026-09-24"
+			}
 		},
 		"turn-display-off-on-power-adapter-when-inactive": {
 			"firstSeen": "26A428",
@@ -180,7 +205,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Turn display off on power adapter when inactive"
+			"title": "Turn display off on power adapter when inactive",
+			"verified": {
+				"build": "26A428",
+				"commands": "91e84357ab6d",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

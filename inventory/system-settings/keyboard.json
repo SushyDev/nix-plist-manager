@@ -1734,6 +1734,32 @@
 				"date": "2026-09-24"
 			}
 		},
+		"keyboard-shortcuts-services": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.keyboard.keyboardShortcuts.services",
+			"section": "Keyboard Shortcuts…",
+			"sources": [
+				"option:applications.systemSettings.keyboard.keyboardShortcuts.services",
+				"search:KeyboardSettings.appex/Services/Services keyboard shortcuts"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "pbs",
+					"key": "NSServicesStatus",
+					"scope": "user"
+				}
+			],
+			"title": "Services",
+			"verified": {
+				"build": "26A428",
+				"commands": "570b90d3e38c",
+				"date": "2026-09-24"
+			}
+		},
 		"keyboard-shortcuts-spotlight-show-apps": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
@@ -2344,16 +2370,6 @@
 				"commands": "a1105d87e0e9",
 				"date": "2026-09-24"
 			}
-		},
-		"services-services-keyboard-shortcuts": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Services",
-			"sources": [
-				"search:KeyboardSettings.appex/Services/Services keyboard shortcuts"
-			],
-			"title": "Services keyboard shortcuts"
 		},
 		"set-up-bluetooth-keyboard": {
 			"firstSeen": "26A428",

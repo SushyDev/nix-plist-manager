@@ -43,7 +43,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Automatic Visual Look Up"
+			"title": "Automatic Visual Look Up",
+			"verified": {
+				"build": "26A428",
+				"commands": "37dd10301c68",
+				"date": "2026-09-24"
+			}
 		},
 		"chatgpt-use-extension": {
 			"firstSeen": "26A428",
@@ -95,7 +100,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Responses"
+			"title": "Responses",
+			"verified": {
+				"build": "26A428",
+				"commands": "916b9a96f37b",
+				"date": "2026-09-24"
+			}
 		},
 		"siri-siri": {
 			"firstSeen": "26A428",

@@ -126,7 +126,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Play audio descriptions when available"
+			"title": "Play audio descriptions when available",
+			"verified": {
+				"build": "26A428",
+				"commands": "2ada96684f75",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-adaptive-voice-shortcuts-onboarding-set-up-vocal-shortcuts": {
 			"firstSeen": "26A428",
@@ -159,7 +164,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Alternate Pointer Actions"
+			"title": "Alternate Pointer Actions",
+			"verified": {
+				"build": "26A428",
+				"commands": "316c084da637",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-alt-mouse-enable-sounds-play-sounds": {
 			"firstSeen": "26A428",
@@ -181,7 +191,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Play sounds"
+			"title": "Play sounds",
+			"verified": {
+				"build": "26A428",
+				"commands": "ecdd5eea0f8e",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-alt-mouse-enable-visuals-show-actions-visually": {
 			"firstSeen": "26A428",
@@ -203,7 +218,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show actions visually"
+			"title": "Show actions visually",
+			"verified": {
+				"build": "26A428",
+				"commands": "2b68d4a33bd0",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-animated-images-auto-play-animated-images": {
 			"firstSeen": "26A428",
@@ -225,7 +245,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Auto-play animated images"
+			"title": "Auto-play animated images",
+			"verified": {
+				"build": "26A428",
+				"commands": "bf62441398ed",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-background-sounds-background-sounds": {
 			"firstSeen": "26A428",
@@ -247,7 +272,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Background sounds"
+			"title": "Background sounds",
+			"verified": {
+				"build": "26A428",
+				"commands": "4a8cc5889520",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-background-sounds-lock-screen-turn-off-background-sounds-when-your-mac-is-not-in-use": {
 			"firstSeen": "26A428",
@@ -269,7 +299,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Turn off background sounds when your Mac is not in use"
+			"title": "Turn off background sounds when your Mac is not in use",
+			"verified": {
+				"build": "26A428",
+				"commands": "b5b8a05908bb",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-background-sounds-timer-options-background-sounds-timer-options": {
 			"firstSeen": "26A428",
@@ -344,7 +379,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show automatically when languages do not match"
+			"title": "Show automatically when languages do not match",
+			"verified": {
+				"build": "26A428",
+				"commands": "f9fa29ae759d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-captioning-prefer-sdh-prefer-closed-captions-and-sdh": {
 			"firstSeen": "26A428",
@@ -366,7 +406,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Prefer closed captions and SDH"
+			"title": "Prefer closed captions and SDH",
+			"verified": {
+				"build": "26A428",
+				"commands": "cfac3b705c1a",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-configure-camera-camera-options-alternate-pointer-actions": {
 			"firstSeen": "26A428",
@@ -398,7 +443,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Pointer size"
+			"title": "Pointer size",
+			"verified": {
+				"build": "26A428",
+				"commands": "8b8ad86032ef",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-differentiate-without-color-differentiate-without-color": {
 			"firstSeen": "26A428",
@@ -427,7 +477,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Differentiate without color"
+			"title": "Differentiate without color",
+			"verified": {
+				"build": "26A428",
+				"commands": "dc72ea552bd2",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dim-flashing-dim-flashing-lights": {
 			"firstSeen": "26A428",
@@ -449,7 +504,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Dim Flashing Lights"
+			"title": "Dim Flashing Lights",
+			"verified": {
+				"build": "26A428",
+				"commands": "b4404b681dba",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-display-filter-enabled-color-filters": {
 			"firstSeen": "26A428",
@@ -471,7 +531,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Color filters"
+			"title": "Color filters",
+			"verified": {
+				"build": "26A428",
+				"commands": "fd8c18eb581b",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-display-filter-intensity-intensity": {
 			"firstSeen": "26A428",
@@ -542,7 +607,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Filter type"
+			"title": "Filter type",
+			"verified": {
+				"build": "26A428",
+				"commands": "c41599de4e50",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-action-default-dwell-action": {
 			"choices": [
@@ -580,7 +650,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Default dwell action"
+			"title": "Default dwell action",
+			"verified": {
+				"build": "26A428",
+				"commands": "096c0f43e359",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-auto-revert-auto-revert-to-left-click": {
 			"firstSeen": "26A428",
@@ -602,7 +677,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Auto revert to left click"
+			"title": "Auto revert to left click",
+			"verified": {
+				"build": "26A428",
+				"commands": "4fc1913bf268",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-cursor-color-dwell-color": {
 			"choices": [
@@ -633,7 +713,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Dwell color"
+			"title": "Dwell color",
+			"verified": {
+				"build": "26A428",
+				"commands": "45154656b265",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-in-menu-extra-always-dwell-in-menu-extras": {
 			"firstSeen": "26A428",
@@ -655,7 +740,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Always dwell in menu extras"
+			"title": "Always dwell in menu extras",
+			"verified": {
+				"build": "26A428",
+				"commands": "9415231f39fa",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-in-panels-always-dwell-in-panels": {
 			"firstSeen": "26A428",
@@ -677,7 +767,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Always dwell in panels"
+			"title": "Always dwell in panels",
+			"verified": {
+				"build": "26A428",
+				"commands": "02da10786f04",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-progress-indicator-hide-dwell-time-indicators": {
 			"firstSeen": "26A428",
@@ -699,7 +794,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Hide dwell time indicators"
+			"title": "Hide dwell time indicators",
+			"verified": {
+				"build": "26A428",
+				"commands": "5768e00090b8",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-retrigger-tolerance-post-action-movement-tolerance": {
 			"firstSeen": "26A428",
@@ -720,7 +820,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Post-action movement tolerance"
+			"title": "Post-action movement tolerance",
+			"verified": {
+				"build": "26A428",
+				"commands": "5ddc3dc6ea13",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-tolerance-dwell-movement-tolerance": {
 			"firstSeen": "26A428",
@@ -741,7 +846,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Dwell movement tolerance"
+			"title": "Dwell movement tolerance",
+			"verified": {
+				"build": "26A428",
+				"commands": "fecfee873441",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-wait-time-default-dwell-time": {
 			"firstSeen": "26A428",
@@ -762,7 +872,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Default dwell time"
+			"title": "Default dwell time",
+			"verified": {
+				"build": "26A428",
+				"commands": "538b87d1d1ab",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-wait-time-home-panel-dwell-time": {
 			"firstSeen": "26A428",
@@ -783,7 +898,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Panel dwell time"
+			"title": "Panel dwell time",
+			"verified": {
+				"build": "26A428",
+				"commands": "74589fd3d69f",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-zoom-enable-zoom": {
 			"firstSeen": "26A428",
@@ -805,7 +925,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Enable zoom"
+			"title": "Enable zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "722f223a4040",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-dwell-zoom-wait-zoom-after": {
 			"firstSeen": "26A428",
@@ -847,7 +972,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Display contrast"
+			"title": "Display contrast",
+			"verified": {
+				"build": "26A428",
+				"commands": "0acdedb25897",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-facetime-transcriptions-live-captions-in-facetime": {
 			"firstSeen": "26A428",
@@ -869,7 +999,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Live Captions in FaceTime"
+			"title": "Live Captions in FaceTime",
+			"verified": {
+				"build": "26A428",
+				"commands": "4a6c70a73e5d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-feature-audio-audio": {
 			"firstSeen": "26A428",
@@ -1012,7 +1147,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Accessibility Reader"
+			"title": "Accessibility Reader",
+			"verified": {
+				"build": "26A428",
+				"commands": "e3997890125b",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-feature-shortcut-shortcut": {
 			"firstSeen": "26A428",
@@ -1122,7 +1262,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Shake mouse pointer to locate"
+			"title": "Shake mouse pointer to locate",
+			"verified": {
+				"build": "26A428",
+				"commands": "661db1151016",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-fka-auto-hide-checkbox-auto-hide": {
 			"firstSeen": "26A428",
@@ -1144,7 +1289,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Auto-Hide"
+			"title": "Auto-Hide",
+			"verified": {
+				"build": "26A428",
+				"commands": "aa5d86fb5dcd",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-fka-commands-restore-defaults-restore-defaults": {
 			"firstSeen": "26A428",
@@ -1184,7 +1334,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Full Keyboard Access"
+			"title": "Full Keyboard Access",
+			"verified": {
+				"build": "26A428",
+				"commands": "9e33a4f48622",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-fka-increase-size-checkbox-increase-size": {
 			"firstSeen": "26A428",
@@ -1206,7 +1361,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Increase size"
+			"title": "Increase size",
+			"verified": {
+				"build": "26A428",
+				"commands": "97130884a96c",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-flash-screen-flash-the-screen-when-an-alert-sound-occurs": {
 			"firstSeen": "26A428",
@@ -1235,7 +1395,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Flash the screen when an alert sound occurs"
+			"title": "Flash the screen when an alert sound occurs",
+			"verified": {
+				"build": "26A428",
+				"commands": "f305598b8ee0",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-head-mouse-button-camera-options-head-pointer": {
 			"firstSeen": "26A428",
@@ -1397,7 +1562,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Allow dwell actions toolbar in panels"
+			"title": "Allow dwell actions toolbar in panels",
+			"verified": {
+				"build": "26A428",
+				"commands": "b38ae2b6795d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-hover-text-activation-lock-mode-triple-press-modifier-to-set-activation-lock": {
 			"firstSeen": "26A428",
@@ -1419,7 +1589,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Triple-press modifier to set activation lock"
+			"title": "Triple-press modifier to set activation lock",
+			"verified": {
+				"build": "26A428",
+				"commands": "bf3e4b130681",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-hover-text-enable-hover-text": {
 			"firstSeen": "26A428",
@@ -1441,7 +1616,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Hover Text"
+			"title": "Hover Text",
+			"verified": {
+				"build": "26A428",
+				"commands": "8dc7db4598fa",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-hover-text-modifier-activation-modifier": {
 			"choices": [
@@ -1490,7 +1670,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Hover Typing"
+			"title": "Hover Typing",
+			"verified": {
+				"build": "26A428",
+				"commands": "d90e7faa2ff3",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-hover-typing-entry-location-text-entry-location": {
 			"choices": [
@@ -1520,7 +1705,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Text-entry location"
+			"title": "Text-entry location",
+			"verified": {
+				"build": "26A428",
+				"commands": "0033041d8c6d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-hover-typing-insertion-color-insertion-point-color": {
 			"firstSeen": "26A428",
@@ -1541,7 +1731,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Insertion-point color"
+			"title": "Insertion-point color",
+			"verified": {
+				"build": "26A428",
+				"commands": "83c3d945238c",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-ignore-trackpad-ignore-built-in-trackpad-when-mouse-or-wireless-trackpad-is-present": {
 			"firstSeen": "26A428",
@@ -1570,7 +1765,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Ignore built-in trackpad when mouse or wireless trackpad is present"
+			"title": "Ignore built-in trackpad when mouse or wireless trackpad is present",
+			"verified": {
+				"build": "26A428",
+				"commands": "8315d840f811",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-in-app-in-app-live-captions": {
 			"firstSeen": "26A428",
@@ -1610,7 +1810,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Increase Contrast"
+			"title": "Increase Contrast",
+			"verified": {
+				"build": "26A428",
+				"commands": "f6a6d89386a4",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-kb-hide-stepper-fade-after": {
 			"firstSeen": "26A428",
@@ -1678,7 +1883,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Keys should be entered on"
+			"title": "Keys should be entered on",
+			"verified": {
+				"build": "26A428",
+				"commands": "7cbc2363f775",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-kb-right-click-keys-can-be-selected-using-right-click": {
 			"firstSeen": "26A428",
@@ -1700,7 +1910,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Keys can be selected using right-click"
+			"title": "Keys can be selected using right-click",
+			"verified": {
+				"build": "26A428",
+				"commands": "0c81818ffa1d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-kb-use-click-sounds-play-sounds-for-keys-and-dwell-actions": {
 			"firstSeen": "26A428",
@@ -1722,7 +1937,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Play sounds for keys and dwell actions"
+			"title": "Play sounds for keys and dwell actions",
+			"verified": {
+				"build": "26A428",
+				"commands": "24721fed98a7",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-live-speech-add-category-add-category": {
 			"firstSeen": "26A428",
@@ -1788,7 +2008,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Live Speech"
+			"title": "Live Speech",
+			"verified": {
+				"build": "26A428",
+				"commands": "fbade12df130",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-live-speech-preferred-language-system-speech-language-live-speech": {
 			"firstSeen": "26A428",
@@ -1831,7 +2056,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Menu bar size"
+			"title": "Menu bar size",
+			"verified": {
+				"build": "26A428",
+				"commands": "0457addd5324",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-menubar-dwell-actions-show-dwell-actions-in-menu-bar": {
 			"firstSeen": "26A428",
@@ -1853,7 +2083,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show dwell actions in menu bar"
+			"title": "Show dwell actions in menu bar",
+			"verified": {
+				"build": "26A428",
+				"commands": "484c09099b20",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-mono-audio-play-stereo-audio-as-mono": {
 			"firstSeen": "26A428",
@@ -1897,7 +2132,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Vehicle Motion Cues"
+			"title": "Vehicle Motion Cues",
+			"verified": {
+				"build": "26A428",
+				"commands": "17963b9d2b9e",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-mouse-double-click-speed-double-click-speed": {
 			"firstSeen": "26A428",
@@ -2344,7 +2584,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Prefer horizontal text"
+			"title": "Prefer horizontal text",
+			"verified": {
+				"build": "26A428",
+				"commands": "98bde01551f5",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-reader-hotkey-view-in-reader-accessibility-reader-shortcuts": {
 			"firstSeen": "26A428",
@@ -2387,7 +2632,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Prefer non-blinking cursor"
+			"title": "Prefer non-blinking cursor",
+			"verified": {
+				"build": "26A428",
+				"commands": "8d2e8021e859",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-reduce-motion-reduce-motion": {
 			"firstSeen": "26A428",
@@ -2416,7 +2666,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Reduce Motion"
+			"title": "Reduce Motion",
+			"verified": {
+				"build": "26A428",
+				"commands": "c335b76d52c3",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-reduce-transparency-reduce-transparency": {
 			"firstSeen": "26A428",
@@ -2445,7 +2700,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Reduce Transparency"
+			"title": "Reduce Transparency",
+			"verified": {
+				"build": "26A428",
+				"commands": "ae0a2ee99420",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-rtt-enable-rtt": {
 			"firstSeen": "26A428",
@@ -2467,7 +2727,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "RTT"
+			"title": "RTT",
+			"verified": {
+				"build": "26A428",
+				"commands": "90dddc190eb1",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-rtt-relay-number-rtt-relay-number": {
 			"firstSeen": "26A428",
@@ -2500,7 +2765,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Send Immediately"
+			"title": "Send Immediately",
+			"verified": {
+				"build": "26A428",
+				"commands": "02a2f52d60be",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-show-window-titlebar-icons-show-window-title-icons": {
 			"firstSeen": "26A428",
@@ -2522,7 +2792,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show window title icons"
+			"title": "Show window title icons",
+			"verified": {
+				"build": "26A428",
+				"commands": "2074f6014d09",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-siri-atypical-speech-listen-for-atypical-speech": {
 			"firstSeen": "26A428",
@@ -2544,7 +2819,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Listen for atypical speech"
+			"title": "Listen for atypical speech",
+			"verified": {
+				"build": "26A428",
+				"commands": "63b793146697",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-slow-keys-delay-acceptance-delay": {
 			"firstSeen": "26A428",
@@ -2565,7 +2845,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Acceptance delay"
+			"title": "Acceptance delay",
+			"verified": {
+				"build": "26A428",
+				"commands": "636ae062780b",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-slow-keys-slow-keys": {
 			"firstSeen": "26A428",
@@ -2609,7 +2894,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use click key sounds"
+			"title": "Use click key sounds",
+			"verified": {
+				"build": "26A428",
+				"commands": "a837eae3abd0",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spatial-audio-follows-head-spatial-audio-follows-head-movements": {
 			"firstSeen": "26A428",
@@ -2677,7 +2967,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Phrase"
+			"title": "Phrase",
+			"verified": {
+				"build": "26A428",
+				"commands": "110cf8e61489",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-speech-test-play-sample-announcements": {
 			"firstSeen": "26A428",
@@ -2710,7 +3005,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Speak announcements"
+			"title": "Speak announcements",
+			"verified": {
+				"build": "26A428",
+				"commands": "e47c842783b4",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-detect-languages-detect-languages": {
 			"firstSeen": "26A428",
@@ -2732,7 +3032,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Detect languages"
+			"title": "Detect languages",
+			"verified": {
+				"build": "26A428",
+				"commands": "71f9819195af",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-hotkey-speak-selection": {
 			"firstSeen": "26A428",
@@ -2761,7 +3066,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Speak selection"
+			"title": "Speak selection",
+			"verified": {
+				"build": "26A428",
+				"commands": "b5525026dcd1",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-pointer-element-delay-after-delay": {
 			"firstSeen": "26A428",
@@ -2804,7 +3114,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Speak item under the pointer"
+			"title": "Speak item under the pointer",
+			"verified": {
+				"build": "26A428",
+				"commands": "3e4fb39d79ae",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-pointer-element-verbosity-speech-verbosity": {
 			"choices": [
@@ -2831,7 +3146,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Speech verbosity"
+			"title": "Speech verbosity",
+			"verified": {
+				"build": "26A428",
+				"commands": "ae19a32f4d09",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-pronunciations-edit-edit-pronunciations": {
 			"firstSeen": "26A428",
@@ -2864,7 +3184,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Pronunciations"
+			"title": "Pronunciations",
+			"verified": {
+				"build": "26A428",
+				"commands": "adc100d447f4",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-selection-highlight-content-highlight-content": {
 			"choices": [
@@ -2892,7 +3217,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Highlight content"
+			"title": "Highlight content",
+			"verified": {
+				"build": "26A428",
+				"commands": "6fa8efc76926",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-selection-highlight-sentence-color-sentence-color": {
 			"choices": [
@@ -2922,7 +3252,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Sentence color"
+			"title": "Sentence color",
+			"verified": {
+				"build": "26A428",
+				"commands": "14a4d1a6f335",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-selection-highlight-sentence-style-sentence-style": {
 			"choices": [
@@ -2948,7 +3283,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Sentence style"
+			"title": "Sentence style",
+			"verified": {
+				"build": "26A428",
+				"commands": "8f5c7554286b",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-selection-highlight-word-color-word-color": {
 			"choices": [
@@ -2978,7 +3318,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Word color"
+			"title": "Word color",
+			"verified": {
+				"build": "26A428",
+				"commands": "f88481ca8a7f",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-selection-hotkey-keyboard-shortcut": {
 			"firstSeen": "26A428",
@@ -3026,7 +3371,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show controller"
+			"title": "Show controller",
+			"verified": {
+				"build": "26A428",
+				"commands": "4a42cfebc401",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-typing-echo-speak-typing-feedback": {
 			"firstSeen": "26A428",
@@ -3048,7 +3398,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Speak typing feedback"
+			"title": "Speak typing feedback",
+			"verified": {
+				"build": "26A428",
+				"commands": "b82cbc655fd9",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spoken-voice-system-voice": {
 			"firstSeen": "26A428",
@@ -3105,7 +3460,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Spring-loading speed"
+			"title": "Spring-loading speed",
+			"verified": {
+				"build": "26A428",
+				"commands": "c1d16430d23d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-spring-loading-spring-loading": {
 			"firstSeen": "26A428",
@@ -3127,7 +3487,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Spring-loading"
+			"title": "Spring-loading",
+			"verified": {
+				"build": "26A428",
+				"commands": "aceb0db80123",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-sticky-keys-beep-beep-when-a-modifier-key-is-set": {
 			"firstSeen": "26A428",
@@ -3149,7 +3514,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Beep when a modifier key is set"
+			"title": "Beep when a modifier key is set",
+			"verified": {
+				"build": "26A428",
+				"commands": "1ae1e50922a8",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-sticky-keys-display-display-pressed-keys-on-screen": {
 			"firstSeen": "26A428",
@@ -3171,7 +3541,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Display pressed keys on screen"
+			"title": "Display pressed keys on screen",
+			"verified": {
+				"build": "26A428",
+				"commands": "e4c0d4d23e8d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-sticky-keys-display-location-screen-area-for-display": {
 			"choices": [
@@ -3199,7 +3574,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Screen area for display"
+			"title": "Screen area for display",
+			"verified": {
+				"build": "26A428",
+				"commands": "88030b231789",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-sticky-keys-shortcut-press-the-shift-key-five-times-to-toggle-sticky-keys": {
 			"firstSeen": "26A428",
@@ -3286,7 +3666,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Ignore switch repeats"
+			"title": "Ignore switch repeats",
+			"verified": {
+				"build": "26A428",
+				"commands": "70f26085ace4",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-control-enable-switch-control": {
 			"firstSeen": "26A428",
@@ -3346,7 +3731,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Switch Control cursor size"
+			"title": "Switch Control cursor size",
+			"verified": {
+				"build": "26A428",
+				"commands": "9b1b0ca5e9c2",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-cursor-speed-gliding-and-rotating-cursor-speed": {
 			"firstSeen": "26A428",
@@ -3367,7 +3757,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Gliding & rotating cursor speed"
+			"title": "Gliding & rotating cursor speed",
+			"verified": {
+				"build": "26A428",
+				"commands": "fec4f4c2df06",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-element-speed-auto-scanning-interval-in-interface": {
 			"firstSeen": "26A428",
@@ -3388,7 +3783,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Auto scanning interval in interface"
+			"title": "Auto scanning interval in interface",
+			"verified": {
+				"build": "26A428",
+				"commands": "56652a979742",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-first-item-delay-pause-on-first-item": {
 			"firstSeen": "26A428",
@@ -3409,7 +3809,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Pause on first item"
+			"title": "Pause on first item",
+			"verified": {
+				"build": "26A428",
+				"commands": "075598566b8f",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-hide-after-delay-amount-duration-of-inactivity": {
 			"firstSeen": "26A428",
@@ -3452,7 +3857,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show current text in keyboard panel"
+			"title": "Show current text in keyboard panel",
+			"verified": {
+				"build": "26A428",
+				"commands": "dd897cefe737",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-min-duration-hold-before-perform-duration": {
 			"firstSeen": "26A428",
@@ -3473,7 +3883,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Hold before perform duration"
+			"title": "Hold before perform duration",
+			"verified": {
+				"build": "26A428",
+				"commands": "518aa840105d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-mouse-move-style-pointer-precision": {
 			"choices": [
@@ -3499,7 +3914,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Pointer precision"
+			"title": "Pointer precision",
+			"verified": {
+				"build": "26A428",
+				"commands": "133cf923794c",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-nav-feedback-while-navigating": {
 			"choices": [
@@ -3534,7 +3954,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "While navigating"
+			"title": "While navigating",
+			"verified": {
+				"build": "26A428",
+				"commands": "c6eaf1305cc2",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-panel-editor-panel-editor-switch-control": {
 			"firstSeen": "26A428",
@@ -3566,7 +3991,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Hold before repeat duration"
+			"title": "Hold before repeat duration",
+			"verified": {
+				"build": "26A428",
+				"commands": "5efd086c1d0f",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-scan-cycle-loops": {
 			"firstSeen": "26A428",
@@ -3587,7 +4017,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Loops"
+			"title": "Loops",
+			"verified": {
+				"build": "26A428",
+				"commands": "4001d05ea5a7",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-scan-restart-restart-action-position": {
 			"choices": [
@@ -3614,7 +4049,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Restart action position"
+			"title": "Restart action position",
+			"verified": {
+				"build": "26A428",
+				"commands": "a4406e3dd30d",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-scan-speed-auto-scanning-interval-in-panels": {
 			"firstSeen": "26A428",
@@ -3635,7 +4075,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Auto scanning interval in panels"
+			"title": "Auto scanning interval in panels",
+			"verified": {
+				"build": "26A428",
+				"commands": "a917330986fb",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-switch-timing-switch-timing": {
 			"firstSeen": "26A428",
@@ -3668,7 +4113,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Live Captions"
+			"title": "Live Captions",
+			"verified": {
+				"build": "26A428",
+				"commands": "41132bb7483a",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-system-transcription-text-color-main-font-color": {
 			"firstSeen": "26A428",
@@ -3728,39 +4178,120 @@
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.accessibility.pointerControl.trackpadOptions.dragging",
 			"section": "AX_TRACKPAD_DRAGGING_BEHAVIOR",
 			"sources": [
-				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_DRAGGING_BEHAVIOR/Dragging style"
-			],
-			"title": "Dragging style"
-		},
-		"ax-trackpad-dragging-use-trackpad-for-dragging": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"option": "applications.systemSettings.accessibility.pointerControl.trackpadOptions.useTrackpadForDragging",
-			"section": "AX_TRACKPAD_DRAGGING",
-			"sources": [
+				"option:applications.systemSettings.accessibility.pointerControl.trackpadOptions.dragging",
 				"option:applications.systemSettings.accessibility.pointerControl.trackpadOptions.useTrackpadForDragging",
-				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_DRAGGING/Use trackpad for dragging"
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_DRAGGING/Use trackpad for dragging",
+				"search:AccessibilitySettingsExtension.appex/AX_TRACKPAD_DRAGGING_BEHAVIOR/Dragging style"
 			],
 			"storage": [
 				{
-					"as": "bluetooth",
+					"as": "draggingBluetooth",
 					"byHost": false,
 					"domain": "com.apple.driver.AppleBluetoothMultitouch.trackpad",
 					"key": "Dragging",
 					"scope": "user"
 				},
 				{
-					"as": "builtIn",
+					"as": "draggingBuiltIn",
 					"byHost": false,
 					"domain": "com.apple.AppleMultitouchTrackpad",
 					"key": "Dragging",
 					"scope": "user"
+				},
+				{
+					"as": "horizontalBluetooth",
+					"byHost": false,
+					"domain": "com.apple.driver.AppleBluetoothMultitouch.trackpad",
+					"key": "TrackpadThreeFingerHorizSwipeGesture",
+					"scope": "user"
+				},
+				{
+					"as": "horizontalBuiltIn",
+					"byHost": false,
+					"domain": "com.apple.AppleMultitouchTrackpad",
+					"key": "TrackpadThreeFingerHorizSwipeGesture",
+					"scope": "user"
+				},
+				{
+					"as": "horizontalHost",
+					"byHost": true,
+					"domain": "NSGlobalDomain",
+					"key": "com.apple.trackpad.threeFingerHorizSwipeGesture",
+					"scope": "user"
+				},
+				{
+					"as": "lockBluetooth",
+					"byHost": false,
+					"domain": "com.apple.driver.AppleBluetoothMultitouch.trackpad",
+					"key": "DragLock",
+					"scope": "user"
+				},
+				{
+					"as": "lockBuiltIn",
+					"byHost": false,
+					"domain": "com.apple.AppleMultitouchTrackpad",
+					"key": "DragLock",
+					"scope": "user"
+				},
+				{
+					"as": "tapBehavior",
+					"byHost": true,
+					"domain": "NSGlobalDomain",
+					"key": "com.apple.mouse.tapBehavior",
+					"scope": "user"
+				},
+				{
+					"as": "threeFingerBluetooth",
+					"byHost": false,
+					"domain": "com.apple.driver.AppleBluetoothMultitouch.trackpad",
+					"key": "TrackpadThreeFingerDrag",
+					"scope": "user"
+				},
+				{
+					"as": "threeFingerBuiltIn",
+					"byHost": false,
+					"domain": "com.apple.AppleMultitouchTrackpad",
+					"key": "TrackpadThreeFingerDrag",
+					"scope": "user"
+				},
+				{
+					"as": "threeFingerHost",
+					"byHost": true,
+					"domain": "NSGlobalDomain",
+					"key": "com.apple.trackpad.threeFingerDragGesture",
+					"scope": "user"
+				},
+				{
+					"as": "verticalBluetooth",
+					"byHost": false,
+					"domain": "com.apple.driver.AppleBluetoothMultitouch.trackpad",
+					"key": "TrackpadThreeFingerVertSwipeGesture",
+					"scope": "user"
+				},
+				{
+					"as": "verticalBuiltIn",
+					"byHost": false,
+					"domain": "com.apple.AppleMultitouchTrackpad",
+					"key": "TrackpadThreeFingerVertSwipeGesture",
+					"scope": "user"
+				},
+				{
+					"as": "verticalHost",
+					"byHost": true,
+					"domain": "NSGlobalDomain",
+					"key": "com.apple.trackpad.threeFingerVertSwipeGesture",
+					"scope": "user"
 				}
 			],
-			"title": "Use trackpad for dragging"
+			"title": "Dragging style",
+			"verified": {
+				"build": "26A428",
+				"commands": "3bfb74955aad",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-trackpad-options-trackpad-options": {
 			"firstSeen": "26A428",
@@ -3821,7 +4352,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use trackpad for scrolling"
+			"title": "Use trackpad for scrolling",
+			"verified": {
+				"build": "26A428",
+				"commands": "cd912f02025a",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-type-to-siri-enabled-type-to-siri": {
 			"firstSeen": "26A428",
@@ -3855,7 +4391,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Accessibility Keyboard"
+			"title": "Accessibility Keyboard",
+			"verified": {
+				"build": "26A428",
+				"commands": "bece733770b9",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-virtual-keyboard-panel-editor-panel-editor-keyboard": {
 			"firstSeen": "26A428",
@@ -3986,7 +4527,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Fade overlay after inactivity"
+			"title": "Fade overlay after inactivity",
+			"verified": {
+				"build": "26A428",
+				"commands": "e8fbe89efa07",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-voice-control-overlay-overlay": {
 			"choices": [
@@ -4014,7 +4560,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Overlay"
+			"title": "Overlay",
+			"verified": {
+				"build": "26A428",
+				"commands": "e87088f8bba5",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-voice-control-play-sound-enabled-play-sound-when-command-is-recognized": {
 			"firstSeen": "26A428",
@@ -4036,7 +4587,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Play sound when command is recognized"
+			"title": "Play sound when command is recognized",
+			"verified": {
+				"build": "26A428",
+				"commands": "c86411f5c263",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-voice-control-vocabulary-vocabulary": {
 			"firstSeen": "26A428",
@@ -4179,7 +4735,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Disable Universal Control while zoomed in"
+			"title": "Disable Universal Control while zoomed in",
+			"verified": {
+				"build": "26A428",
+				"commands": "8ee7296a563f",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-enable-gesture-use-scroll-gesture-with-modifier-keys-to-zoom": {
 			"firstSeen": "26A428",
@@ -4215,7 +4776,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use scroll gesture with modifier keys to zoom"
+			"title": "Use scroll gesture with modifier keys to zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "5aca8216079c",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-enable-hotkeys-use-keyboard-shortcuts-to-zoom": {
 			"firstSeen": "26A428",
@@ -4244,7 +4810,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use keyboard shortcuts to zoom"
+			"title": "Use keyboard shortcuts to zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "555c43c3372c",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-flash-flash-screen-when-notification-banner-appears-outside-zoom-view": {
 			"firstSeen": "26A428",
@@ -4266,7 +4837,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Flash screen when notification banner appears outside zoom view"
+			"title": "Flash screen when notification banner appears outside zoom view",
+			"verified": {
+				"build": "26A428",
+				"commands": "34642715e439",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-focus-movement-delay-movement-speed": {
 			"firstSeen": "26A428",
@@ -4287,7 +4863,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Movement speed"
+			"title": "Movement speed",
+			"verified": {
+				"build": "26A428",
+				"commands": "9bc63505cdfc",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-focus-movement-move-screen-image": {
 			"choices": [
@@ -4314,7 +4895,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Move screen image"
+			"title": "Move screen image",
+			"verified": {
+				"build": "26A428",
+				"commands": "bcc017a185bf",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-follow-focus-activation-move-screen-image-when-focus-item-is": {
 			"choices": [
@@ -4340,7 +4926,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Move screen image when focus item is"
+			"title": "Move screen image when focus item is",
+			"verified": {
+				"build": "26A428",
+				"commands": "7d29000f1b96",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-follow-focus-mode-follow-keyboard-focus": {
 			"choices": [
@@ -4367,7 +4958,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Follow keyboard focus"
+			"title": "Follow keyboard focus",
+			"verified": {
+				"build": "26A428",
+				"commands": "4947a9cf52f5",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-freeze-panning-disable-panning": {
 			"firstSeen": "26A428",
@@ -4389,7 +4985,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Disable panning"
+			"title": "Disable panning",
+			"verified": {
+				"build": "26A428",
+				"commands": "d2de6a5a2885",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-gesture-field-modifier-key-for-scroll-gesture": {
 			"firstSeen": "26A428",
@@ -4446,7 +5047,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Zoom each display independently"
+			"title": "Zoom each display independently",
+			"verified": {
+				"build": "26A428",
+				"commands": "c60b4db5c5fd",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-keep-stationary-keep-picture-in-picture-window-stationary": {
 			"firstSeen": "26A428",
@@ -4489,7 +5095,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Maximum zoom"
+			"title": "Maximum zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "35c21d425dde",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-min-factor-minimum-zoom": {
 			"firstSeen": "26A428",
@@ -4510,7 +5121,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Minimum zoom"
+			"title": "Minimum zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "2c7b2de4303e",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-monitor-selection-move-cursor-to-next-monitor": {
 			"firstSeen": "26A428",
@@ -4587,7 +5203,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Zoomed image moves"
+			"title": "Zoomed image moves",
+			"verified": {
+				"build": "26A428",
+				"commands": "47ce14668a9f",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-rapid-set-range-for-rapid-zooming-in-and-out": {
 			"firstSeen": "26A428",
@@ -4620,7 +5241,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use keyboard shortcuts to adjust zoom window"
+			"title": "Use keyboard shortcuts to adjust zoom window",
+			"verified": {
+				"build": "26A428",
+				"commands": "c03e7ebbe366",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-restore-restore-zoom-factor-on-startup": {
 			"firstSeen": "26A428",
@@ -4642,7 +5268,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Restore zoom factor on startup"
+			"title": "Restore zoom factor on startup",
+			"verified": {
+				"build": "26A428",
+				"commands": "9266768097d0",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-restore-shortcut-restore-shortcuts-and-modifiers": {
 			"firstSeen": "26A428",
@@ -4675,7 +5306,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show zoomed image while screen sharing"
+			"title": "Show zoomed image while screen sharing",
+			"verified": {
+				"build": "26A428",
+				"commands": "dcb7ee619ef3",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-smooth-smooth-images": {
 			"firstSeen": "26A428",
@@ -4697,7 +5333,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Smooth images"
+			"title": "Smooth images",
+			"verified": {
+				"build": "26A428",
+				"commands": "160be458eda1",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-style-popup-zoom-style": {
 			"choices": [
@@ -4724,7 +5365,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Zoom style"
+			"title": "Zoom style",
+			"verified": {
+				"build": "26A428",
+				"commands": "133469a417c1",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-temp-detach-detach-zoom-view-from-pointer": {
 			"firstSeen": "26A428",
@@ -4746,7 +5392,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Detach zoom view from pointer"
+			"title": "Detach zoom view from pointer",
+			"verified": {
+				"build": "26A428",
+				"commands": "594cd50bd643",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-temp-toggle-toggle-zoom": {
 			"firstSeen": "26A428",
@@ -4768,7 +5419,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Toggle zoom"
+			"title": "Toggle zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "1f60c51fad0f",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-toggle-fs-and-pip-toggle-between-full-screen-and-picture-in-picture": {
 			"firstSeen": "26A428",
@@ -4790,7 +5446,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Toggle between full screen and picture-in-picture"
+			"title": "Toggle between full screen and picture-in-picture",
+			"verified": {
+				"build": "26A428",
+				"commands": "0c94c42e48a6",
+				"date": "2026-09-24"
+			}
 		},
 		"ax-zoom-trackpad-use-trackpad-gesture-to-zoom": {
 			"firstSeen": "26A428",
@@ -4812,7 +5473,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use trackpad gesture to zoom"
+			"title": "Use trackpad gesture to zoom",
+			"verified": {
+				"build": "26A428",
+				"commands": "f78e53fab5e9",
+				"date": "2026-09-24"
+			}
 		},
 		"captions-show-on-skip-back": {
 			"firstSeen": "26A428",
@@ -4832,7 +5498,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show on skip back"
+			"title": "Show on skip back",
+			"verified": {
+				"build": "26A428",
+				"commands": "de49b67b7b0e",
+				"date": "2026-09-24"
+			}
 		},
 		"captions-show-when-muted": {
 			"firstSeen": "26A428",
@@ -4852,7 +5523,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show when muted"
+			"title": "Show when muted",
+			"verified": {
+				"build": "26A428",
+				"commands": "ba9312ba544a",
+				"date": "2026-09-24"
+			}
 		},
 		"display-display": {
 			"firstSeen": "26A428",
@@ -5012,7 +5688,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Invert Colors"
+			"title": "Invert Colors",
+			"verified": {
+				"build": "26A428",
+				"commands": "7f4a759f1578",
+				"date": "2026-09-24"
+			}
 		},
 		"display-invert-colors-smart-classic": {
 			"firstSeen": "26A428",
@@ -5062,7 +5743,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show Borders"
+			"title": "Show Borders",
+			"verified": {
+				"build": "26A428",
+				"commands": "57d7b1ed6200",
+				"date": "2026-09-24"
+			}
 		},
 		"display-text-size": {
 			"firstSeen": "26A428",
@@ -5156,7 +5842,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Hover Color"
+			"title": "Hover Color",
+			"verified": {
+				"build": "26A428",
+				"commands": "5e6d51b98dcd",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-text-background-color": {
 			"firstSeen": "26A428",
@@ -5177,7 +5868,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Background color"
+			"title": "Background color",
+			"verified": {
+				"build": "26A428",
+				"commands": "df7325a3e339",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-text-border-color": {
 			"firstSeen": "26A428",
@@ -5198,7 +5894,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Border color"
+			"title": "Border color",
+			"verified": {
+				"build": "26A428",
+				"commands": "c60c521a4959",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-text-element-highlight-color": {
 			"firstSeen": "26A428",
@@ -5219,7 +5920,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Element-highlight color"
+			"title": "Element-highlight color",
+			"verified": {
+				"build": "26A428",
+				"commands": "041bbd2d6888",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-text-i-text-font": {
 			"firstSeen": "26A428",
@@ -5289,7 +5995,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Text color"
+			"title": "Text color",
+			"verified": {
+				"build": "26A428",
+				"commands": "d8bfa6a9c2a6",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-typing-background-color": {
 			"firstSeen": "26A428",
@@ -5310,7 +6021,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Background color"
+			"title": "Background color",
+			"verified": {
+				"build": "26A428",
+				"commands": "7c39ec5e847b",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-typing-border-color": {
 			"firstSeen": "26A428",
@@ -5331,7 +6047,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Border color"
+			"title": "Border color",
+			"verified": {
+				"build": "26A428",
+				"commands": "c21ebcfeeb3d",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-typing-element-highlight-color": {
 			"firstSeen": "26A428",
@@ -5352,7 +6073,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Element-highlight color"
+			"title": "Element-highlight color",
+			"verified": {
+				"build": "26A428",
+				"commands": "2332b091e420",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-hover-typing-i-text-font": {
 			"firstSeen": "26A428",
@@ -5422,7 +6148,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Text color"
+			"title": "Text color",
+			"verified": {
+				"build": "26A428",
+				"commands": "b3dcd4c56f14",
+				"date": "2026-09-24"
+			}
 		},
 		"hover-text-settings-hover-text-settings": {
 			"firstSeen": "26A428",
@@ -5481,7 +6212,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Appearance"
+			"title": "Appearance",
+			"verified": {
+				"build": "26A428",
+				"commands": "9710204ecb5d",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-fade-panel-after-inactivity": {
 			"firstSeen": "26A428",
@@ -5503,7 +6239,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Fade panel after inactivity"
+			"title": "Fade panel after inactivity",
+			"verified": {
+				"build": "26A428",
+				"commands": "665fb15207c1",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-i-bottom-left-corner": {
 			"choices": [
@@ -5535,7 +6276,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Bottom left corner"
+			"title": "Bottom left corner",
+			"verified": {
+				"build": "26A428",
+				"commands": "a3797d5cfedb",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-i-bottom-right-corner": {
 			"choices": [
@@ -5567,7 +6313,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Bottom right corner"
+			"title": "Bottom right corner",
+			"verified": {
+				"build": "26A428",
+				"commands": "97584dc75ff9",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-i-capitalize-sentences-automatically": {
 			"firstSeen": "26A428",
@@ -5591,7 +6342,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Capitalize sentences automatically"
+			"title": "Capitalize sentences automatically",
+			"verified": {
+				"build": "26A428",
+				"commands": "27664599db79",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-i-insert-and-remove-spaces-automatically": {
 			"firstSeen": "26A428",
@@ -5615,7 +6371,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Insert and remove spaces automatically"
+			"title": "Insert and remove spaces automatically",
+			"verified": {
+				"build": "26A428",
+				"commands": "92f6fdbb81b1",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-i-panel-follows-hide-show-home-panel": {
 			"firstSeen": "26A428",
@@ -5636,7 +6397,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Panel follows hide/show home panel"
+			"title": "Panel follows hide/show home panel",
+			"verified": {
+				"build": "26A428",
+				"commands": "16147fd8bbf3",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-i-top-left-corner": {
 			"choices": [
@@ -5668,7 +6434,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Top left corner"
+			"title": "Top left corner",
+			"verified": {
+				"build": "26A428",
+				"commands": "52adf0951e87",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-accessibility-keyboard-i-top-right-corner": {
 			"choices": [
@@ -5700,7 +6471,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Top right corner"
+			"title": "Top right corner",
+			"verified": {
+				"build": "26A428",
+				"commands": "0450c526b072",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-full-keyboard-access-high-contrast": {
 			"firstSeen": "26A428",
@@ -5722,7 +6498,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "full keyboard access high contrast"
+			"title": "full keyboard access high contrast",
+			"verified": {
+				"build": "26A428",
+				"commands": "6e3813bfddfd",
+				"date": "2026-09-24"
+			}
 		},
 		"keyboard-full-keyboard-access-i-color": {
 			"firstSeen": "26A428",
@@ -5743,7 +6524,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Color"
+			"title": "Color",
+			"verified": {
+				"build": "26A428",
+				"commands": "1c5cd46b5b1c",
+				"date": "2026-09-24"
+			}
 		},
 		"live-captions-background-color": {
 			"firstSeen": "26A428",
@@ -5880,7 +6666,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use a switch or facial expression to pause or resume"
+			"title": "Use a switch or facial expression to pause or resume",
+			"verified": {
+				"build": "26A428",
+				"commands": "578ee17dc148",
+				"date": "2026-09-24"
+			}
 		},
 		"pointer-control-head-pointer-use-a-switch-or-facial-expression-to-recalibrate": {
 			"firstSeen": "26A428",
@@ -5901,7 +6692,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use a switch or facial expression to recalibrate"
+			"title": "Use a switch or facial expression to recalibrate",
+			"verified": {
+				"build": "26A428",
+				"commands": "40f61ae2f783",
+				"date": "2026-09-24"
+			}
 		},
 		"pointer-control-mouse-options-scroll-speed": {
 			"firstSeen": "26A428",
@@ -5979,7 +6775,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Use inertia when scrolling"
+			"title": "Use inertia when scrolling",
+			"verified": {
+				"build": "26A428",
+				"commands": "00fe5f7225fa",
+				"date": "2026-09-24"
+			}
 		},
 		"pointer-control-use-inertia-when-scrolling-with-mouse": {
 			"firstSeen": "26A428",
@@ -6021,7 +6822,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Automatically apply formatting"
+			"title": "Automatically apply formatting",
+			"verified": {
+				"build": "26A428",
+				"commands": "d4653b9b4dd1",
+				"date": "2026-09-24"
+			}
 		},
 		"read-and-speak-accessibility-reader-i-autoplay-in-accessibility-reader": {
 			"firstSeen": "26A428",
@@ -6042,7 +6848,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Autoplay in Accessibility Reader"
+			"title": "Autoplay in Accessibility Reader",
+			"verified": {
+				"build": "26A428",
+				"commands": "e7a29bfbc84c",
+				"date": "2026-09-24"
+			}
 		},
 		"read-and-speak-speak-item-under-the-pointer-speak-item-under-the-pointer": {
 			"choices": [
@@ -6068,7 +6879,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Speak item under the pointer"
+			"title": "Speak item under the pointer",
+			"verified": {
+				"build": "26A428",
+				"commands": "6315fe9b027a",
+				"date": "2026-09-24"
+			}
 		},
 		"read-and-speak-speak-typing-feedback-echo": {
 			"firstSeen": "26A428",
@@ -6137,7 +6953,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Speech"
+			"title": "Speech",
+			"verified": {
+				"build": "26A428",
+				"commands": "60b3f8c32586",
+				"date": "2026-09-24"
+			}
 		},
 		"subtitles-and-captioning-apply-across-apps": {
 			"firstSeen": "26A428",
@@ -6157,7 +6978,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Apply across apps"
+			"title": "Apply across apps",
+			"verified": {
+				"build": "26A428",
+				"commands": "7fe056892f50",
+				"date": "2026-09-24"
+			}
 		},
 		"switch-control-fade-panel-after-inactivity": {
 			"firstSeen": "26A428",
@@ -6179,7 +7005,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Fade panel after inactivity"
+			"title": "Fade panel after inactivity",
+			"verified": {
+				"build": "26A428",
+				"commands": "cc17c64a680c",
+				"date": "2026-09-24"
+			}
 		},
 		"switch-control-navigation-navigation": {
 			"firstSeen": "26A428",
@@ -6216,7 +7047,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Switch Control appearance"
+			"title": "Switch Control appearance",
+			"verified": {
+				"build": "26A428",
+				"commands": "5aa9e0e119bf",
+				"date": "2026-09-24"
+			}
 		},
 		"switch-control-switch-control-resume-auto-scanning-after-selection": {
 			"firstSeen": "26A428",
@@ -6238,7 +7074,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Switch Control resume auto scanning after selection"
+			"title": "Switch Control resume auto scanning after selection",
+			"verified": {
+				"build": "26A428",
+				"commands": "9835b3a23d29",
+				"date": "2026-09-24"
+			}
 		},
 		"switch-control-switch-control-reverse-cursor-direction-after-hitting-edge": {
 			"firstSeen": "26A428",
@@ -6260,7 +7101,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Switch control reverse cursor direction after hitting edge"
+			"title": "Switch control reverse cursor direction after hitting edge",
+			"verified": {
+				"build": "26A428",
+				"commands": "968ec23d465c",
+				"date": "2026-09-24"
+			}
 		},
 		"switch-control-switches-switches": {
 			"firstSeen": "26A428",
@@ -6369,7 +7215,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Voice Control show hints"
+			"title": "Voice Control show hints",
+			"verified": {
+				"build": "26A428",
+				"commands": "9aa8e9a63d8b",
+				"date": "2026-09-24"
+			}
 		},
 		"zoom-advanced-invert-colors": {
 			"firstSeen": "26A428",

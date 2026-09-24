@@ -59,7 +59,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Allow notifications when mirroring or sharing the display"
+			"title": "Allow notifications when mirroring or sharing the display",
+			"verified": {
+				"build": "26A428",
+				"commands": "d0436e23862c",
+				"date": "2026-09-24"
+			}
 		},
 		"notification-center-allow-notifications-when-the-display-is-sleeping": {
 			"firstSeen": "26A428",
@@ -80,7 +85,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Allow notifications when the display is sleeping"
+			"title": "Allow notifications when the display is sleeping",
+			"verified": {
+				"build": "26A428",
+				"commands": "66e843d670cd",
+				"date": "2026-09-24"
+			}
 		},
 		"notification-center-allow-notifications-when-the-screen-is-locked": {
 			"firstSeen": "26A428",
@@ -101,7 +111,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Allow notifications when the screen is locked"
+			"title": "Allow notifications when the screen is locked",
+			"verified": {
+				"build": "26A428",
+				"commands": "64c5193243ca",
+				"date": "2026-09-24"
+			}
 		},
 		"notification-center-show-previews": {
 			"choices": [
@@ -127,7 +142,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show previews"
+			"title": "Show previews",
+			"verified": {
+				"build": "26A428",
+				"commands": "5ba91d12aa1d",
+				"date": "2026-09-24"
+			}
 		},
 		"notification-center-summarize-notifications": {
 			"firstSeen": "26A428",
