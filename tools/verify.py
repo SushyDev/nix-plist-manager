@@ -3,7 +3,7 @@
 verify — check options against System Settings; needs Accessibility permission.
 
     check [--pane P] [--option O] [--batch] [--skip regex] [--only-unverified]
-    defaults [--pane P] [--option O] [--batch] [--skip regex]
+    defaults [--pane P] [--option O] [--batch] [--skip regex] [--missing]
     discover <pane> [--open control…]
     gaps [--pane name]
     observe <pane> [--open control…] <ax command…>
@@ -323,12 +323,20 @@ def check_group(group: list[dict]) -> set[str]:
 	return {option for option, failed in failures.items() if not failed}
 
 
+PREFERENCE_ONLY = re.compile(r"^\s*(/usr/bin/(defaults|killall|notifyutil)\b|current=|case |/usr/bin/osascript -l JavaScript -e 'ObjC\.import\('Foundation'\);var d = \$\.NSUserDefaults|" + re.escape(ACTIVATE_SETTINGS) + ")")
+
+
+def applies_live(entry: dict) -> bool:
+	return any(not PREFERENCE_ONLY.match(line) for script in entry["commands"].values() for line in script.splitlines() if line.strip())
+
+
 def default_group(group: list[dict]) -> dict:
 	spec = group[0]["verify"]
 	root = any(entry["module"] == "darwin" for entry in group)
 	keys = list(dict.fromkeys(key for entry in group for key in storage_of(entry, root)))
 	before = storage_values(keys)
-	shown = shown_values(group)
+	# restoring the keys puts back everything that isn't applied live
+	shown = shown_values([entry for entry in group if applies_live(entry)]) if any(map(applies_live, group)) else {}
 	shown_scripts = [command_for(option, value) for option, value in shown.items()]
 	unset = [entry["commands"]["unset"] for entry in group]
 	found = {}
@@ -358,11 +366,11 @@ def select(args, verified: set = frozenset()) -> list[list[dict]]:
 		if not spec or (args.option and args.option != entry["option"]) \
 				or (args.pane and normalize(args.pane) not in normalize(label_of(entry))) \
 				or (args.skip and re.search(args.skip, label_of(entry))) \
-				or (getattr(args, "only_unverified", False) and entry["option"] in verified) \
+				or ((getattr(args, "only_unverified", False) or getattr(args, "missing", False)) and entry["option"] in verified) \
 				or (args.command == "defaults" and "unset" not in entry["commands"]) \
 				or (entry["module"] == "darwin" and not root):  # nix-darwin's settings need root
 			continue
-		page = (spec["pane"], tuple(spec["open"]), len(spec["expect"])) if args.batch else entry["option"]
+		page = (spec["pane"], tuple(spec["open"])) + (() if args.command == "defaults" else (len(spec["expect"]),)) if args.batch else entry["option"]
 		groups.setdefault(page, []).append(entry)
 	return list(groups.values())
 
@@ -374,7 +382,7 @@ def build() -> str:
 def cmd_defaults(args):
 	path = ROOT / "defaults" / f"{build()}.json"
 	defaults = json.loads(path.read_text()) if path.exists() else {}
-	for group in select(args):
+	for group in select(args, set(defaults) if args.missing else frozenset()):
 		try:
 			defaults.update(default_group(group))
 		except Exception as error:
@@ -538,6 +546,7 @@ def main():
 	p.add_argument("--option", help="one option")
 	p.add_argument("--skip", help="regex of UI paths to leave out")
 	p.add_argument("--batch", action="store_true", help="the options of one page together")
+	p.add_argument("--missing", action="store_true", help="only options with no default recorded yet, e.g. to continue a run")
 	p.set_defaults(run=cmd_defaults)
 
 	p = sub.add_parser("discover", help="list the settings a page shows")
