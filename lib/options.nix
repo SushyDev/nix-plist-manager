@@ -18,7 +18,7 @@ in
 			displays = import ./options/applications/systemSettings/displays.nix { inherit lib settingsLib; };
 			battery = import ./options/applications/systemSettings/battery.nix { inherit lib settingsLib; };
 			menuBar = import ./options/applications/systemSettings/menu-bar.nix { inherit lib settingsLib; };
-			spotlight = import ./options/applications/systemSettings/spotlight.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
+			spotlight = import ./options/applications/systemSettings/spotlight.nix { inherit lib settingsLib; };
 			notifications = import ./options/applications/systemSettings/notifications.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
 			sound = import ./options/applications/systemSettings/sound.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
 			focus = import ./options/applications/systemSettings/focus.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
