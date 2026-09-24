@@ -81,11 +81,11 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "the switch ignores accessibility presses. It's on while the five-finger pinch (TrackpadFiveFingerPinchGesture, com.apple.trackpad.fiveFingerPinchSwipeGesture) is 2, which Show Desktop shares; the key that turns only Apps off isn't com.apple.dock showLaunchpadGestureEnabled, launchpadGestureEnabled, showAppsGestureEnabled or the misspelled lauchpad variants",
 			"sources": [
 				"intent:TrackpadIntentsExtension.appex/TrackpadLaunchpadEntity.value"
 			],
-			"title": "Launchpad",
-			"notes": "the switch ignores accessibility presses. It's on while the five-finger pinch (TrackpadFiveFingerPinchGesture, com.apple.trackpad.fiveFingerPinchSwipeGesture) is 2, which Show Desktop shares; the key that turns only Apps off isn't com.apple.dock showLaunchpadGestureEnabled, launchpadGestureEnabled, showAppsGestureEnabled or the misspelled lauchpad variants"
+			"title": "Launchpad"
 		},
 		"mission-control": {
 			"choices": [
@@ -348,7 +348,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Click"
+			"title": "Click",
+			"verified": {
+				"build": "26A428",
+				"commands": "e2839bd10128",
+				"date": "2026-09-24"
+			}
 		},
 		"point-and-click-force-click-and-haptic-feedback": {
 			"firstSeen": "26A428",

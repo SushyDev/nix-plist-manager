@@ -32,7 +32,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Install system data files and security updates"
+			"title": "Install system data files and security updates",
+			"verified": {
+				"build": "26A428",
+				"commands": "5d578076f685",
+				"date": "2026-09-24"
+			}
 		},
 		"download-new-updates-when-available": {
 			"firstSeen": "26A428",
@@ -52,7 +57,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Download new updates when available"
+			"title": "Download new updates when available",
+			"verified": {
+				"build": "26A428",
+				"commands": "9485d4cecf89",
+				"date": "2026-09-24"
+			}
 		},
 		"install-application-updates-from-the-app-store": {
 			"firstSeen": "26A428",
@@ -92,7 +102,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Install macOS updates"
+			"title": "Install macOS updates",
+			"verified": {
+				"build": "26A428",
+				"commands": "206cb7ad483b",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

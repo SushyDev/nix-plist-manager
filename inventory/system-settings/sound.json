@@ -110,7 +110,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Play sound on startup"
+			"title": "Play sound on startup",
+			"verified": {
+				"build": "26A428",
+				"commands": "89da716c9b0b",
+				"date": "2026-09-24"
+			}
 		},
 		"sound-effects-alert-sound": {
 			"firstSeen": "26A428",

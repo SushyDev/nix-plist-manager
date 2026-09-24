@@ -23,7 +23,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Share across devices"
+			"title": "Share across devices",
+			"verified": {
+				"build": "26A428",
+				"commands": "f4298b4e4dfc",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

@@ -43,7 +43,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "AirDrop"
+			"title": "AirDrop",
+			"verified": {
+				"build": "26A428",
+				"commands": "d2936849b2ef",
+				"date": "2026-09-24"
+			}
 		},
 		"automatically-hide-and-show-the-menu-bar": {
 			"choices": [
@@ -83,7 +88,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Automatically hide and show the menu bar"
+			"title": "Automatically hide and show the menu bar",
+			"verified": {
+				"build": "26A428",
+				"commands": "85321f24702f",
+				"date": "2026-09-24"
+			}
 		},
 		"bluetooth": {
 			"firstSeen": "26A428",
@@ -103,7 +113,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Bluetooth"
+			"title": "Bluetooth",
+			"verified": {
+				"build": "26A428",
+				"commands": "ffbaf3cfa3e4",
+				"date": "2026-09-24"
+			}
 		},
 		"clock-options-announce-the-time": {
 			"firstSeen": "26A428",
@@ -124,7 +139,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Announce the time"
+			"title": "Announce the time",
+			"verified": {
+				"build": "26A428",
+				"commands": "d858fa83f2ee",
+				"date": "2026-09-24"
+			}
 		},
 		"clock-options-display-the-time-with-seconds": {
 			"firstSeen": "26A428",
@@ -145,7 +165,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Display the time with seconds"
+			"title": "Display the time with seconds",
+			"verified": {
+				"build": "26A428",
+				"commands": "e04e9e6776c9",
+				"date": "2026-09-24"
+			}
 		},
 		"clock-options-flash-the-time-separators": {
 			"firstSeen": "26A428",
@@ -166,7 +191,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Flash the time separators"
+			"title": "Flash the time separators",
+			"verified": {
+				"build": "26A428",
+				"commands": "d1ae3901f817",
+				"date": "2026-09-24"
+			}
 		},
 		"clock-options-interval": {
 			"choices": [
@@ -192,7 +222,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Interval"
+			"title": "Interval",
+			"verified": {
+				"build": "26A428",
+				"commands": "4f519d9801f8",
+				"date": "2026-09-24"
+			}
 		},
 		"clock-options-show-am-pm": {
 			"firstSeen": "26A428",
@@ -234,7 +269,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show date"
+			"title": "Show date",
+			"verified": {
+				"build": "26A428",
+				"commands": "7c84541e7500",
+				"date": "2026-09-24"
+			}
 		},
 		"clock-options-show-the-day-of-the-week": {
 			"firstSeen": "26A428",
@@ -255,7 +295,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show the day of the week"
+			"title": "Show the day of the week",
+			"verified": {
+				"build": "26A428",
+				"commands": "889db9981406",
+				"date": "2026-09-24"
+			}
 		},
 		"clock-options-style": {
 			"choices": [
@@ -280,7 +325,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Style"
+			"title": "Style",
+			"verified": {
+				"build": "26A428",
+				"commands": "37bd34bd9e56",
+				"date": "2026-09-24"
+			}
 		},
 		"control-center-module-always-show-in-menu-bar": {
 			"firstSeen": "26A428",
@@ -322,7 +372,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Display"
+			"title": "Display",
+			"verified": {
+				"build": "26A428",
+				"commands": "18a390880ca1",
+				"date": "2026-09-24"
+			}
 		},
 		"fast-user-switching-menu-style": {
 			"choices": [
@@ -367,7 +422,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Focus"
+			"title": "Focus",
+			"verified": {
+				"build": "26A428",
+				"commands": "b651ba581a84",
+				"date": "2026-09-24"
+			}
 		},
 		"hearing": {
 			"firstSeen": "26A428",
@@ -407,7 +467,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Keyboard Brightness"
+			"title": "Keyboard Brightness",
+			"verified": {
+				"build": "26A428",
+				"commands": "6a9e489638ad",
+				"date": "2026-09-24"
+			}
 		},
 		"layout": {
 			"firstSeen": "26A428",
@@ -468,7 +533,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show Energy Mode"
+			"title": "Show Energy Mode",
+			"verified": {
+				"build": "26A428",
+				"commands": "b8e3207b1691",
+				"date": "2026-09-24"
+			}
 		},
 		"menu-bar-controls-siri": {
 			"firstSeen": "26A428",
@@ -495,7 +565,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Siri"
+			"title": "Siri",
+			"verified": {
+				"build": "26A428",
+				"commands": "6f97d7f6bb11",
+				"date": "2026-09-24"
+			}
 		},
 		"menu-bar-controls-text-input": {
 			"firstSeen": "26A428",
@@ -515,7 +590,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Text Input"
+			"title": "Text Input",
+			"verified": {
+				"build": "26A428",
+				"commands": "14b263753a68",
+				"date": "2026-09-24"
+			}
 		},
 		"menu-bar-controls-time-machine": {
 			"firstSeen": "26A428",
@@ -529,13 +609,18 @@
 			"storage": [
 				{
 					"as": "value",
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "TimeMachine",
+					"byHost": false,
+					"domain": "com.apple.systemuiserver",
+					"key": "menuExtras",
 					"scope": "user"
 				}
 			],
-			"title": "Time Machine"
+			"title": "Time Machine",
+			"verified": {
+				"build": "26A428",
+				"commands": "955dcf161e16",
+				"date": "2026-09-24"
+			}
 		},
 		"menu-bar-controls-timer": {
 			"firstSeen": "26A428",
@@ -555,25 +640,21 @@
 					"scope": "user"
 				}
 			],
-			"title": "Timer"
+			"title": "Timer",
+			"verified": {
+				"build": "26A428",
+				"commands": "5380274fca67",
+				"date": "2026-09-24"
+			}
 		},
 		"menu-bar-controls-weather": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"option": "applications.systemSettings.menuBar.weather",
 			"section": "Menu Bar Controls",
+			"skip": "Weather's menu item is its own app, started through the login window's persistent apps rather than a preference",
 			"sources": [
-				"option:applications.systemSettings.menuBar.weather"
-			],
-			"storage": [
-				{
-					"as": "value",
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "Weather",
-					"scope": "user"
-				}
+				"ui:com.apple.settings.controlCenter/Weather"
 			],
 			"title": "Weather"
 		},
@@ -615,7 +696,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Now Playing"
+			"title": "Now Playing",
+			"verified": {
+				"build": "26A428",
+				"commands": "446bd681eb38",
+				"date": "2026-09-24"
+			}
 		},
 		"other-modules-battery": {
 			"firstSeen": "26A428",
@@ -635,7 +721,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Battery"
+			"title": "Battery",
+			"verified": {
+				"build": "26A428",
+				"commands": "3500bfb74811",
+				"date": "2026-09-24"
+			}
 		},
 		"other-modules-battery-show-percentage": {
 			"firstSeen": "26A428",
@@ -657,7 +748,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show Percentage"
+			"title": "Show Percentage",
+			"verified": {
+				"build": "26A428",
+				"commands": "860c78cc5147",
+				"date": "2026-09-24"
+			}
 		},
 		"recent-documents-applications-and-servers": {
 			"choices": [
@@ -686,7 +782,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Recent documents, applications, and servers"
+			"title": "Recent documents, applications, and servers",
+			"verified": {
+				"build": "26A428",
+				"commands": "9ee8f175abc3",
+				"date": "2026-09-24"
+			}
 		},
 		"screen-mirroring": {
 			"firstSeen": "26A428",
@@ -706,7 +807,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Screen Mirroring"
+			"title": "Screen Mirroring",
+			"verified": {
+				"build": "26A428",
+				"commands": "693e09c7a666",
+				"date": "2026-09-24"
+			}
 		},
 		"show-menu-bar-background": {
 			"firstSeen": "26A428",
@@ -726,7 +832,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show menu bar background"
+			"title": "Show menu bar background",
+			"verified": {
+				"build": "26A428",
+				"commands": "6bbf0f76474e",
+				"date": "2026-09-24"
+			}
 		},
 		"show-suggestions-in-control-gallery": {
 			"firstSeen": "26A428",
@@ -746,7 +857,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show suggestions in Control Gallery"
+			"title": "Show suggestions in Control Gallery",
+			"verified": {
+				"build": "26A428",
+				"commands": "f2b8ae52d7cf",
+				"date": "2026-09-24"
+			}
 		},
 		"sound": {
 			"firstSeen": "26A428",
@@ -766,7 +882,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Sound"
+			"title": "Sound",
+			"verified": {
+				"build": "26A428",
+				"commands": "2f5488dea0a5",
+				"date": "2026-09-24"
+			}
 		},
 		"stage-manager": {
 			"firstSeen": "26A428",
@@ -806,7 +927,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "User Switcher"
+			"title": "User Switcher",
+			"verified": {
+				"build": "26A428",
+				"commands": "e0870070d342",
+				"date": "2026-09-24"
+			}
 		},
 		"wifi": {
 			"firstSeen": "26A428",
@@ -826,7 +952,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "WiFi"
+			"title": "WiFi",
+			"verified": {
+				"build": "26A428",
+				"commands": "4e9aac46d5ba",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

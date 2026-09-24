@@ -24,7 +24,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "When other devices browse"
+			"title": "When other devices browse",
+			"verified": {
+				"build": "26A428",
+				"commands": "3b16f33b5713",
+				"date": "2026-09-24"
+			}
 		},
 		"bluetooth-sharing-when-receiving-items": {
 			"firstSeen": "26A428",
@@ -51,7 +56,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "When receiving items"
+			"title": "When receiving items",
+			"verified": {
+				"build": "26A428",
+				"commands": "7c1739d11ad2",
+				"date": "2026-09-24"
+			}
 		},
 		"content-caching-cache": {
 			"firstSeen": "26A428",
@@ -98,7 +108,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Internet Connection"
+			"title": "Internet Connection",
+			"verified": {
+				"build": "26A428",
+				"commands": "90b10d57d973",
+				"date": "2026-09-24"
+			}
 		},
 		"file-sharing-shared-folders": {
 			"firstSeen": "26A428",
@@ -181,7 +196,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Allow access for"
+			"title": "Allow access for",
+			"verified": {
+				"build": "26A428",
+				"commands": "5e77c7b41174",
+				"date": "2026-09-24"
+			}
 		},
 		"remote-management-allow-access-for": {
 			"firstSeen": "26A428",
@@ -201,7 +221,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Allow access for"
+			"title": "Allow access for",
+			"verified": {
+				"build": "26A428",
+				"commands": "c27160c33b10",
+				"date": "2026-09-24"
+			}
 		},
 		"screen-sharing-allow-access-for": {
 			"firstSeen": "26A428",
@@ -221,7 +246,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Allow access for"
+			"title": "Allow access for",
+			"verified": {
+				"build": "26A428",
+				"commands": "2a66c9d7d0b4",
+				"date": "2026-09-24"
+			}
 		},
 		"services-ardservice-remote-management": {
 			"firstSeen": "26A428",
@@ -242,7 +272,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Remote Management"
+			"title": "Remote Management",
+			"verified": {
+				"build": "26A428",
+				"commands": "639c0d3ffdb7",
+				"date": "2026-09-24"
+			}
 		},
 		"services-bluetooth-sharing-bluetooth-sharing": {
 			"firstSeen": "26A428",
@@ -305,7 +340,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "File sharing"
+			"title": "File sharing",
+			"verified": {
+				"build": "26A428",
+				"commands": "bfce7e4d2680",
+				"date": "2026-09-24"
+			}
 		},
 		"services-printer-sharing-printer-sharing": {
 			"firstSeen": "26A428",
@@ -326,7 +366,12 @@
 					"scope": "system"
 				}
 			],
-			"title": "Printer sharing"
+			"title": "Printer sharing",
+			"verified": {
+				"build": "26A428",
+				"commands": "509f06fc0bf3",
+				"date": "2026-09-24"
+			}
 		},
 		"services-remote-apple-event-remote-application-scripting": {
 			"firstSeen": "26A428",

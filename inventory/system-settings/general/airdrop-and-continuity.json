@@ -31,7 +31,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "AirDrop"
+			"title": "AirDrop",
+			"verified": {
+				"build": "26A428",
+				"commands": "27e398085993",
+				"date": "2026-09-24"
+			}
 		},
 		"air-play-receiver-airplay-receiver": {
 			"firstSeen": "26A428",
@@ -52,25 +57,21 @@
 					"scope": "user"
 				}
 			],
-			"title": "AirPlay Receiver"
+			"title": "AirPlay Receiver",
+			"verified": {
+				"build": "26A428",
+				"commands": "f01b037b4c21",
+				"date": "2026-09-24"
+			}
 		},
 		"allow-airplay-for": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"option": "applications.systemSettings.general.airDropAndContinuity.allowAirPlayFor",
 			"section": null,
+			"skip": "kept by the AirPlay receiver outside readable preferences; changing it writes no preference file",
 			"sources": [
-				"option:applications.systemSettings.general.airDropAndContinuity.allowAirPlayFor"
-			],
-			"storage": [
-				{
-					"as": "value",
-					"byHost": true,
-					"domain": "com.apple.controlcenter",
-					"key": "AirplayReceiverAdvertising",
-					"scope": "user"
-				}
+				"ui:com.apple.settings.general/Allow AirPlay for"
 			],
 			"title": "Allow AirPlay for"
 		},
@@ -100,7 +101,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Allow Handoff between this Mac and your iCloud devices"
+			"title": "Allow Handoff between this Mac and your iCloud devices",
+			"verified": {
+				"build": "26A428",
+				"commands": "bf4e5a4ee412",
+				"date": "2026-09-24"
+			}
 		},
 		"iphone-mirroring-iphone-mirroring": {
 			"firstSeen": "26A428",
@@ -134,7 +140,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "iPhone Widgets"
+			"title": "iPhone Widgets",
+			"verified": {
+				"build": "26A428",
+				"commands": "105d874b4361",
+				"date": "2026-09-24"
+			}
 		}
 	}
 }

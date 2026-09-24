@@ -49,7 +49,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "d475616077c7",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"desktop-show-recent-apps-in-stage-manager": {
@@ -76,7 +76,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "d7b0045bb6e0",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"desktop-show-windows-from-an-application": {
@@ -107,7 +107,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "55e22f17178f",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"desktop-stage-manager": {
@@ -134,7 +134,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "754512aa88d4",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"desktop-visible-items-in-stage-manager": {
@@ -161,7 +161,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "3178fc5f7ab1",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"desktop-visible-items-on-desktop": {
@@ -188,7 +188,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "ccc49b079fc2",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-animate-opening-applications": {
@@ -215,7 +215,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "423df9598979",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-automatically-hide-and-show-the-dock": {
@@ -242,7 +242,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "146b8dcbdc44",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-automatically-hide-and-show-the-dock-animation-duration": {
@@ -316,7 +316,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "4191ea7a7834",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-magnification": {
@@ -342,7 +342,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "8b3ef3fbe960",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-magnification-size-2": {
@@ -368,7 +368,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "66b381e25aa6",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-minimize-windows-into-application-icon": {
@@ -395,7 +395,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "4acc255891fa",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-minimized-window-animation": {
@@ -426,7 +426,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "6ad3c9a8a647",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-show-indicators-for-open-applications": {
@@ -453,7 +453,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "513c7d70a90f",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-show-suggested-and-recent-apps-in-dock": {
@@ -480,7 +480,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "f76f95c9f794",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-size": {
@@ -508,7 +508,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "cffbc8bcd78c",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"dock-window-title-bar-double-click-action": {
@@ -541,7 +541,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "f4a33fea03d2",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"drag-windows-to-left-or-right-edge-of-screen-to-tile": {
@@ -567,7 +567,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "4aab7cc7d07f",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"hold-key-while-dragging-windows-to-tile": {
@@ -592,7 +592,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "5709a38ffb6f",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"hot-corners-bottom-left-hot-corner": {
@@ -632,7 +632,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "c5a009addcd8",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"hot-corners-bottom-left-hot-corner-modifier-keys": {
@@ -692,7 +692,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "7e45ec62f498",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"hot-corners-bottom-right-hot-corner-modifier-keys": {
@@ -752,7 +752,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "2de89334b55e",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"hot-corners-top-left-hot-corner-modifier-keys": {
@@ -812,7 +812,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "8c0724dfaaf7",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"hot-corners-top-right-hot-corner-modifier-keys": {
@@ -859,7 +859,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "ba5f5a93b862",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"mission-control-displays-have-separate-spaces": {
@@ -886,7 +886,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "ea552d7ad0d5",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"mission-control-drag-windows-to-top-of-screen-to-enter-mission-control": {
@@ -913,7 +913,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "25c3e2918eba",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"mission-control-group-windows-by-application": {
@@ -940,7 +940,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "564e929e0815",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"mission-control-shortcuts-application-windows": {
@@ -961,7 +961,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Application windows"
+			"title": "Application windows",
+			"verified": {
+				"build": "26A428",
+				"commands": "15b23a82dada",
+				"date": "2026-09-24"
+			}
 		},
 		"mission-control-shortcuts-mission-control": {
 			"firstSeen": "26A428",
@@ -981,7 +986,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Mission Control"
+			"title": "Mission Control",
+			"verified": {
+				"build": "26A428",
+				"commands": "87916919f04c",
+				"date": "2026-09-24"
+			}
 		},
 		"mission-control-shortcuts-show-desktop": {
 			"firstSeen": "26A428",
@@ -1001,7 +1011,12 @@
 					"scope": "user"
 				}
 			],
-			"title": "Show Desktop"
+			"title": "Show Desktop",
+			"verified": {
+				"build": "26A428",
+				"commands": "9088728e5e18",
+				"date": "2026-09-24"
+			}
 		},
 		"mission-control-when-switching-to-an-application-switch-to-a-space-with-open-windows-for-the-application": {
 			"firstSeen": "26A428",
@@ -1027,7 +1042,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "0837fc72f928",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"tiled-windows-have-margins": {
@@ -1053,7 +1068,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "54c10ce06ab7",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"widget-dim-widgets-on-desktop": {
@@ -1085,7 +1100,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "460357f7d4d8",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"widget-show-widgets-in-stage-manager": {
@@ -1112,7 +1127,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "ff6117250b8a",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"widget-show-widgets-on-desktop": {
@@ -1139,7 +1154,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "ee80b536c18b",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"windows-ask-to-keep-changes-when-closing-documents": {
@@ -1166,7 +1181,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "4d3fe5e22f61",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"windows-close-windows-when-quitting-an-application": {
@@ -1193,7 +1208,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "5ffae7883cd3",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"windows-drag-windows-to-menu-bar-to-fill-screen": {
@@ -1219,7 +1234,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "a52cbf9ff9f1",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		},
 		"windows-prefer-tabs-when-opening-documents": {
@@ -1251,7 +1266,7 @@
 			"verified": {
 				"build": "26A428",
 				"commands": "b8caa64e5484",
-				"date": "2026-09-23"
+				"date": "2026-09-24"
 			}
 		}
 	}
