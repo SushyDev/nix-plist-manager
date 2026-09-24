@@ -11,21 +11,25 @@ let
 	launchdOverrides = file "/var/db/com.apple.xpc.launchd/disabled.plist";
 
 	# a system launch daemon that System Settings enables or disables, and loads or unloads
-	launchDaemon = label: enabled:
-		if enabled then [
+	launchDaemon = label: {
+		apply = enabled: if enabled then [
 			"/bin/launchctl enable system/${label}"
 			"/bin/launchctl bootstrap system /System/Library/LaunchDaemons/${label}.plist 2>/dev/null || true"
 		] else [
 			"/bin/launchctl bootout system/${label} 2>/dev/null || true"
 			"/bin/launchctl disable system/${label}"
 		];
+		reads = "/bin/launchctl print-disabled system | /usr/bin/grep -qF ${lib.escapeShellArg "\"${label}\" => enabled"}";
+	};
 
-	service = { ui, storage ? launchdOverrides, apply }: setting {
+	# `reads`: a command that succeeds while the service is on
+	service = { ui, storage ? launchdOverrides, apply, reads }: setting {
 		inherit storage;
 		ui = [ "System Settings" "General" "Sharing" ui ];
 		value = bool;
 		canUnset = false;
 		behaviors = [ (appliesThrough apply) ];
+		reads.command = "${reads} && echo true || echo false";
 		verify = {
 			inherit pane open;
 			expect = {
@@ -44,6 +48,10 @@ let
 		storage = file "/var/db/dslocal/nodes/Default/groups/${group}.plist";
 		value = enum { "All users" = "all"; "Only these users" = "only"; };
 		canUnset = false;
+		reads = {
+			command = "/usr/bin/dscl . -read /Groups/${group} >/dev/null 2>&1 && echo only || echo all";
+			values = { "All users" = "all"; "Only these users" = "only"; };
+		};
 		behaviors = [
 			(appliesThrough (choice:
 				if choice == "All users" then "/usr/sbin/dseditgroup -o delete ${group} >/dev/null 2>&1 || true"
@@ -128,25 +136,17 @@ in
 		};
 	};
 
-	fileSharing = service {
-		ui = "File Sharing";
-		apply = launchDaemon "com.apple.smbd";
-	};
+	fileSharing = service ({ ui = "File Sharing"; } // launchDaemon "com.apple.smbd");
 
-	screenSharing = service {
-		ui = "Screen Sharing";
-		apply = launchDaemon "com.apple.screensharing";
-	};
+	screenSharing = service ({ ui = "Screen Sharing"; } // launchDaemon "com.apple.screensharing");
 
-	remoteApplicationScripting = service {
-		ui = "Remote Application Scripting";
-		apply = launchDaemon "com.apple.AEServer";
-	};
+	remoteApplicationScripting = service ({ ui = "Remote Application Scripting"; } // launchDaemon "com.apple.AEServer");
 
 	printerSharing = service {
 		ui = "Printer Sharing";
 		storage = file "/etc/cups/cupsd.conf";
 		apply = enabled: "/usr/sbin/cupsctl ${if enabled then "--share-printers" else "--no-share-printers"}";
+		reads = "/usr/sbin/cupsctl | /usr/bin/grep -qx _share_printers=1";
 	};
 
 	contentCaching = service {
@@ -154,6 +154,7 @@ in
 		storage = system "com.apple.AssetCache" "Activated";
 		# the running cache keeps reporting itself active until it's restarted
 		apply = enabled: "/usr/bin/AssetCacheManagerUtil ${if enabled then "activate" else "deactivate"} >/dev/null 2>&1 || true; /usr/bin/killall AssetCache 2>/dev/null || true";
+		reads = "[ \"$(/usr/bin/defaults read /Library/Preferences/com.apple.AssetCache Activated 2>/dev/null)\" = 1 ]";
 	};
 
 	# on: the Remote Management agent for all users with all privileges, as System Settings' OK
@@ -164,6 +165,7 @@ in
 		apply = enabled:
 			if enabled then "${kickstart} -activate -configure -access -on -privs -all -allowAccessFor -allUsers -restart -agent >/dev/null"
 			else "${kickstart} -deactivate -configure -access -off >/dev/null";
+		reads = "/usr/bin/pgrep -x ARDAgent >/dev/null";
 	};
 
 	screenSharingOptions.allowAccessFor = accessGroup {

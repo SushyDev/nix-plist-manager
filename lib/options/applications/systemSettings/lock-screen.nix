@@ -4,7 +4,7 @@
 # can only be changed with the user's password, and the login window's Accessibility Options
 # aren't covered.
 let
-	inherit (settingsLib) setting system bool inverted storedAs text enum appliesThrough;
+	inherit (settingsLib) setting system bool inverted storedAs text enum appliesThrough live;
 
 	pane = "com.apple.settings.lockScreen";
 	loginWindow = system "com.apple.loginwindow";
@@ -22,6 +22,7 @@ let
 		value = enum displayTimes;
 		canUnset = false;
 		behaviors = [ (appliesThrough (time: "/usr/bin/pmset -${source} displaysleep ${toString displayTimes.${time}}")) ];
+		reads = { command = live.pmsetValue dictionary "displaysleep"; values = displayTimes; };
 		verify = {
 			inherit pane;
 			expect = {

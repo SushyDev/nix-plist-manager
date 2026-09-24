@@ -11,6 +11,8 @@
 	#   value       a codec (codecs.nix)
 	#   behaviors   extra plan rewrites (behaviors.nix); `appliesThrough` goes first
 	#   relations   rules against other settings (relations.nix)
+	#   reads       for state a service keeps rather than a preference: { command; values ? null; },
+	#               a command printing the value, and what it prints for each value if it isn't JSON
 	#   verify      what System Settings shows per value, for `nix run .#verify -- check`:
 	#               { pane; open ? []; operate ? null; expect = { <value> = { <control> = <expected>; }; }; }
 	#               see tools/verify.py and tools/ax.swift for the control syntax
@@ -21,6 +23,7 @@
 		behaviors ? [],
 		relations ? [],
 		verify ? null,
+		reads ? null,
 		description ? "",
 		# false when there is no safe way back to the default, e.g. settings applied through a
 		# command like pmset: the option then doesn't accept "unset"
@@ -39,7 +42,7 @@
 		in
 		{
 			_type = "setting";
-			inherit ui keys scope relations description;
+			inherit ui keys scope relations description reads;
 			codec = value;
 
 			option = lib.mkOption {

@@ -157,11 +157,11 @@
 					);
 					capture = pkgs.writeShellScript "capture" ''
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-${self}}"
-						exec ${pkgs.python3}/bin/python3 ${./tools/capture.py} "$@"
+						exec ${pkgs.python3}/bin/python3 ${self}/tools/current.py capture "$@"
 					'';
 					current = pkgs.writeShellScript "current" ''
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-${self}}"
-						exec ${pkgs.python3}/bin/python3 ${./tools/current.py} "$@"
+						exec ${pkgs.python3}/bin/python3 ${self}/tools/current.py "$@"
 					'';
 				in
 				{

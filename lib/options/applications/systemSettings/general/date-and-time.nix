@@ -57,6 +57,7 @@ in
 		value = text;
 		canUnset = false;
 		behaviors = [ (appliesThrough (server: systemsetup "-setnetworktimeserver ${lib.escapeShellArg server}")) ];
+		reads.command = "/usr/bin/awk '/^server / { print $2; exit }' /etc/ntp.conf";
 		relations = [
 			(onlyWhen (option "setTimeAndDateAutomatically") (enabled: enabled)
 				"the time is only fetched from a server when it's set automatically")
@@ -83,6 +84,7 @@ in
 		value = text;
 		canUnset = false;
 		behaviors = [ (appliesThrough (zone: systemsetup "-settimezone ${lib.escapeShellArg zone}")) ];
+		reads.command = "/usr/bin/readlink /etc/localtime | /usr/bin/sed 's|.*/zoneinfo/||'";
 		relations = [
 			(onlyWhen (option "setTimeZoneAutomaticallyUsingYourCurrentLocation") (enabled: !enabled)
 				"the location decides the time zone while it's set automatically")
