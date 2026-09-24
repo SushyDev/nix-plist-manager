@@ -5,11 +5,67 @@
 		"Printers & Scanners"
 	],
 	"settings": {
+		"default-paper-size": {
+			"choices": [
+				"US Letter",
+				"US Legal",
+				"A4",
+				"A5",
+				"JIS B5",
+				"B5",
+				"Envelope #10",
+				"Envelope DL",
+				"Tabloid",
+				"A3",
+				"Tabloid Oversize",
+				"ROC 16K",
+				"Envelope Choukei 3",
+				"Super B/A3"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.printersAndScanners.defaultPaperSize",
+			"sources": [
+				"intent:PrinterScannerIntentsExtension.appex/PaperSizeEntity.value",
+				"option:applications.systemSettings.printersAndScanners.defaultPaperSize",
+				"ui:com.apple.settings.printerAndScanner/Default paper size"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "org.cups.PrintingPrefs",
+					"key": "DefaultPaperID",
+					"scope": "user"
+				}
+			],
+			"title": "Default paper size",
+			"verified": {
+				"build": "26A428",
+				"commands": "e409873129fb",
+				"date": "2026-09-24"
+			}
+		},
+		"default-printer": {
+			"choices": [
+				"Last Printer Used"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"skip": "only offers a choice once printers are added; Last Printer Used otherwise",
+			"sources": [
+				"ui:com.apple.settings.printerAndScanner/Default printer"
+			],
+			"title": "Default printer"
+		},
 		"fax-fax-settings": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Fax",
+			"skip": "per printer or a help topic, not a setting",
 			"sources": [
 				"search:PrinterScannerSettings.appex/fax/Fax settings"
 			],
@@ -20,25 +76,18 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Print",
+			"skip": "per printer or a help topic, not a setting",
 			"sources": [
 				"search:PrinterScannerSettings.appex/print/Setting up printers"
 			],
 			"title": "Setting up printers"
-		},
-		"printer-paper-size": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"sources": [
-				"intent:PrinterScannerIntentsExtension.appex/PaperSizeEntity.value"
-			],
-			"title": "Printer Paper Size"
 		},
 		"scan-setting-up-scanners": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Scan",
+			"skip": "per printer or a help topic, not a setting",
 			"sources": [
 				"search:PrinterScannerSettings.appex/scan/Setting up scanners"
 			],
@@ -49,6 +98,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Share",
+			"skip": "per printer or a help topic, not a setting",
 			"sources": [
 				"search:PrinterScannerSettings.appex/share/Sharing a printer"
 			],
