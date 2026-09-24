@@ -1,12 +1,12 @@
 // Generates the settings reference from the flake's `documentation` output: every option
-// (options.json, from optionIndex) and the inventory (what's verified, and what isn't covered).
+// (options.json, from optionIndex) and coverage.json (what's verified, and what isn't covered).
 //
 //   DOCS_DATA=$(nix build --no-link --print-out-paths ..#documentation) node scripts/generate.mjs
 //
 // Writes one page per System Settings pane (and per app) to src/content/docs/settings/, and the
 // sidebar for them to src/generated/sidebar.json. Big panes (Accessibility, Keyboard) get a page
 // per section.
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const data = process.env.DOCS_DATA ?? ".data";
@@ -32,29 +32,14 @@ const splitAt = 60;
 
 const slug = (text) => text.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-// --- the inventory: which options are verified, and what each pane doesn't cover --------------
+// --- coverage.json: which options are verified, and what each pane doesn't cover --------------
 
-function inventoryFiles(dir) {
-	return readdirSync(dir).flatMap((name) => {
-		const path = join(dir, name);
-		if (statSync(path).isDirectory()) return inventoryFiles(path);
-		return name.endsWith(".json") ? [path] : [];
-	});
-}
-
-const verified = new Set();
+const coverage = JSON.parse(readFileSync(join(data, "coverage.json"), "utf8"));
+const verified = new Set(Object.values(coverage.verified).flat());
 const notCovered = {}; // page title -> [{ title, reason }]
-for (const file of inventoryFiles(join(data, "inventory"))) {
-	const inventory = JSON.parse(readFileSync(file, "utf8"));
-	const pane = inventory.pane?.[0];
-	for (const setting of Object.values(inventory.settings ?? {})) {
-		if (setting.option && setting.verified) verified.add(setting.option);
-		if (setting.skip && pane) {
-			const title = [setting.section, setting.title].filter(Boolean).join(" › ");
-			(notCovered[pane] ??= []).push({ title, reason: setting.skip });
-		}
-	}
-}
+for (const [pane, reasons] of Object.entries(coverage.notCovered))
+	for (const [reason, titles] of Object.entries(reasons))
+		for (const title of titles) (notCovered[pane] ??= []).push({ title, reason });
 
 // --- options grouped into pages --------------------------------------------------------------
 

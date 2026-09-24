@@ -12,6 +12,7 @@ Settings, capture, commit the directory; each activation puts that state back.
 
 from __future__ import annotations
 
+import json
 import os
 import plistlib
 import subprocess
@@ -19,8 +20,6 @@ import sys
 from pathlib import Path
 
 ROOT = Path(os.environ.get("NIX_PLIST_MANAGER_ROOT") or Path(__file__).resolve().parents[1])
-sys.path.insert(0, str(ROOT / "tools" / "inventory"))
-import inventory  # noqa: E402
 
 
 def export(entry: dict) -> dict:
@@ -37,7 +36,10 @@ def main():
 		sys.exit(__doc__.strip())
 	option, directory = sys.argv[1], Path(sys.argv[2])
 
-	entry = next((o for o in inventory.load_option_index(None) if o["option"] == option), None)
+	result = subprocess.run(["nix", "eval", "--json", f"path:{ROOT}#optionIndex"], capture_output=True, text=True)
+	if result.returncode != 0:
+		sys.exit(f"nix eval .#optionIndex failed:\n{result.stderr}")
+	entry = next((o for o in json.loads(result.stdout) if o["option"] == option), None)
 	if entry is None:
 		sys.exit(f"no option {option}")
 	if entry.get("kind") != "snapshot":

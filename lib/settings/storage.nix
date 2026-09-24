@@ -25,7 +25,7 @@ rec {
 	system = domain: name: mkKey { inherit domain name; scope = "system"; };
 
 	# a file that isn't a plist, e.g. /etc/localtime; only for settings applied through a
-	# command (behaviors.appliesThrough), so docs and the inventory show where they end up
+	# command (behaviors.appliesThrough), so the docs and verify show where they end up
 	file = path: mkKey { domain = path; name = null; scope = "system"; };
 
 	# the current-host variant of a key (~/Library/Preferences/ByHost/<domain>.<UUID>.plist)

@@ -12,5 +12,5 @@ let
 			else []
 		) entries);
 in
-# Flat list of every option, consumed by tools/inventory and tools/verify
+# Flat list of every option, consumed by the tools and the docs
 options: collect [] options

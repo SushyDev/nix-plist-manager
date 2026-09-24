@@ -1,6 +1,6 @@
 { lib, ops, behaviorsLib }:
 {
-	# Register a setting. Everything else, the option, the commands, the docs, the inventory's
+	# Register a setting. Everything else, the option, the commands, the docs, the
 	# storage and the verify spec, is derived from this.
 	#
 	#   ui          the full path to the control, in the UI's own words, starting at the app:
@@ -13,7 +13,7 @@
 	#   relations   rules against other settings (relations.nix)
 	#   verify      what System Settings shows per value, for `nix run .#verify -- check`:
 	#               { pane; open ? []; operate ? null; expect = { <value> = { <control> = <expected>; }; }; }
-	#               see tools/verify/verify.py for the control syntax
+	#               see tools/verify.py and tools/ax.swift for the control syntax
 	setting = {
 		ui,
 		storage,

@@ -1,7 +1,7 @@
 { lib }:
 # A plan is a list of these operations. Settings produce plans, behaviors rewrite them and
 # render.nix turns the combined plan of every setting into one activation script. Keep them
-# plain data: docs, optionIndex and tools/verify read them too.
+# plain data: docs, optionIndex and tools/verify.py read them too.
 {
 	write = key: value: { op = "write"; inherit key value; };
 

@@ -18,19 +18,8 @@
 				home-manager = self.homeManagerModules.default;
 			};
 
-			# The script that applies one option value, as a configuration with only that value would:
-			# type-checked, with the writes of settings it implies. Used by tools/verify.
-			lib.commandFor = optionPath: value:
-				let
-					lib = nixpkgs.lib;
-					result = self.lib.standalone (lib.setAttrByPath (lib.splitString "." optionPath) value);
-					failed = result.user.assertions ++ result.system.assertions;
-				in
-				if failed != [] then throw (lib.concatStringsSep "\n" failed)
-				else lib.concatStringsSep "\n" (lib.filter (script: script != "") [ result.user.script result.system.script ]);
-
-			# `nix run .#apply` evaluates this: the scripts, warnings and failed assertions for a
-			# set of option values, outside a system configuration
+			# The scripts for a set of option values, outside a system configuration, checked as one
+			# would be: failed assertions stop evaluation and warnings are printed.
 			lib.standalone = values:
 				let
 					lib = nixpkgs.lib;
@@ -39,15 +28,31 @@
 						tree = import ./lib/options.nix { inherit lib; };
 						inherit values;
 					};
-					scope = build: {
-						inherit (build) script warnings;
-						assertions = map (assertion: assertion.message) build.assertions;
-					};
+					failed = map (assertion: assertion.message) (result.user.assertions ++ result.system.assertions);
 				in
-				{
-					user = scope result.user;
-					system = scope result.system;
-				};
+				if failed != [] then throw (lib.concatStringsSep "\n" failed)
+				else lib.foldr lib.warn { user = result.user.script; system = result.system.script; }
+					(result.user.warnings ++ result.system.warnings);
+
+			# The script that applies one option value, with the writes of settings it implies. Used
+			# by tools/verify.py, which runs it as root when the option is nix-darwin's.
+			lib.commandFor = optionPath: value:
+				let
+					lib = nixpkgs.lib;
+					scripts = self.lib.standalone (lib.setAttrByPath (lib.splitString "." optionPath) value);
+				in
+				lib.concatStringsSep "\n" (lib.filter (script: script != "") [ scripts.user scripts.system ]);
+
+			# What `nix run .#apply` runs: user settings as you, system settings through sudo.
+			lib.applyScript = values:
+				let
+					lib = nixpkgs.lib;
+					scripts = self.lib.standalone values;
+				in
+				lib.concatStringsSep "\n" (lib.filter (script: script != "") [
+					scripts.user
+					(lib.optionalString (scripts.system != "") "sudo /bin/bash -c ${lib.escapeShellArg scripts.system}")
+				]);
 
 			optionIndex =
 				let
@@ -56,7 +61,7 @@
 				in
 				import ./lib/optionIndex.nix { inherit lib; } options;
 
-			# what the website is generated from: every option (optionIndex) and the inventory, which
+			# what the website is generated from: every option (optionIndex) and coverage.json, which
 			# says what's verified and what isn't covered. docs/scripts/generate.mjs turns it into pages.
 			documentation = forAllSystems (system:
 				let
@@ -65,7 +70,7 @@
 				pkgs.runCommand "documentation" { } ''
 					mkdir -p $out
 					cp ${pkgs.writeText "options.json" (builtins.toJSON self.optionIndex)} $out/options.json
-					cp -R ${./inventory} $out/inventory
+					cp ${./coverage.json} $out/coverage.json
 				''
 			);
 
@@ -99,15 +104,24 @@
 					# setting is: "System Settings > Accessibility > Zoom > Advanced… > Smooth images"
 					apps = [ "System Settings" "Finder" "Dock" "Menu bar" "App Store" "Voice Memos" "News" "Journal" ];
 					unrooted = builtins.filter (entry: !(builtins.elem (builtins.head entry.path) apps)) self.optionIndex;
-					# each option has its own path: the inventory links options to settings by it
+					# each option has its own path, so the docs can tell them apart
 					paths = map (entry: builtins.concatStringsSep " > " entry.path) self.optionIndex;
 					duplicates = nixpkgs.lib.unique (builtins.filter (path: nixpkgs.lib.count (p: p == path) paths > 1) paths);
+					# coverage.json only lists options that exist
+					known = map (entry: entry.option) self.optionIndex;
+					verified = builtins.concatLists (builtins.attrValues (builtins.fromJSON (builtins.readFile ./coverage.json)).verified);
+					stale = builtins.filter (option: !(builtins.elem option known)) verified;
 				in
 				{
 					ui-paths = pkgs.runCommand "ui-paths" {} (
 						if duplicates != [] then throw "these UI paths belong to more than one option:\n${builtins.concatStringsSep "\n" duplicates}"
 						else if unrooted == [] then "touch $out"
 						else throw "these options' UI paths don't start at an app (${builtins.concatStringsSep ", " apps}):\n${builtins.concatStringsSep "\n" (map (entry: entry.option) unrooted)}"
+					);
+
+					coverage = pkgs.runCommand "coverage" {} (
+						if stale == [] then "touch $out"
+						else throw "coverage.json lists options that don't exist:\n${builtins.concatStringsSep "\n" stale}"
 					);
 
 					settings = pkgs.runCommand "settings-tests" {} (
@@ -120,14 +134,20 @@
 			apps = forAllSystems (system:
 				let
 					pkgs = import nixpkgs { inherit system; };
-					inventory = pkgs.writeShellScript "inventory" ''
-						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
-						exec ${pkgs.python3}/bin/python3 ${./tools/inventory/inventory.py} "$@"
-					'';
 					# needs Accessibility permission and the system swiftc, so macOS only
 					verify = pkgs.writeShellScript "verify" ''
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
-						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify/verify.py" "$@"
+						exec ${pkgs.python3}/bin/python3 "$NIX_PLIST_MANAGER_ROOT/tools/verify.py" "$@"
+					'';
+					# compiled with the system's swiftc on first use, once per version of the source
+					watch = pkgs.writeShellScript "watch" ''
+						cache="''${XDG_CACHE_HOME:-$HOME/.cache}/nix-plist-manager"
+						binary="$cache/$(basename ${./tools/watch.swift} .swift)"
+						if [ ! -x "$binary" ]; then
+							mkdir -p "$cache"
+							/usr/bin/swiftc -O ${./tools/watch.swift} -o "$binary"
+						fi
+						exec "$binary" "$@"
 					'';
 					# used from users' own configurations, so they read this flake's source, not the
 					# repository they're run in
@@ -157,13 +177,13 @@
 						type = "app";
 						program = "${current}";
 					};
-					inventory = {
-						type = "app";
-						program = "${inventory}";
-					};
 					verify = {
 						type = "app";
 						program = "${verify}";
+					};
+					watch = {
+						type = "app";
+						program = "${watch}";
 					};
 				}
 			);
