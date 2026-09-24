@@ -9,6 +9,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/AutoDownloadEntity.value"
 			],
@@ -18,6 +19,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/AutoDownloadAudioStoriesEntity.value"
 			],
@@ -27,6 +29,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/AutoDownloadMagazineIssuesEntity.value"
 			],
@@ -36,6 +39,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/AutoDownloadPuzzlesEntity.value"
 			],
@@ -45,6 +49,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/AutoDownloadRecipesEntity.value"
 			],
@@ -54,6 +59,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/AutoDownloadSavedStoriesEntity.value"
 			],
@@ -63,6 +69,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/AutoDownloadStoriesInFeedsEntity.value"
 			],
@@ -72,6 +79,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/GameCenterEntity.value"
 			],
@@ -81,6 +89,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/OptimizeStorageEntity.value"
 			],
@@ -90,6 +99,7 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"notes": "News isn't offered in this region, so it can't be observed on this Mac",
 			"sources": [
 				"intent:NewsToday2.appex/RestrictStoriesInTodaySettingEntity.value"
 			],
