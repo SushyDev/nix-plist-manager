@@ -23,6 +23,7 @@ in
 			notifications = import ./options/applications/systemSettings/notifications.nix { inherit lib settingsLib; };
 			sound = import ./options/applications/systemSettings/sound.nix { inherit lib settingsLib; };
 			focus = import ./options/applications/systemSettings/focus.nix { inherit lib settingsLib; };
+			lockScreen = import ./options/applications/systemSettings/lock-screen.nix { inherit lib settingsLib; };
 		};
 		finder = import ./options/applications/finder.nix { inherit lib commandsLib configLib pathLib typesLib; };
 	};
