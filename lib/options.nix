@@ -14,6 +14,7 @@ in
 			appearance = import ./options/applications/systemSettings/appearance.nix { inherit lib settingsLib; };
 			appleIntelligenceAndSiri = import ./options/applications/systemSettings/apple-intelligence-and-siri.nix { inherit lib commandsLib; };
 			desktopAndDock = import ./options/applications/systemSettings/desktop-and-dock.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib settingsLib; };
+			displays = import ./options/applications/systemSettings/displays.nix { inherit lib settingsLib; };
 			menuBar =  import ./options/applications/systemSettings/menu-bar.nix { inherit lib commandsLib; };
 			spotlight = import ./options/applications/systemSettings/spotlight.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };
 			notifications = import ./options/applications/systemSettings/notifications.nix { inherit lib commandsLib typesLib configLib pathLib abstractionsLib; };

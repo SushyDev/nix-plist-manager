@@ -5,42 +5,68 @@
 		"Displays"
 	],
 	"settings": {
-		"advanced-section-advanced-settings": {
+		"advanced-show-resolutions-as-list": {
 			"firstSeen": "26A428",
-			"kind": "unknown",
+			"kind": "bool",
 			"lastSeen": "26A428",
-			"section": "Advanced Section",
+			"option": "applications.systemSettings.displays.showResolutionsAsList",
+			"section": "Advanced",
 			"sources": [
-				"search:DisplaysExt.appex/advancedSection/Advanced Settings"
+				"option:applications.systemSettings.displays.showResolutionsAsList",
+				"search:DisplaysExt.appex/advancedSection/Advanced Settings",
+				"ui:com.apple.settings.displayAndBrightness/Advanced…/Show resolutions as list"
 			],
-			"title": "Advanced Settings"
-		},
-		"advanced-section-universal-control": {
-			"firstSeen": "26A428",
-			"kind": "unknown",
-			"lastSeen": "26A428",
-			"section": "Advanced Section",
-			"sources": [
-				"search:DisplaysExt.appex/advancedSection/Universal Control"
+			"storage": [
+				{
+					"byHost": false,
+					"domain": "com.apple.Displays-Settings.extension",
+					"key": "showListByDefault",
+					"scope": "user"
+				}
 			],
-			"title": "Universal Control"
+			"title": "Show resolutions as list",
+			"verified": {
+				"build": "26A428",
+				"commands": "a82afb70b72d",
+				"date": "2026-09-23"
+			}
 		},
 		"allow-your-pointer-and-keyboard-to-move-between-any-nearby-mac-or-ipad": {
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.displays.universalControl.allowPointerAndKeyboardToMoveBetweenNearbyDevices",
+			"section": "Advanced",
 			"sources": [
-				"intent:DisplaysSettingsIntentsExtension.appex/ShareKeyboardEntity.value"
+				"intent:DisplaysSettingsIntentsExtension.appex/ShareKeyboardEntity.value",
+				"option:applications.systemSettings.displays.universalControl.allowPointerAndKeyboardToMoveBetweenNearbyDevices",
+				"search:DisplaysExt.appex/advancedSection/Universal Control",
+				"ui:com.apple.settings.displayAndBrightness/Advanced…/Allow your pointer and keyboard to move between any nearby Mac or iPad"
 			],
-			"title": "Allow your pointer and keyboard to move between any nearby Mac or iPad"
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.universalcontrol",
+					"key": "Disable",
+					"scope": "user"
+				}
+			],
+			"title": "Allow your pointer and keyboard to move between any nearby Mac or iPad",
+			"verified": {
+				"build": "26A428",
+				"commands": "e56991e8f12d",
+				"date": "2026-09-23"
+			}
 		},
 		"ambience-section-display-brightness": {
 			"firstSeen": "26A428",
-			"kind": "unknown",
+			"kind": "number",
 			"lastSeen": "26A428",
 			"section": "Ambience Section",
+			"skip": "changes often; a declared value would fight the user",
 			"sources": [
-				"search:DisplaysExt.appex/ambienceSection/Display Brightness"
+				"search:DisplaysExt.appex/ambienceSection/Display Brightness",
+				"ui:com.apple.settings.displayAndBrightness/Brightness"
 			],
 			"title": "Display Brightness"
 		},
@@ -48,10 +74,22 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.displays.trueTone",
 			"section": "Ambience Section",
 			"sources": [
 				"intent:DisplaysSettingsIntentsExtension.appex/TrueToneEntity.value",
-				"search:DisplaysExt.appex/ambienceSection/True Tone"
+				"option:applications.systemSettings.displays.trueTone",
+				"search:DisplaysExt.appex/ambienceSection/True Tone",
+				"ui:com.apple.settings.displayAndBrightness/True Tone"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "/var/root/Library/Preferences/com.apple.CoreBrightness",
+					"key": null,
+					"scope": "user"
+				}
 			],
 			"title": "True Tone"
 		},
@@ -60,6 +98,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Arrangement Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/arrangementSection/Arrange multiple displays"
 			],
@@ -70,6 +109,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Arrangement Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/arrangementSection/Relocate menu bar"
 			],
@@ -79,8 +119,10 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"skip": "kept by CoreBrightness, not in preferences",
 			"sources": [
-				"intent:DisplaysSettingsIntentsExtension.appex/AutoBrightnessEntity.value"
+				"intent:DisplaysSettingsIntentsExtension.appex/AutoBrightnessEntity.value",
+				"ui:com.apple.settings.displayAndBrightness/Automatically adjust brightness"
 			],
 			"title": "Automatically adjust brightness on the main display"
 		},
@@ -88,8 +130,11 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"section": "Advanced",
+			"skip": "no preference key found in the system libraries, and switching it changes no preference file",
 			"sources": [
-				"intent:DisplaysSettingsIntentsExtension.appex/AutomaticReconnectEntity.value"
+				"intent:DisplaysSettingsIntentsExtension.appex/AutomaticReconnectEntity.value",
+				"ui:com.apple.settings.displayAndBrightness/Advanced…/Automatically reconnect to any nearby Mac or iPad"
 			],
 			"title": "Automatically reconnect to any nearby Mac or iPad"
 		},
@@ -98,6 +143,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Characteristic Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/characteristicSection/Overscan"
 			],
@@ -108,6 +154,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Characteristic Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/characteristicSection/Screen Rotation"
 			],
@@ -118,6 +165,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Characteristic Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/characteristicSection/Underscan"
 			],
@@ -128,6 +176,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Displays Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/displaysSection/Display Settings"
 			],
@@ -138,48 +187,108 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Miscellaneous Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/miscellaneousSection/High Dynamic Range"
 			],
 			"title": "High Dynamic Range"
 		},
 		"miscellaneous-section-refresh-rate": {
+			"choices": [
+				"ProMotion",
+				"60 Hertz",
+				"59,94 Hertz",
+				"50 Hertz",
+				"48 Hertz",
+				"47,95 Hertz"
+			],
 			"firstSeen": "26A428",
-			"kind": "unknown",
+			"kind": "enum",
 			"lastSeen": "26A428",
 			"section": "Miscellaneous Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
-				"search:DisplaysExt.appex/miscellaneousSection/Refresh Rate"
+				"search:DisplaysExt.appex/miscellaneousSection/Refresh Rate",
+				"ui:com.apple.settings.displayAndBrightness/Refresh rate"
 			],
-			"title": "Refresh Rate"
+			"title": "Refresh rate"
 		},
-		"night-shift-section-night-shift-options": {
+		"night-shift-color-temperature": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
-			"section": "Night Shift Section",
+			"option": "applications.systemSettings.displays.nightShift.colorTemperature",
+			"section": "Night Shift…",
 			"sources": [
+				"option:applications.systemSettings.displays.nightShift.colorTemperature"
+			],
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "/var/root/Library/Preferences/com.apple.CoreBrightness",
+					"key": null,
+					"scope": "user"
+				}
+			],
+			"title": "Color temperature"
+		},
+		"night-shift-schedule": {
+			"firstSeen": "26A428",
+			"kind": "unknown",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.displays.nightShift.schedule",
+			"section": "Night Shift…",
+			"sources": [
+				"option:applications.systemSettings.displays.nightShift.schedule",
 				"search:DisplaysExt.appex/nightShiftSection/Night Shift options"
 			],
-			"title": "Night Shift options"
+			"storage": [
+				{
+					"as": "value",
+					"byHost": false,
+					"domain": "/var/root/Library/Preferences/com.apple.CoreBrightness",
+					"key": null,
+					"scope": "user"
+				}
+			],
+			"title": "Schedule"
 		},
 		"profile-section-display-colors-and-calibration": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Profile Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/profileSection/Display colors and calibration"
 			],
 			"title": "Display colors and calibration"
 		},
 		"profile-section-display-presets": {
+			"choices": [
+				"Apple XDR Display (P3-1600 nits)",
+				"Apple Display (P3-600 nits)",
+				"HDR Video (P3-ST 2084)",
+				"HDTV Video (BT.709-BT.1886)",
+				"NTSC Video (BT.601 SMPTE-C)",
+				"PAL & SECAM Video (BT.601 EBU)",
+				"Digital Cinema (P3-DCI)",
+				"Digital Cinema (P3-D65)",
+				"Design & Print (P3-D50)",
+				"Photography (P3-D65)",
+				"Internet & Web (sRGB)",
+				"Customize Presets…",
+				"Calibrate Display…"
+			],
 			"firstSeen": "26A428",
-			"kind": "unknown",
+			"kind": "enum",
 			"lastSeen": "26A428",
 			"section": "Profile Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
-				"search:DisplaysExt.appex/profileSection/Display Presets"
+				"search:DisplaysExt.appex/profileSection/Display Presets",
+				"ui:com.apple.settings.displayAndBrightness/Preset"
 			],
 			"title": "Display Presets"
 		},
@@ -187,16 +296,34 @@
 			"firstSeen": "26A428",
 			"kind": "bool",
 			"lastSeen": "26A428",
+			"option": "applications.systemSettings.displays.universalControl.pushThroughTheEdgeOfADisplayToConnect",
+			"section": "Advanced",
 			"sources": [
-				"intent:DisplaysSettingsIntentsExtension.appex/MagicEdgeEntity.value"
+				"intent:DisplaysSettingsIntentsExtension.appex/MagicEdgeEntity.value",
+				"option:applications.systemSettings.displays.universalControl.pushThroughTheEdgeOfADisplayToConnect",
+				"ui:com.apple.settings.displayAndBrightness/Advanced…/Push through the edge of a display to connect a nearby Mac or iPad"
 			],
-			"title": "Push through the edge of a display to connect a nearby Mac or iPad"
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.universalcontrol",
+					"key": "DisableMagicEdges",
+					"scope": "user"
+				}
+			],
+			"title": "Push through the edge of a display to connect a nearby Mac or iPad",
+			"verified": {
+				"build": "26A428",
+				"commands": "ad53eee57411",
+				"date": "2026-09-23"
+			}
 		},
 		"resolution-section-display-options": {
 			"firstSeen": "26A428",
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Resolution Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/resolutionSection/Display Options"
 			],
@@ -207,6 +334,7 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Resolution Section",
+			"skip": "per display hardware state, kept by the display system rather than in preferences",
 			"sources": [
 				"search:DisplaysExt.appex/resolutionSection/Screen Resolution"
 			],
@@ -217,10 +345,41 @@
 			"kind": "unknown",
 			"lastSeen": "26A428",
 			"section": "Sidecar Section",
+			"skip": "action (connecting an iPad), not a setting",
 			"sources": [
 				"search:DisplaysExt.appex/sidecarSection/Sidecar"
 			],
 			"title": "Sidecar"
+		},
+		"when-connected-to-tv": {
+			"choices": [
+				"Ask What to Show",
+				"Mirror Entire Screen",
+				"Choose Window or App",
+				"Use as Extended Display"
+			],
+			"firstSeen": "26A428",
+			"kind": "enum",
+			"lastSeen": "26A428",
+			"option": "applications.systemSettings.displays.whenConnectedToTv",
+			"sources": [
+				"option:applications.systemSettings.displays.whenConnectedToTv",
+				"ui:com.apple.settings.displayAndBrightness/When connected to TV"
+			],
+			"storage": [
+				{
+					"byHost": true,
+					"domain": "com.apple.windowserver.displays",
+					"key": "TVConnectPolicy",
+					"scope": "user"
+				}
+			],
+			"title": "When connected to TV",
+			"verified": {
+				"build": "26A428",
+				"commands": "b88b7e2438a1",
+				"date": "2026-09-23"
+			}
 		}
 	}
 }
