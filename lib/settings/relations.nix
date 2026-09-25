@@ -39,6 +39,9 @@ in
 			(result "assertion" context other
 				"${context.path} = ${show context.value} can't be combined with ${other} = ${show otherValue}: ${reason}." { });
 
+	validates = problems: context:
+		map (problem: { kind = "assertion"; id = context.path; message = "${context.path}: ${problem}."; }) (problems context.value);
+
 	implies = other: otherValue: reason: context:
 		let
 			current = context.get other;

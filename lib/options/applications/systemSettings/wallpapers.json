@@ -802,36 +802,411 @@
 		}
 	},
 	"dynamic": {
-		"17647EAB-8357-48B0-BCD6-B892194267C5": {
-			"dark": {
-				"id": "C6AECFD2-A365-4504-9E2C-F86343F9421F",
-				"url": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/GG_DM_H_v062_240fps-TSA.mov"
-			},
-			"light": {
-				"id": "4DFE24ED-71CC-42D4-9FE8-3B8959B6CC19",
-				"url": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/GG_LM_H_v063_240fps-TSA.mov"
-			}
+		"Big Sur": {
+			"asset": "Big Sur",
+			"file": "Big Sur",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/e9ff802c97332d002b37836419590a2b1ff3bcc9.zip"
+		},
+		"Big Sur Graphic": {
+			"asset": "Big Sur Graphic",
+			"file": "Big Sur Graphic",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/2d33861f84f21757db8d5cc656ae09b1143a2c73.zip"
+		},
+		"Catalina": {
+			"asset": "Catalina",
+			"file": "Catalina",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/59afad4cd59fa0713aff335c9337625a1f66f4ef.zip"
+		},
+		"Chroma Blue": {
+			"asset": "Chroma Blue",
+			"file": "Chroma Blue",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c10062037442790cb997ab928d7333522a254a6e.zip"
+		},
+		"Chroma Red": {
+			"asset": "Chroma Red",
+			"file": "Chroma Red",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/da5d0b60cde5324bd9c227b1884bb5f53c946bcd.zip"
+		},
+		"Dome": {
+			"asset": "Dome",
+			"file": "Dome",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/700df67acddd65e58b6e3721423d0b068a069bd2.zip"
+		},
+		"Grid Green": {
+			"asset": "Grid Green",
+			"file": "Grid Green",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/095efa5298db0ebd6b7e412a7c85584485a48f5d.zip"
+		},
+		"Grid Magenta": {
+			"asset": "Grid Magenta",
+			"file": "Grid Magenta",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/9b98e19d6f089acf511b530882fa3753e879514c.zip"
+		},
+		"Iridescence": {
+			"asset": "Iridescence",
+			"file": "Iridescence",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/46e6686aa6843d0644e4c30e615a2711fefdbf18.zip"
+		},
+		"Monterey": {
+			"asset": "Monterey Graphic",
+			"file": "Monterey Graphic",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/d4c77cf4009c1bdab346ae382e6ba4dda4771044.zip"
+		},
+		"Motion Blue": {
+			"asset": "Motion Blue",
+			"file": "Motion Blue",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c980841e99225d1fd043cce976b8a98d7364473f.zip"
+		},
+		"Motion Green": {
+			"asset": "Motion Green",
+			"file": "Motion Green",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/2a2e2a41296261e08c333d869436e7a29c762291.zip"
+		},
+		"Motion Purple": {
+			"asset": "Motion Purple",
+			"file": "Motion Purple",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/a1fc8d2763199f7666431ee9535e32a725e5d7fd.zip"
+		},
+		"Motion Yellow": {
+			"asset": "Motion Yellow",
+			"file": "Motion Yellow",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/7e62dd4fcacffe819b2b9da76d25dab6228a06be.zip"
+		},
+		"Peak": {
+			"asset": "Peak",
+			"file": "Peak",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/4d89b93aeffee77ead39815db6644b1b596b3d42.zip"
+		},
+		"Solar Gradients": {
+			"asset": "Solar Gradients",
+			"file": "Solar Gradients",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/7cb979f0eb47600cc8e4e508c805edf70c7bb49f.zip"
+		},
+		"The Beach": {
+			"asset": "The Beach",
+			"file": "The Beach",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c854fc48a85b79733a549908eb9959b80f08ba59.zip"
+		},
+		"The Cliffs": {
+			"asset": "The Cliffs",
+			"file": "The Cliffs",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/4ec43fc83806b6c451a59211da2824ffd353ccc9.zip"
+		},
+		"The Desert": {
+			"asset": "The Desert",
+			"file": "The Desert",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/ae505af39585154da2b94a135c385a2b686a8016.zip"
+		},
+		"The Lake": {
+			"asset": "The Lake",
+			"file": "The Lake",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/80f7969da23eae78caac64a3c7748c68c7ddf5df.zip"
+		},
+		"Tree": {
+			"asset": "Tree",
+			"file": "Tree",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/2fc0a3524fa9752a3179f8de08e37389be1fb767.zip"
+		},
+		"Valley": {
+			"asset": "Valley",
+			"file": "Valley",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c46a95be4c411a59841ade83a26a1971ed9ffc97.zip"
+		},
+		"Ventura": {
+			"asset": "Ventura Graphic",
+			"file": "Ventura Graphic",
+			"solar": true,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/f6c545d6b10bb0210fff16d65aa64c27e7ad834c.zip"
+		},
+		"hello Blue": {
+			"asset": "hello Blue",
+			"file": "hello Blue",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/1f75d474c7a88814613bc585a6bcd757106af8e1.zip"
+		},
+		"hello Green": {
+			"asset": "hello Green",
+			"file": "hello Green",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/e85b2f5fc4580f61f39b94165ad61efb4207bb56.zip"
+		},
+		"hello Grey": {
+			"asset": "hello Grey",
+			"file": "hello Grey",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/a34ef9bad7df959105cd068e2ecb29bc05110fdf.zip"
+		},
+		"hello Orange": {
+			"asset": "hello Orange",
+			"file": "hello Orange",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/97345aeb6f761e9a2a1eb13200d76b81254a6a25.zip"
+		},
+		"hello Purple": {
+			"asset": "hello Purple",
+			"file": "hello Purple",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/b6ad8dc52b9aa87aeee43f5cba04a59f0f4f7b8d.zip"
+		},
+		"hello Red": {
+			"asset": "hello Red",
+			"file": "hello Red",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/a8da7fa047e9db7f9ec8d92e0258edad84746f82.zip"
+		},
+		"hello Yellow": {
+			"asset": "hello Yellow",
+			"file": "hello Yellow",
+			"solar": false,
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/856383b1ab7eb1b08c917d58711ff27f0aafd724.zip"
 		}
 	},
-	"pictures": [
-		"Mac Blue",
-		"Mac Pink",
-		"Mac Purple",
-		"Mac Yellow",
-		"Radial Sky Blue",
-		"iMac Blue",
-		"iMac Green",
-		"iMac Orange",
-		"iMac Pink",
-		"iMac Purple",
-		"iMac Silver",
-		"iMac Yellow"
-	],
+	"goldenGate": {
+		"dark": {
+			"id": "C6AECFD2-A365-4504-9E2C-F86343F9421F",
+			"url": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/GG_DM_H_v062_240fps-TSA.mov"
+		},
+		"light": {
+			"id": "4DFE24ED-71CC-42D4-9FE8-3B8959B6CC19",
+			"url": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/GG_LM_H_v063_240fps-TSA.mov"
+		}
+	},
+	"pictures": {
+		"Big Sur Aerial": {
+			"asset": "Big Sur Aerial",
+			"file": "Big Sur Aerial",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/e6674785e7325590a4498f54a6554f90c69c7b45.zip"
+		},
+		"Big Sur Coastline": {
+			"asset": "Big Sur Coastline",
+			"file": "Big Sur Coastline",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/bec472e7c6e54ee0765abffa76c624290b9ef2c2.zip"
+		},
+		"Big Sur Horizon": {
+			"asset": "Big Sur Horizon",
+			"file": "Big Sur Horizon",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/523018afdcacd0fc99fa9364013ed6218aea745e.zip"
+		},
+		"Big Sur Mountains": {
+			"asset": "Big Sur Mountains",
+			"file": "Big Sur Mountains",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/7a1f6e346a253992b2df0358398caafb6d75fe4a.zip"
+		},
+		"Big Sur Night Grasses": {
+			"asset": "Big Sur Night Grasses",
+			"file": "Big Sur Night Grasses",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/2a4e3657b33078a98b8ed335adfedb5b600bafae.zip"
+		},
+		"Big Sur Night Succulents": {
+			"asset": "Big Sur Night Succulents",
+			"file": "Big Sur Night Succulents",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/7eb0f47dc8ea3304979f42765c14af2a35f9590b.zip"
+		},
+		"Big Sur Road": {
+			"asset": "Big Sur Road",
+			"file": "Big Sur Road",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/643aa03a1828fb2170170ef999b18900bd6b26f6.zip"
+		},
+		"Big Sur Shore Rocks": {
+			"asset": "Big Sur Shore Rocks",
+			"file": "Big Sur Shore Rocks",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/66fad172df2e61ff98e9a70d403fb50ca3af1d4e.zip"
+		},
+		"Big Sur Waters Edge": {
+			"asset": "Big Sur Waters Edge",
+			"file": "Big Sur Waters Edge",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/1ad4d39118248bd2a623370876767bd4ed3eeeee.zip"
+		},
+		"Catalina Clouds": {
+			"asset": "Catalina Clouds",
+			"file": "Catalina Clouds",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/866514bba2be10285b3c5bb2dfef3c40a6946829.zip"
+		},
+		"Catalina Coast": {
+			"asset": "Catalina Coast",
+			"file": "Catalina Coast",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c6c9ca41d1881e844e85e85a5147613b807b06d0.zip"
+		},
+		"Catalina Evening": {
+			"asset": "Catalina Evening",
+			"file": "Catalina Evening",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/65338fda7d341b30bcdbd0b3bcdb411c033e6c11.zip"
+		},
+		"Catalina Rock": {
+			"asset": "Catalina Rock",
+			"file": "Catalina Rock",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/6b1ccf74a04b6992e044af258a5b4662485a8994.zip"
+		},
+		"Catalina Shoreline": {
+			"asset": "Catalina Shoreline",
+			"file": "Catalina Shoreline",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/a8af0c8d16da2a3b7e7324ad0798d758d0c5f5e4.zip"
+		},
+		"Catalina Silhouette": {
+			"asset": "Catalina Silhouette",
+			"file": "Catalina Silhouette",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/db05089e5e432fda7e4e339c4c7e2d36a804bf0d.zip"
+		},
+		"Catalina Sunset": {
+			"asset": "Catalina Sunset",
+			"file": "Catalina Sunset",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/b991ac5063c6da73ac1bada9fc94f7e934bd6c03.zip"
+		},
+		"Hello Metallic Blue": {
+			"asset": "Hello Metallic Blue",
+			"file": "Hello Metallic Blue",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/99b5ae52256c44965a1265411ce184d6a1f2cf2a.zip"
+		},
+		"Hello Metallic Green": {
+			"asset": "Hello Metallic Green",
+			"file": "Hello Metallic Green",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/b702030fee930d9dab07f83c10f9f30a9a5d4bb1.zip"
+		},
+		"Hello Metallic Orange": {
+			"asset": "Hello Metallic Orange",
+			"file": "Hello Metallic Orange",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/62f0ced59f28f8e65d41754786008d627c443257.zip"
+		},
+		"Hello Metallic Pink": {
+			"asset": "Hello Metallic Pink",
+			"file": "Hello Metallic Pink",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c0a150b6685ed05aa91c2ceb8d1b37fbd342ba70.zip"
+		},
+		"Hello Metallic Purple": {
+			"asset": "Hello Metallic Purple",
+			"file": "Hello Metallic Purple",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/6e4c91a8cfa767aca5ba477906fa517735867980.zip"
+		},
+		"Hello Metallic Silver": {
+			"asset": "Hello Metallic Silver",
+			"file": "Hello Metallic Silver",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/e4a826e3959d9384a72276e3a15176721a5b41c3.zip"
+		},
+		"Hello Metallic Yellow": {
+			"asset": "Hello Metallic Yellow",
+			"file": "Hello Metallic Yellow",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/144035e268dafaa04813eb94b278d7615bcdf63a.zip"
+		},
+		"Light Stream Blue": {
+			"asset": "Light Stream Blue",
+			"file": "Light Stream Blue",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/60e9e8ca2c917f52897508b8c28bd5e8975a42f0.zip"
+		},
+		"Light Stream Green": {
+			"asset": "Light Stream Green",
+			"file": "Light Stream Green",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/d3d47f26926d43ff23ac36ea6ded7204d0e1984a.zip"
+		},
+		"Light Stream Pink": {
+			"asset": "Light Stream Pink",
+			"file": "Light Stream Pink",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/770b074cd6480fdcc2d012b8283ef38db71ac611.zip"
+		},
+		"Light Stream Red": {
+			"asset": "Light Stream Red",
+			"file": "Light Stream Red",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/ee0fb28865726fdda48d21a58d57a5a1993c143a.zip"
+		},
+		"Mac Blue": {
+			"file": "Mac Blue"
+		},
+		"Mac Pink": {
+			"file": "Mac Pink"
+		},
+		"Mac Purple": {
+			"file": "Mac Purple"
+		},
+		"Mac Yellow": {
+			"file": "Mac Yellow"
+		},
+		"Pro Black": {
+			"asset": "Pro Black",
+			"file": "Pro Black",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/af387372ce7f6bcf1af7bea584e6655bcf3b6116.zip"
+		},
+		"Radial Blue": {
+			"asset": "Radial Blue",
+			"file": "Radial Blue",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c76b3a1d64ec1ed2893389953c9f5b369b7020d0.zip"
+		},
+		"Radial Green": {
+			"asset": "Radial Green",
+			"file": "Radial Green",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/e996bbb1e7c7aa19cb1822af28b163977a1dac72.zip"
+		},
+		"Radial Purple": {
+			"asset": "Radial Purple",
+			"file": "Radial Purple",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/c4a6e6bbb4c49c8c9b4be2a0bddc54debcf54311.zip"
+		},
+		"Radial Sky Blue": {
+			"file": "Radial Sky Blue"
+		},
+		"Radial Yellow": {
+			"asset": "Radial Yellow",
+			"file": "Radial Yellow",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/5d9af619c752c0363961aaf546dc35fff2480ef1.zip"
+		},
+		"Studio Color": {
+			"asset": "Studio Color",
+			"file": "Studio Color",
+			"url": "https://updates.cdn-apple.com/2025/mobileassets/072-29818/74AF556A-DC02-429B-894B-23AB61E2A5F9/com_apple_MobileAsset_DesktopPicture/0830ece064a9b3ac731d75e63ba0bacccd9c199e.zip"
+		},
+		"iMac Blue": {
+			"file": "iMac Blue"
+		},
+		"iMac Green": {
+			"file": "iMac Green"
+		},
+		"iMac Orange": {
+			"file": "iMac Orange"
+		},
+		"iMac Pink": {
+			"file": "iMac Pink"
+		},
+		"iMac Purple": {
+			"file": "iMac Purple"
+		},
+		"iMac Silver": {
+			"file": "iMac Silver"
+		},
+		"iMac Yellow": {
+			"file": "iMac Yellow"
+		}
+	},
 	"shuffles": {
 		"Shuffle All": "shuffle-all-aerials",
 		"Shuffle Cityscape": "5EF41171-4862-4F93-800C-AD86CE5E6891",
 		"Shuffle Earth": "55B7C95D-CEAF-4FD8-ADEF-F5BC657D8F6D",
 		"Shuffle Landscape": "A33A55D9-EDEA-4596-A850-6C10B54FBBB5",
 		"Shuffle Underwater": "8BE8B524-6EAE-43F5-A3E8-01DCFA1BCD4B"
+	},
+	"tahoe": {
+		"darkLandscape": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/tahoe-dark-landscape.mov",
+		"darkPortrait": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/tahoe-dark-portrait.mov",
+		"lightLandscape": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/tahoe-light-landscape.mov",
+		"lightPortrait": "https://sylvan.apple.com/itunes-assets/Aerials116/v4/cb/5b/50/cb5b5035-6701-619f-9065-3d7d0e5fbef4/tahoe-light-portrait.mov"
 	}
 }
