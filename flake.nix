@@ -46,7 +46,8 @@
 					(lib.optionalString (scripts.system != "") "sudo /bin/bash -c ${lib.escapeShellArg scripts.system}")
 				]);
 
-			lib.current = state: args: settingsLib.read.current ({ inherit tree state; } // args);
+			lib.collect = args: settingsLib.read.collect ({ inherit tree; } // args);
+			lib.current = args: settingsLib.read.current ({ inherit tree; recorded = ./defaults; } // args);
 
 			optionIndex = import ./lib/optionIndex.nix { inherit lib; } tree;
 
@@ -107,8 +108,8 @@
 				in
 				{
 					apply = app "apply" (fromFlake + builtins.readFile ./tools/apply.sh);
-					current = app "current" (fromFlake + "exec ${python} ${self}/tools/current.py \"$@\"");
-					capture = app "capture" (fromFlake + "exec ${python} ${self}/tools/current.py capture \"$@\"");
+					current = app "current" (fromFlake + builtins.readFile ./tools/current.sh);
+					capture = app "capture" (fromFlake + "set -- capture \"$@\"\n" + builtins.readFile ./tools/current.sh);
 					verify = app "verify" ''
 						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
 						exec ${python} "$NIX_PLIST_MANAGER_ROOT/tools/verify.py" "$@"

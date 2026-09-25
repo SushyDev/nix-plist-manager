@@ -1,4 +1,4 @@
-{ lib, module }:
+{ lib, module, render }:
 let
 	keyId = key: "${key.domain}|${lib.boolToString key.byHost}|${key.scope}";
 
@@ -123,8 +123,61 @@ in
 		lib.concatMap (leaf: lib.concatMap (check leaf) leaf.entry.codec.examples)
 			(lib.filter (leaf: readable leaf.entry) (module.settingsIn tree));
 
-	current = { tree, state, scope ? null, against ? null, only ? "", all ? false }:
+	# A script that prints the state `current` reads: every key the options store, each setting's
+	# reader output, and snapshots captured into `snapshots`/<name>, or one into `capture.directory`.
+	collect = { tree, scope ? null, only ? "", snapshots ? null, capture ? null }:
 		let
+			all = lib.filter (leaf: (scope == null || leaf.entry.scope == scope) && lib.hasPrefix only (lib.concatStringsSep "." leaf.path))
+				(module.settingsIn tree);
+			captureLeaf = lib.findFirst (leaf: option leaf == capture.option) (throw "no option ${capture.option}") all;
+			leaves =
+				if capture == null then all
+				else if captureLeaf.entry.codec.kind != "snapshot" then throw "${capture.option} isn't a snapshot setting; set it in your configuration instead"
+				else [ captureLeaf ];
+			snapshotDirectory = leaf: if capture != null then capture.directory else "${snapshots}/${lib.last leaf.path}";
+			option = leaf: lib.concatStringsSep "." leaf.path;
+			keys = lib.filter (key: key.name != null) (lib.concatMap (leaf: lib.attrValues leaf.entry.keys) leaves);
+			domains = lib.imap0 (at: group: { id = keyId (lib.head group); file = "domain-${toString at}.plist"; key = lib.head group; keys = lib.unique (map (key: key.name) group); })
+				(lib.attrValues (lib.groupBy keyId keys));
+			readers = lib.imap0 (at: leaf: { option = option leaf; file = "read-${toString at}.txt"; inherit (leaf.entry.reads) command; })
+				(lib.filter (leaf: leaf.entry.reads != null) leaves);
+			captured = lib.optionals (snapshots != null || capture != null) (lib.imap0 (at: leaf: {
+				option = option leaf;
+				directory = snapshotDirectory leaf;
+				files = lib.imap0 (index: stored: {
+					file = "snapshot-${toString at}-${toString index}.plist";
+					source = stored.value;
+					key = stored.value.name;
+					out = "${stored.name}.plist";
+				}) (lib.attrsToList leaf.entry.keys);
+			}) (lib.filter (leaf: leaf.entry.codec.kind == "snapshot") leaves));
+			manifest = {
+				domains = map (domain: removeAttrs domain [ "key" ]) domains;
+				reads = map (reader: removeAttrs reader [ "command" ]) readers;
+				snapshots = map (snapshot: snapshot // { files = map (file: removeAttrs file [ "source" ]) snapshot.files; }) captured;
+			};
+			q = lib.escapeShellArg;
+		in
+		lib.concatStringsSep "\n" (
+			[ "dir=$(/usr/bin/mktemp -d)" ]
+			++ map (domain: "${render.export domain.key "\"$dir\"/${domain.file}"} 2>/dev/null") domains
+			++ map (reader: "( ${reader.command} ) > \"$dir\"/${reader.file} 2>/dev/null &") readers
+			++ lib.concatMap (snapshot: map (file: "${render.export file.source "\"$dir\"/${file.file}"} 2>/dev/null") snapshot.files) captured
+			++ [
+				"wait"
+				"printf '%s' ${q (builtins.toJSON manifest)} > \"$dir\"/manifest.json"
+				"/usr/bin/osascript -l JavaScript ${./preferences.js} \"$dir\""
+				"/bin/rm -rf \"$dir\""
+			]
+		);
+
+	current = { tree, collected ? {}, recorded ? null, build ? null, scope ? null, against ? null, againstFile ? null, only ? "", all ? false, uiRead ? false }:
+		let
+			# the defaults recorded on this macOS build, or on the latest one recorded before it
+			builds = lib.sort (a: b: a < b) (map (lib.removeSuffix ".json") (lib.attrNames (lib.optionalAttrs (recorded != null) (builtins.readDir recorded))));
+			defaultsBuild = if lib.elem build builds then build else lib.findFirst (recordedBuild: build != null && recordedBuild < build) null (lib.reverseList builds);
+			recordedDefaults = lib.optionalAttrs (defaultsBuild != null) { defaults = lib.importJSON (recorded + "/${defaultsBuild}.json"); };
+			state = { domains = {}; reads = {}; ui = {}; snapshots = {}; defaults = {}; } // recordedDefaults // collected;
 			readScope = scopeName:
 				let
 					leaves = lib.filter (leaf: leaf.entry.scope == scopeName && lib.hasPrefix only (lib.concatStringsSep "." leaf.path)) (module.settingsIn tree);
@@ -157,12 +210,27 @@ in
 				};
 			scopes = lib.genAttrs (if scope == null then [ "user" "system" ] else [ scope ]) readScope;
 		in
+		let
+			total = field: lib.foldl' (sum: result: sum + result.${field}) 0 (lib.attrValues scopes);
+			unread = lib.concatMap (result: result.unread) (lib.attrValues scopes);
+			nothingStored = lib.filter (missing: !missing.snapshot) unread;
+			fromUI = lib.filter (missing: missing.ui) nothingStored;
+			snapshotsSkipped = lib.count (missing: missing.snapshot) unread;
+			noDefault = total "read" - total "defaultKnown";
+			count = n: one: many: "${toString n} ${if n == 1 then one else many}";
+		in
 		{
 			text = lib.generators.toPretty {} (if scope == null then lib.mapAttrs (_: result: result.values) scopes else scopes.${scope}.values);
-			read = lib.foldl' (sum: result: sum + result.read) 0 (lib.attrValues scopes);
-			changed = lib.foldl' (sum: result: sum + result.changed) 0 (lib.attrValues scopes);
-			atDefault = lib.foldl' (sum: result: sum + result.atDefault) 0 (lib.attrValues scopes);
-			defaultKnown = lib.foldl' (sum: result: sum + result.defaultKnown) 0 (lib.attrValues scopes);
-			unread = lib.concatMap (result: result.unread) (lib.attrValues scopes);
+			summary = lib.concatStrings [
+				"${toString (total "read")} settings read"
+				(if againstFile != null then ", ${toString (total "changed")} differ from ${againstFile}"
+				else lib.optionalString (!all) (", ${toString (total "atDefault")} at macOS's default left out"
+					+ lib.optionalString (noDefault > 0) " (${count noDefault "has" "have"} no known default${lib.optionalString (defaultsBuild == null) "; none recorded for this macOS yet"})"))
+				(lib.optionalString (nothingStored != []) ("; ${count (lib.length nothingStored) "has" "have"} nothing stored"
+					+ lib.optionalString (fromUI != [] && !uiRead) " (--ui reads ${toString (lib.length fromUI)} of them from System Settings)"))
+				(lib.optionalString (snapshotsSkipped > 0) "; ${toString snapshotsSkipped} snapshots skipped (--snapshots)")
+			];
+			nothingStored = lib.concatMapStringsSep "\n" (missing: "  ${missing.option}") nothingStored;
+			fromUI = toString (map (missing: missing.option) fromUI);
 		};
 }

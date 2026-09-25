@@ -12,7 +12,7 @@ let
 	module = import ./module.nix { inherit lib render; inherit (core) isSetting; };
 	describe = import ./describe.nix { inherit lib render; };
 	shows = import ./shows.nix { inherit lib; };
-	read = import ./read.nix { inherit lib module; };
+	read = import ./read.nix { inherit lib module render; };
 in
 storage // codecs // behaviorsLib // relations // core // describe // {
 	inherit ops render module live shortcuts shows read;

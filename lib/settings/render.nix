@@ -86,6 +86,9 @@ let
 
 in
 {
+	# `defaults export` of a key's whole domain into the file
+	export = key: file: "${defaults (defaultsFor "export" (key // { name = null; }) [])} ${file}";
+
 	script = plan:
 		let
 			ofOp = op: lib.filter (s: s.op == op) plan;
