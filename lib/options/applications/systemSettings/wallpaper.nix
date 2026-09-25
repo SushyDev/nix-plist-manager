@@ -92,17 +92,34 @@ let
 	goldenGate = "17647EAB-8357-48B0-BCD6-B892194267C5";
 	dynamicWallpapers = [ "Golden Gate" "Tahoe" "Sequoia" "Sonoma" "Macintosh" ] ++ lib.attrNames catalog.dynamic;
 
-	# a name, or the name with its options; `names` is the option that says which
-	choice = { name, names, options, examples }: {
-		kind = "wallpaper";
-		normalize = value: lib.mapAttrs (_: option: option.default) (lib.filterAttrs (_: option: option.default != null) options)
-			// (if lib.isAttrs value then lib.filterAttrs (_: v: v != null) value else { ${names} = value; });
-		type = lib.types.coercedTo name (value: { ${names} = value; }) (lib.types.submodule { options = options; });
-		choices = [];
-		inherit examples;
-		encode = _: _: [];
-		fromName = builtins.fromJSON;
-	};
+	# A name, or the name with its options; `names` is the option that says which. `only` holds the
+	# options that apply to some names: their default is filled in, and setting them elsewhere is an error.
+	choice = { name, names, options, only ? {}, required ? true, examples }:
+		let
+			given = value: lib.filterAttrs (_: v: v != null) (if lib.isAttrs value then value else { ${names} = value; });
+			applies = value: lib.filterAttrs (_: option: given value ? ${names} && option.for (given value).${names}) only;
+			defaults = attrs: lib.mapAttrs (_: option: option.default) (lib.filterAttrs (_: option: option.default != null) attrs);
+		in
+		{
+			kind = "wallpaper";
+			normalize = value: defaults options // defaults (applies value) // given value;
+			problems = value:
+				if required && !(given value ? ${names}) then [ "set `${names}`" ]
+				else lib.mapAttrsToList (option: _: "`${option}` is only for ${only.${option}.forWhom}")
+					(lib.filterAttrs (option: _: given value ? ${option}) (removeAttrs only (lib.attrNames (applies value))));
+			type = lib.types.coercedTo name (value: { ${names} = value; }) (lib.types.submodule {
+				options = options // lib.mapAttrs (_: option: lib.mkOption {
+					type = lib.types.nullOr option.type;
+					default = null;
+					description = "${option.description} Only for ${option.forWhom}${lib.optionalString (option.default != null) "; ${option.default} if not set"}.";
+				}) only;
+			});
+			choices = [];
+			inherit examples;
+			encode = _: _: [];
+			fromName = builtins.fromJSON;
+		};
+	onlyFor = forWhom: for: type: default: description: { inherit forWhom for type default description; };
 	option = type: default: description: lib.mkOption { inherit type default description; };
 	oneOf = table: lib.types.enum (lib.attrNames table);
 	pathOrString = lib.types.either lib.types.path lib.types.str;
@@ -123,8 +140,8 @@ let
 				options = {
 					name = option (lib.types.enum dynamicWallpapers) null "The wallpaper.";
 					appearance = option (oneOf appearances) "Automatic" "Light, Dark, or following the appearance or the sun.";
-					color = option (oneOf macintoshColors) "Spectrum" "Macintosh's colors.";
 				};
+				only.color = onlyFor "Macintosh" (name: name == "Macintosh") (oneOf macintoshColors) "Spectrum" "Macintosh's colors.";
 			};
 			choice = wallpaper:
 				let
@@ -174,8 +191,8 @@ let
 				examples = [ "Tahoe Day" { name = "Shuffle Landscape"; shuffle = "Every Week"; } ];
 				options = {
 					name = option (oneOf (catalog.aerials // catalog.shuffles)) null "The aerial, or a shuffle.";
-					shuffle = option (oneOf aerialShuffleFrequencies) "Every Day" "How often a shuffle changes.";
 				};
+				only.shuffle = onlyFor "the shuffles" (name: catalog.shuffles ? ${name}) (oneOf aerialShuffleFrequencies) "Every Day" "How often a shuffle changes.";
 			};
 			choice = wallpaper:
 				if catalog.shuffles ? ${wallpaper.name} then {
@@ -221,9 +238,11 @@ let
 				examples = [ "Plum" "#1E90FF" { name = "Random"; shuffle = "Every Hour"; gradient = true; } ];
 				options = {
 					name = option (lib.types.nullOr (lib.types.either (oneOf (colors // { Random = null; })) hexColor)) null "The color, your own as \"#RRGGBB\", or Random.";
-					shuffle = option (oneOf shuffleFrequencies) "Every Day" "How often Random changes the color.";
-					randomly = option lib.types.bool true "Whether Random picks colors in a random order.";
 					gradient = option lib.types.bool false "Whether the color is shown as a gradient.";
+				};
+				only = {
+					shuffle = onlyFor "Random" (name: name == "Random") (oneOf shuffleFrequencies) "Every Day" "How often the color changes.";
+					randomly = onlyFor "Random" (name: name == "Random") lib.types.bool true "Whether the colors come in a random order.";
 				};
 			};
 			choice = wallpaper:
@@ -287,6 +306,7 @@ let
 			value = choice {
 				name = pathOrString;
 				names = "path";
+				required = false;
 				examples = [ "/Users/me/Pictures/Wallpapers" { album = "Vacation"; shuffle = "Every Hour"; } ];
 				options = {
 					path = option (lib.types.nullOr pathOrString) null "The folder.";
@@ -332,7 +352,9 @@ let
 		fromName = builtins.fromJSON;
 	};
 
-	problemsOf = name: value: (kinds.${name}.problems or (_: [])) (normalize kinds.${name} value);
+	problemsOf = name: value:
+		(kinds.${name}.value.problems or (_: [])) value
+		++ (kinds.${name}.problems or (_: [])) (normalize kinds.${name} value);
 
 	# One wallpaper for every Desktop, which `spaces` can change for some of them; a snapshot replaces both.
 	# `spaces` is written after the others because options are applied in alphabetical order.
@@ -345,7 +367,9 @@ let
 	wallpaper = name: { ui, description, value, apply ? null, storage ? store, canUnset ? false, problems ? (_: []) }: setting {
 		inherit ui description value storage canUnset;
 		behaviors = lib.optional (apply != null) (appliesThrough apply) ++ [ (restartsDiscardingItsState "WallpaperAgent") ];
-		relations = map (other: conflictsWith "applications.systemSettings.wallpaper.${other}" (_: true) "only one wallpaper can be set for every Desktop") excludes.${name}
+		# each pair is reported once
+		relations = map (other: conflictsWith "applications.systemSettings.wallpaper.${other}" (_: true) "only one wallpaper can be set for every Desktop")
+			(lib.filter (other: name < other) excludes.${name})
 			++ [ (validates problems) ];
 	};
 
