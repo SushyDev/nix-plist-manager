@@ -1,15 +1,8 @@
-// ax dump [--depth N] [--sheet] | get|press|click|items <label> | set <label> <value> | pick <label> <item>
-// Labels: "A > B" (B inside A), "B + C" (both labels), "AXRole:B" (by role), "B#2" (second match).
-
-import ApplicationServices
 import AppKit
+import ApplicationServices
 import Foundation
 
 let settingsBundleID = ProcessInfo.processInfo.environment["AX_APP"] ?? "com.apple.systempreferences"
-
-struct Failure: Error, CustomStringConvertible {
-	let description: String
-}
 
 func attribute(_ element: AXUIElement, _ name: String) -> AnyObject? {
 	var value: AnyObject?
@@ -53,7 +46,7 @@ func jsonValue(_ value: AnyObject?) -> Any {
 
 func settingsApp() throws -> AXUIElement {
 	guard let app = NSRunningApplication.runningApplications(withBundleIdentifier: settingsBundleID).first else {
-		throw Failure(description: "System Settings is not running")
+		throw Failure("System Settings is not running")
 	}
 	let appElement = AXUIElementCreateApplication(app.processIdentifier)
 	AXUIElementSetMessagingTimeout(appElement, 5)
@@ -73,7 +66,7 @@ func menus() throws -> [AXUIElement] {
 func openMenu(for popup: AXUIElement) throws -> AXUIElement {
 	let before = try menus()
 	guard AXUIElementPerformAction(popup, kAXPressAction as CFString) == .success else {
-		throw Failure(description: "could not open the pop-up")
+		throw Failure("could not open the pop-up")
 	}
 	for _ in 0..<20 {
 		Thread.sleep(forTimeInterval: 0.1)
@@ -81,7 +74,7 @@ func openMenu(for popup: AXUIElement) throws -> AXUIElement {
 			return menu
 		}
 	}
-	throw Failure(description: "no menu opened")
+	throw Failure("no menu opened")
 }
 
 func closeMenus() {
@@ -106,14 +99,14 @@ func bringToFront() throws {
 		if isFront() { return }
 		Thread.sleep(forTimeInterval: 0.1)
 	}
-	throw Failure(description: "couldn't bring System Settings to the front")
+	throw Failure("couldn't bring System Settings to the front")
 }
 
 func settingsWindow() throws -> AXUIElement {
 	let appElement = try settingsApp()
 	if ProcessInfo.processInfo.environment["AX_APP"] != nil { return appElement }
 	guard let window = (attribute(appElement, kAXWindowsAttribute) as? [AXUIElement])?.first else {
-		throw Failure(description: "System Settings has no window")
+		throw Failure("System Settings has no window")
 	}
 	return window
 }
@@ -227,10 +220,10 @@ struct Query {
 	func pick(_ matches: [AXUIElement]) throws -> AXUIElement {
 		let controls = matches.filter { string($0, kAXRoleAttribute) != kAXStaticTextRole }
 		if let nth = nth {
-			guard nth <= controls.count else { throw Failure(description: "only \(controls.count) elements labeled '\(text)'") }
+			guard nth <= controls.count else { throw Failure("only \(controls.count) elements labeled '\(text)'") }
 			return controls[nth - 1]
 		}
-		guard let match = controls.first ?? matches.first else { throw Failure(description: "no element labeled '\(text)'") }
+		guard let match = controls.first ?? matches.first else { throw Failure("no element labeled '\(text)'") }
 		return match
 	}
 }
@@ -282,15 +275,25 @@ func describe(_ element: AXUIElement, path: [String], depth: Int) -> [String: An
 	return entry
 }
 
-func printJSON(_ object: Any) {
+func jsonLine(_ object: Any) -> String {
 	let data = try! JSONSerialization.data(withJSONObject: object, options: [.sortedKeys, .fragmentsAllowed])
-	print(String(data: data, encoding: .utf8)!)
+	return String(data: data, encoding: .utf8)!
 }
 
-func run(_ args: [String]) throws {
-	guard AXIsProcessTrusted() else { throw Failure(description: "Accessibility permission is not granted") }
-	guard let command = args.first else { throw Failure(description: "usage: ax dump|get|press|set|pick …") }
+// An ax command's output: dump [--depth N] [--sheet] | get|press|click|items <label> | values <label>… |
+// set <label> <value> | pick <label> <item>. Labels: "A > B" (B inside A), "B + C" (both labels),
+// "AXRole:B" (by role), "B#2" (second match).
+@discardableResult
+func ax(_ args: String...) throws -> String {
+	try ax(args)
+}
+
+@discardableResult
+func ax(_ args: [String]) throws -> String {
+	guard AXIsProcessTrusted() else { throw Failure("Accessibility permission is not granted") }
+	guard let command = args.first else { throw Failure("usage: ax dump|get|press|click|values|set|items|pick …") }
 	let window = try settingsWindow()
+	var lines: [String] = []
 
 	switch command {
 	case "dump":
@@ -298,23 +301,23 @@ func run(_ args: [String]) throws {
 		var root = window
 		if args.contains("--sheet") {
 			guard let sheet = children(window).first(where: { string($0, kAXRoleAttribute) == kAXSheetRole }) else {
-				throw Failure(description: "no sheet is open")
+				throw Failure("no sheet is open")
 			}
 			root = sheet
 		}
 		walk(root, maxDepth: maxDepth) { element, path, depth in
-			printJSON(describe(element, path: path, depth: depth))
+			lines.append(jsonLine(describe(element, path: path, depth: depth)))
 			return true
 		}
 
 	case "get":
-		guard args.count == 2 else { throw Failure(description: "usage: ax get <label>") }
+		guard args.count == 2 else { throw Failure("usage: ax get <label>") }
 		let element = try find(args[1], in: window)
 		var entry = describe(element, path: [], depth: 0)
 		var actions: CFArray?
 		if AXUIElementCopyActionNames(element, &actions) == .success { entry["actions"] = actions as? [String] ?? [] }
 		if let frame = frame(of: element) { entry["frame"] = [frame.minX, frame.minY, frame.width, frame.height] }
-		printJSON(entry)
+		lines.append(jsonLine(entry))
 
 	case "values":
 		var result: [String: Any] = [:]
@@ -324,25 +327,26 @@ func run(_ args: [String]) throws {
 			case .failure(let error): result[query] = ["error": "\(error)"]
 			}
 		}
-		printJSON(result)
+		lines.append(jsonLine(result))
 
 	case "press":
-		guard args.count == 2 else { throw Failure(description: "usage: ax press <label>") }
+		guard args.count == 2 else { throw Failure("usage: ax press <label>") }
 		let result = AXUIElementPerformAction(try find(args[1], in: window), kAXPressAction as CFString)
-		guard result == .success else { throw Failure(description: "AXPress failed: \(result.rawValue)") }
+		guard result == .success else { throw Failure("AXPress failed: \(result.rawValue)") }
 
 	case "click":
 		// SwiftUI switches ignore AXPress
-		guard args.count == 2 else { throw Failure(description: "usage: ax click <label>") }
+		guard args.count == 2 else { throw Failure("usage: ax click <label>") }
 		let element = try find(args[1], in: window)
 		try bringToFront()
 		AXUIElementPerformAction(window, kAXRaiseAction as CFString)
 		// a click below the fold would land on whatever is on screen there, such as the Dock
-		guard let windowBox = frame(of: window) else { throw Failure(description: "the window has no frame") }
+		guard let windowBox = frame(of: window) else { throw Failure("the window has no frame") }
 		let visible = windowBox.intersection(NSScreen.screens.first.map { CGRect(origin: .zero, size: $0.frame.size) } ?? windowBox)
 		var box = frame(of: element)
 		// scroll events go to the column under the pointer
-		let column = box.map { min(max($0.midX, visible.minX + 10), visible.maxX - 10) } ?? (visible.minX + visible.width * 0.7)
+		let column: CGFloat = box.map { (frame: CGRect) -> CGFloat in min(max(frame.midX, visible.minX + 10), visible.maxX - 10) }
+			?? visible.minX + visible.width * 0.7
 		let paneCenter = CGPoint(x: column, y: visible.midY)
 		CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: paneCenter, mouseButton: .left)?
 			.post(tap: .cghidEventTap)
@@ -366,7 +370,7 @@ func run(_ args: [String]) throws {
 			box = frame(of: element)
 		}
 		guard let box = box, visible.contains(box) else {
-			throw Failure(description: "'\(args[1])' can't be scrolled into view, not clicking")
+			throw Failure("'\(args[1])' can't be scrolled into view, not clicking")
 		}
 		let point = CGPoint(x: box.midX, y: box.midY)
 		for type in [CGEventType.mouseMoved, .leftMouseDown, .leftMouseUp] {
@@ -375,14 +379,14 @@ func run(_ args: [String]) throws {
 		}
 
 	case "set":
-		guard args.count == 3 else { throw Failure(description: "usage: ax set <label> <value>") }
+		guard args.count == 3 else { throw Failure("usage: ax set <label> <value>") }
 		let element = try find(args[1], in: window)
 		let value: CFTypeRef = Double(args[2]).map { $0 as NSNumber } ?? args[2] as NSString
 		let result = AXUIElementSetAttributeValue(element, kAXValueAttribute as CFString, value)
-		guard result == .success else { throw Failure(description: "setting AXValue failed: \(result.rawValue)") }
+		guard result == .success else { throw Failure("setting AXValue failed: \(result.rawValue)") }
 
 	case "items":
-		guard args.count == 2 else { throw Failure(description: "usage: ax items <label>") }
+		guard args.count == 2 else { throw Failure("usage: ax items <label>") }
 		let menu = try openMenu(for: try find(args[1], in: window))
 		var items: [String] = []
 		walk(menu) { element, _, _ in
@@ -394,10 +398,10 @@ func run(_ args: [String]) throws {
 			return true
 		}
 		closeMenus()
-		printJSON(items)
+		lines.append(jsonLine(items))
 
 	case "pick":
-		guard args.count == 3 else { throw Failure(description: "usage: ax pick <label> <item>") }
+		guard args.count == 3 else { throw Failure("usage: ax pick <label> <item>") }
 		let menu = try openMenu(for: try find(args[1], in: window))
 		var item: AXUIElement?
 		walk(menu) { element, _, _ in
@@ -411,38 +415,16 @@ func run(_ args: [String]) throws {
 		}
 		guard let menuItem = item else {
 			closeMenus()
-			throw Failure(description: "no menu item '\(args[2])'")
+			throw Failure("no menu item '\(args[2])'")
 		}
 		if let enabled = attribute(menuItem, kAXEnabledAttribute) as? Bool, !enabled {
 			closeMenus()
-			throw Failure(description: "menu item '\(args[2])' is disabled")
+			throw Failure("menu item '\(args[2])' is disabled")
 		}
 		AXUIElementPerformAction(menuItem, kAXPressAction as CFString)
 
 	default:
-		throw Failure(description: "unknown command \(command)")
+		throw Failure("unknown command \(command)")
 	}
-}
-
-// ax serve: one command per line as a JSON array, each answered by its output and an "\u{4} ok" or
-// "\u{4} <error>" line, so callers skip starting a process per command
-if CommandLine.arguments.dropFirst().first == "serve" {
-	while let line = readLine() {
-		let args = (try? JSONSerialization.jsonObject(with: Data(line.utf8))) as? [String] ?? []
-		do {
-			try run(args)
-			print("\u{4} ok")
-		} catch {
-			print("\u{4} \(error)")
-		}
-		fflush(stdout)
-	}
-	exit(0)
-}
-
-do {
-	try run(Array(CommandLine.arguments.dropFirst()))
-} catch {
-	FileHandle.standardError.write("ax: \(error)\n".data(using: .utf8)!)
-	exit(1)
+	return lines.joined(separator: "\n")
 }

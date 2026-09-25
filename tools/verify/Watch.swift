@@ -1,5 +1,3 @@
-// nix run .#watch [-- <domain part>…]: print each preference key that changes; -g is the global domain.
-
 import CoreServices
 import Foundation
 
@@ -10,7 +8,6 @@ let roots = [
 	"\(home)/Library/Group Containers",
 	"/Library/Preferences",
 ]
-let filters = CommandLine.arguments.dropFirst().map { $0 == "-g" ? ".GlobalPreferences" : $0 }
 
 let noisyKeys = try! NSRegularExpression(
 	pattern: "LastUpdate|Timestamp|LastSeen|lastUsed|LaunchCount|WindowFrame|NSWindow|NSSplitView|NSNavPanel|NSToolbar|"
@@ -31,19 +28,19 @@ func isNoise(_ key: String) -> Bool {
 	noisyKeys.firstMatch(in: key, range: NSRange(key.startIndex..., in: key)) != nil
 }
 
-func isPreferenceFile(_ path: String) -> Bool {
+func isPreferenceFile(_ path: String, _ filters: [String]) -> Bool {
 	path.hasSuffix(".plist") && path.contains("/Preferences/")
 		&& (filters.isEmpty || filters.contains { path.contains($0) })
 }
 
 // current-host copies end in the Mac's hardware UUID
-func domain(of path: String) -> String {
+func domainOfFile(_ path: String) -> String {
 	let name = (path as NSString).lastPathComponent.replacingOccurrences(of: ".plist", with: "")
 	return name.replacingOccurrences(of: #"\.[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}$"#, with: "", options: .regularExpression)
 }
 
-func describe(_ path: String) -> String {
-	let domain = domain(of: path)
+func describeFile(_ path: String) -> String {
+	let domain = domainOfFile(path)
 	var notes: [String] = []
 	if path.contains("/ByHost/") { notes.append("current host") }
 	if path.hasPrefix("/Library/") { notes.append("system") }
@@ -51,12 +48,12 @@ func describe(_ path: String) -> String {
 	return notes.isEmpty ? domain : "\(domain) (\(notes.joined(separator: ", ")))"
 }
 
-func read(_ path: String) -> [String: Any]? {
+func readPlist(_ path: String) -> [String: Any]? {
 	guard let data = FileManager.default.contents(atPath: path) else { return nil }
 	return (try? PropertyListSerialization.propertyList(from: data, format: nil)) as? [String: Any]
 }
 
-func show(_ value: Any?) -> String {
+func showValue(_ value: Any?) -> String {
 	switch value {
 	case nil: return "(none)"
 	case let data as Data: return "<\(data.count) bytes>"
@@ -78,39 +75,66 @@ func changes(_ old: Any?, _ new: Any?, _ key: String = "") -> [(String, Any?, An
 	return same ? [] : [(key, old, new)]
 }
 
-var known: [String: [String: Any]] = [:]
-for root in roots {
-	for case let relative as String in FileManager.default.enumerator(atPath: root) ?? NSEnumerator() {
-		let path = "\(root)/\(relative)"
-		if isPreferenceFile(path), let contents = read(path) { known[path] = contents }
-	}
-}
+// Reports each preference key that changes in the files whose path contains one of `filters`.
+final class Watcher {
+	let filters: [String]
+	let report: (String) -> Void
+	var known: [String: [String: Any]] = [:]
+	var stream: FSEventStreamRef?
 
-let time = DateFormatter()
-time.dateFormat = "HH:mm:ss"
-
-let callback: FSEventStreamCallback = { _, _, count, paths, _, _ in
-	let paths = unsafeBitCast(paths, to: NSArray.self) as! [String]
-	for path in Set(paths.prefix(count)) where isPreferenceFile(path) && !noisyDomains.contains(domain(of: path)) {
-		let contents = read(path)
-		let found = changes(known[path] ?? [:], contents ?? [:]).filter { !isNoise($0.0) }
-		known[path] = contents
-		guard !found.isEmpty else { continue }
-		print("\(time.string(from: Date())) \(describe(path))")
-		for (key, old, new) in found {
-			print("  \(key): \(show(old)) → \(show(new))")
+	init(filters: [String], report: @escaping (String) -> Void) {
+		self.filters = filters.map { $0 == "-g" ? ".GlobalPreferences" : $0 }
+		self.report = report
+		for root in roots {
+			for case let relative as String in FileManager.default.enumerator(atPath: root) ?? NSEnumerator() {
+				let path = "\(root)/\(relative)"
+				if isPreferenceFile(path, self.filters), let contents = readPlist(path) { known[path] = contents }
+			}
 		}
-		fflush(stdout)
+	}
+
+	func changed(_ paths: [String]) {
+		let time = DateFormatter()
+		time.dateFormat = "HH:mm:ss"
+		for path in Set(paths) where isPreferenceFile(path, filters) && !noisyDomains.contains(domainOfFile(path)) {
+			let contents = readPlist(path)
+			let found = changes(known[path] ?? [:], contents ?? [:]).filter { !isNoise($0.0) }
+			known[path] = contents
+			guard !found.isEmpty else { continue }
+			report("\(time.string(from: Date())) \(describeFile(path))")
+			for (key, old, new) in found {
+				report("  \(key): \(showValue(old)) → \(showValue(new))")
+			}
+		}
+	}
+
+	func start(on queue: DispatchQueue) {
+		var context = FSEventStreamContext(version: 0, info: Unmanaged.passUnretained(self).toOpaque(), retain: nil, release: nil, copyDescription: nil)
+		let callback: FSEventStreamCallback = { _, info, count, paths, _, _ in
+			let watcher = Unmanaged<Watcher>.fromOpaque(info!).takeUnretainedValue()
+			watcher.changed(Array((unsafeBitCast(paths, to: NSArray.self) as! [String]).prefix(count)))
+		}
+		stream = FSEventStreamCreate(
+			nil, callback, &context, roots as CFArray,
+			FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 0.3,
+			FSEventStreamCreateFlags(kFSEventStreamCreateFlagFileEvents | kFSEventStreamCreateFlagNoDefer | kFSEventStreamCreateFlagUseCFTypes)
+		)
+		FSEventStreamSetDispatchQueue(stream!, queue)
+		FSEventStreamStart(stream!)
+	}
+
+	func stop() {
+		guard let stream else { return }
+		FSEventStreamStop(stream)
+		FSEventStreamInvalidate(stream)
+		FSEventStreamRelease(stream)
+		self.stream = nil
 	}
 }
 
-let stream = FSEventStreamCreate(
-	nil, callback, nil, roots as CFArray,
-	FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 0.3,
-	FSEventStreamCreateFlags(kFSEventStreamCreateFlagFileEvents | kFSEventStreamCreateFlagNoDefer | kFSEventStreamCreateFlagUseCFTypes)
-)!
-FSEventStreamSetDispatchQueue(stream, .main)
-FSEventStreamStart(stream)
-print("watching \(known.count) preference files; flip a setting (Ctrl-C to stop)")
-fflush(stdout)
-dispatchMain()
+func watch(_ filters: [String]) -> Never {
+	let watcher = Watcher(filters: filters, report: say)
+	watcher.start(on: .main)
+	say("watching \(watcher.known.count) preference files; flip a setting (Ctrl-C to stop)")
+	dispatchMain()
+}

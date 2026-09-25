@@ -80,7 +80,7 @@ The value is a Nix expression, so strings need their quotes. `--dry-run` prints 
 
 ### Verify against the real UI
 
-`tools/verify.py` drives System Settings through the Accessibility API, so the terminal running it needs Accessibility permission (Privacy & Security → Accessibility). It moves the mouse and quits and reopens System Settings while it runs.
+`nix run .#verify` (Swift in `tools/verify`, compiled with the Mac's own Swift on first use) drives System Settings through the Accessibility API, so the terminal running it needs Accessibility permission (Privacy & Security → Accessibility). It moves the mouse and quits and reopens System Settings while it runs.
 
 ```sh
 nix run .#verify -- discover com.apple.settings.appearance        # the settings the pane shows
@@ -97,10 +97,10 @@ Panes are addressed by their sidebar identifier; `gaps` walks all of them, and `
 
 `discover` lists the switches, sliders, pop-ups and sheets a pane shows. Use `--open "Hot Corners…"` to reach sheets and sub-pages; `ax items <pop-up>` lists a pop-up's choices.
 
-`check` needs a `verify` spec on the setting that says what System Settings should show for each value. Its format is described at the top of `tools/verify.py`. `check` backs up the setting's preference keys, applies each value with the option's own generated command, reopens the pane and compares, then restores the backup. Options that pass are added to `verified` under the current build; options that fail are removed.
+`check` needs a `verify` spec on the setting that says what System Settings should show for each value. Its format is shown by `nix run .#verify` without arguments. `check` backs up the setting's preference keys, applies each value with the option's own generated command, reopens the pane and compares, then restores the backup. Options that pass are added to `verified` under the current build; options that fail are removed.
 
 Write the setting's `storage` from what `observe` reports. Don't take it from an existing option: an option that writes the wrong domain (for example `ByHost` when System Settings writes the global domain) still "works" in one direction, but it silently overrides whatever the user picks in the UI.
 
 ### A new macOS release
 
-Run `nix run .#verify -- check --batch` on the new release, then `nix run .#verify -- defaults --batch`, which deletes each option's keys, records what System Settings shows in `defaults/<build>.json` and puts them back. `current` leaves out settings at those defaults. `python3 tools/wallpapers.py > lib/options/applications/systemSettings/wallpapers.json` updates the catalog of wallpapers macOS comes with. The options that still pass move to the new build in `verified`; the ones that fail are dropped and need a look. Walk the panes with `discover` for settings that are new.
+Run `nix run .#verify -- check --batch` on the new release, then `nix run .#verify -- defaults --batch`, which deletes each option's keys, records what System Settings shows in `defaults/<build>.json` and puts them back. `current` leaves out settings at those defaults. `nix run .#verify -- wallpapers > lib/options/applications/systemSettings/wallpapers.json` updates the catalog of wallpapers macOS comes with. The options that still pass move to the new build in `verified`; the ones that fail are dropped and need a look. Walk the panes with `discover` for settings that are new.
