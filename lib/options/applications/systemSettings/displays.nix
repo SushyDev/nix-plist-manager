@@ -5,13 +5,7 @@ let
 	pane = "com.apple.settings.displayAndBrightness";
 	option = name: "applications.systemSettings.displays.${name}";
 
-	# corebrightnessd's state is root-only on disk, so it's changed through the CoreBrightness client classes.
 	coreBrightness = mkKey { domain = "/var/root/Library/Preferences/com.apple.CoreBrightness"; name = null; };
-	coreBrightnessCall = class: call: live.jxa (lib.concatStrings [
-		"ObjC.import('Foundation');"
-		"$.NSBundle.bundleWithPath('/System/Library/PrivateFrameworks/CoreBrightness.framework').load;"
-		"$.NSClassFromString('${class}').alloc.init.${call};"
-	]);
 
 	advanced = { ui, storage, control, value ? bool, relations ? [] }: setting {
 		inherit storage value relations;
@@ -32,7 +26,7 @@ in
 		storage = coreBrightness;
 		value = bool;
 		canUnset = false;
-		behaviors = [ (appliesThrough (enabled: coreBrightnessCall "CBTrueToneClient" "setEnabled(${lib.boolToString enabled})")) ];
+		behaviors = [ (appliesThrough (enabled: live.coreBrightness "CBTrueToneClient" "setEnabled" [ enabled ])) ];
 	};
 
 	nightShift = {
@@ -41,7 +35,7 @@ in
 			storage = coreBrightness;
 			value = enum { Off = 0; "Sunset to Sunrise" = 1; };
 			canUnset = false;
-			behaviors = [ (appliesThrough (mode: coreBrightnessCall "CBBlueLightClient" "setMode(${toString { Off = 0; "Sunset to Sunrise" = 1; }.${mode}})")) ];
+			behaviors = [ (appliesThrough (mode: live.coreBrightness "CBBlueLightClient" "setMode" [ { Off = 0; "Sunset to Sunrise" = 1; }.${mode} ])) ];
 		};
 
 		colorTemperature = setting {
@@ -50,7 +44,7 @@ in
 			storage = coreBrightness;
 			value = number { min = 0.0; max = 1.0; };
 			canUnset = false;
-			behaviors = [ (appliesThrough (strength: coreBrightnessCall "CBBlueLightClient" "setStrengthCommit(${toString strength}, true)")) ];
+			behaviors = [ (appliesThrough (strength: live.coreBrightness "CBBlueLightClient" "setStrengthCommit" [ strength true ])) ];
 		};
 	};
 

@@ -534,7 +534,7 @@ def check_group(group: list[dict]) -> set[str]:
 	return {option for option, failed in failures.items() if not failed}
 
 
-PREFERENCE_ONLY = re.compile(r"^\s*(/usr/bin/(defaults|killall|notifyutil)\b|current=|case |/usr/bin/osascript -l JavaScript -e 'ObjC\.import\('Foundation'\);var d = \$\.NSUserDefaults|" + re.escape(ACTIVATE_SETTINGS) + ")")
+PREFERENCE_ONLY = re.compile(r"^\s*(/usr/bin/(defaults|killall|notifyutil)\b|current=|case |/usr/bin/osascript -l JavaScript \S+-set-members\.js |" + re.escape(ACTIVATE_SETTINGS) + ")")
 
 
 def applies_live(entry: dict) -> bool:
