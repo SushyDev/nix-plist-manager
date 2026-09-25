@@ -413,6 +413,9 @@
 		},
 		"Trackpad": {
 			"the key that turns off only the Apps gesture isn't known; it's tied to the five-finger pinch Show Desktop shares": ["Launchpad"]
+		},
+		"Wallpaper": {
+			"how System Settings stores a custom color isn't known yet": ["Colors › Custom Color", "Colors › Add Color"]
 		}
 	},
 	"notCovered": {
@@ -524,6 +527,11 @@
 		"Wallet & Apple Pay": {
 			"kept with the Apple Account": ["Add Orders to Wallet"],
 			"personal contact details for Apple Pay, kept with the Apple Account": ["Email", "Phone", "Phone > Transaction defaults", "Shipping Address"]
+		},
+		"Wallpaper": {
+			"downloaded through macOS's asset service when picked in System Settings, which can't be started from outside it": ["Dynamic Wallpapers › Tahoe", "Dynamic Wallpapers › Ventura", "Dynamic Wallpapers › Monterey", "Dynamic Wallpapers › Big Sur", "Dynamic Wallpapers › Catalina", "Dynamic Wallpapers › The Cliffs, The Lake, The Desert, The Beach, Solar Gradients and the other older sets", "Pictures › Radial Blue, Radial Green, Radial Purple, Radial Yellow"],
+			"kept per Space, and Spaces are identified per Mac": ["Show on all Spaces"],
+			"albums of the Photos library, which belong to that library": ["Your Photos › Choose from Photos…", "Your Photos › albums"]
 		},
 		"Wi‑Fi": {
 			"Wi-Fi on or off changes in daily use and belongs to the hardware": ["Wi‑Fi"]
