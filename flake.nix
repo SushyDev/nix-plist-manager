@@ -104,24 +104,24 @@
 					app = name: script: { type = "app"; program = "${pkgs.writeShellScript name script}"; };
 					# Users run these from their own configurations, so they use this flake's source.
 					fromFlake = "export NIX_PLIST_MANAGER_ROOT=\"\${NIX_PLIST_MANAGER_ROOT:-${self}}\"\n";
-					python = "${pkgs.python3}/bin/python3";
+					# the tools that look into System Settings are compiled with the Mac's own Swift the first time
+					compiled = ''
+						root="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel 2>/dev/null || echo ${self})}"
+						export NIX_PLIST_MANAGER_ROOT="$root"
+						sources=("$root"/tools/verify/*.swift)
+						binary="''${XDG_CACHE_HOME:-$HOME/.cache}/nix-plist-manager/verify-$(/bin/cat "''${sources[@]}" | /usr/bin/shasum | /usr/bin/cut -c1-12)"
+						if [ ! -x "$binary" ]; then
+							/bin/mkdir -p "$(/usr/bin/dirname "$binary")"
+							/usr/bin/swiftc -O -swift-version 5 "''${sources[@]}" -o "$binary"
+						fi
+					'';
 				in
 				{
 					apply = app "apply" (fromFlake + builtins.readFile ./tools/apply.sh);
 					current = app "current" (fromFlake + builtins.readFile ./tools/current.sh);
 					capture = app "capture" (fromFlake + "set -- capture \"$@\"\n" + builtins.readFile ./tools/current.sh);
-					verify = app "verify" ''
-						export NIX_PLIST_MANAGER_ROOT="''${NIX_PLIST_MANAGER_ROOT:-$(${pkgs.git}/bin/git rev-parse --show-toplevel)}"
-						exec ${python} "$NIX_PLIST_MANAGER_ROOT/tools/verify.py" "$@"
-					'';
-					watch = app "watch" ''
-						binary="''${XDG_CACHE_HOME:-$HOME/.cache}/nix-plist-manager/$(basename ${./tools/watch.swift} .swift)"
-						if [ ! -x "$binary" ]; then
-							mkdir -p "$(dirname "$binary")"
-							/usr/bin/swiftc -O ${./tools/watch.swift} -o "$binary"
-						fi
-						exec "$binary" "$@"
-					'';
+					verify = app "verify" (compiled + "exec \"$binary\" \"$@\"\n");
+					watch = app "watch" (compiled + "exec \"$binary\" watch \"$@\"\n");
 				}
 			);
 		};
