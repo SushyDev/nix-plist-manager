@@ -2,8 +2,9 @@
 rec {
 	restarts = process: _: plan: plan ++ [ (ops.restart process) ];
 
+	# Only a logged-in user has a window server to hand shortcuts to; the others read them at login.
 	activatesShortcuts = _: plan: plan ++ [
-		(ops.afterwards "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u")
+		(ops.afterwards "if /bin/launchctl print gui/$(/usr/bin/id -u) >/dev/null 2>&1; then /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u; fi")
 	];
 
 	# A process that saves its state when it quits would otherwise write over what was just restored.
