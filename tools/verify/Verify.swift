@@ -273,7 +273,7 @@ func checkRounds(_ group: [Entry], rounds: Int, scripts: [String: [String: Strin
 	}
 }
 
-let preferenceOnly = #"^\s*(/usr/bin/(defaults|killall|notifyutil)\b|current=|case |/usr/bin/osascript -l JavaScript \S+-set-members\.js |"#
+let preferenceOnly = #"^\s*(/usr/bin/(defaults|killall|notifyutil)\b|current=|case |if /bin/launchctl print gui/|/usr/bin/osascript -l JavaScript \S+-set-members\.js |"#
 	+ NSRegularExpression.escapedPattern(for: activateSettings) + ")"
 
 func appliesLive(_ entry: Entry) -> Bool {
