@@ -700,6 +700,11 @@ def discover(pane: str, steps: list[str] = ()) -> list[dict]:
 	return [f for f in found if f["title"]]
 
 
+def cmd_shown(args):
+	index = {entry["option"]: entry for entry in load_options()}
+	print(json.dumps({option: value for name in args.options for option, value in shown_values([index[name]]).items()}))
+
+
 def cmd_discover(args):
 	for found in discover(args.pane, args.open or []):
 		print(f"{found['kind']:7} {found['title']}" + (f"  {found['choices']}" if found["choices"] else ""))
@@ -780,6 +785,10 @@ def main():
 	p.add_argument("--missing", action="store_true", help="only options with no default recorded yet, e.g. to continue a run")
 	p.add_argument("--side-effects", action="store_true", help="also options whose check has side effects, such as turning on the camera")
 	p.set_defaults(run=cmd_defaults)
+
+	p = sub.add_parser("shown", help="print the values System Settings shows for these options, as JSON")
+	p.add_argument("options", nargs="+")
+	p.set_defaults(run=cmd_shown)
 
 	p = sub.add_parser("discover", help="list the settings a page shows")
 	p.add_argument("pane")
