@@ -525,6 +525,10 @@
 			"kept with the Apple Account": ["Add Orders to Wallet"],
 			"personal contact details for Apple Pay, kept with the Apple Account": ["Email", "Phone", "Phone > Transaction defaults", "Shipping Address"]
 		},
+		"Wallpaper": {
+			"a wallpaper per display is kept by the display's hardware identifier, which differs per Mac": ["the display picker when more than one display is connected"],
+			"a single photo of the Photos library belongs to that library; albums are covered by applications.systemSettings.wallpaper.photos": ["Your Photos › Choose from Photos…"]
+		},
 		"Wi‑Fi": {
 			"Wi-Fi on or off changes in daily use and belongs to the hardware": ["Wi‑Fi"]
 		}
@@ -596,7 +600,7 @@
 			"the pane itself": ["Wallet › Wallet & Apple Pay"]
 		},
 		"Wallpaper": {
-			"kept in WallpaperAgent's store with the wallpaper; captured and restored by applications.systemSettings.wallpaper.wallpaper": ["Show screen saver as wallpaper on main display", "Show screen saver on all Spaces", "Show wallpaper as screen saver on main display"]
+			"kept in WallpaperAgent's store with the wallpaper; captured and restored by applications.systemSettings.wallpaper.snapshot": ["Show screen saver as wallpaper on main display", "Show screen saver on all Spaces", "Show wallpaper as screen saver on main display"]
 		}
 	}
 }

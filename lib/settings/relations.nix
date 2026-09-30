@@ -5,7 +5,8 @@ let
 		id = "${context.path} -> ${other}";
 	} // extra;
 
-	show = value: builtins.toJSON value;
+	withoutNulls = value: if lib.isAttrs value then lib.mapAttrs (_: withoutNulls) (lib.filterAttrs (_: v: v != null) value) else value;
+	show = value: builtins.toJSON (withoutNulls value);
 
 	unmanaged = context: other: reason:
 		result "warning" context other
@@ -38,6 +39,9 @@ in
 		lib.optional (otherValue != null && condition otherValue)
 			(result "assertion" context other
 				"${context.path} = ${show context.value} can't be combined with ${other} = ${show otherValue}: ${reason}." { });
+
+	validates = problems: context:
+		map (problem: { kind = "assertion"; id = context.path; message = "${context.path}: ${problem}."; }) (problems context.value);
 
 	implies = other: otherValue: reason: context:
 		let

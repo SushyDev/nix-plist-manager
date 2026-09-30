@@ -103,4 +103,4 @@ Write the setting's `storage` from what `observe` reports. Don't take it from an
 
 ### A new macOS release
 
-Run `nix run .#verify -- check --batch` on the new release, then `nix run .#verify -- defaults --batch`, which deletes each option's keys, records what System Settings shows in `defaults/<build>.json` and puts them back. `current` leaves out settings at those defaults. The options that still pass move to the new build in `verified`; the ones that fail are dropped and need a look. Walk the panes with `discover` for settings that are new.
+Run `nix run .#verify -- check --batch` on the new release, then `nix run .#verify -- defaults --batch`, which deletes each option's keys, records what System Settings shows in `defaults/<build>.json` and puts them back. `current` leaves out settings at those defaults. `python3 tools/wallpapers.py > lib/options/applications/systemSettings/wallpapers.json` updates the catalog of wallpapers macOS comes with. The options that still pass move to the new build in `verified`; the ones that fail are dropped and need a look. Walk the panes with `discover` for settings that are new.

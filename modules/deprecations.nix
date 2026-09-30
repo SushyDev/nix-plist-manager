@@ -30,6 +30,9 @@ in
 		[ "applications" "systemSettings" "desktopAndDock" "widgets" "useIphoneWidgets" ]
 		[ "applications" "systemSettings" "general" "airDropAndContinuity" "iPhoneWidgets" ]
 	++ renamed "user"
+		[ "applications" "systemSettings" "wallpaper" "wallpaper" ]
+		[ "applications" "systemSettings" "wallpaper" "snapshot" ]
+	++ renamed "user"
 		[ "applications" "systemSettings" "menuBar" "batteryShowPercentage" ]
 		[ "applications" "systemSettings" "menuBar" "batteryOptions" "showPercentage" ]
 	++ removed "user" [ "applications" "systemSettings" "appleIntelligenceAndSiri" "siriResponses" ] ''
