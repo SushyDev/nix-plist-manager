@@ -7,10 +7,10 @@ let
 	behaviorsLib = import ./behaviors.nix { inherit lib ops; };
 	relations = import ./relations.nix { inherit lib; };
 	core = import ./setting.nix { inherit lib ops behaviorsLib; };
-	render = import ./render.nix { inherit lib; };
+	live = import ./live { inherit lib; };
+	render = import ./render.nix { inherit lib live; };
 	module = import ./module.nix { inherit lib render; inherit (core) isSetting; };
 	describe = import ./describe.nix { inherit lib render; };
-	live = import ./live.nix { inherit lib; };
 	shows = import ./shows.nix { inherit lib; };
 	read = import ./read.nix { inherit lib module; };
 in

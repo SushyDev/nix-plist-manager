@@ -1,6 +1,6 @@
 { lib, settingsLib, ... }:
 let
-	inherit (settingsLib) setting domain snapshot restartsDiscardingItsState user byHost enum shows appliesThrough conflictsWith validates;
+	inherit (settingsLib) setting domain snapshot restartsDiscardingItsState user byHost enum shows appliesThrough conflictsWith validates live;
 	q = lib.escapeShellArg;
 
 	store = domain "~/Library/Application Support/com.apple.wallpaper/Store/Index";
@@ -38,7 +38,7 @@ let
 		in
 		map download (lib.concatMap (choice: choice.downloads or []) choices)
 		++ lib.concatMap (choice: choice.notes or []) choices
-		++ [ "/usr/bin/osascript -l JavaScript -e ${q (builtins.readFile ./wallpaper.js)} ${q (builtins.toJSON input)} >/dev/null" ];
+		++ [ (live.wallpaper input) ];
 
 	aerialVideo = video: { inherit (video) url; to = "Library/Application Support/com.apple.wallpaper/aerials/videos/${video.id}.mov"; };
 	assetPicture = picture: {

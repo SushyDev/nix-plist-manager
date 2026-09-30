@@ -247,7 +247,7 @@ lib.runTests {
 	};
 
 	testMembersRenderReadModifyWrite = {
-		expr = lib.hasInfix "items.splice(at, 1)" (s.render.script [ (s.ops.setMembers (s.user "com.apple.Spotlight" "EnabledPreferenceRules") { a = false; }) ]);
+		expr = builtins.match ".*set-members[.]js '[{]\"domain\":\"com.apple.Spotlight\",\"key\":\"EnabledPreferenceRules\",\"members\":[{]\"a\":false[}][}]'.*" (s.render.script [ (s.ops.setMembers (s.user "com.apple.Spotlight" "EnabledPreferenceRules") { a = false; }) ]) != null;
 		expected = true;
 	};
 

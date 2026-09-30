@@ -1,4 +1,4 @@
-{ lib }:
+{ lib, live }:
 let
 	q = lib.escapeShellArg;
 
@@ -71,23 +71,7 @@ let
 		else if s.op == "setMembers" then
 			if s.key.byHost || s.key.scope != "user" || lib.hasPrefix "~/" s.key.domain
 			then throw "setMembers only supports plain user domains, not ${s.key.domain}"
-			else
-				let
-					script = lib.concatStrings [
-						"ObjC.import('Foundation');"
-						"var d = $.NSUserDefaults.alloc.initWithSuiteName(${builtins.toJSON s.key.domain});"
-						"var items = ObjC.deepUnwrap(d.arrayForKey(${builtins.toJSON s.key.name})) || [];"
-						"var members = ${builtins.toJSON s.members};"
-						"Object.keys(members).forEach(function (item) {"
-						"  var at = items.indexOf(item);"
-						"  if (members[item] && at < 0) items.push(item);"
-						"  if (!members[item] && at >= 0) items.splice(at, 1);"
-						"});"
-						"d.setObjectForKey($(items), ${builtins.toJSON s.key.name});"
-						"d.synchronize;"
-					];
-				in
-				orReport "/usr/bin/osascript -l JavaScript -e ${q script} >/dev/null"
+			else orReport (live.setMembers s.key.domain s.key.name s.members)
 
 		else if s.op == "restore" then
 			lib.concatStringsSep "\n" [

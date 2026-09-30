@@ -24,8 +24,8 @@ in
 		};
 		behaviors = [
 			(appliesThrough (value:
-				if value == "Auto" then live.appearance.automatic true
-				else [ (live.appearance.automatic false) (live.appearance.dark (value == "Dark")) ]
+				if value == "Auto" then live.appearance { automatic = true; }
+				else live.appearance { automatic = false; dark = value == "Dark"; }
 			))
 		];
 		verify = {
