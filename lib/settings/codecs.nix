@@ -198,9 +198,10 @@ rec {
 				entry = if lib.isAttrs stored then stored.${toString id} or null else null;
 				parameters = entry.value.parameters or null;
 				keysShown = if parameters == null then null else shortcuts.fromHotKey parameters;
+				enabled = entry.enabled or false;
 			in
 			if entry == null then null
-			else if !(entry.enabled or false) then false
+			else if !(enabled == true || enabled == 1) then false
 			else if keysShown == null then true
 			else keysShown;
 		type = lib.types.either lib.types.bool shortcuts.type;
